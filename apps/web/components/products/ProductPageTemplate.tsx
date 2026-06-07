@@ -13,6 +13,12 @@ interface Spec {
   value: string;
 }
 
+interface GallerySection {
+  label: string;
+  heading: string;
+  images: GalleryImage[];
+}
+
 interface ProductPageTemplateProps {
   name: string;
   tagline: string;
@@ -22,6 +28,9 @@ interface ProductPageTemplateProps {
   heroImages: GalleryImage[];
   exteriorImages: GalleryImage[];
   interiorImages?: GalleryImage[];
+  // When provided, replaces the default Exterior/Interior galleries with these
+  // named sections (e.g. Micro Apartments + Office Buildings).
+  galleries?: GallerySection[];
   specs: Spec[];
   features: string[];
   ctaText?: string;
@@ -38,6 +47,7 @@ export default function ProductPageTemplate({
   heroImages,
   exteriorImages,
   interiorImages,
+  galleries,
   specs,
   features,
   ctaText = 'Book a Consultation',
@@ -103,34 +113,54 @@ export default function ProductPageTemplate({
         </div>
       </section>
 
-      {/* 2. Exterior gallery */}
-      <section className="bg-bb-charcoal py-16 lg:py-24">
-        <div className="mx-auto max-w-[1280px] px-6">
-          <p className={label}>Exterior</p>
-          <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
-            See It From Every Angle
-          </h2>
-          {exteriorImages.length > 0 ? (
-            <ImageGallery images={exteriorImages} className="mt-10" />
-          ) : (
-            <div className="mt-10 flex min-h-40 items-center justify-center rounded-lg border border-white/5 bg-bb-surface-dark p-8 text-center text-gray-500">
-              Product photography coming soon.
+      {/* 2. Galleries. When `galleries` is provided, render those named
+          sections (alternating background); otherwise the default
+          Exterior (+ Interior) galleries. */}
+      {galleries && galleries.length > 0 ? (
+        galleries.map((g, i) => (
+          <section
+            key={g.label}
+            className={`${i % 2 === 0 ? 'bg-bb-charcoal' : 'bg-bb-surface-dark'} py-16 lg:py-24`}
+          >
+            <div className="mx-auto max-w-[1280px] px-6">
+              <p className={label}>{g.label}</p>
+              <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+                {g.heading}
+              </h2>
+              <ImageGallery images={g.images} className="mt-10" />
             </div>
-          )}
-        </div>
-      </section>
+          </section>
+        ))
+      ) : (
+        <>
+          <section className="bg-bb-charcoal py-16 lg:py-24">
+            <div className="mx-auto max-w-[1280px] px-6">
+              <p className={label}>Exterior</p>
+              <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+                See It From Every Angle
+              </h2>
+              {exteriorImages.length > 0 ? (
+                <ImageGallery images={exteriorImages} className="mt-10" />
+              ) : (
+                <div className="mt-10 flex min-h-40 items-center justify-center rounded-lg border border-white/5 bg-bb-surface-dark p-8 text-center text-gray-500">
+                  Product photography coming soon.
+                </div>
+              )}
+            </div>
+          </section>
 
-      {/* 3. Interior gallery (only if provided) */}
-      {interiorImages && interiorImages.length > 0 && (
-        <section className="bg-bb-surface-dark py-16 lg:py-24">
-          <div className="mx-auto max-w-[1280px] px-6">
-            <p className={label}>Interior</p>
-            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
-              Take a Look Inside
-            </h2>
-            <ImageGallery images={interiorImages} className="mt-10" />
-          </div>
-        </section>
+          {interiorImages && interiorImages.length > 0 && (
+            <section className="bg-bb-surface-dark py-16 lg:py-24">
+              <div className="mx-auto max-w-[1280px] px-6">
+                <p className={label}>Interior</p>
+                <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+                  Take a Look Inside
+                </h2>
+                <ImageGallery images={interiorImages} className="mt-10" />
+              </div>
+            </section>
+          )}
+        </>
       )}
 
       {/* 4. Specifications */}

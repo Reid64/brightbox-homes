@@ -7,15 +7,27 @@ export const metadata: Metadata = {
     'Scalable modular construction for multi-unit residential and commercial applications - apartment complexes, office buildings, and workforce housing built from the assembly house system.',
 };
 
-const exteriorImages = [
-  { src: '/images/products/apartments-office-buildings/exterior/apt-01.jpg', alt: 'Two-story glass-front modular building configuration.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-02.png', alt: 'Three-story white modular building with balcony and exterior stairs.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-03.jpg', alt: 'Two-story modular glass building with a rooftop balcony.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-04.jpg', alt: 'Two-story modular building complex around a courtyard.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-06.jpg', alt: 'Dark two-story modular building with a rooftop deck.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-07.jpg', alt: 'Two-story modular building with a balcony walkway.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-08.jpg', alt: 'Long two-story modular building with an external staircase.' },
+// Residential multi-unit configurations.
+const microApartments = [
+  { src: '/images/products/apartments-office-buildings/exterior/apt-02.png', alt: 'Three-story white modular apartment building with balconies and exterior stairs.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-04.jpg', alt: 'Two-story modular apartment complex around a courtyard.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-07.jpg', alt: 'Two-story modular apartment building with a balcony walkway.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-08.jpg', alt: 'Long two-story modular residential building with an external staircase.' },
 ];
+
+// Commercial / office configurations.
+const officeBuildings = [
+  { src: '/images/products/apartments-office-buildings/exterior/apt-01.jpg', alt: 'Two-story glass-front modular office building.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-03.jpg', alt: 'Two-story modular glass office building with a rooftop balcony.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-06.jpg', alt: 'Dark modern modular office building with a rooftop deck.' },
+];
+
+const galleries = [
+  { label: 'Micro Apartments', heading: 'Residential Multi-Unit Configurations', images: microApartments },
+  { label: 'Office Buildings', heading: 'Commercial & Office Configurations', images: officeBuildings },
+];
+
+const heroImages = [...microApartments, ...officeBuildings];
 
 const specs = [
   { label: 'Construction', value: 'Assembly house modular system' },
@@ -41,8 +53,9 @@ export default function ApartmentsOfficeBuildingsPage() {
       description="Built from the same modular assembly system as our Assembly Homes, this line scales up: join and stack units into multi-story apartment complexes, office buildings, and workforce housing. Each configuration is engineered for commercial-grade use while keeping the speed and cost advantages of modular construction. Contact our team to scope a development for your site."
       price="Contact for Pricing"
       priceLabel="Commercial"
-      heroImages={exteriorImages}
-      exteriorImages={exteriorImages}
+      heroImages={heroImages}
+      exteriorImages={[]}
+      galleries={galleries}
       specs={specs}
       features={features}
     />

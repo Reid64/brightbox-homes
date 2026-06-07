@@ -15,6 +15,9 @@ const exteriorImages = [
   { src: '/images/products/apple-cabins/exterior/05.png', alt: 'Apple Cabin with a mountain backdrop at sunset.' },
   { src: '/images/products/apple-cabins/exterior/06.png', alt: 'Elevated Apple Cabin over a carport at twilight.' },
   { src: '/images/products/apple-cabins/exterior/07.png', alt: 'Apple Cabin with an American flag overlooking a lake at sunset.' },
+  { src: '/images/products/apple-cabins/exterior/08.png', alt: 'Rounded white Apple Cabin with a glass front in a park setting.' },
+  { src: '/images/products/apple-cabins/exterior/09.jpg', alt: 'Rounded Apple Cabin with a glass facade and furnished interior visible.' },
+  { src: '/images/products/apple-cabins/exterior/10.jpg', alt: 'Apple Cabin with a wood deck beside a lake at sunset.' },
 ];
 
 const interiorImages = [

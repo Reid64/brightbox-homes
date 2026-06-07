@@ -44,7 +44,7 @@ const productLines = [
   },
   {
     name: 'Assembly Homes',
-    price: '$19,995',
+    price: '$25,995',
     description:
       'Modular units that connect to create custom multi-room layouts for any use case.',
     href: '/products/assembly-homes',

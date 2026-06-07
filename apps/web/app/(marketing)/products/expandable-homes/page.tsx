@@ -14,6 +14,8 @@ const exteriorImages = [
   { src: '/images/products/expandable-homes/exterior/04.jpeg', alt: 'Expandable home with glass entry doors set on a wooded lot.' },
   { src: '/images/products/expandable-homes/exterior/05.jpeg', alt: 'Brown expandable home with a covered porch and solar panel.' },
   { src: '/images/products/expandable-homes/exterior/06.jpeg', alt: 'A white expandable home being delivered by crane truck.' },
+  { src: '/images/products/expandable-homes/exterior/07.jpeg', alt: 'A delivered expandable home with a covered porch under assembly.' },
+  { src: '/images/products/expandable-homes/exterior/08.jpeg', alt: 'Side view of a delivered brown expandable home on a foundation.' },
 ];
 
 const interiorImages = [
@@ -25,6 +27,11 @@ const interiorImages = [
   { src: '/images/products/expandable-homes/interior/06.png', alt: 'Bathroom with a glass shower stall and vanity.' },
   { src: '/images/products/expandable-homes/interior/07.png', alt: 'White kitchen cabinetry with countertop and sink.' },
   { src: '/images/products/expandable-homes/interior/08.png', alt: 'U-shaped white kitchen with open shelving.' },
+  { src: '/images/products/expandable-homes/interior/09.jpg', alt: 'Open expandable interior with glass doors and vinyl plank flooring.' },
+  { src: '/images/products/expandable-homes/interior/10.jpg', alt: 'Furnished expandable living room with sofa, dining area, and kitchen.' },
+  { src: '/images/products/expandable-homes/interior/11.jpg', alt: 'Furnished expandable living area with sofa, TV, and open kitchen.' },
+  { src: '/images/products/expandable-homes/interior/12.jpeg', alt: 'Expandable interior looking toward glass front doors and the porch.' },
+  { src: '/images/products/expandable-homes/interior/13.jpeg', alt: 'Expandable interior with kitchen and bathroom, wood-tone walls.' },
 ];
 
 const specs = [

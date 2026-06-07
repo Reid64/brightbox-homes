@@ -15,7 +15,7 @@ const exteriorImages = [
 ];
 
 const specs = [
-  { label: 'Price Range', value: '$19,995 - $25,995 per unit' },
+  { label: 'Price Range', value: '$25,995 - $29,995 per unit' },
   { label: 'Configuration', value: 'Single or multi-unit joinable layouts' },
   { label: 'Bathroom', value: 'Modular bathroom option' },
   { label: 'Kitchen', value: 'Modular kitchenette option' },
@@ -34,8 +34,8 @@ export default function AssemblyHomesPage() {
     <ProductPageTemplate
       name="Assembly Homes"
       tagline="Modular units that join together to create custom multi-room layouts."
-      description="Assembly Homes are compact modular units engineered to connect side-by-side and stack, letting you compose anything from a single studio to a multi-room layout or a commercial storefront. Each unit can be equipped with a modular bathroom and kitchenette, and pre-defined single- and multi-unit configurations make planning straightforward. Pricing runs $19,995 to $25,995 turnkey per unit depending on configuration. For multi-story apartment and office developments, see our Apartments & Office Buildings line."
-      price="$19,995"
+      description="Assembly Homes are compact modular units engineered to connect side-by-side and stack, letting you compose anything from a single studio to a multi-room layout or a commercial storefront. Each unit can be equipped with a modular bathroom and kitchenette, and pre-defined single- and multi-unit configurations make planning straightforward. Pricing runs $25,995 to $29,995 turnkey per unit depending on configuration. For multi-story apartment and office developments, see our Apartments & Office Buildings line."
+      price="$25,995 - $29,995"
       priceLabel="Starting at"
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}

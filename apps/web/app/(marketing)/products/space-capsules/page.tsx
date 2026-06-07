@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import { BedDouble, Tent, Briefcase, Users } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
 
 export const metadata: Metadata = {
   title: 'Space Capsule Homes | Bright Box Homes',
   description:
-    'Futuristic Space Capsule pods with fluorocarbon-coated aluminum panels and double-pane insulated glass. Ideal for backyard offices, studios, guest quarters, and glamping.',
+    'Panoramic glass Space Capsule homes with LOW-E tempered glass curtain walls, smart interiors, and resort-grade finishes. Nine layouts from a solo pod to a two-bedroom cabin. Ideal for Airbnb, glamping, offices, and guest suites.',
 };
 
 const exteriorImages = [
@@ -30,21 +31,45 @@ const interiorImages = [
 ];
 
 const specs = [
-  { label: 'Construction', value: 'Aluminum panel with fluorocarbon coating' },
-  { label: 'Insulation', value: 'Polyurethane' },
-  { label: 'Glass', value: 'Double-pane insulated' },
-  { label: 'Frame', value: 'Galvanized steel' },
-  { label: 'Flooring', value: 'Microcrystalline stone' },
-  { label: 'Available Models', value: '27\'11" and 37\'9" lengths' },
+  { label: 'Construction', value: 'Galvanized steel frame, aluminum alloy housing' },
+  { label: 'Shell', value: 'Insulated, waterproof, shock-proof' },
+  { label: 'Glazing', value: 'Hollow LOW-E tempered glass curtain wall and skylight' },
+  { label: 'Flooring', value: 'Environmental SPC (marble in bathroom)' },
+  { label: 'Climate', value: 'Air conditioner (underfloor heating optional)' },
+  { label: 'Ceiling Height', value: '~10\'6"' },
+  { label: 'Layouts', value: '9 models, ~129 to ~463 sq ft' },
+  { label: 'Bathroom', value: 'Full bath with smart toilet' },
 ];
 
 const features = [
-  'Fluorocarbon-coated aluminum panels',
-  'Double-pane insulated glass',
-  'Galvanized steel frame',
-  'Microcrystalline stone flooring',
-  'Polyurethane insulation',
-  'Futuristic pod aesthetic',
+  'Galvanized steel frame with aluminum alloy housing',
+  'Insulated, waterproof, and shock-proof shell',
+  'Hollow LOW-E tempered glass curtain wall',
+  'Hollow LOW-E tempered glass skylight',
+  'Panoramic balcony',
+  'Exterior surround silicone light belt',
+  'Custom entry door',
+  'Custom aluminum ceiling with fiber wall panels',
+  'Environmental SPC flooring with marble bathroom floor',
+  'Full bathroom with privacy glass door and bath heater',
+  'Smart toilet, faucet, shower, and floor drain',
+  'Washbasin, sink, mirror, and towel rack',
+  'Electric curtain track',
+  'Air conditioner',
+];
+
+const upgrades = [
+  {
+    category: 'Optional Upgrades',
+    items: [
+      { name: 'Underfloor heating system' },
+      { name: 'Projection screen' },
+      { name: 'Entrance staircase' },
+      { name: 'Water supply and drainage thermal insulation' },
+      { name: 'Shell color-change spray' },
+      { name: 'Renovation plan upgrades' },
+    ],
+  },
 ];
 
 const floorPlans = [
@@ -64,18 +89,129 @@ const floorPlans = [
   },
 ];
 
+const useCases = [
+  {
+    icon: BedDouble,
+    title: 'Airbnb & Short-Term Rental',
+    text: 'Drop a turnkey, fully finished pod on your lot and start hosting. Panoramic glass and smart interiors photograph beautifully and command premium nightly rates.',
+  },
+  {
+    icon: Tent,
+    title: 'Glamping & Resort',
+    text: 'Floor-to-ceiling LOW-E glass, a private panoramic balcony, and an exterior light belt make each capsule a destination - cluster several into a lakeside or mountain resort.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Backyard Office & Studio',
+    text: 'A quiet, climate-controlled, fully insulated workspace just steps from home - ideal for a home office, meditation studio, or creative retreat.',
+  },
+  {
+    icon: Users,
+    title: 'Guest Suite',
+    text: 'A self-contained guest room with a full bathroom, smart toilet, and air conditioning - private accommodation without an addition to your main house.',
+  },
+];
+
+const modelLineup = [
+  { model: 'V9', size: "43' x 11'", area: '463 sq ft', layout: '2 bedroom, 1 bath' },
+  { model: 'V7', size: "38' x 11'", area: '409 sq ft', layout: '2 bedroom, 1 bath' },
+  { model: 'F7', size: "31' x 11'", area: '344 sq ft', layout: '2 bedroom, 1 bath' },
+  { model: 'V6', size: "28' x 11'", area: '301 sq ft', layout: '2 bedroom, 1 bath' },
+  { model: 'V5', size: "28' x 11'", area: '301 sq ft', layout: '1 room, 1 bath' },
+  { model: 'F5', size: "22' x 11'", area: '248 sq ft', layout: '1 room, 1 bath' },
+  { model: 'V3', size: "19' x 10'6\"", area: '194 sq ft', layout: '1 room, 1 bath' },
+  { model: 'T3', size: "14'9\" round", area: '172 sq ft', layout: '1 room, 1 bath' },
+  { model: 'V1', size: "13' x 10'", area: '129 sq ft', layout: '1 room, 1 bath' },
+];
+
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
+
+const spaceCapsuleSections = (
+  <>
+    {/* Use Cases */}
+    <section className="bg-bb-charcoal py-16 lg:py-24">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <p className={label}>Use Cases</p>
+        <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+          One Pod, Many Lives
+        </h2>
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {useCases.map((uc) => {
+            const Icon = uc.icon;
+            return (
+              <div
+                key={uc.title}
+                className="rounded-xl border border-white/5 bg-bb-surface-dark p-6"
+              >
+                <Icon size={28} aria-hidden="true" className="text-bb-blue" />
+                <h3 className="mt-4 font-heading text-lg font-semibold text-white">
+                  {uc.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-400">{uc.text}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    {/* Model Lineup */}
+    <section className="bg-bb-surface-dark py-16 lg:py-24">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <p className={label}>Model Lineup</p>
+        <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+          Nine Layouts to Choose From
+        </h2>
+        <p className="mt-4 max-w-2xl text-gray-300">
+          From a compact solo pod to a spacious two-bedroom cabin. Every model
+          ships with the same standard finishes - choose the footprint that fits
+          your site and use case.
+        </p>
+        <div className="mt-10 overflow-x-auto">
+          <table className="w-full min-w-[640px] border-collapse text-left">
+            <thead>
+              <tr className="border-b border-white/10 text-xs uppercase tracking-[0.15em] text-bb-blue">
+                <th className="py-3 pr-4 font-medium">Model</th>
+                <th className="py-3 pr-4 font-medium">Footprint</th>
+                <th className="py-3 pr-4 font-medium">Area</th>
+                <th className="py-3 font-medium">Layout</th>
+              </tr>
+            </thead>
+            <tbody>
+              {modelLineup.map((m) => (
+                <tr key={m.model} className="border-b border-white/5">
+                  <td className="py-4 pr-4 font-heading font-semibold text-white">{m.model}</td>
+                  <td className="py-4 pr-4 font-mono text-gray-300">{m.size}</td>
+                  <td className="py-4 pr-4 font-mono text-gray-300">{m.area}</td>
+                  <td className="py-4 text-gray-300">{m.layout}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-gray-500">
+          All models stand approximately 10&apos;6&quot; tall. Dimensions are
+          approximate and subject to final configuration.
+        </p>
+      </div>
+    </section>
+  </>
+);
+
 export default function SpaceCapsulesPage() {
   return (
     <ProductPageTemplate
       name="Space Capsule Homes"
-      tagline="Futuristic pod design for offices, studios, guest quarters, and glamping."
-      description="The Space Capsule shares the Apple Cabin's premium construction profile - fluorocarbon-coated aluminum panels, double-pane insulated glass, a galvanized steel frame, and microcrystalline stone flooring - wrapped in a bold, futuristic pod silhouette. Available in two lengths, it makes an eye-catching backyard office, meditation studio, guest suite, or glamping pod. Pricing is being finalized for the US market."
+      tagline="Panoramic glass capsule homes with resort-grade finishes - nine layouts."
+      description="The Bright Box Space Capsule is a panoramic glass capsule home built on a galvanized steel frame with an aluminum alloy housing and an insulated, waterproof, shock-proof shell. Floor-to-ceiling hollow LOW-E tempered glass curtain walls and a matching skylight wrap each pod in light, while a panoramic balcony and an exterior silicone light belt give it a striking, resort-grade silhouette. Inside, every capsule is finished with environmental SPC flooring, custom aluminum ceilings and fiber wall panels, a full bathroom with marble floor, bath heater, and smart toilet, electric curtain tracks, and air conditioning. Choose from nine layouts - from a 129 sq ft solo pod to a 463 sq ft two-bedroom cabin. Pricing is being finalized for the US market."
       price="Coming Soon"
       priceLabel="Pricing"
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      afterGalleries={spaceCapsuleSections}
       floorPlans={floorPlans}
+      upgrades={upgrades}
       specs={specs}
       features={features}
     />

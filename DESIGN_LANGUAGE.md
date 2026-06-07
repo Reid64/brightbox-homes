@@ -312,7 +312,7 @@ These are explicitly banned from the Bright Box Homes build:
 
 1. **Generic stock photography** — No Shutterstock people standing in front of houses they don't own.
 2. **Gradient backgrounds** — No blue-to-purple hero gradients. Clean, solid colors only.
-3. **Auto-playing video** — All video playback initiated by user click.
+3. **Auto-playing content video** — Content video requiring user attention must be click-initiated. Ambient muted background video loops (hero sections) are permitted.
 4. **Carousel auto-rotation** — Product galleries are user-controlled.
 5. **Floating label inputs** — Labels above inputs, always visible.
 6. **Hamburger menu on desktop** — Full nav visible at `--bp-lg` and above.

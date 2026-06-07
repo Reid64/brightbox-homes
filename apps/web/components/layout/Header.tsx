@@ -18,7 +18,7 @@ const productLinks = [
 ];
 
 const navLinks = [
-  { label: 'Colors & Finishes', href: '/colors' },
+  { label: 'Design Your Home', href: '/design' },
   { label: 'About', href: '/about' },
   { label: '$5K Challenge', href: '/5k-challenge' },
   { label: 'FAITH Foundation', href: '/faith-foundation' },

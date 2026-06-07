@@ -73,63 +73,70 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
       {/* Lightbox */}
       {isOpen && openIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label="Image viewer"
+          onClick={close}
         >
-          {/* Overlay click closes */}
+          {/* Close - top right, always on top and visible over any image */}
           <button
             type="button"
-            aria-label="Close image viewer"
-            onClick={close}
-            className="absolute inset-0 cursor-default"
-          />
-
-          {/* Close */}
-          <button
-            type="button"
-            onClick={close}
+            onClick={(e) => {
+              e.stopPropagation();
+              close();
+            }}
             aria-label="Close"
-            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full text-white/80 transition-colors duration-fast ease-out hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
           >
             <X size={24} aria-hidden="true" />
           </button>
 
-          {/* Prev */}
+          {/* Prev - vertically centered */}
           <button
             type="button"
-            onClick={prev}
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
             aria-label="Previous image"
-            className="absolute left-2 z-10 flex h-11 w-11 items-center justify-center rounded-full text-white/80 transition-colors duration-fast ease-out hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue sm:left-4"
+            className="absolute left-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue sm:left-4"
           >
             <ChevronLeft size={28} aria-hidden="true" />
           </button>
 
-          {/* Image */}
-          <div className="relative z-0 h-[85vh] w-[90vw] max-w-4xl">
-            <Image
-              src={images[openIndex].src}
-              alt={images[openIndex].alt}
-              fill
-              sizes="90vw"
-              className="object-contain"
-              priority
-            />
+          {/* Image (clicking the image itself does not close) */}
+          <div className="flex h-full w-full items-center justify-center p-4">
+            <div
+              className="relative h-[85vh] w-[90vw] max-w-4xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={images[openIndex].src}
+                alt={images[openIndex].alt}
+                fill
+                sizes="90vw"
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
 
-          {/* Next */}
+          {/* Next - vertically centered */}
           <button
             type="button"
-            onClick={next}
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
             aria-label="Next image"
-            className="absolute right-2 z-10 flex h-11 w-11 items-center justify-center rounded-full text-white/80 transition-colors duration-fast ease-out hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue sm:right-4"
+            className="absolute right-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue sm:right-4"
           >
             <ChevronRight size={28} aria-hidden="true" />
           </button>
 
           {/* Counter */}
-          <p className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-sm text-gray-400">
+          <p className="pointer-events-none absolute bottom-4 left-1/2 z-[55] -translate-x-1/2 text-sm text-gray-400">
             {openIndex + 1} / {images.length}
           </p>
         </div>

@@ -9,7 +9,7 @@ Cross-references: BLUEPRINT.md (brand positioning), ARCHITECTURE.md (component s
 ## 1. Brand Positioning Summary
 
 **Brand:** Bright Box Homes — "American Owned. Globally Sourced. US Delivered."
-**Visual register:** Warm Modern — clean, confident, premium but accessible. Not luxury-dark, not budget-bright.
+**Visual register:** Dark Premium — cinematic, confident, immersive. Tesla/Rivian-grade dark aesthetic with warm accent lighting through photography and brand blue highlights. Not generic dark theme — intentionally atmospheric.
 **Competitive reference points:** Tesla (scroll choreography, image quality), Rivian (warmth, approachability), Cover (architectural product photography). NOT generic WordPress theme, NOT Boxabl's cluttered layouts.
 **Emotional target:** "This company is serious, trustworthy, and builds beautiful homes I can afford."
 
@@ -32,6 +32,8 @@ Cross-references: BLUEPRINT.md (brand positioning), ARCHITECTURE.md (component s
 |---|---|---|
 | `--bb-white` | `#FFFFFF` | Page background, card surfaces. |
 | `--bb-warm-white` | `#FAFAF7` | Alternating section backgrounds. Warm, not sterile. |
+| `--bb-charcoal` | `#141820` | Primary marketing background. Deep, near-black with warm undertone. |
+| `--bb-surface-dark` | `#1C2028` | Elevated surfaces on dark backgrounds. Cards, panels, nav. |
 | `--bb-gray-100` | `#F3F4F6` | Input backgrounds, disabled states. |
 | `--bb-gray-200` | `#E5E7EB` | Borders, dividers, table rules. |
 | `--bb-gray-400` | `#9CA3AF` | Placeholder text, captions, metadata. |
@@ -62,9 +64,9 @@ Admin surfaces use the same token system but shift toward a denser, information-
 ### 2.5 Color Rules
 
 - `--bb-blue` is NEVER used as a background fill for large areas (hero sections, full-width banners). It is an accent and interactive color only.
-- Dark-on-light for marketing surfaces. Light-on-dark for admin surfaces.
+- Dark-on-dark for marketing surfaces (navy/charcoal backgrounds, light text). Light-on-dark for admin surfaces. Marketing and admin share the dark aesthetic but with distinct density levels — marketing is cinematic and spacious, admin is dense and information-rich.
 - All text/background combinations must pass WCAG 2.1 AA contrast (4.5:1 body text, 3:1 large text).
-- Product photography always on `--bb-white` or `--bb-warm-white` backgrounds. No colored backgrounds behind product images.
+- Product photography rendered with subtle dark vignette or on dark surface cards. Full-bleed imagery preferred over contained cards where possible.
 - The FAITH Foundation section uses `--bb-blue` paired with warm imagery, not a separate color system.
 
 ---
@@ -165,7 +167,7 @@ Three tiers, one canonical CTA copy:
 
 ### 5.4 Cards
 
-- White background (`--bb-white`) on warm sections (`--bb-warm-white`), warm background on white sections.
+- Dark surface background (`--bb-surface-dark`) with subtle border (`--bb-gray-200` at 10% opacity). On dark marketing pages, cards are elevated surfaces, not white boxes.
 - `--shadow-sm` at rest, `--shadow-md` on hover with `transform: translateY(-2px)`.
 - `--radius-md` corners.
 - Image area has no internal padding; bleeds to card edges with `overflow: hidden` + top border-radius.
@@ -240,6 +242,7 @@ Overlap is intentional — beats cascade, not sequence.
 - Content max-width: 768px for text-heavy pages (blog, legal, FAQ).
 - Product pages: Full-bleed hero, 12-column content below.
 - Admin dashboard: Sidebar (256px fixed) + fluid content area. No max-width.
+- Marketing pages use full-bleed sections with edge-to-edge dark backgrounds. Content constrained to max-width; backgrounds are not.
 
 ### 7.2 Breakpoints
 

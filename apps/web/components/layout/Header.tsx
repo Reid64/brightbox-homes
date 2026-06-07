@@ -56,7 +56,7 @@ export default function Header() {
         scrolled ? 'shadow-lg' : ''
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
+      <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="Bright Box Homes home">
           <Image
             src="/images/logo.png"

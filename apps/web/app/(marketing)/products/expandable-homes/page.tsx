@@ -54,7 +54,7 @@ export default function ExpandableHomesOverviewPage() {
   return (
     <>
       {/* Hero / intro */}
-      <section className="bg-bb-surface-dark py-20 lg:py-28">
+      <section className="bg-bb-surface-dark py-12 lg:py-16">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={label}>Expandable Container Homes</p>
           <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">

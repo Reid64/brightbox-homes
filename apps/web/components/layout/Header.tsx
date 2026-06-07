@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, Menu, ChevronDown, ChevronRight } from 'lucide-react';
-import { BookConsultation } from '@/components/ui/BookConsultation';
 import MobileNav from '@/components/layout/MobileNav';
 
 const productLinks = [
@@ -39,6 +38,7 @@ const navLinks = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [subOpen, setSubOpen] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -60,7 +60,10 @@ export default function Header() {
   }
   function closeProducts() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setProductsOpen(false), 150);
+    closeTimer.current = setTimeout(() => {
+      setProductsOpen(false);
+      setSubOpen(null);
+    }, 150);
   }
 
   return (
@@ -102,7 +105,12 @@ export default function Header() {
               <div className="absolute left-0 top-full z-50 w-60 rounded-md border border-white/10 bg-bb-surface-dark py-2 shadow-lg">
                 {productLinks.map((link) =>
                   'children' in link && link.children ? (
-                    <div key={link.href} className="group/sub relative">
+                    <div
+                      key={link.href}
+                      className="relative"
+                      onMouseEnter={() => setSubOpen(link.href)}
+                      onMouseLeave={() => setSubOpen(null)}
+                    >
                       <Link
                         href={link.href}
                         className="flex min-h-11 items-center justify-between gap-2 px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
@@ -110,17 +118,19 @@ export default function Header() {
                         {link.label}
                         <ChevronRight size={16} aria-hidden="true" />
                       </Link>
-                      <div className="invisible absolute left-full top-0 z-50 w-52 rounded-md border border-white/10 bg-bb-surface-dark py-2 opacity-0 shadow-lg transition-opacity duration-fast ease-out group-hover/sub:visible group-hover/sub:opacity-100">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="flex min-h-11 items-center px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
+                      {subOpen === link.href && (
+                        <div className="absolute left-full top-0 z-50 w-52 rounded-md border border-white/10 bg-bb-surface-dark py-2 shadow-lg">
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className="flex min-h-11 items-center px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <Link
@@ -153,8 +163,6 @@ export default function Header() {
             <Phone size={20} aria-hidden="true" className="text-red-500" />
             800-259-1745
           </a>
-
-          <BookConsultation size="sm" className="ml-2">Book a Consultation</BookConsultation>
         </nav>
 
         {/* Mobile controls (below lg) */}

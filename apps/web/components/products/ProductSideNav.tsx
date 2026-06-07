@@ -42,7 +42,7 @@ export default function ProductSideNav({
   return (
     <>
       {/* Desktop sticky sidebar (lg+) */}
-      <aside className="hidden lg:block lg:w-56 lg:shrink-0">
+      <aside className="hidden lg:block lg:w-56 lg:shrink-0 lg:border-r lg:border-white/10 lg:pr-6">
         <div className="sticky top-20 py-10">
           <p className="font-heading text-lg font-bold text-white">{productName}</p>
           <nav className="mt-6 flex flex-col gap-1" aria-label="Section navigation">

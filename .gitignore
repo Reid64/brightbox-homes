@@ -58,6 +58,7 @@ coverage/
 *.psd
 # Exception: the homepage ambient hero video must ship to production.
 !apps/web/public/videos/hero-video.mp4
+!apps/web/public/videos/metal-roof-truss.mp4
 .vercel
 
 # Raw product asset staging area - not production-ready (originals, mixed naming,

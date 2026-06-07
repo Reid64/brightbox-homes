@@ -57,8 +57,8 @@ const productLines = [
     description:
       'Scalable modular construction for multi-unit apartment complexes, office buildings, and workforce housing.',
     href: '/products/apartments-office-buildings',
-    image: '/images/products/apartments-office-buildings/exterior/01.png',
-    alt: 'Modular glass-front office building at sunset.',
+    image: '/images/products/apartments-office-buildings/exterior/apt-01.jpg',
+    alt: 'Two-story glass-front modular building configuration.',
   },
   {
     name: 'Vending Units',

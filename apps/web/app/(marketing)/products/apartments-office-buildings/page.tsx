@@ -8,12 +8,13 @@ export const metadata: Metadata = {
 };
 
 const exteriorImages = [
-  { src: '/images/products/apartments-office-buildings/exterior/01.png', alt: 'Modular glass-front office building at sunset.' },
-  { src: '/images/products/apartments-office-buildings/exterior/02.png', alt: 'Modular apartment units around a courtyard at dusk.' },
-  { src: '/images/products/apartments-office-buildings/exterior/03.png', alt: 'Two-story modular apartment building with parking.' },
-  { src: '/images/products/apartments-office-buildings/exterior/04.png', alt: 'Two-story modular building with orange and white panels.' },
-  { src: '/images/products/apartments-office-buildings/exterior/05.png', alt: 'Modern modular commercial building with rooftop seating.' },
-  { src: '/images/products/apartments-office-buildings/exterior/06.png', alt: '14-unit modular apartment complex at sunset.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-01.jpg', alt: 'Two-story glass-front modular building configuration.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-02.png', alt: 'Three-story white modular building with balcony and exterior stairs.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-03.jpg', alt: 'Two-story modular glass building with a rooftop balcony.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-04.jpg', alt: 'Two-story modular building complex around a courtyard.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-06.jpg', alt: 'Dark two-story modular building with a rooftop deck.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-07.jpg', alt: 'Two-story modular building with a balcony walkway.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-08.jpg', alt: 'Long two-story modular building with an external staircase.' },
 ];
 
 const specs = [

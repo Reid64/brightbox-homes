@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -10,7 +11,6 @@ import {
   Home,
   ArrowRight,
 } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
 import ImageGallery from '@/components/ui/ImageGallery';
 
 export const metadata: Metadata = {
@@ -272,9 +272,7 @@ export default function DesignPage() {
             plan.
           </p>
           <div className="mt-8 flex justify-center">
-            <Button href="/consultation" size="lg">
-              Book a Consultation
-            </Button>
+            <BookConsultation size="lg">Book a Consultation</BookConsultation>
           </div>
           <p className="mt-6 text-sm text-gray-500">
             800-259-1745 &middot; info@brightboxhomes.com

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Button } from '@/components/ui/Button';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 import Accordion from '@/components/ui/Accordion';
 
 export const metadata: Metadata = {
@@ -40,7 +40,7 @@ const faqSections = [
       {
         question: 'What size options are available?',
         answer:
-          'Our Expandable Container Homes come in five sizes: 20x10 (200 sq ft studio, $35,995), 20x20 (400 sq ft, 1-3 bedroom options, $45,995), 20x30 (600 sq ft, $49,995), 20x40 (800 sq ft, $59,995), and the 20x20 Duplex (800 sq ft combined two-story, $64,995). We also offer Apple Cabins, Space Capsules, Assembly Homes, Vending Units, and Foldout emergency housing.',
+          'Our Expandable Container Homes come in five sizes: 20x10 (200 sq ft studio, $35,995), 20x20 (400 sq ft, 1-3 bedroom options, $45,995), 20x30 (600 sq ft, $49,995), 20x40 (800 sq ft, $59,995), and the 20x20 Duplex (800 sq ft combined two-story, $64,995). We also offer Apple Cabins, Space Capsules, Assembly Homes, Vending Units, and Emergency Housing.',
       },
     ],
   },
@@ -211,9 +211,7 @@ export default function FaqPage() {
             to financing.
           </p>
           <div className="mt-8 flex justify-center">
-            <Button href="/consultation" size="lg">
-              Book a Consultation
-            </Button>
+            <BookConsultation size="lg">Book a Consultation</BookConsultation>
           </div>
           <p className="mt-6 text-sm text-gray-500">
             800-259-1745 &middot; info@brightboxhomes.com

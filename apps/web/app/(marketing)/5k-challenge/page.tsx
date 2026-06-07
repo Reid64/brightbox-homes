@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 import { Check, Phone, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import AnimatedText from '@/components/ui/AnimatedText';
 
@@ -57,9 +57,7 @@ export default function FiveKChallengePage() {
             and we&apos;ll put $5,000 toward yours.
           </p>
           <div className="mt-8">
-            <Button href="/consultation" size="lg">
-              Book a Consultation
-            </Button>
+            <BookConsultation size="lg">Book a Consultation</BookConsultation>
           </div>
         </div>
       </section>
@@ -163,9 +161,7 @@ export default function FiveKChallengePage() {
               we&apos;ve done the homework - and we know what you&apos;ll find.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button href="/consultation" size="lg">
-                Book a Consultation
-              </Button>
+              <BookConsultation size="lg">Book a Consultation</BookConsultation>
             </div>
             <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-6">
               <a

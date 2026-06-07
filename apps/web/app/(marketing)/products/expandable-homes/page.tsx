@@ -1,5 +1,17 @@
 import type { Metadata } from 'next';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+import DuplexSection from '@/components/products/DuplexSection';
+
+const duplexImages = [
+  { src: '/images/products/expandable-homes/duplex/01.png', alt: 'Two-story duplex expandable home with balconies and a landscaped yard.' },
+  { src: '/images/products/expandable-homes/duplex/02.png', alt: 'Dark two-story duplex with a carport at dusk.' },
+  { src: '/images/products/expandable-homes/duplex/03.avif', alt: 'Two-story duplex with rooftop balconies in a city setting.' },
+  { src: '/images/products/expandable-homes/duplex/04.avif', alt: 'Two-story duplex expandable home in an open field.' },
+  { src: '/images/products/expandable-homes/duplex/05.avif', alt: 'Two-story steel duplex container home.' },
+  { src: '/images/products/expandable-homes/duplex/06.avif', alt: 'Two-story duplex with a balcony in a showroom.' },
+  { src: '/images/products/expandable-homes/duplex/07.avif', alt: 'Modern two-story modular duplex with a balcony.' },
+  { src: '/images/products/expandable-homes/duplex/08.jpg', alt: 'Two-story duplex container home with covered porches.' },
+];
 
 export const metadata: Metadata = {
   title: 'Expandable Container Homes | Bright Box Homes',
@@ -184,6 +196,7 @@ export default function ExpandableHomesPage() {
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      afterGalleries={<DuplexSection images={duplexImages} />}
       floorPlans={floorPlans}
       upgrades={upgrades}
       specs={specs}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 import { Phone, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import AnimatedText from '@/components/ui/AnimatedText';
 
@@ -46,9 +46,7 @@ export default function FaithFoundationPage() {
               Foundation.
             </p>
             <div className="mt-8">
-              <Button href="/consultation" size="lg">
-                Book a Consultation
-              </Button>
+              <BookConsultation size="lg">Book a Consultation</BookConsultation>
             </div>
           </div>
           <div className="text-center lg:text-right">
@@ -153,9 +151,7 @@ export default function FaithFoundationPage() {
               family&apos;s who thought homeownership was out of reach.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button href="/consultation" size="lg">
-                Book a Consultation
-              </Button>
+              <BookConsultation size="lg">Book a Consultation</BookConsultation>
             </div>
             <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-6">
               <a

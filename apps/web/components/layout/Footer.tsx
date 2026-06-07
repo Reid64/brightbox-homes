@@ -9,7 +9,7 @@ const productLinks = [
   { label: 'Apple Cabins', href: '/products/apple-cabins' },
   { label: 'Space Capsules', href: '/products/space-capsules' },
   { label: 'Assembly Homes', href: '/products/assembly-homes' },
-  { label: 'Foldout Homes', href: '/products/foldout-homes' },
+  { label: 'Emergency Housing', href: '/products/emergency-housing' },
 ];
 
 const companyLinks = [

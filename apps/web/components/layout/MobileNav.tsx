@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { X, Phone } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -16,7 +16,7 @@ const productLinks = [
   { label: 'Apple Cabins', href: '/products/apple-cabins' },
   { label: 'Space Capsules', href: '/products/space-capsules' },
   { label: 'Assembly Homes', href: '/products/assembly-homes' },
-  { label: 'Foldout Homes', href: '/products/foldout-homes' },
+  { label: 'Emergency Housing', href: '/products/emergency-housing' },
   { label: 'Apartments & Office Buildings', href: '/products/apartments-office-buildings' },
   { label: 'Vending Units', href: '/products/vending-units' },
 ];
@@ -132,9 +132,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         </nav>
 
         <div className="border-t border-white/10 px-6 py-4">
-          <Button href="/consultation" className="w-full" onClick={onClose}>
-            Book a Consultation
-          </Button>
+          <BookConsultation className="w-full" onClick={onClose}>Book a Consultation</BookConsultation>
           <a
             href="tel:8002591745"
             className="mt-3 flex min-h-11 items-center justify-center gap-2 font-body text-gray-300 transition-colors duration-fast ease-out hover:text-white"

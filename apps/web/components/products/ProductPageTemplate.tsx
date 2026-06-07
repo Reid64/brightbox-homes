@@ -1,6 +1,7 @@
+import type { ReactNode } from 'react';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 import Image from 'next/image';
 import { Check } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
 import ImageGallery from '@/components/ui/ImageGallery';
 
 interface GalleryImage {
@@ -52,6 +53,9 @@ interface ProductPageTemplateProps {
   // When provided, replaces the default Exterior/Interior galleries with these
   // named sections (e.g. Micro Apartments + Office Buildings).
   galleries?: GallerySection[];
+  // Optional custom content rendered right after the galleries (e.g. the
+  // Expandable Homes duplex section).
+  afterGalleries?: ReactNode;
   floorPlans?: FloorPlan[];
   upgrades?: UpgradeCategory[];
   specs: Spec[];
@@ -71,6 +75,7 @@ export default function ProductPageTemplate({
   exteriorImages,
   interiorImages,
   galleries,
+  afterGalleries,
   floorPlans,
   upgrades,
   specs,
@@ -140,9 +145,7 @@ export default function ProductPageTemplate({
             )}
             <p className="mt-6 max-w-xl text-gray-300">{description}</p>
             <div className="mt-8">
-              <Button href="/consultation" size="lg">
-                {ctaText}
-              </Button>
+              <BookConsultation size="lg">{ctaText}</BookConsultation>
             </div>
           </div>
         </div>
@@ -197,6 +200,8 @@ export default function ProductPageTemplate({
           )}
         </>
       )}
+
+      {afterGalleries}
 
       {/* 3b. Floor Plans (only if provided) */}
       {floorPlans && floorPlans.length > 0 && (
@@ -354,9 +359,7 @@ export default function ProductPageTemplate({
             Ready to learn more about {name}?
           </h2>
           <div className="mt-8 flex justify-center">
-            <Button href="/consultation" size="lg">
-              {ctaText}
-            </Button>
+            <BookConsultation size="lg">{ctaText}</BookConsultation>
           </div>
           <p className="mt-6 text-sm text-gray-500">Call us at 800-259-1745</p>
         </div>

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, Menu, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 import MobileNav from '@/components/layout/MobileNav';
 
 const productLinks = [
@@ -12,7 +12,7 @@ const productLinks = [
   { label: 'Apple Cabins', href: '/products/apple-cabins' },
   { label: 'Space Capsules', href: '/products/space-capsules' },
   { label: 'Assembly Homes', href: '/products/assembly-homes' },
-  { label: 'Foldout Homes', href: '/products/foldout-homes' },
+  { label: 'Emergency Housing', href: '/products/emergency-housing' },
   { label: 'Apartments & Office Buildings', href: '/products/apartments-office-buildings' },
   { label: 'Vending Units', href: '/products/vending-units' },
 ];
@@ -121,9 +121,7 @@ export default function Header() {
             800-259-1745
           </a>
 
-          <Button href="/consultation" size="sm" className="ml-2">
-            Book a Consultation
-          </Button>
+          <BookConsultation size="sm" className="ml-2">Book a Consultation</BookConsultation>
         </nav>
 
         {/* Mobile controls (below lg) */}

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 import Link from 'next/link';
 import { Shield, Home, Truck, Award, ChevronDown, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -70,13 +71,13 @@ const productLines = [
     alt: 'Deployed container food stand with custom illuminated signage at night.',
   },
   {
-    name: 'Foldout Homes',
+    name: 'Emergency Housing',
     price: '$2,000',
     description:
-      'Emergency and disaster housing deployable in hours. Fire-grade A materials throughout.',
-    href: '/products/foldout-homes',
-    image: null, // No compliant product photo yet (see report) - branded placeholder used.
-    alt: 'Foldout Home',
+      'Rapidly deployable emergency and disaster housing. Fire-grade A materials, set up in hours.',
+    href: '/products/emergency-housing',
+    image: '/images/products/emergency-housing/exterior/02.png',
+    alt: 'Bright Box emergency housing systems overview.',
   },
 ];
 
@@ -193,9 +194,7 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 animate-fade-up" style={{ animationDelay: '700ms' }}>
-              <Button href="/consultation" size="lg">
-                Book a Consultation
-              </Button>
+              <BookConsultation size="lg">Book a Consultation</BookConsultation>
             </div>
 
             <a
@@ -492,9 +491,7 @@ export default function HomePage() {
               Speak with our team about the right home for your needs.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button href="/consultation" size="lg">
-                Book a Consultation
-              </Button>
+              <BookConsultation size="lg">Book a Consultation</BookConsultation>
             </div>
             <p className="mt-6 text-sm text-gray-500">
               800-259-1745 &middot; info@brightboxhomes.com

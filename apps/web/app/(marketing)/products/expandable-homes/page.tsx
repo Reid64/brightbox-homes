@@ -1,206 +1,122 @@
 import type { Metadata } from 'next';
-import ProductPageTemplate from '@/components/products/ProductPageTemplate';
-import DuplexSection from '@/components/products/DuplexSection';
-
-const duplexImages = [
-  { src: '/images/products/expandable-homes/duplex/01.png', alt: 'Two-story duplex expandable home with balconies and a landscaped yard.' },
-  { src: '/images/products/expandable-homes/duplex/02.png', alt: 'Dark two-story duplex with a carport at dusk.' },
-  { src: '/images/products/expandable-homes/duplex/03.avif', alt: 'Two-story duplex with rooftop balconies in a city setting.' },
-  { src: '/images/products/expandable-homes/duplex/04.avif', alt: 'Two-story duplex expandable home in an open field.' },
-  { src: '/images/products/expandable-homes/duplex/05.avif', alt: 'Two-story steel duplex container home.' },
-  { src: '/images/products/expandable-homes/duplex/06.avif', alt: 'Two-story duplex with a balcony in a showroom.' },
-  { src: '/images/products/expandable-homes/duplex/07.avif', alt: 'Modern two-story modular duplex with a balcony.' },
-  { src: '/images/products/expandable-homes/duplex/08.jpg', alt: 'Two-story duplex container home with covered porches.' },
-];
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { BookConsultation } from '@/components/ui/BookConsultation';
 
 export const metadata: Metadata = {
   title: 'Expandable Container Homes | Bright Box Homes',
   description:
-    'Steel-frame expandable container homes from $35,995. 200-800 sq ft with expandable side sections, 60+ exterior colors, mini-split HVAC, and a tankless water heater. Delivered anywhere in the US.',
+    'Steel-frame expandable container homes from $35,995. Five sizes from a 200 sq ft studio to an 800 sq ft family home, plus a two-story duplex. Delivered anywhere in the US.',
 };
 
-const exteriorImages = [
-  { src: '/images/products/expandable-homes/exterior/01.jpeg', alt: 'Delivered brown expandable home with a covered porch among palm trees.' },
-  { src: '/images/products/expandable-homes/exterior/02.jpeg', alt: 'Delivered gray expandable home with a covered porch.' },
-  { src: '/images/products/expandable-homes/exterior/03.jpeg', alt: 'Delivered white expandable home on a rural property.' },
-  { src: '/images/products/expandable-homes/exterior/04.jpeg', alt: 'Expandable home with glass entry doors set on a wooded lot.' },
-  { src: '/images/products/expandable-homes/exterior/05.jpeg', alt: 'Brown expandable home with a covered porch and solar panel.' },
-  { src: '/images/products/expandable-homes/exterior/06.jpeg', alt: 'A white expandable home being delivered by crane truck.' },
-  { src: '/images/products/expandable-homes/exterior/07.jpeg', alt: 'A delivered expandable home with a covered porch under assembly.' },
-  { src: '/images/products/expandable-homes/exterior/08.jpeg', alt: 'Side view of a delivered brown expandable home on a foundation.' },
-  { src: '/images/products/expandable-homes/exterior/09.png', alt: 'Two-story expandable home with balconies and a landscaped backyard.' },
-  { src: '/images/products/expandable-homes/exterior/10.png', alt: 'Single-story expandable home with a covered front porch.' },
-  { src: '/images/products/expandable-homes/exterior/11.png', alt: 'Compact expandable home with a carport and gravel driveway.' },
-  { src: '/images/products/expandable-homes/exterior/12.png', alt: 'Expandable home with glass walls and landscaped garden lighting.' },
-];
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
 
-const interiorImages = [
-  { src: '/images/products/expandable-homes/interior/01.jpeg', alt: 'Expandable home bedroom with a queen bed and large windows.' },
-  { src: '/images/products/expandable-homes/interior/02.jpeg', alt: 'Open-plan kitchen and bedroom interior of an expandable home.' },
-  { src: '/images/products/expandable-homes/interior/03.jpeg', alt: 'Expandable home kitchen with white cabinets and marble backsplash.' },
-  { src: '/images/products/expandable-homes/interior/04.jpeg', alt: 'Expandable home kitchen with a double sink and white cabinetry.' },
-  { src: '/images/products/expandable-homes/interior/05.jpeg', alt: 'Walk-in shower with a rainfall head and marble walls.' },
-  { src: '/images/products/expandable-homes/interior/06.png', alt: 'Bathroom with a glass shower stall and vanity.' },
-  { src: '/images/products/expandable-homes/interior/07.png', alt: 'White kitchen cabinetry with countertop and sink.' },
-  { src: '/images/products/expandable-homes/interior/08.png', alt: 'U-shaped white kitchen with open shelving.' },
-  { src: '/images/products/expandable-homes/interior/09.jpg', alt: 'Open expandable interior with glass doors and vinyl plank flooring.' },
-  { src: '/images/products/expandable-homes/interior/10.jpg', alt: 'Furnished expandable living room with sofa, dining area, and kitchen.' },
-  { src: '/images/products/expandable-homes/interior/11.jpg', alt: 'Furnished expandable living area with sofa, TV, and open kitchen.' },
-  { src: '/images/products/expandable-homes/interior/12.jpeg', alt: 'Expandable interior looking toward glass front doors and the porch.' },
-  { src: '/images/products/expandable-homes/interior/13.jpeg', alt: 'Expandable interior with kitchen and bathroom, wood-tone walls.' },
-  { src: '/images/products/expandable-homes/interior/14.jpg', alt: 'Expandable home bathroom with a curved glass shower and vanity.' },
-  { src: '/images/products/expandable-homes/interior/15.jpeg', alt: 'Expandable home kitchen with white cabinets and a black countertop.' },
-  { src: '/images/products/expandable-homes/interior/16.jpg', alt: 'Expandable home interior hallway showing multiple room doors.' },
-];
-
-const specs = [
-  { label: 'Models', value: '5 (20x10, 20x20, 20x30, 20x40, Duplex)' },
-  { label: 'Sq Ft Range', value: '200 - 800' },
-  { label: 'Frame', value: 'Galvanized steel' },
-  { label: 'Exterior Colors', value: '60+ RAL options' },
-  { label: 'Roof', value: '24-gauge corrugated metal, 19 colors' },
-  { label: 'Windows', value: '9-10 dual-pane (size dependent)' },
-  { label: 'Electrical', value: '125-amp panel, 33x 110V, 3x 240V, 7x GFCI' },
-  { label: 'HVAC', value: '24,000 BTU 20 SEER mini-split' },
-  { label: 'Water Heater', value: 'Tankless' },
-  { label: 'Price Range', value: '$35,995 - $64,995' },
-];
-
-const features = [
-  'Induction stove with range hood',
-  'Walk-in shower with fixtures',
-  'Tankless water heater',
-  '24,000 BTU mini-split HVAC',
-  'Covered front porch with railing',
-  'Washer/dryer hookups',
-  'Garbage disposal',
-  'Dual-pane windows throughout',
-  'Upgraded 125-amp electrical panel',
-  '60+ RAL exterior color choices',
-];
-
-const floorPlans = [
-  { group: '20x10 Studio', name: 'Studio Layout', src: '/images/floor-plans/expandable-20x10-studio.png', alt: '20x10 studio floor plan.', width: 1585, height: 951 },
-  { group: '20x10 Studio', name: 'Studio Layout (Furnished)', src: '/images/floor-plans/expandable-20x10-studio-2.png', alt: 'Furnished 20x10 studio floor plan.', width: 1597, height: 985 },
-  { group: '20x20 Models', name: '1 Bedroom', src: '/images/floor-plans/expandable-20x20-1br-preview.png', alt: '20x20 one-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-1br.pdf', width: 1191, height: 1684 },
-  { group: '20x20 Models', name: '2 Bedroom', src: '/images/floor-plans/expandable-20x20-2br-preview.png', alt: '20x20 two-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-2br.pdf', width: 1191, height: 1684 },
-  { group: '20x20 Models', name: '3 Bedroom', src: '/images/floor-plans/expandable-20x20-3br-preview.png', alt: '20x20 three-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-3br.pdf', width: 1191, height: 1684 },
-  { group: '20x40 Models', name: '1 Bedroom', src: '/images/floor-plans/expandable-20x40-1br-preview.png', alt: '20x40 one-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-1br.pdf', width: 1191, height: 1684 },
-  { group: '20x40 Models', name: '2 Bedroom', src: '/images/floor-plans/expandable-20x40-2br-preview.png', alt: '20x40 two-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-2br.pdf', width: 1191, height: 1684 },
-];
-
-const upgrades = [
+const sizes = [
   {
-    category: 'Solar & Power',
-    items: [
-      { name: 'Solar-Ready Package' },
-      { name: '8kW Solar Kit' },
-      { name: '10kW Solar Kit' },
-      { name: 'Generator-Ready Package' },
-      { name: '15kW Portable Generator' },
-      { name: '18kW Whole House Generator' },
-      { name: '22kW Whole House Generator' },
-    ],
+    name: '20x10 Studio',
+    price: 'Starting at $35,995',
+    blurb: '200 sq ft studio - ideal ADU, guest suite, or rental.',
+    href: '/products/expandable-homes/20x10',
+    image: '/images/products/expandable-homes/exterior/11.png',
   },
   {
-    category: 'HVAC & Comfort',
-    items: [
-      { name: '9,000 BTU Mini-Split' },
-      { name: '24,000 BTU Mini-Split' },
-      { name: 'Whole House Radiant Heating' },
-      { name: 'Ceiling Mount Air Mover' },
-    ],
+    name: '20x20 Models',
+    price: 'Starting at $35,995',
+    blurb: '400 sq ft in 1, 2, or 3 bedroom layouts.',
+    href: '/products/expandable-homes/20x20',
+    image: '/images/products/expandable-homes/exterior/01.jpeg',
   },
   {
-    category: 'Kitchen',
-    items: [
-      { name: 'Top Kitchen Cabinets (one side)' },
-      { name: 'Top Kitchen Cabinets (two sides)' },
-      { name: 'Bottom Kitchen Cabinets' },
-      { name: '4-Burner Induction Stove' },
-      { name: '3/4 HP Garbage Disposal' },
-      { name: 'Kitchen Cabinet Color Options' },
-    ],
+    name: '20x30 Models',
+    price: 'Starting at $45,995',
+    blurb: '600 sq ft of finished living space for growing families.',
+    href: '/products/expandable-homes/20x30',
+    image: '/images/products/expandable-homes/exterior/02.jpeg',
   },
   {
-    category: 'Bathroom',
-    items: [
-      { name: 'Modular Shower Enclosure', image: '/images/upgrades/modular-shower.png' },
-      { name: 'Upgraded Bathroom Vanity' },
-      { name: 'Tankless Water Heater (wall-mount)' },
-      { name: 'Bathroom Wall Design / Colors' },
-      { name: 'Bathroom Exhaust Fan' },
-    ],
+    name: '20x40 Models',
+    price: 'Starting at $45,995',
+    blurb: 'Our largest single-story home - 800 sq ft, 1 or 2 bedrooms.',
+    href: '/products/expandable-homes/20x40',
+    image: '/images/products/expandable-homes/exterior/10.png',
   },
   {
-    category: 'Laundry',
-    items: [
-      { name: 'Stackable Washer / Dryer' },
-      { name: 'Washer & Dryer Rough-In' },
-    ],
-  },
-  {
-    category: 'Exterior',
-    items: [
-      { name: "Metal Roof & Truss System (20' and 40')", image: '/images/upgrades/metal-roof-truss-standard.png' },
-      { name: 'Reinforced Truss for Solar', image: '/images/upgrades/metal-roof-truss-reinforced-solar.png' },
-      { name: 'Covered Side Porch' },
-      { name: 'Side Deck' },
-      { name: 'Front Porch Railing Color' },
-      { name: 'Front Porch Deck Color' },
-      { name: 'Exterior House Colors' },
-      { name: 'Carved Metal Plate Exterior' },
-    ],
-  },
-  {
-    category: 'Electrical',
-    items: [
-      { name: '200 Amp Service Panel' },
-      { name: 'Additional 110V Outlets' },
-      { name: '240V Outlets' },
-      { name: 'GFCI Outlets' },
-      { name: 'Dimmer Switches' },
-      { name: 'TV Wall Mount' },
-      { name: 'RG-6 Coaxial' },
-    ],
-  },
-  {
-    category: 'Interior',
-    items: [
-      { name: '3" Rockwool Insulation Upgrade' },
-      { name: 'Interior Flooring Colors' },
-      { name: 'Interior Trim Colors' },
-      { name: 'Interior Wall Bamboo Wood Fiber Board' },
-      { name: 'Double-Pane Low-E Windows' },
-      { name: 'Standard Rear Door' },
-      { name: 'Rear Sliding Door' },
-    ],
-  },
-  {
-    category: 'Structural',
-    items: [
-      { name: "Additional Bedroom (40' & 20' houses)" },
-      { name: 'Full Metal Roof with Truss System' },
-    ],
+    name: '20x20 Duplex',
+    price: 'Contact for Pricing',
+    blurb: 'Two stacked units. Live in one, rent the other.',
+    href: '/products/expandable-homes/duplex',
+    image: '/images/products/expandable-homes/duplex/01.png',
   },
 ];
 
-export default function ExpandableHomesPage() {
+export default function ExpandableHomesOverviewPage() {
   return (
-    <ProductPageTemplate
-      name="Expandable Container Homes"
-      tagline="Steel-frame construction with expandable side sections. 200 to 800 sq ft."
-      description="Our flagship line. Expandable container homes ship compact and unfold on site into 200 to 800 sq ft of finished living space. Built on a galvanized steel frame with a 24-gauge metal pitched roof, each home arrives fully equipped with a mini-split HVAC system, tankless water heater, induction kitchen, and a covered front porch. Choose from 60+ RAL exterior colors and five floor-plan sizes, from the 20x10 studio to the 20x20 stacked duplex."
-      price="$35,995"
-      priceLabel="Starting at"
-      heroImages={exteriorImages}
-      exteriorImages={exteriorImages}
-      interiorImages={interiorImages}
-      afterGalleries={<DuplexSection images={duplexImages} />}
-      floorPlans={floorPlans}
-      upgrades={upgrades}
-      specs={specs}
-      features={features}
-    />
+    <>
+      {/* Hero / intro */}
+      <section className="bg-bb-surface-dark py-20 lg:py-28">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <p className={label}>Expandable Container Homes</p>
+          <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+            Five Sizes, Endless Possibilities
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-gray-300">
+            Our flagship line ships compact and unfolds on site into finished
+            living space. Choose your model - from a 200 sq ft studio to an 800 sq
+            ft family home, plus a two-story duplex built for investors.
+          </p>
+        </div>
+      </section>
+
+      {/* Size cards */}
+      <section className="bg-bb-charcoal py-16 lg:py-24">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {sizes.map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className="group overflow-hidden rounded-xl border border-white/5 bg-bb-surface-dark transition-colors duration-normal ease-out hover:border-white/10"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={s.image}
+                    alt={s.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="p-6">
+                  <h2 className="font-heading text-xl font-semibold text-white">{s.name}</h2>
+                  <p className="mt-1 font-mono text-sm text-bb-blue">{s.price}</p>
+                  <p className="mt-3 text-sm text-gray-400">{s.blurb}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-bb-blue">
+                    View Model <ArrowRight size={16} aria-hidden="true" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-bb-navy py-16 lg:py-24">
+        <div className="mx-auto max-w-[1280px] px-6 text-center">
+          <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+            Not sure which size fits?
+          </h2>
+          <p className="mt-4 text-lg text-gray-300">
+            Tell us about your site and your plans - we&apos;ll help you choose the
+            right model and configuration.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <BookConsultation size="lg" />
+          </div>
+          <p className="mt-6 text-sm text-gray-500">Call us at 800-259-1745</p>
+        </div>
+      </section>
+    </>
   );
 }

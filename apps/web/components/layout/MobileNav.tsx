@@ -12,7 +12,17 @@ interface MobileNavProps {
 }
 
 const productLinks = [
-  { label: 'Expandable Homes', href: '/products/expandable-homes' },
+  {
+    label: 'Expandable Homes',
+    href: '/products/expandable-homes',
+    children: [
+      { label: '20x10 Studio', href: '/products/expandable-homes/20x10' },
+      { label: '20x20 Models', href: '/products/expandable-homes/20x20' },
+      { label: '20x30 Models', href: '/products/expandable-homes/20x30' },
+      { label: '20x40 Models', href: '/products/expandable-homes/20x40' },
+      { label: '20x20 Duplex', href: '/products/expandable-homes/duplex' },
+    ],
+  },
   { label: 'Apple Cabins', href: '/products/apple-cabins' },
   { label: 'Space Capsules', href: '/products/space-capsules' },
   { label: 'Assembly Homes', href: '/products/assembly-homes' },
@@ -106,14 +116,29 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             Products
           </p>
           {productLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={onClose}
-              className="flex min-h-12 items-center rounded-sm px-4 font-body text-gray-200 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
-            >
-              {link.label}
-            </Link>
+            <div key={link.href}>
+              <Link
+                href={link.href}
+                onClick={onClose}
+                className="flex min-h-12 items-center rounded-sm px-4 font-body text-gray-200 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+              >
+                {link.label}
+              </Link>
+              {'children' in link && link.children && (
+                <div className="ml-4 border-l border-white/10">
+                  {link.children.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      onClick={onClose}
+                      className="flex min-h-11 items-center rounded-sm px-4 font-body text-sm text-gray-400 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
 
           <p className="px-4 pb-1 pt-4 font-heading text-sm font-bold uppercase tracking-wide text-gray-500">

@@ -1,4 +1,4 @@
-import { DollarSign, Home, Key, Building, TrendingDown, Zap } from 'lucide-react';
+import { DollarSign, Home, Key, Building2, TrendingDown, Zap } from 'lucide-react';
 import ImageGallery from '@/components/ui/ImageGallery';
 
 interface GalleryImage {
@@ -12,7 +12,7 @@ const highlights = [
   { icon: DollarSign, text: 'Live in one, rent one - offset your mortgage immediately' },
   { icon: Home, text: 'Two independent units on a single lot and foundation' },
   { icon: Key, text: 'Airbnb and short-term rental ready' },
-  { icon: Building, text: 'Workforce housing at scale' },
+  { icon: Building2, text: 'Workforce housing at scale' },
   { icon: TrendingDown, text: 'Fraction of traditional duplex construction cost' },
   { icon: Zap, text: 'Each unit independently plumbed, wired, and climate-controlled' },
 ];
@@ -21,7 +21,7 @@ export default function DuplexSection({ images }: { images: GalleryImage[] }) {
   return (
     <section className="bg-bb-charcoal py-16 lg:py-24">
       <div className="mx-auto max-w-[1280px] px-6">
-        <p className={label}>Duplex</p>
+        <p className={label}>Investment Opportunity</p>
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
           Double Your Investment
         </h2>

@@ -12,6 +12,10 @@ const exteriorImages = [
   { src: '/images/products/assembly-homes/exterior/02.png', alt: 'Single-story modular assembly unit with a glass facade.' },
   { src: '/images/products/assembly-homes/exterior/03.png', alt: 'Two-story modular assembly unit with a balcony.' },
   { src: '/images/products/assembly-homes/exterior/04.png', alt: 'Stacked modular assembly unit with a rooftop deck.' },
+  { src: '/images/products/assembly-homes/exterior/05.png', alt: 'Two-story white modular assembly home with a glass front and balcony.' },
+  { src: '/images/products/assembly-homes/exterior/06.png', alt: 'Single-story glass-front modular assembly home.' },
+  { src: '/images/products/assembly-homes/exterior/07.png', alt: 'Two-story brown and white modular assembly home with a balcony.' },
+  { src: '/images/products/assembly-homes/exterior/08.png', alt: 'Two-story glass modular assembly home on a hillside.' },
 ];
 
 const specs = [

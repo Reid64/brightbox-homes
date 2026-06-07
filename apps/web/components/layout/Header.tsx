@@ -3,12 +3,22 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Menu, ChevronDown } from 'lucide-react';
+import { Phone, Menu, ChevronDown, ChevronRight } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import MobileNav from '@/components/layout/MobileNav';
 
 const productLinks = [
-  { label: 'Expandable Homes', href: '/products/expandable-homes' },
+  {
+    label: 'Expandable Homes',
+    href: '/products/expandable-homes',
+    children: [
+      { label: '20x10 Studio', href: '/products/expandable-homes/20x10' },
+      { label: '20x20 Models', href: '/products/expandable-homes/20x20' },
+      { label: '20x30 Models', href: '/products/expandable-homes/20x30' },
+      { label: '20x40 Models', href: '/products/expandable-homes/20x40' },
+      { label: '20x20 Duplex', href: '/products/expandable-homes/duplex' },
+    ],
+  },
   { label: 'Apple Cabins', href: '/products/apple-cabins' },
   { label: 'Space Capsules', href: '/products/space-capsules' },
   { label: 'Assembly Homes', href: '/products/assembly-homes' },
@@ -89,16 +99,39 @@ export default function Header() {
               <ChevronDown size={16} aria-hidden="true" />
             </button>
             {productsOpen && (
-              <div className="absolute left-0 top-full z-50 w-56 rounded-md border border-white/10 bg-bb-surface-dark py-2 shadow-lg">
-                {productLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="flex min-h-11 items-center px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              <div className="absolute left-0 top-full z-50 w-60 rounded-md border border-white/10 bg-bb-surface-dark py-2 shadow-lg">
+                {productLinks.map((link) =>
+                  'children' in link && link.children ? (
+                    <div key={link.href} className="group/sub relative">
+                      <Link
+                        href={link.href}
+                        className="flex min-h-11 items-center justify-between gap-2 px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                      >
+                        {link.label}
+                        <ChevronRight size={16} aria-hidden="true" />
+                      </Link>
+                      <div className="invisible absolute left-full top-0 z-50 w-52 rounded-md border border-white/10 bg-bb-surface-dark py-2 opacity-0 shadow-lg transition-opacity duration-fast ease-out group-hover/sub:visible group-hover/sub:opacity-100">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="flex min-h-11 items-center px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="flex min-h-11 items-center px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  ),
+                )}
               </div>
             )}
           </div>

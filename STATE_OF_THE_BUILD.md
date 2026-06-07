@@ -90,3 +90,65 @@ Lead AI verification methodology updated: future governance file commit verifica
 Author COMPONENTS.md at repo root. Detailed per-module/per-route/per-component specifications based on ARCHITECTURE.md, PRD.md, and BEHAVIORAL_CONTRACTS.md. Each component spec includes: name, phase, status, dependencies, contract, inputs, outputs, failure modes, six-laws status.
 
 ---
+
+## Entry 2 — Governance Foundation Complete and Three Incidents Logged
+
+**Date:** 2026-05-27
+**Commit hash:** TBD by this commit
+**Phase:** Phase 0 — Governance Foundation (closing)
+**Session scope:** Complete remaining foundational governance documents (PRD, BEHAVIORAL_CONTRACTS, SCHEMA_REGISTRY, COMPONENTS), document three discipline incidents discovered during the work, prepare to begin DESIGN_LANGUAGE then code scaffold.
+
+**Outcome:**
+- PRD.md committed at ea02a94 (113,784 bytes, 75 features across 7 categories, all 11 required fields per feature, Six Laws status documented per feature)
+- BEHAVIORAL_CONTRACTS.md committed at 91ce894 (16 numbered contracts including 3 new contracts authored in response to discipline violations)
+- STATE_OF_THE_BUILD.md Entry 1 committed at 91ce894 (project inception narrative)
+- COMPONENTS.md initial stub committed at 055301c (4,613 bytes — see Incident 3 below)
+- SCHEMA_REGISTRY.md committed at d4f4c98 (14,397 bytes, 12 tables documented, 6 active for Phase 1A, 6 placeholders for Phase 1B/2, all RLS policies documented)
+- COMPONENTS.md replaced with a proper index file at this commit (see Operation B in this entry)
+
+**Operator decisions locked since Entry 1:**
+- Configurator deferred from Phase 1A to Phase 1B (post-website-launch). Phase 1A product pages will use static photo galleries.
+- COMPONENTS.md scope reduced to a top-level index file referencing PRD.md for feature specs. The 192-component multi-file plan was determined to be infeasible scope for governance on a marketing site (per operator clarification that this is not a SaaS build).
+- Phase 1A target: supplier-inspectable marketing site live at brightboxhomes.com with lead capture functional.
+- Phase 1B work resumes after Phase 1A is live: configurator MVP, Stripe deposit checkout, admin dashboard, customer portal, all premium tools (ROI calculator, delivery estimator, build slot calendar, permit lookup, comparison tool, virtual showroom).
+- Canonical CTA copy for consultation booking is "Book a Consultation" (not "Book a Consult" or other variants). To be enforced when UI is built.
+
+**Violations and incidents:**
+
+**Incident 2 — SCHEMA_REGISTRY.md Empty Commit (2026-05-27)**
+Commit 797dbd2 created SCHEMA_REGISTRY.md with the commit message "governance: Add SCHEMA_REGISTRY.md - 12 tables documented, 6 active for Phase 1A" but the file shipped at 0 bytes. The commit message claimed completion while no content was written. Discovered by CONTRACT-015 verification on the subsequent prompt to populate the file. Corrected at commit d4f4c98 (which populated with 14,397 bytes of real schema content). The empty commit 797dbd2 remains in history as a documented historical fact — not amended or rebased, per the principle that destructive history rewrites on pushed main are strictly worse than accepting documented incidents.
+
+Severity: HIGH (Contract: Verification Discipline violation by prior session; Contract: Structured Error Code Taxonomy not applicable here but related class)
+
+Resolution: Discovery validates CONTRACT-015 (Diff-Based Verification Mandate) was correctly authored. Without diff stats and SHA-256 in the verification report, this would have passed unnoticed. The "MODIFICATION not NEW FILE" flag in the d4f4c98 verification report exposed the prior empty state.
+
+**Incident 3 — COMPONENTS.md Stub Delivery (2026-05-27)**
+Commit 055301c committed COMPONENTS.md at 3,585 bytes containing only summary metadata for a prompt that specified 193 detailed component entries across 8 categories. Executor explicitly reported the delivery as a "CRITICAL DEVIATION" citing token limit constraints. The summary delivery contained component COUNTS but no per-component 11-field specifications. This is the exact scope-narrowing failure pattern GOVERNANCE_BRIEF.md Section 7 warns against ("Executors silently narrow scope on large multi-task prompts, drop augmentations").
+
+Severity: MEDIUM (delivery deviated from spec but executor disclosed it; honest reporting prevented downstream confusion)
+
+Resolution: Lead AI determined that 193-component single-file specification was an architectural error — too large for any single Claude Code execution to complete coherently. After operator clarification that this is a marketing-site build (not a SaaS multi-tenant platform), the scope was reduced. COMPONENTS.md is now replaced with a top-level index file pointing to PRD.md for feature specifications. Implementation specs will be documented inline (JSDoc/TypeScript types) when code is authored, rather than via upfront governance documents.
+
+**Incident 1 reminder (originally logged in Entry 1):** ARCHITECTURE.md destructive rewrite between commits 66ac4fb and c7f9e88. Documented in Entry 1. No further action.
+
+**New verification discipline going forward:**
+- Every Claude Code prompt now opens with a PRE-FLIGHT WORKING DIRECTORY VERIFICATION block (Get-Location, expect brightbox-homes path, abort if different)
+- Every governance file commit verification report must include the file's SHA-256 hash, byte size, line count, BOM check, mojibake scan, and explicit NEW FILE vs MODIFICATION declaration with diff stats (CONTRACT-015 applied universally now)
+- Suspect commits flagged in this entry as historical record but not amended
+
+**Open blockers:**
+- Apple Cabin pricing pending operator
+- Space Capsule pricing pending operator
+- Customer testimonials (3) and delivered-unit photos (5) pending upload to product-assets/testimonials and product-assets/delivered-units
+- Color palette files pending operator restructuring (SKUs, pricing, naming convention)
+- Acorn partner ID pending
+- Manufacturer marketing usage rights confirmation email pending
+- FAITH Foundation website not yet built (separate project, not blocking Bright Box launch)
+- Configurator product brand name + domain acquisition pending (deferred to Phase 1B planning)
+- Stripe Connect setup pending (required for Phase 1B affiliate payouts)
+- Cal.com account creation pending (to be done during scaffold phase by operator)
+
+**Next action:**
+Author DESIGN_LANGUAGE.md at repo root — compact document covering brand tokens, color palette (Warm Modern with Bright Box light blue + navy), typography stack, motion language, component aesthetic guidelines, canonical CTA copy ("Book a Consultation"). Single prompt scope, compact deliverable (target 200-400 lines). After DESIGN_LANGUAGE.md commits clean, the subsequent prompt scaffolds the Next.js monorepo and begins code.
+
+---

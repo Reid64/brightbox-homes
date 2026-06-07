@@ -17,6 +17,7 @@ const productLinks = [
   { label: 'Space Capsules', href: '/products/space-capsules' },
   { label: 'Assembly Homes', href: '/products/assembly-homes' },
   { label: 'Foldout Homes', href: '/products/foldout-homes' },
+  { label: 'Apartments & Office Buildings', href: '/products/apartments-office-buildings' },
 ];
 
 const companyLinks = [

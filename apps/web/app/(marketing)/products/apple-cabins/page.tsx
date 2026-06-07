@@ -7,17 +7,19 @@ export const metadata: Metadata = {
     'Rounded aluminum-panel Apple Cabins with fluorocarbon coating, double-pane insulated glass, and microcrystalline stone flooring. Ideal for Airbnb, glamping, and backyard studios.',
 };
 
-const images = [
-  { src: '/images/products/apple-cabins/01.png', alt: 'Apple Cabin with rounded aluminum panels and floor-to-ceiling glass.' },
-  { src: '/images/products/apple-cabins/02.png', alt: 'Apple Cabin in a forest clearing at dusk.' },
-  { src: '/images/products/apple-cabins/03.png', alt: 'Apple Cabin on a tropical beach at sunset.' },
-  { src: '/images/products/apple-cabins/04.png', alt: 'Apple Cabin among pine trees with a carport.' },
-  { src: '/images/products/apple-cabins/05.png', alt: 'Apple Cabin with a rooftop terrace at dusk.' },
-  { src: '/images/products/apple-cabins/06.png', alt: 'Apple Cabin with a mountain backdrop at sunset.' },
-  { src: '/images/products/apple-cabins/07.png', alt: 'Elevated Apple Cabin over a carport at twilight.' },
-  { src: '/images/products/apple-cabins/08.jpg', alt: 'Apple Cabin living room with curved glass and forest views.' },
-  { src: '/images/products/apple-cabins/09.jpg', alt: 'Apple Cabin interior with a kitchenette and lounge seating.' },
-  { src: '/images/products/apple-cabins/10.jpg', alt: 'Furnished Apple Cabin studio with dining and sleeping areas.' },
+const exteriorImages = [
+  { src: '/images/products/apple-cabins/exterior/01.jpg', alt: 'Apple Cabin with a deck overlooking water.' },
+  { src: '/images/products/apple-cabins/exterior/02.jpg', alt: 'Apple Cabins arranged as a lakeside glamping resort.' },
+  { src: '/images/products/apple-cabins/exterior/03.jpg', alt: 'Apple Cabins beside a quarry lake.' },
+  { src: '/images/products/apple-cabins/exterior/04.jpg', alt: 'Aerial view of an Apple Cabin glamping village by the water.' },
+  { src: '/images/products/apple-cabins/exterior/05.jpg', alt: 'Apple Cabin with lounge chairs on a grassy lawn.' },
+];
+
+const interiorImages = [
+  { src: '/images/products/apple-cabins/interior/01.jpg', alt: 'Furnished Apple Cabin interior with dining, sofa, and bed.' },
+  { src: '/images/products/apple-cabins/interior/02.jpg', alt: 'Apple Cabin interior with a bed, sofa, and floor-to-ceiling glass.' },
+  { src: '/images/products/apple-cabins/interior/03.jpg', alt: 'Apple Cabin bedroom with plaid armchairs and a garden view.' },
+  { src: '/images/products/apple-cabins/interior/04.jpg', alt: 'Luxury Apple Cabin interior with a bed, lounge chair, and skylight.' },
 ];
 
 const specs = [
@@ -47,7 +49,9 @@ export default function AppleCabinsPage() {
       description="The Apple Cabin pairs a rounded, organic silhouette with premium materials: fluorocarbon-coated aluminum panels, double-pane insulated glass, a galvanized steel frame, and microcrystalline stone flooring over polyurethane insulation. The result is a weather-resilient, low-maintenance retreat that works as a short-term rental, a glamping unit, or a backyard studio. Pricing is being finalized for the US market."
       price="Coming Soon"
       priceLabel="Pricing"
-      images={images}
+      heroImages={exteriorImages}
+      exteriorImages={exteriorImages}
+      interiorImages={interiorImages}
       specs={specs}
       features={features}
     />

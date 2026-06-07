@@ -7,15 +7,13 @@ export const metadata: Metadata = {
     'Modular Assembly Homes from $19,995 per unit. Join single units into custom multi-room layouts with modular bathrooms and kitchenettes. Stackable and expandable.',
 };
 
-const images = [
-  { src: '/images/products/assembly-homes/01.png', alt: 'Two-story modular apartment building with parking.' },
-  { src: '/images/products/assembly-homes/02.png', alt: 'Modular apartment units around a courtyard at dusk.' },
-  { src: '/images/products/assembly-homes/03.png', alt: 'Two-story modular building with orange and white panels.' },
-  { src: '/images/products/assembly-homes/04.png', alt: 'Modular glass-front office building at sunset.' },
-  { src: '/images/products/assembly-homes/05.png', alt: 'Modern modular commercial building with rooftop seating.' },
-  { src: '/images/products/assembly-homes/06.png', alt: '14-unit modular apartment complex at sunset.' },
-  { src: '/images/products/assembly-homes/07.png', alt: 'Stacked modular assembly units with glass fronts.' },
-  { src: '/images/products/assembly-homes/08.png', alt: 'Two-story stacked modular assembly home with a rooftop deck.' },
+const exteriorImages = [
+  { src: '/images/products/assembly-homes/exterior/01.png', alt: 'Two-story stacked modular assembly unit with glass fronts.' },
+  { src: '/images/products/assembly-homes/exterior/02.png', alt: 'Assembly unit configured as an American food kiosk.' },
+  { src: '/images/products/assembly-homes/exterior/03.png', alt: 'Single-story modular assembly unit with a glass facade.' },
+  { src: '/images/products/assembly-homes/exterior/04.png', alt: 'Two-story modular assembly unit with a balcony.' },
+  { src: '/images/products/assembly-homes/exterior/05.png', alt: 'Stacked modular assembly unit with a rooftop deck.' },
+  { src: '/images/products/assembly-homes/exterior/06.png', alt: 'Assembly unit configured as a boardwalk food stand.' },
 ];
 
 const specs = [
@@ -38,10 +36,11 @@ export default function AssemblyHomesPage() {
     <ProductPageTemplate
       name="Assembly Homes"
       tagline="Modular units that join together to create custom multi-room layouts."
-      description="Assembly Homes are modular units engineered to connect side-by-side and stack, letting you compose anything from a single studio to a multi-room residence or a full apartment and office complex. Each unit can be equipped with a modular bathroom and kitchenette, and pre-defined single- and multi-unit configurations make planning straightforward. Pricing runs $19,995 to $25,995 turnkey per unit depending on configuration."
+      description="Assembly Homes are compact modular units engineered to connect side-by-side and stack, letting you compose anything from a single studio to a multi-room layout or a commercial storefront. Each unit can be equipped with a modular bathroom and kitchenette, and pre-defined single- and multi-unit configurations make planning straightforward. Pricing runs $19,995 to $25,995 turnkey per unit depending on configuration. For multi-story apartment and office developments, see our Apartments & Office Buildings line."
       price="$19,995"
       priceLabel="Starting at"
-      images={images}
+      heroImages={exteriorImages}
+      exteriorImages={exteriorImages}
       specs={specs}
       features={features}
     />

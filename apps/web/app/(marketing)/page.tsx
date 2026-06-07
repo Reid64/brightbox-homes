@@ -21,8 +21,8 @@ const productLines = [
     description:
       '200-800 sq ft steel-frame homes with expandable side sections and 60+ exterior color options.',
     href: '/products/expandable-homes',
-    image: '/images/products/expandable-home-card.png',
-    alt: 'Single-story expandable container home with a covered porch and landscaped yard.',
+    image: '/images/products/expandable-homes/exterior/01.jpeg',
+    alt: 'Delivered expandable home with a covered porch among palm trees.',
   },
   {
     name: 'Apple Cabin Homes',
@@ -30,8 +30,8 @@ const productLines = [
     description:
       'Aluminum-panel cabins with fluorocarbon coating and rounded organic aesthetic. Ideal for Airbnb and glamping.',
     href: '/products/apple-cabins',
-    image: '/images/products/apple-cabin-card.png',
-    alt: 'Modern rounded aluminum-panel Apple Cabin with floor-to-ceiling glass.',
+    image: '/images/products/apple-cabins/exterior/01.jpg',
+    alt: 'Apple Cabin with a deck overlooking water.',
   },
   {
     name: 'Space Capsule Homes',
@@ -39,7 +39,7 @@ const productLines = [
     description:
       'Futuristic pod design for backyard offices, meditation studios, and guest quarters.',
     href: '/products/space-capsules',
-    image: '/images/products/space-capsule-card.png',
+    image: '/images/products/space-capsules/exterior/01.png',
     alt: 'Futuristic Space Capsule home with orange accents overlooking a lake at sunset.',
   },
   {
@@ -48,8 +48,17 @@ const productLines = [
     description:
       'Modular units that connect to create custom multi-room layouts for any use case.',
     href: '/products/assembly-homes',
-    image: '/images/products/assembly-home-card.png',
-    alt: 'Two-story modular Assembly Home with glass front sections and a balcony.',
+    image: '/images/products/assembly-homes/exterior/01.png',
+    alt: 'Two-story stacked modular assembly unit with glass fronts.',
+  },
+  {
+    name: 'Apartments & Office Buildings',
+    price: 'Contact for Pricing',
+    description:
+      'Scalable modular construction for multi-unit apartment complexes, office buildings, and workforce housing.',
+    href: '/products/apartments-office-buildings',
+    image: '/images/products/apartments-office-buildings/exterior/01.png',
+    alt: 'Modular glass-front office building at sunset.',
   },
   {
     name: 'Foldout Homes',
@@ -140,7 +149,7 @@ export default function HomePage() {
       {/* SECTION A: Hero */}
       <section className="relative flex min-h-screen items-end overflow-hidden">
         <Image
-          src="/images/products/expandable-home-hero.png"
+          src="/images/home-hero.png"
           alt="Two-story expandable container home with balconies, landscaped gardens, and a family enjoying the backyard."
           fill
           priority
@@ -263,12 +272,12 @@ export default function HomePage() {
                       <h3 className="font-heading text-xl font-semibold text-white">
                         {product.name}
                       </h3>
-                      {product.price === 'Coming Soon' ? (
-                        <p className="mt-1 font-mono text-lg text-gray-500">
-                          Coming Soon
+                      {product.price.startsWith('$') ? (
+                        <p className="mt-1 font-mono text-lg text-bb-blue">
+                          {product.price}
                         </p>
                       ) : (
-                        <p className="mt-1 font-mono text-lg text-bb-blue">
+                        <p className="mt-1 font-mono text-lg text-gray-500">
                           {product.price}
                         </p>
                       )}

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import ImageGallery from '@/components/ui/ImageGallery';
@@ -18,7 +19,9 @@ interface ProductPageTemplateProps {
   description: string;
   price: string;
   priceLabel: string;
-  images: GalleryImage[];
+  heroImages: GalleryImage[];
+  exteriorImages: GalleryImage[];
+  interiorImages?: GalleryImage[];
   specs: Spec[];
   features: string[];
   ctaText?: string;
@@ -32,57 +35,106 @@ export default function ProductPageTemplate({
   description,
   price,
   priceLabel,
-  images,
+  heroImages,
+  exteriorImages,
+  interiorImages,
   specs,
   features,
   ctaText = 'Book a Consultation',
 }: ProductPageTemplateProps) {
-  const comingSoon = price === 'Coming Soon';
+  // Numeric prices ("$35,995") render in brand blue; quote-style prices
+  // ("Coming Soon", "Contact for Pricing") render as a gray label: value.
+  const isQuote = !price.startsWith('$');
+  const hero = heroImages.slice(0, 2);
 
   return (
     <>
-      {/* 1. Hero banner */}
-      <section className="bg-bb-surface-dark py-24 lg:py-32">
-        <div className="mx-auto max-w-[1280px] px-6">
-          <p className={label}>Bright Box Homes</p>
-          <h1 className="font-heading text-4xl font-bold text-white md:text-5xl">
-            {name}
-          </h1>
-          <p className="mt-2 text-lg text-gray-400">{tagline}</p>
-          {comingSoon ? (
-            <p className="mt-4 font-mono text-2xl text-gray-500">
-              {priceLabel}: Coming Soon
-            </p>
-          ) : (
-            <p className="mt-4 font-mono text-2xl text-bb-blue">
-              {priceLabel} {price}
-            </p>
+      {/* 1. Hero (above the fold) */}
+      <section className="bg-bb-surface-dark">
+        <div className="mx-auto flex min-h-[70vh] max-w-[1280px] flex-col gap-12 px-6 py-16 lg:flex-row lg:items-center lg:py-24">
+          {/* Right column (images) renders first on mobile so it stacks above text */}
+          {hero.length > 0 && (
+            <div className="order-first lg:order-last lg:w-1/2">
+              <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:gap-6">
+                {hero.map((image, i) => (
+                  <div
+                    key={image.src}
+                    className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/5 ${
+                      hero.length === 2 && i === 1 ? 'sm:-mt-0 lg:-ml-10 lg:w-5/6 lg:self-end' : ''
+                    }`}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      priority={i === 0}
+                      sizes="(min-width: 1024px) 45vw, (min-width: 640px) 45vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
-          <p className="mt-6 max-w-2xl text-gray-300">{description}</p>
-          <div className="mt-6">
-            <Button href="/consultation" size="lg">
-              {ctaText}
-            </Button>
+
+          {/* Left column (text) */}
+          <div className={hero.length > 0 ? 'lg:w-1/2' : 'w-full'}>
+            <p className={label}>Bright Box Homes</p>
+            <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+              {name}
+            </h1>
+            <p className="mt-4 text-lg text-gray-400">{tagline}</p>
+            {isQuote ? (
+              <p className="mt-4 font-mono text-2xl text-gray-500">
+                {priceLabel}: {price}
+              </p>
+            ) : (
+              <p className="mt-4 font-mono text-2xl text-bb-blue">
+                {priceLabel} {price}
+              </p>
+            )}
+            <p className="mt-6 max-w-xl text-gray-300">{description}</p>
+            <div className="mt-8">
+              <Button href="/consultation" size="lg">
+                {ctaText}
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Gallery */}
+      {/* 2. Exterior gallery */}
       <section className="bg-bb-charcoal py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
-          <p className={label}>Gallery</p>
-          {images.length > 0 ? (
-            <ImageGallery images={images} className="mt-2" />
+          <p className={label}>Exterior</p>
+          <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+            See It From Every Angle
+          </h2>
+          {exteriorImages.length > 0 ? (
+            <ImageGallery images={exteriorImages} className="mt-10" />
           ) : (
-            <div className="mt-2 flex min-h-40 items-center justify-center rounded-lg border border-white/5 bg-bb-surface-dark p-8 text-center text-gray-500">
+            <div className="mt-10 flex min-h-40 items-center justify-center rounded-lg border border-white/5 bg-bb-surface-dark p-8 text-center text-gray-500">
               Product photography coming soon.
             </div>
           )}
         </div>
       </section>
 
-      {/* 3. Specifications */}
-      <section className="bg-bb-surface-dark py-16 lg:py-24">
+      {/* 3. Interior gallery (only if provided) */}
+      {interiorImages && interiorImages.length > 0 && (
+        <section className="bg-bb-surface-dark py-16 lg:py-24">
+          <div className="mx-auto max-w-[1280px] px-6">
+            <p className={label}>Interior</p>
+            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+              Take a Look Inside
+            </h2>
+            <ImageGallery images={interiorImages} className="mt-10" />
+          </div>
+        </section>
+      )}
+
+      {/* 4. Specifications */}
+      <section className="bg-bb-charcoal py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={label}>Specifications</p>
           <dl className="mt-2 grid grid-cols-1 gap-x-12 md:grid-cols-2">
@@ -99,8 +151,8 @@ export default function ProductPageTemplate({
         </div>
       </section>
 
-      {/* 4. Standard Features */}
-      <section className="bg-bb-charcoal py-16 lg:py-24">
+      {/* 5. Standard Features */}
+      <section className="bg-bb-surface-dark py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={label}>What&apos;s Included</p>
           <ul className="mt-2 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -118,7 +170,7 @@ export default function ProductPageTemplate({
         </div>
       </section>
 
-      {/* 5. CTA */}
+      {/* 6. CTA */}
       <section className="bg-bb-navy py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
@@ -129,9 +181,7 @@ export default function ProductPageTemplate({
               {ctaText}
             </Button>
           </div>
-          <p className="mt-6 text-sm text-gray-500">
-            Call us at 800-259-1745
-          </p>
+          <p className="mt-6 text-sm text-gray-500">Call us at 800-259-1745</p>
         </div>
       </section>
     </>

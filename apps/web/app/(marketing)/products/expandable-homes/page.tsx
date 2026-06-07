@@ -7,17 +7,24 @@ export const metadata: Metadata = {
     'Steel-frame expandable container homes from $35,995. 200-800 sq ft with expandable side sections, 60+ exterior colors, mini-split HVAC, and a tankless water heater. Delivered anywhere in the US.',
 };
 
-const images = [
-  { src: '/images/products/expandable-homes/01.png', alt: 'Two-story expandable container home with balconies and landscaped gardens.' },
-  { src: '/images/products/expandable-homes/02.png', alt: 'Two-story expandable home with a family enjoying the backyard.' },
-  { src: '/images/products/expandable-homes/03.png', alt: 'Single-story expandable home with a covered front porch.' },
-  { src: '/images/products/expandable-homes/04.png', alt: 'Compact expandable home with a carport and gravel driveway.' },
-  { src: '/images/products/expandable-homes/05.png', alt: 'Expandable home with glass walls and landscaped garden lighting.' },
-  { src: '/images/products/expandable-homes/06.png', alt: '3D floor plan showing an expandable home interior layout.' },
-  { src: '/images/products/expandable-homes/07.jpg', alt: 'Expandable home kitchen with white cabinets and a double sink.' },
-  { src: '/images/products/expandable-homes/08.png', alt: 'Expandable home kitchen with white cabinetry and countertop.' },
-  { src: '/images/products/expandable-homes/09.png', alt: 'Expandable home bathroom with a glass shower stall and vanity.' },
-  { src: '/images/products/expandable-homes/10.png', alt: 'Expandable home kitchen with shelving and a U-shaped counter.' },
+const exteriorImages = [
+  { src: '/images/products/expandable-homes/exterior/01.jpeg', alt: 'Delivered brown expandable home with a covered porch among palm trees.' },
+  { src: '/images/products/expandable-homes/exterior/02.jpeg', alt: 'Delivered gray expandable home with a covered porch.' },
+  { src: '/images/products/expandable-homes/exterior/03.jpeg', alt: 'Delivered white expandable home on a rural property.' },
+  { src: '/images/products/expandable-homes/exterior/04.jpeg', alt: 'Expandable home with glass entry doors set on a wooded lot.' },
+  { src: '/images/products/expandable-homes/exterior/05.jpeg', alt: 'Brown expandable home with a covered porch and solar panel.' },
+  { src: '/images/products/expandable-homes/exterior/06.jpeg', alt: 'A white expandable home being delivered by crane truck.' },
+];
+
+const interiorImages = [
+  { src: '/images/products/expandable-homes/interior/01.jpeg', alt: 'Expandable home bedroom with a queen bed and large windows.' },
+  { src: '/images/products/expandable-homes/interior/02.jpeg', alt: 'Open-plan kitchen and bedroom interior of an expandable home.' },
+  { src: '/images/products/expandable-homes/interior/03.jpeg', alt: 'Expandable home kitchen with white cabinets and marble backsplash.' },
+  { src: '/images/products/expandable-homes/interior/04.jpeg', alt: 'Expandable home kitchen with a double sink and white cabinetry.' },
+  { src: '/images/products/expandable-homes/interior/05.jpeg', alt: 'Walk-in shower with a rainfall head and marble walls.' },
+  { src: '/images/products/expandable-homes/interior/06.png', alt: 'Bathroom with a glass shower stall and vanity.' },
+  { src: '/images/products/expandable-homes/interior/07.png', alt: 'White kitchen cabinetry with countertop and sink.' },
+  { src: '/images/products/expandable-homes/interior/08.png', alt: 'U-shaped white kitchen with open shelving.' },
 ];
 
 const specs = [
@@ -54,7 +61,9 @@ export default function ExpandableHomesPage() {
       description="Our flagship line. Expandable container homes ship compact and unfold on site into 200 to 800 sq ft of finished living space. Built on a galvanized steel frame with a 24-gauge metal pitched roof, each home arrives fully equipped with a mini-split HVAC system, tankless water heater, induction kitchen, and a covered front porch. Choose from 60+ RAL exterior colors and five floor-plan sizes, from the 20x10 studio to the 20x20 stacked duplex."
       price="$35,995"
       priceLabel="Starting at"
-      images={images}
+      heroImages={exteriorImages}
+      exteriorImages={exteriorImages}
+      interiorImages={interiorImages}
       specs={specs}
       features={features}
     />

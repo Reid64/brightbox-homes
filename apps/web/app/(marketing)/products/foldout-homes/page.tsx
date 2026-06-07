@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 };
 
 // No compliant product photography available yet (source assets are catalog
-// spreads with vendor logos and metric measurements). Gallery shows a
+// spreads with vendor logos and metric measurements). Galleries show a
 // placeholder until clean photos are provided.
-const images: { src: string; alt: string }[] = [];
+const exteriorImages: { src: string; alt: string }[] = [];
 
 const specs = [
   { label: 'Folded Dimensions', value: '112.2" x 16.1" H' },
@@ -39,7 +39,8 @@ export default function FoldoutHomesPage() {
       description="When speed matters, Foldout Homes ship compact and unfold into an 87 sq ft fireproof shelter in hours, not days. Built from fire-grade A materials, each unit can be outfitted with optional bathroom, kitchenette, AC/heating, hot water, and solar power modules - making it equally suited to disaster relief, remote worksites, and off-grid basecamps."
       price="$2,000"
       priceLabel="Starting at"
-      images={images}
+      heroImages={exteriorImages}
+      exteriorImages={exteriorImages}
       specs={specs}
       features={features}
     />

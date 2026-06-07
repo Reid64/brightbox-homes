@@ -51,6 +51,16 @@ const config: Config = {
         body: ['var(--font-body)', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
+      // Type scale (DESIGN_LANGUAGE 3.2). Merges with Tailwind defaults, adding
+      // text-hero / text-h1..h4 / text-body with their locked line-heights.
+      fontSize: {
+        hero: ['3.5rem', { lineHeight: '1.1' }],
+        h1: ['2.5rem', { lineHeight: '1.2' }],
+        h2: ['1.875rem', { lineHeight: '1.25' }],
+        h3: ['1.5rem', { lineHeight: '1.3' }],
+        h4: ['1.25rem', { lineHeight: '1.35' }],
+        body: ['1rem', { lineHeight: '1.6' }],
+      },
       borderRadius: {
         sm: '6px',
         md: '10px',

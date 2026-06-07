@@ -61,10 +61,10 @@ export default function Header() {
           <Image
             src="/images/logo.png"
             alt="Bright Box Homes"
-            width={200}
-            height={41}
+            width={232}
+            height={48}
             priority
-            className="h-10 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
 
@@ -114,7 +114,7 @@ export default function Header() {
             href="tel:8002591745"
             className="ml-2 flex min-h-11 items-center gap-2 px-3 font-body text-gray-400 transition-colors duration-fast ease-out hover:text-white"
           >
-            <Phone size={20} aria-hidden="true" />
+            <Phone size={20} aria-hidden="true" className="text-red-500" />
             800-259-1745
           </a>
 
@@ -128,9 +128,9 @@ export default function Header() {
           <a
             href="tel:8002591745"
             aria-label="Call 800-259-1745"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-gray-400 transition-colors duration-fast ease-out hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm transition-colors duration-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
           >
-            <Phone size={24} aria-hidden="true" />
+            <Phone size={24} aria-hidden="true" className="text-red-500" />
           </a>
           <button
             type="button"

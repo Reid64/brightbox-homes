@@ -62,6 +62,19 @@ const config: Config = {
         lg: '0 12px 32px rgba(0,0,0,0.12)',
         inner: 'inset 0 2px 4px rgba(0,0,0,0.05)',
       },
+      // Motion tokens (DESIGN_LANGUAGE 6.1, 6.2). Enables duration-fast/normal/slow/hero
+      // and ease-out/ease-in-out/ease-spring utilities without arbitrary values.
+      transitionDuration: {
+        fast: '150ms',
+        normal: '300ms',
+        slow: '500ms',
+        hero: '800ms',
+      },
+      transitionTimingFunction: {
+        out: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'in-out': 'cubic-bezier(0.65, 0, 0.35, 1)',
+        spring: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+      },
     },
   },
   plugins: [],

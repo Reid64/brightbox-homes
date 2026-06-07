@@ -1,7 +1,13 @@
 import type { ReactNode } from 'react';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
-// Pass-through layout for the marketing route group. Shared header/footer
-// markup arrives in the component/content prompt series.
 export default function MarketingLayout({ children }: { children: ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen">{children}</main>
+      <Footer />
+    </>
+  );
 }

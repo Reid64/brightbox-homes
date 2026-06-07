@@ -1,4 +1,4 @@
-﻿# Dependencies
+# Dependencies
 node_modules/
 .pnpm-store/
 
@@ -57,3 +57,8 @@ coverage/
 *.avi
 *.psd
 .vercel
+
+# Raw product asset staging area - not production-ready (originals, mixed naming,
+# internal price list, Chinese-named files). Optimize, rename, and move selected
+# assets into apps/web/public/ before use. Never commit this dump wholesale.
+website-products-and-assets/

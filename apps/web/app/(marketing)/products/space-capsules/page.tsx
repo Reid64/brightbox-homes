@@ -13,11 +13,20 @@ const exteriorImages = [
   { src: '/images/products/space-capsules/exterior/03.png', alt: 'Space Capsule home with purple LED accents at dusk.' },
   { src: '/images/products/space-capsules/exterior/04.png', alt: 'Space Capsule home with sculpted white panels in a garden.' },
   { src: '/images/products/space-capsules/exterior/05.png', alt: 'Space Capsule home on a lakeside glamping deck at sunset.' },
+  { src: '/images/products/space-capsules/exterior/06.jpg', alt: 'Space Capsule pod with a deck overlooking water.' },
+  { src: '/images/products/space-capsules/exterior/07.jpg', alt: 'Space Capsule pods arranged as a lakeside resort.' },
+  { src: '/images/products/space-capsules/exterior/08.jpg', alt: 'Space Capsule pods beside a quarry lake.' },
+  { src: '/images/products/space-capsules/exterior/09.jpg', alt: 'Aerial view of a Space Capsule pod village by the water.' },
+  { src: '/images/products/space-capsules/exterior/10.jpg', alt: 'Space Capsule pod with lounge chairs on a grassy lawn.' },
 ];
 
 const interiorImages = [
   { src: '/images/products/space-capsules/interior/01.jpg', alt: 'Space Capsule living area with curved glass and forest views.' },
   { src: '/images/products/space-capsules/interior/02.jpg', alt: 'Space Capsule interior with a kitchenette and lounge seating.' },
+  { src: '/images/products/space-capsules/interior/03.jpg', alt: 'Furnished Space Capsule interior with dining, sofa, and bed.' },
+  { src: '/images/products/space-capsules/interior/04.jpg', alt: 'Space Capsule interior with a bed, sofa, and floor-to-ceiling glass.' },
+  { src: '/images/products/space-capsules/interior/05.jpg', alt: 'Space Capsule bedroom with armchairs and a garden view.' },
+  { src: '/images/products/space-capsules/interior/06.jpg', alt: 'Luxury Space Capsule interior with a bed, lounge chair, and skylight.' },
 ];
 
 const specs = [

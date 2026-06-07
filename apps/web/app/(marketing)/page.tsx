@@ -30,8 +30,8 @@ const productLines = [
     description:
       'Aluminum-panel cabins with fluorocarbon coating and rounded organic aesthetic. Ideal for Airbnb and glamping.',
     href: '/products/apple-cabins',
-    image: '/images/products/apple-cabins/exterior/01.jpg',
-    alt: 'Apple Cabin with a deck overlooking water.',
+    image: '/images/products/apple-cabins/exterior/01.png',
+    alt: 'Apple Cabin with rounded aluminum panels in a forest clearing.',
   },
   {
     name: 'Space Capsule Homes',

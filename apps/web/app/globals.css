@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens - mirrors DESIGN_LANGUAGE.md Sections 2-6.
+ * Tailwind utilities cover most usage; these custom properties exist for
+ * raw CSS, inline styles, and non-Tailwind contexts.
+ */
+:root {
+  /* Brand colors (2.1) */
+  --bb-blue: #4a9bd9;
+  --bb-navy: #1b2d4f;
+  --bb-blue-light: #e8f2fb;
+  --bb-blue-dark: #2e6fa3;
+
+  /* Neutral palette (2.2) */
+  --bb-white: #ffffff;
+  --bb-warm-white: #fafaf7;
+  --bb-gray-100: #f3f4f6;
+  --bb-gray-200: #e5e7eb;
+  --bb-gray-400: #9ca3af;
+  --bb-gray-600: #4b5563;
+  --bb-gray-900: #111827;
+
+  /* Semantic colors (2.3) */
+  --bb-success: #16a34a;
+  --bb-warning: #d97706;
+  --bb-error: #dc2626;
+  --bb-info: #4a9bd9;
+
+  /* Admin palette (2.4, Phase 1B) */
+  --admin-bg: #0f172a;
+  --admin-surface: #1e293b;
+  --admin-border: #334155;
+  --admin-text: #e2e8f0;
+  --admin-accent: #4a9bd9;
+
+  /* Type scale (3.2) */
+  --text-hero: 3.5rem;
+  --text-h1: 2.5rem;
+  --text-h2: 1.875rem;
+  --text-h3: 1.5rem;
+  --text-h4: 1.25rem;
+  --text-body: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+
+  /* Spacing scale (4) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Border radius (5.1) */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows (5.2) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Motion timing (6.1) */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-hero: 800ms;
+
+  /* Motion easing (6.2) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Motion rule (6.5): reduced motion zeroes all durations and removes transforms. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-hero: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

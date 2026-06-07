@@ -1,0 +1,14 @@
+{
+  "name": "brightbox-homes",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @brightbox/web dev",
+    "build": "pnpm --filter @brightbox/web build",
+    "lint": "pnpm --filter @brightbox/web lint"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.33.0"
+}

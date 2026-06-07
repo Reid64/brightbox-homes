@@ -83,8 +83,8 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <Image
             src="/images/logo.png"
             alt="Bright Box Homes"
-            width={54}
-            height={36}
+            width={180}
+            height={37}
             className="h-9 w-auto"
           />
           <button

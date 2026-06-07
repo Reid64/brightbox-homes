@@ -40,8 +40,8 @@ export default function Footer() {
             <Image
               src="/images/logo.png"
               alt="Bright Box Homes"
-              width={48}
-              height={32}
+              width={160}
+              height={33}
               className="h-8 w-auto"
             />
             <p className="mt-3 font-body text-sm text-bb-gray-400">

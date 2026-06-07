@@ -61,8 +61,8 @@ export default function Header() {
           <Image
             src="/images/logo.png"
             alt="Bright Box Homes"
-            width={60}
-            height={40}
+            width={200}
+            height={41}
             priority
             className="h-10 w-auto"
           />

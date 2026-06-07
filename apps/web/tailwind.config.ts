@@ -24,6 +24,9 @@ const config: Config = {
           // Neutral palette (DESIGN_LANGUAGE 2.2).
           white: '#FFFFFF',
           'warm-white': '#FAFAF7',
+          // Dark premium surfaces (DESIGN_LANGUAGE 2.2).
+          charcoal: '#141820',
+          'surface-dark': '#1C2028',
           gray: {
             100: '#F3F4F6',
             200: '#E5E7EB',
@@ -84,6 +87,37 @@ const config: Config = {
         out: 'cubic-bezier(0.16, 1, 0.3, 1)',
         'in-out': 'cubic-bezier(0.65, 0, 0.35, 1)',
         spring: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+      },
+      keyframes: {
+        // Gentle floating loop for the hero video PiP.
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        // Hero 3-beat entrance (run on mount via CSS, fill-mode both).
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideInRight: {
+          '0%': { opacity: '0', transform: 'translateX(40px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        float: 'float 3s ease-in-out infinite',
+        marquee: 'marquee var(--marquee-duration, 30s) linear infinite',
+        'fade-in': 'fadeIn 600ms cubic-bezier(0.16,1,0.3,1) both',
+        'fade-up': 'fadeUp 700ms cubic-bezier(0.16,1,0.3,1) both',
+        'slide-in-right': 'slideInRight 700ms cubic-bezier(0.16,1,0.3,1) both',
       },
     },
   },

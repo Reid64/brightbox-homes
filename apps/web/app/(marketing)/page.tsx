@@ -1,31 +1,34 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Shield, Home, Truck, Award, Phone, Mail } from 'lucide-react';
+import { Shield, Home, Truck, Award, ChevronDown, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import AnimatedText from '@/components/ui/AnimatedText';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import TiltCard from '@/components/ui/TiltCard';
+import ScrollProgress from '@/components/ui/ScrollProgress';
+import Marquee from '@/components/ui/Marquee';
 
-// Static homepage content. Product/pricing data is hardcoded here for Phase 1A
-// (no database yet). Apple Cabin and Space Capsule pricing is "Coming Soon"
-// pending operator input (open blocker).
+// Dark premium homepage. Static content (no database yet). Apple Cabin and
+// Space Capsule pricing is "Coming Soon" pending operator input (open blocker).
+// Hero 3-beat entrance runs via CSS animations (animate-fade-*/slide-in-right
+// with per-element animation-delay); reduced motion zeroes delays in globals.css.
 
 const productLines = [
   {
     name: 'Expandable Container Homes',
     price: '$35,995',
     description:
-      '200-800 sq ft steel-frame homes with expandable side sections. 60+ exterior colors.',
+      '200-800 sq ft steel-frame homes with expandable side sections and 60+ exterior color options.',
     href: '/products/expandable-homes',
     image: '/images/products/expandable-home-card.png',
-    alt: 'Single-story expandable container home with a covered front porch and landscaped yard.',
+    alt: 'Single-story expandable container home with a covered porch and landscaped yard.',
   },
   {
     name: 'Apple Cabin Homes',
     price: 'Coming Soon',
     description:
-      'Rounded aluminum-panel cabins with fluorocarbon coating. Perfect for Airbnb and glamping.',
+      'Aluminum-panel cabins with fluorocarbon coating and rounded organic aesthetic. Ideal for Airbnb and glamping.',
     href: '/products/apple-cabins',
     image: '/images/products/apple-cabin-card.png',
     alt: 'Modern rounded aluminum-panel Apple Cabin with floor-to-ceiling glass.',
@@ -34,7 +37,7 @@ const productLines = [
     name: 'Space Capsule Homes',
     price: 'Coming Soon',
     description:
-      'Futuristic pod design for backyard offices, studios, and guest quarters.',
+      'Futuristic pod design for backyard offices, meditation studios, and guest quarters.',
     href: '/products/space-capsules',
     image: '/images/products/space-capsule-card.png',
     alt: 'Futuristic Space Capsule home with orange accents overlooking a lake at sunset.',
@@ -42,7 +45,8 @@ const productLines = [
   {
     name: 'Assembly Homes',
     price: '$19,995',
-    description: 'Modular units that join to create custom multi-room layouts.',
+    description:
+      'Modular units that connect to create custom multi-room layouts for any use case.',
     href: '/products/assembly-homes',
     image: '/images/products/assembly-home-card.png',
     alt: 'Two-story modular Assembly Home with glass front sections and a balcony.',
@@ -51,7 +55,7 @@ const productLines = [
     name: 'Foldout Homes',
     price: '$2,000',
     description:
-      'Emergency and disaster housing. Deployable in hours. Fire-grade A materials.',
+      'Emergency and disaster housing deployable in hours. Fire-grade A materials throughout.',
     href: '/products/foldout-homes',
     image: null, // No compliant product photo yet (see report) - branded placeholder used.
     alt: 'Foldout Home',
@@ -62,42 +66,41 @@ const valueProps = [
   {
     icon: Shield,
     title: 'Buyer-Friendly Payments',
-    text: 'Our 25/25/25/25 payment plan spreads your investment across four milestones - you never pay more than 25% at a time.',
+    text: 'Our 25/25/25/25 plan spreads your cost across four milestones. You never pay more than 25% at once.',
   },
   {
     icon: Home,
     title: 'Everything Included',
-    text: 'Every home comes standard with mini-split HVAC, tankless water heater, induction stove, dual-pane windows, and a covered front porch.',
+    text: 'Mini-split HVAC, tankless water heater, induction stove, dual-pane windows, and covered front porch - all standard.',
   },
   {
     icon: Truck,
     title: 'Delivered to Your Door',
-    text: 'From factory to your property - we handle international shipping, customs, and last-mile delivery anywhere in the US.',
+    text: 'We handle international shipping, customs, and last-mile delivery to your property anywhere in the continental US.',
   },
   {
     icon: Award,
     title: '$5,000 Challenge',
-    text: "Find a comparable home at a better price from any US competitor, and we'll give you $5,000 back.",
-    href: '/5k-challenge',
+    text: "Find a comparable home from any US competitor at a better price - we'll hand you $5,000 back.",
   },
 ];
 
 const paymentSteps = [
   {
     title: 'Order Placement',
-    text: 'Sign your purchase agreement and lock your configuration. Pay 25%.',
+    text: 'Sign your agreement, lock your configuration, and pay your first 25%.',
   },
   {
-    title: 'Production Start',
-    text: 'Factory confirms your build is scheduled and materials are ordered. Pay 25%.',
+    title: 'Production Starts',
+    text: 'Your home enters production. Materials ordered, build slot confirmed. Second 25%.',
   },
   {
     title: 'Pre-Ship Approval',
-    text: 'Review factory photos of your completed home and authorize shipping. Pay 25%.',
+    text: 'Review factory photos and video of your completed home. Authorize shipping. Third 25%.',
   },
   {
-    title: 'Delivery',
-    text: 'Receive your Bill of Lading and prepare for delivery. Pay final 25%.',
+    title: 'Delivery Day',
+    text: 'Receive your Bill of Lading, prepare your site, and pay the final 25%.',
   },
 ];
 
@@ -116,164 +119,234 @@ const deliveredPhotos = [
   },
 ];
 
+const marqueeItems = [
+  'AMERICAN OWNED',
+  'GLOBALLY SOURCED',
+  'US DELIVERED',
+  '25/25/25/25 PAYMENTS',
+  '$5,000 CHALLENGE',
+  'FREE TEXAS SHIPPING',
+  'FAITH FOUNDATION PARTNER',
+];
+
+const sectionLabel = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
+
 export default function HomePage() {
-  // 3-beat hero entrance per DESIGN_LANGUAGE 6.4. Reduced motion reveals
-  // everything instantly (delays zeroed; durations zeroed via globals.css).
-  const [mounted, setMounted] = useState(false);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    setMounted(true);
-  }, []);
-
-  const reveal = mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6';
-  const beat = (ms: number) => ({ transitionDelay: reduced ? '0ms' : `${ms}ms` });
-
   return (
     <>
-      {/* SECTION A - Hero */}
-      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+      {/* SECTION B: Scroll progress (fixed, above header) */}
+      <ScrollProgress />
+
+      {/* SECTION A: Hero */}
+      <section className="relative flex min-h-screen items-end overflow-hidden">
         <Image
           src="/images/products/expandable-home-hero.png"
           alt="Two-story expandable container home with balconies, landscaped gardens, and a family enjoying the backyard."
           fill
           priority
           sizes="100vw"
-          className={`object-cover transition-opacity duration-slow ease-out ${
-            mounted ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="animate-fade-in object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Dark legibility scrim (single-hue charcoal fade, not a decorative gradient) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bb-charcoal via-bb-charcoal/60 to-bb-charcoal/30" />
 
-        <div className="relative z-10 mx-auto flex max-w-[1280px] flex-col items-center px-6 py-24 text-center">
-          <span
-            style={beat(500)}
-            className={`inline-flex rounded-full bg-bb-blue px-4 py-2 font-body text-sm font-medium text-white transition-all duration-slow ease-out ${reveal}`}
-          >
-            American Owned. Globally Sourced. US Delivered.
-          </span>
+        <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-end gap-12 px-6 pb-20 lg:flex-row lg:justify-between lg:pb-28">
+          {/* Left */}
+          <div className="lg:w-3/5">
+            <span
+              className="inline-block animate-fade-up rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur"
+              style={{ animationDelay: '500ms' }}
+            >
+              American Owned. Globally Sourced. US Delivered.
+            </span>
 
-          <h1
-            style={beat(300)}
-            className={`mt-6 font-heading text-4xl font-extrabold tracking-tight text-white transition-all duration-slow ease-out sm:text-5xl md:text-hero ${reveal}`}
-          >
-            Your Home, Built Your Way
-          </h1>
+            <AnimatedText
+              text="Your Home, Built Your Way"
+              as="h1"
+              delay={200}
+              className="mt-6 font-heading text-5xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl"
+            />
 
-          <p
-            style={beat(600)}
-            className={`mt-4 max-w-2xl font-body text-h4 text-white/90 transition-all duration-slow ease-out ${reveal}`}
-          >
-            Premium expandable homes starting at $35,995 - delivered to your door
-            with a buyer-friendly 25/25/25/25 payment plan.
-          </p>
+            <p
+              className="mt-6 max-w-xl animate-fade-up text-xl text-gray-300"
+              style={{ animationDelay: '600ms' }}
+            >
+              Premium expandable homes from $35,995 - delivered anywhere in the US.
+            </p>
 
-          <div
-            style={beat(700)}
-            className={`mt-8 transition-all duration-slow ease-out ${reveal}`}
-          >
-            <Button href="/consultation" size="lg">
-              Book a Consultation
-            </Button>
+            <div className="mt-8 animate-fade-up" style={{ animationDelay: '700ms' }}>
+              <Button href="/consultation" size="lg">
+                Book a Consultation
+              </Button>
+            </div>
+
+            <a
+              href="tel:8002591745"
+              className="mt-4 inline-block animate-fade-up text-sm text-gray-500 transition-colors duration-fast ease-out hover:text-gray-300"
+              style={{ animationDelay: '800ms' }}
+            >
+              or call 800-259-1745
+            </a>
           </div>
 
-          <a
-            href="tel:8002591745"
-            style={beat(800)}
-            className={`mt-4 font-body text-sm text-white/70 transition-all duration-slow ease-out hover:text-white ${reveal}`}
+          {/* Right: floating ambient video PiP (desktop only) */}
+          <div
+            className="hidden animate-slide-in-right lg:block lg:w-2/5"
+            style={{ animationDelay: '600ms' }}
           >
-            or call 800-259-1745
-          </a>
+            <div className="mx-auto max-w-[480px] animate-float overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(74,155,217,0.15)]">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label="Ambient footage of a Bright Box home"
+                className="aspect-video w-full object-cover"
+              >
+                <source src="/videos/hero-video.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/30">
+          <ChevronDown size={28} aria-hidden="true" className="animate-bounce" />
         </div>
       </section>
 
-      {/* SECTION B - Product Lines */}
-      <section className="mx-auto max-w-[1280px] px-6 py-24">
-        <ScrollReveal>
-          <h2 className="text-center font-heading text-h2 font-bold text-bb-navy">
-            Explore Our Product Lines
-          </h2>
-        </ScrollReveal>
+      {/* SECTION C: Marquee */}
+      <Marquee items={marqueeItems} />
 
-        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {productLines.map((product, i) => (
-            <ScrollReveal key={product.href} delay={i * 80} className="h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-md bg-bb-white shadow-sm transition-shadow duration-normal ease-out hover:shadow-md">
-                <div className="relative aspect-video w-full overflow-hidden bg-bb-blue-light">
-                  {product.image ? (
-                    <Image
-                      src={product.image}
-                      alt={product.alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full flex-col items-center justify-center text-bb-navy">
-                      <Home size={32} aria-hidden="true" />
-                      <span className="mt-2 font-heading text-sm font-bold">
-                        {product.name}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-heading text-h3 font-bold text-bb-navy">
-                    {product.name}
-                  </h3>
-                  <p className="mt-1 font-body font-medium text-bb-blue">
-                    {product.price === 'Coming Soon'
-                      ? 'Pricing: Coming Soon'
-                      : `Starting at ${product.price}`}
-                  </p>
-                  <p className="mt-3 flex-1 font-body text-bb-gray-600">
-                    {product.description}
-                  </p>
-                  <div className="mt-6">
-                    <Button href={product.href} variant="secondary" size="sm">
-                      View Details
-                    </Button>
-                  </div>
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION C - Why Bright Box */}
-      <section className="bg-bb-warm-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-24">
+      {/* SECTION D: Product Lines */}
+      <section className="bg-bb-charcoal py-24 lg:py-32">
+        <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
-            <h2 className="text-center font-heading text-h2 font-bold text-bb-navy">
-              Why Bright Box Homes
-            </h2>
+            <p className={sectionLabel}>OUR HOMES</p>
+            <AnimatedText
+              text="Explore the Collection"
+              as="h2"
+              className="font-heading text-4xl font-bold text-white md:text-5xl"
+            />
+            <p className="mt-4 text-lg text-gray-400">
+              Five product lines, one standard - uncompromising quality.
+            </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {productLines.map((product, i) => (
+              <ScrollReveal key={product.href} delay={i * 100} className="h-full">
+                <TiltCard className="h-full">
+                  <Link
+                    href={product.href}
+                    className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/5 bg-bb-surface-dark transition-colors duration-normal ease-out hover:border-white/10"
+                  >
+                    <div className="relative aspect-video w-full overflow-hidden bg-bb-charcoal">
+                      {product.image ? (
+                        <Image
+                          src={product.image}
+                          alt={product.alt}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full flex-col items-center justify-center text-bb-blue/60">
+                          <Home size={32} aria-hidden="true" />
+                          <span className="mt-2 font-heading text-sm font-semibold text-gray-400">
+                            {product.name}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="font-heading text-xl font-semibold text-white">
+                        {product.name}
+                      </h3>
+                      {product.price === 'Coming Soon' ? (
+                        <p className="mt-1 font-mono text-lg text-gray-500">
+                          Coming Soon
+                        </p>
+                      ) : (
+                        <p className="mt-1 font-mono text-lg text-bb-blue">
+                          {product.price}
+                        </p>
+                      )}
+                      <p className="mt-3 line-clamp-2 flex-1 text-sm text-gray-400">
+                        {product.description}
+                      </p>
+                      <span className="mt-4 inline-flex items-center gap-1 text-sm text-bb-blue group-hover:underline">
+                        View Details
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </span>
+                    </div>
+                  </Link>
+                </TiltCard>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION E: Stats Bar */}
+      <section className="border-y border-white/5 bg-bb-surface-dark py-16">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-8 px-6 text-center sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <AnimatedCounter
+              target={5}
+              suffix=" Product Lines"
+              className="font-heading text-3xl font-bold text-white md:text-4xl"
+            />
+          </div>
+          <div>
+            <AnimatedCounter
+              target={60}
+              suffix="+ Exterior Colors"
+              className="font-heading text-3xl font-bold text-white md:text-4xl"
+            />
+          </div>
+          <div>
+            <AnimatedCounter
+              target={35995}
+              prefix="$"
+              className="font-heading text-3xl font-bold text-white md:text-4xl"
+            />
+            <p className="mt-1 text-sm text-gray-400">Starting From</p>
+          </div>
+          <div>
+            <AnimatedCounter
+              target={2500}
+              prefix="$"
+              suffix=" Donated Per Home"
+              className="font-heading text-3xl font-bold text-white md:text-4xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION F: Why Bright Box */}
+      <section className="bg-bb-charcoal py-24 lg:py-32">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <ScrollReveal>
+            <p className={sectionLabel}>WHY BRIGHT BOX</p>
+            <AnimatedText
+              text="Built Different"
+              as="h2"
+              className="font-heading text-4xl font-bold text-white md:text-5xl"
+            />
+          </ScrollReveal>
+
+          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
             {valueProps.map((prop, i) => {
               const Icon = prop.icon;
               return (
-                <ScrollReveal key={prop.title} delay={i * 80}>
-                  <div className="flex gap-4 rounded-md bg-bb-white p-6 shadow-sm">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-bb-blue-light text-bb-blue">
-                      <Icon size={24} aria-hidden="true" />
-                    </div>
-                    <div>
-                      <h3 className="font-heading text-h4 font-bold text-bb-navy">
-                        {prop.title}
-                      </h3>
-                      <p className="mt-2 font-body text-bb-gray-600">{prop.text}</p>
-                      {prop.href && (
-                        <Link
-                          href={prop.href}
-                          className="mt-2 inline-flex font-body font-medium text-bb-blue transition-colors duration-fast ease-out hover:underline"
-                        >
-                          Learn more
-                        </Link>
-                      )}
-                    </div>
+                <ScrollReveal key={prop.title} delay={i * 100}>
+                  <div className="rounded-xl border border-white/5 bg-bb-surface-dark p-8">
+                    <Icon size={32} aria-hidden="true" className="text-bb-blue" />
+                    <h3 className="mt-4 font-heading text-lg font-semibold text-white">
+                      {prop.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-gray-400">{prop.text}</p>
                   </div>
                 </ScrollReveal>
               );
@@ -282,39 +355,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION D - How It Works */}
-      <section className="bg-bb-warm-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-24">
+      {/* SECTION G: Payment Process */}
+      <section className="border-y border-white/5 bg-bb-surface-dark py-24 lg:py-32">
+        <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
-            <h2 className="text-center font-heading text-h2 font-bold text-bb-navy">
-              Simple 4-Step Payment Process
-            </h2>
+            <p className={sectionLabel}>HOW IT WORKS</p>
+            <AnimatedText
+              text="Four Simple Steps to Your New Home"
+              as="h2"
+              className="font-heading text-4xl font-bold text-white md:text-5xl"
+            />
           </ScrollReveal>
 
-          <ol className="mt-12 flex flex-col gap-10 md:flex-row md:gap-0">
+          <ol className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-6">
             {paymentSteps.map((step, i) => (
-              <ScrollReveal
-                key={step.title}
-                delay={i * 80}
-                className="relative flex-1"
-              >
-                <li className="flex flex-col items-center px-4 text-center">
-                  {/* Connecting line (horizontal desktop only, between steps) */}
+              <ScrollReveal key={step.title} delay={i * 100} className="relative">
+                <li className="relative">
+                  {/* Connecting line (desktop, between steps) */}
                   {i < paymentSteps.length - 1 && (
                     <span
                       aria-hidden="true"
-                      className="absolute left-1/2 top-6 hidden h-px w-full bg-bb-gray-200 md:block"
+                      className="absolute left-16 top-8 hidden h-px w-full border-t border-bb-blue/20 lg:block"
                     />
                   )}
-                  <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-bb-blue font-heading text-h4 font-bold text-white">
+                  <span
+                    aria-hidden="true"
+                    className="block font-heading text-6xl font-bold text-bb-blue/15"
+                  >
                     {i + 1}
                   </span>
-                  <h3 className="mt-4 font-heading text-h4 font-bold text-bb-navy">
+                  <h3 className="mt-2 font-heading text-lg font-semibold text-white">
                     {step.title}
                   </h3>
-                  <p className="mt-2 font-body text-sm text-bb-gray-600">
-                    {step.text}
-                  </p>
+                  <p className="mt-2 text-sm text-gray-400">{step.text}</p>
                 </li>
               </ScrollReveal>
             ))}
@@ -322,102 +395,92 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION E - Delivered Homes */}
-      <section className="mx-auto max-w-[1280px] px-6 py-24">
-        <ScrollReveal>
-          <h2 className="text-center font-heading text-h2 font-bold text-bb-navy">
-            Real Homes. Real Deliveries.
-          </h2>
-        </ScrollReveal>
+      {/* SECTION H: Delivered Homes */}
+      <section className="bg-bb-charcoal py-24 lg:py-32">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <ScrollReveal>
+            <p className={sectionLabel}>PROOF</p>
+            <AnimatedText
+              text="Real Homes. Real Deliveries."
+              as="h2"
+              className="font-heading text-4xl font-bold text-white md:text-5xl"
+            />
+          </ScrollReveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {deliveredPhotos.map((photo, i) => (
-            <ScrollReveal key={photo.src} delay={i * 80}>
-              <div className="relative aspect-video w-full overflow-hidden rounded-md bg-bb-blue-light shadow-sm">
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        <ScrollReveal className="mt-10 text-center">
-          <p className="mx-auto max-w-2xl font-body text-bb-gray-600">
-            Every Bright Box Home is inspected, documented, and delivered with a
-            7-day no-defect inspection window.
-          </p>
-          <div className="mt-6">
-            <Button href="/consultation" variant="secondary">
-              Book a Consultation
-            </Button>
+          <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {deliveredPhotos.map((photo, i) => (
+              <ScrollReveal key={photo.src} delay={i * 100}>
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/5 bg-bb-surface-dark">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
-        </ScrollReveal>
+
+          <ScrollReveal>
+            <p className="mx-auto mt-12 max-w-2xl text-center text-gray-400">
+              Every home is factory-inspected, photo-documented, and backed by a
+              7-day no-defect inspection window.
+            </p>
+          </ScrollReveal>
+        </div>
       </section>
 
-      {/* SECTION F - FAITH Foundation */}
-      <section className="bg-bb-warm-white">
-        <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-6 py-24 md:grid-cols-2">
+      {/* SECTION I: FAITH Foundation */}
+      <section className="border-t border-white/5 bg-bb-surface-dark py-24 lg:py-32">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
           <ScrollReveal>
-            <h2 className="font-heading text-h2 font-bold text-bb-navy">
+            <p className={sectionLabel}>GIVING BACK</p>
+            <h2 className="font-heading text-4xl font-bold text-white md:text-5xl">
               Building Homes. Building Hope.
             </h2>
-            <p className="mt-4 font-body text-bb-gray-600">
+            <p className="mt-6 text-gray-300">
               For every home sold, Bright Box Homes donates $2,500 to the FAITH
-              Foundation - a 501(c)(3) nonprofit providing pathways to
-              homeownership for qualified low-income families.
+              Foundation - a 501(c)(3) nonprofit creating pathways to homeownership
+              for low-income families.
             </p>
-            <div className="mt-6">
+            <div className="mt-8">
               <Button href="/faith-foundation" variant="secondary">
-                Learn About the FAITH Foundation
+                Learn About Our Mission
               </Button>
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={80} className="flex justify-center">
-            <div className="flex h-48 w-48 items-center justify-center rounded-full bg-bb-blue-light text-bb-blue">
-              <Home size={72} aria-hidden="true" />
-            </div>
+          <ScrollReveal delay={100} className="text-center lg:text-right">
+            <span className="block font-heading text-7xl font-bold text-bb-blue/20">
+              $2,500
+            </span>
+            <span className="mt-2 block text-gray-500">donated per home sold</span>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* SECTION G - Final CTA */}
-      <section className="bg-bb-navy">
-        <div className="mx-auto max-w-[1280px] px-6 py-24 text-center">
+      {/* SECTION J: Final CTA */}
+      <section className="bg-bb-navy py-24 text-center lg:py-32">
+        <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
-            <h2 className="font-heading text-h2 font-bold text-white">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="mt-4 font-body text-h4 text-white/90">
-              Talk to our team about finding the right home for your needs and
-              budget.
+            <AnimatedText
+              text="Ready to Build?"
+              as="h2"
+              className="justify-center font-heading text-4xl font-bold text-white md:text-5xl"
+            />
+            <p className="mt-4 text-lg text-gray-300">
+              Speak with our team about the right home for your needs.
             </p>
             <div className="mt-8 flex justify-center">
               <Button href="/consultation" size="lg">
                 Book a Consultation
               </Button>
             </div>
-            <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-6">
-              <a
-                href="tel:8002591745"
-                className="inline-flex items-center gap-2 font-body text-white/80 transition-colors duration-fast ease-out hover:text-white"
-              >
-                <Phone size={20} aria-hidden="true" />
-                800-259-1745
-              </a>
-              <a
-                href="mailto:info@brightboxhomes.com"
-                className="inline-flex items-center gap-2 font-body text-white/80 transition-colors duration-fast ease-out hover:text-white"
-              >
-                <Mail size={20} aria-hidden="true" />
-                info@brightboxhomes.com
-              </a>
-            </div>
+            <p className="mt-6 text-sm text-gray-500">
+              800-259-1745 &middot; info@brightboxhomes.com
+            </p>
           </ScrollReveal>
         </div>
       </section>

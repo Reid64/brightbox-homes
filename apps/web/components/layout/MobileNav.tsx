@@ -64,7 +64,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         type="button"
         aria-label="Close menu"
         onClick={onClose}
-        className={`absolute inset-0 bg-black/50 transition-opacity duration-normal ease-out ${
+        className={`absolute inset-0 bg-black/60 transition-opacity duration-normal ease-out ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -74,25 +74,25 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Site navigation"
-        className={`absolute right-0 top-0 flex h-full w-80 max-w-full flex-col bg-bb-white shadow-lg transition-transform duration-normal ease-out ${
+        className={`absolute right-0 top-0 flex h-full w-80 max-w-full flex-col bg-bb-surface-dark shadow-lg transition-transform duration-normal ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex items-center justify-between border-b border-bb-gray-200 px-6 py-4">
-          <span className="font-heading font-bold text-bb-navy">BRIGHT BOX HOMES</span>
+        <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+          <span className="font-heading font-bold text-white">BRIGHT BOX HOMES</span>
           <button
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-bb-gray-600 transition-colors duration-fast ease-out hover:bg-bb-blue-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-gray-400 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
           >
             <X size={24} aria-hidden="true" />
           </button>
         </div>
 
         <nav className="flex-1 overflow-y-auto px-2 py-4">
-          <p className="px-4 pb-1 pt-2 font-heading text-sm font-bold uppercase tracking-wide text-bb-gray-400">
+          <p className="px-4 pb-1 pt-2 font-heading text-sm font-bold uppercase tracking-wide text-gray-500">
             Products
           </p>
           {productLinks.map((link) => (
@@ -100,13 +100,13 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="flex min-h-12 items-center rounded-sm px-4 font-body text-bb-gray-900 transition-colors duration-fast ease-out hover:bg-bb-blue-light"
+              className="flex min-h-12 items-center rounded-sm px-4 font-body text-gray-200 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
             >
               {link.label}
             </Link>
           ))}
 
-          <p className="px-4 pb-1 pt-4 font-heading text-sm font-bold uppercase tracking-wide text-bb-gray-400">
+          <p className="px-4 pb-1 pt-4 font-heading text-sm font-bold uppercase tracking-wide text-gray-500">
             Company
           </p>
           {companyLinks.map((link) => (
@@ -114,20 +114,20 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="flex min-h-12 items-center rounded-sm px-4 font-body text-bb-gray-900 transition-colors duration-fast ease-out hover:bg-bb-blue-light"
+              className="flex min-h-12 items-center rounded-sm px-4 font-body text-gray-200 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="border-t border-bb-gray-200 px-6 py-4">
+        <div className="border-t border-white/10 px-6 py-4">
           <Button href="/consultation" className="w-full" onClick={onClose}>
             Book a Consultation
           </Button>
           <a
             href="tel:8002591745"
-            className="mt-3 flex min-h-11 items-center justify-center gap-2 font-body text-bb-gray-600 transition-colors duration-fast ease-out hover:text-bb-blue"
+            className="mt-3 flex min-h-11 items-center justify-center gap-2 font-body text-gray-300 transition-colors duration-fast ease-out hover:text-white"
           >
             <Phone size={20} aria-hidden="true" />
             800-259-1745

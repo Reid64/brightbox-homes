@@ -31,7 +31,7 @@ const linkClass =
 
 export default function Footer() {
   return (
-    <footer className="bg-bb-navy text-bb-gray-200">
+    <footer className="border-t border-white/10 bg-bb-navy text-bb-gray-200">
       {/* 1. Main footer grid */}
       <div className="mx-auto max-w-[1280px] px-6 py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -99,11 +99,11 @@ export default function Footer() {
       </div>
 
       {/* 2. FAITH Foundation bar */}
-      <div className="border-t border-white/10 bg-bb-blue-dark">
+      <div className="border-t border-white/10 bg-bb-blue/10">
         <div className="mx-auto max-w-[1280px] px-6 py-4">
           <Link
             href="/faith-foundation"
-            className="inline-flex min-h-11 items-center font-body text-sm font-medium text-bb-white transition-opacity duration-fast ease-out hover:opacity-90"
+            className="inline-flex min-h-11 items-center font-body text-sm font-medium text-bb-blue transition-colors duration-fast ease-out hover:text-white"
           >
             For every home sold, we donate $2,500 to the FAITH Foundation.
           </Link>
@@ -113,10 +113,10 @@ export default function Footer() {
       {/* 3. Legal disclosures */}
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-[1280px] space-y-2 px-6 py-6">
-          <p className="font-body text-xs text-bb-gray-400">
+          <p className="font-body text-xs text-gray-500">
             Manufactured in China. Imported and distributed by Bright Box Homes LLC.
           </p>
-          <p className="font-body text-xs text-bb-gray-400">
+          <p className="font-body text-xs text-gray-500">
             Bright Box Homes are classified as temporary buildings and do not require
             local building code compliance in most jurisdictions. Consult your local
             building department for placement restrictions.
@@ -127,7 +127,7 @@ export default function Footer() {
       {/* 4. Copyright bar */}
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-[1280px] px-6 py-4">
-          <p className="font-body text-xs text-bb-gray-400">
+          <p className="font-body text-xs text-gray-500">
             &copy; 2026 Bright Box Homes LLC. All rights reserved.
           </p>
         </div>

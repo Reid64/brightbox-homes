@@ -28,7 +28,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Add a subtle shadow once scrolled past the header height. Header stays
+  // Deepen the glass once scrolled past the header height. Header stays
   // visible at all times (no hide-on-scroll-down per spec).
   useEffect(() => {
     function onScroll() {
@@ -51,15 +51,15 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b border-bb-gray-200 bg-bb-white transition-shadow duration-fast ease-out ${
-        scrolled ? 'shadow-sm' : ''
+      className={`sticky top-0 z-50 border-b border-white/10 bg-bb-charcoal/80 backdrop-blur-md transition-shadow duration-fast ease-out ${
+        scrolled ? 'shadow-lg' : ''
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
         {/* TODO: Replace with logo image when asset provided */}
         <Link
           href="/"
-          className="font-heading text-lg font-bold tracking-tight text-bb-navy"
+          className="font-heading text-lg font-bold tracking-tight text-white"
         >
           BRIGHT BOX HOMES
         </Link>
@@ -76,18 +76,18 @@ export default function Header() {
               aria-haspopup="true"
               aria-expanded={productsOpen}
               onClick={() => setProductsOpen((v) => !v)}
-              className="flex min-h-11 items-center gap-1 rounded-sm px-3 font-body text-bb-gray-900 transition-colors duration-fast ease-out hover:text-bb-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+              className="flex min-h-11 items-center gap-1 rounded-sm px-3 font-body text-gray-300 transition-colors duration-fast ease-out hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
             >
               Products
               <ChevronDown size={16} aria-hidden="true" />
             </button>
             {productsOpen && (
-              <div className="absolute left-0 top-full z-50 w-56 rounded-md border border-bb-gray-200 bg-bb-white py-2 shadow-md">
+              <div className="absolute left-0 top-full z-50 w-56 rounded-md border border-white/10 bg-bb-surface-dark py-2 shadow-lg">
                 {productLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="flex min-h-11 items-center px-4 font-body text-bb-gray-900 transition-colors duration-fast ease-out hover:bg-bb-blue-light"
+                    className="flex min-h-11 items-center px-4 font-body text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -100,7 +100,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="flex min-h-11 items-center rounded-sm px-3 font-body text-bb-gray-900 transition-colors duration-fast ease-out hover:text-bb-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+              className="flex min-h-11 items-center rounded-sm px-3 font-body text-gray-300 transition-colors duration-fast ease-out hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
             >
               {link.label}
             </Link>
@@ -108,7 +108,7 @@ export default function Header() {
 
           <a
             href="tel:8002591745"
-            className="ml-2 flex min-h-11 items-center gap-2 px-3 font-body text-bb-gray-600 transition-colors duration-fast ease-out hover:text-bb-blue"
+            className="ml-2 flex min-h-11 items-center gap-2 px-3 font-body text-gray-400 transition-colors duration-fast ease-out hover:text-white"
           >
             <Phone size={20} aria-hidden="true" />
             800-259-1745
@@ -124,7 +124,7 @@ export default function Header() {
           <a
             href="tel:8002591745"
             aria-label="Call 800-259-1745"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-bb-gray-600 transition-colors duration-fast ease-out hover:text-bb-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-gray-400 transition-colors duration-fast ease-out hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
           >
             <Phone size={24} aria-hidden="true" />
           </a>
@@ -133,7 +133,7 @@ export default function Header() {
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen(true)}
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-bb-navy transition-colors duration-fast ease-out hover:bg-bb-blue-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-white transition-colors duration-fast ease-out hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
           >
             <Menu size={24} aria-hidden="true" />
           </button>

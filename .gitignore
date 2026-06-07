@@ -56,6 +56,8 @@ coverage/
 *.mp4
 *.avi
 *.psd
+# Exception: the homepage ambient hero video must ship to production.
+!apps/web/public/videos/hero-video.mp4
 .vercel
 
 # Raw product asset staging area - not production-ready (originals, mixed naming,

@@ -61,6 +61,15 @@ const productLines = [
     alt: 'Modular glass-front office building at sunset.',
   },
   {
+    name: 'Vending Units',
+    price: 'Contact for Pricing',
+    description:
+      'Container-based food stands, retail kiosks, and mobile storefronts. Fully customizable with branding and serving windows.',
+    href: '/products/vending-units',
+    image: '/images/products/vending-units/exterior/01.jpg',
+    alt: 'Deployed container food stand with custom illuminated signage at night.',
+  },
+  {
     name: 'Foldout Homes',
     price: '$2,000',
     description:

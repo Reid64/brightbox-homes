@@ -9,11 +9,9 @@ export const metadata: Metadata = {
 
 const exteriorImages = [
   { src: '/images/products/assembly-homes/exterior/01.png', alt: 'Two-story stacked modular assembly unit with glass fronts.' },
-  { src: '/images/products/assembly-homes/exterior/02.png', alt: 'Assembly unit configured as an American food kiosk.' },
-  { src: '/images/products/assembly-homes/exterior/03.png', alt: 'Single-story modular assembly unit with a glass facade.' },
-  { src: '/images/products/assembly-homes/exterior/04.png', alt: 'Two-story modular assembly unit with a balcony.' },
-  { src: '/images/products/assembly-homes/exterior/05.png', alt: 'Stacked modular assembly unit with a rooftop deck.' },
-  { src: '/images/products/assembly-homes/exterior/06.png', alt: 'Assembly unit configured as a boardwalk food stand.' },
+  { src: '/images/products/assembly-homes/exterior/02.png', alt: 'Single-story modular assembly unit with a glass facade.' },
+  { src: '/images/products/assembly-homes/exterior/03.png', alt: 'Two-story modular assembly unit with a balcony.' },
+  { src: '/images/products/assembly-homes/exterior/04.png', alt: 'Stacked modular assembly unit with a rooftop deck.' },
 ];
 
 const specs = [

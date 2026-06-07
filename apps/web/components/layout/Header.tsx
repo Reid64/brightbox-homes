@@ -14,6 +14,7 @@ const productLinks = [
   { label: 'Assembly Homes', href: '/products/assembly-homes' },
   { label: 'Foldout Homes', href: '/products/foldout-homes' },
   { label: 'Apartments & Office Buildings', href: '/products/apartments-office-buildings' },
+  { label: 'Vending Units', href: '/products/vending-units' },
 ];
 
 const navLinks = [

@@ -19,6 +19,24 @@ interface GallerySection {
   images: GalleryImage[];
 }
 
+interface FloorPlan {
+  name: string;
+  src?: string;
+  alt: string;
+  pdfSrc?: string;
+}
+
+interface UpgradeItem {
+  name: string;
+  description?: string;
+  image?: string;
+}
+
+interface UpgradeCategory {
+  category: string;
+  items: UpgradeItem[];
+}
+
 interface ProductPageTemplateProps {
   name: string;
   tagline: string;
@@ -31,6 +49,8 @@ interface ProductPageTemplateProps {
   // When provided, replaces the default Exterior/Interior galleries with these
   // named sections (e.g. Micro Apartments + Office Buildings).
   galleries?: GallerySection[];
+  floorPlans?: FloorPlan[];
+  upgrades?: UpgradeCategory[];
   specs: Spec[];
   features: string[];
   ctaText?: string;
@@ -48,6 +68,8 @@ export default function ProductPageTemplate({
   exteriorImages,
   interiorImages,
   galleries,
+  floorPlans,
+  upgrades,
   specs,
   features,
   ctaText = 'Book a Consultation',
@@ -163,6 +185,57 @@ export default function ProductPageTemplate({
         </>
       )}
 
+      {/* 3b. Floor Plans (only if provided) */}
+      {floorPlans && floorPlans.length > 0 && (
+        <section className="bg-bb-surface-dark py-16 lg:py-24">
+          <div className="mx-auto max-w-[1280px] px-6">
+            <p className={label}>Floor Plans</p>
+            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+              Choose Your Layout
+            </h2>
+            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+              {floorPlans.map((fp) => (
+                <div
+                  key={fp.name}
+                  className="rounded-xl border border-white/10 bg-white/5 p-4"
+                >
+                  {fp.src ? (
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-white">
+                      <Image
+                        src={fp.src}
+                        alt={fp.alt}
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="object-contain p-2"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-bb-charcoal text-sm text-gray-500">
+                      PDF floor plan
+                    </div>
+                  )}
+                  <div className="mt-4 flex items-center justify-between gap-4">
+                    <span className="font-heading font-semibold text-white">
+                      {fp.name}
+                    </span>
+                    {fp.pdfSrc && (
+                      <a
+                        href={fp.pdfSrc}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 text-sm text-bb-blue transition-colors duration-fast ease-out hover:text-white"
+                      >
+                        Download PDF
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 4. Specifications */}
       <section className="bg-bb-charcoal py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
@@ -199,6 +272,55 @@ export default function ProductPageTemplate({
           </ul>
         </div>
       </section>
+
+      {/* 5b. Available Upgrades (only if provided) */}
+      {upgrades && upgrades.length > 0 && (
+        <section className="bg-bb-charcoal py-16 lg:py-24">
+          <div className="mx-auto max-w-[1280px] px-6">
+            <p className={label}>Upgrades</p>
+            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+              Customize Your Home
+            </h2>
+            <div className="mt-10 space-y-12">
+              {upgrades.map((cat) => (
+                <div key={cat.category}>
+                  <h3 className="font-heading text-xl font-semibold text-bb-blue">
+                    {cat.category}
+                  </h3>
+                  <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {cat.items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="overflow-hidden rounded-xl border border-white/5 bg-bb-surface-dark"
+                      >
+                        {item.image && (
+                          <div className="relative aspect-video w-full bg-white/5">
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              fill
+                              sizes="(min-width: 1024px) 33vw, 100vw"
+                              className="object-contain p-2"
+                            />
+                          </div>
+                        )}
+                        <div className="p-4">
+                          <p className="font-body font-medium text-white">{item.name}</p>
+                          {item.description && (
+                            <p className="mt-1 text-sm text-gray-400">
+                              {item.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 6. CTA */}
       <section className="bg-bb-navy py-16 lg:py-24">

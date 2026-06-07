@@ -46,6 +46,14 @@ const features = [
   'Rounded organic aesthetic',
 ];
 
+const floorPlans = [
+  {
+    name: '27\'11" Model',
+    src: '/images/floor-plans/apple-27ft.png',
+    alt: "Apple Cabin floor plan, 27 feet 11 inches long.",
+  },
+];
+
 export default function AppleCabinsPage() {
   return (
     <ProductPageTemplate
@@ -57,6 +65,7 @@ export default function AppleCabinsPage() {
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      floorPlans={floorPlans}
       specs={specs}
       features={features}
     />

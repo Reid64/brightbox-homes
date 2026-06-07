@@ -22,6 +22,7 @@ const productLinks = [
 ];
 
 const companyLinks = [
+  { label: 'Colors & Finishes', href: '/colors' },
   { label: 'About', href: '/about' },
   { label: '$5K Challenge', href: '/5k-challenge' },
   { label: 'FAITH Foundation', href: '/faith-foundation' },

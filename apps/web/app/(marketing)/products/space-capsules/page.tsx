@@ -47,6 +47,19 @@ const features = [
   'Futuristic pod aesthetic',
 ];
 
+const floorPlans = [
+  {
+    name: '27\'11" Model',
+    src: '/images/floor-plans/space-27ft.png',
+    alt: 'Space Capsule floor plan, 27 feet 11 inches long.',
+  },
+  {
+    name: '37\'9" Model',
+    src: '/images/floor-plans/space-37ft.png',
+    alt: 'Space Capsule floor plan, 37 feet 9 inches long.',
+  },
+];
+
 export default function SpaceCapsulesPage() {
   return (
     <ProductPageTemplate
@@ -58,6 +71,7 @@ export default function SpaceCapsulesPage() {
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      floorPlans={floorPlans}
       specs={specs}
       features={features}
     />

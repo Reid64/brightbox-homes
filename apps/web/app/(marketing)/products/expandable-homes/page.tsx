@@ -60,6 +60,111 @@ const features = [
   '60+ RAL exterior color choices',
 ];
 
+const floorPlans = [
+  { name: '20x10 - Studio', src: '/images/floor-plans/expandable-20x10.png', alt: '20x10 expandable home studio floor plan.' },
+  { name: '20x20 - 1 Bedroom', alt: '20x20 one-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-1br.pdf' },
+  { name: '20x20 - 2 Bedroom', alt: '20x20 two-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-2br.pdf' },
+  { name: '20x20 - 3 Bedroom', alt: '20x20 three-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-3br.pdf' },
+  { name: '20x40 - 1 Bedroom', alt: '20x40 one-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-1br.pdf' },
+  { name: '20x40 - 2 Bedroom', alt: '20x40 two-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-2br.pdf' },
+];
+
+const upgrades = [
+  {
+    category: 'Solar & Power',
+    items: [
+      { name: 'Solar-Ready Package' },
+      { name: '8kW Solar Kit' },
+      { name: '10kW Solar Kit' },
+      { name: 'Generator-Ready Package' },
+      { name: '15kW Portable Generator' },
+      { name: '18kW Whole House Generator' },
+      { name: '22kW Whole House Generator' },
+    ],
+  },
+  {
+    category: 'HVAC & Comfort',
+    items: [
+      { name: '9,000 BTU Mini-Split' },
+      { name: '24,000 BTU Mini-Split' },
+      { name: 'Whole House Radiant Heating' },
+      { name: 'Ceiling Mount Air Mover' },
+    ],
+  },
+  {
+    category: 'Kitchen',
+    items: [
+      { name: 'Top Kitchen Cabinets (one side)' },
+      { name: 'Top Kitchen Cabinets (two sides)' },
+      { name: 'Bottom Kitchen Cabinets' },
+      { name: '4-Burner Induction Stove' },
+      { name: '3/4 HP Garbage Disposal' },
+      { name: 'Kitchen Cabinet Color Options' },
+    ],
+  },
+  {
+    category: 'Bathroom',
+    items: [
+      { name: 'Modular Shower Enclosure', image: '/images/upgrades/modular-shower.png' },
+      { name: 'Upgraded Bathroom Vanity' },
+      { name: 'Tankless Water Heater (wall-mount)' },
+      { name: 'Bathroom Wall Design / Colors' },
+      { name: 'Bathroom Exhaust Fan' },
+    ],
+  },
+  {
+    category: 'Laundry',
+    items: [
+      { name: 'Stackable Washer / Dryer' },
+      { name: 'Washer & Dryer Rough-In' },
+    ],
+  },
+  {
+    category: 'Exterior',
+    items: [
+      { name: "Metal Roof & Truss System (20' and 40')", image: '/images/upgrades/metal-roof-truss-standard.png' },
+      { name: 'Reinforced Truss for Solar', image: '/images/upgrades/metal-roof-truss-reinforced-solar.png' },
+      { name: 'Covered Side Porch' },
+      { name: 'Side Deck' },
+      { name: 'Front Porch Railing Color' },
+      { name: 'Front Porch Deck Color' },
+      { name: 'Exterior House Colors' },
+      { name: 'Carved Metal Plate Exterior' },
+    ],
+  },
+  {
+    category: 'Electrical',
+    items: [
+      { name: '200 Amp Service Panel' },
+      { name: 'Additional 110V Outlets' },
+      { name: '240V Outlets' },
+      { name: 'GFCI Outlets' },
+      { name: 'Dimmer Switches' },
+      { name: 'TV Wall Mount' },
+      { name: 'RG-6 Coaxial' },
+    ],
+  },
+  {
+    category: 'Interior',
+    items: [
+      { name: '3" Rockwool Insulation Upgrade' },
+      { name: 'Interior Flooring Colors' },
+      { name: 'Interior Trim Colors' },
+      { name: 'Interior Wall Bamboo Wood Fiber Board' },
+      { name: 'Double-Pane Low-E Windows' },
+      { name: 'Standard Rear Door' },
+      { name: 'Rear Sliding Door' },
+    ],
+  },
+  {
+    category: 'Structural',
+    items: [
+      { name: "Additional Bedroom (40' & 20' houses)" },
+      { name: 'Full Metal Roof with Truss System' },
+    ],
+  },
+];
+
 export default function ExpandableHomesPage() {
   return (
     <ProductPageTemplate
@@ -71,6 +176,8 @@ export default function ExpandableHomesPage() {
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      floorPlans={floorPlans}
+      upgrades={upgrades}
       specs={specs}
       features={features}
     />

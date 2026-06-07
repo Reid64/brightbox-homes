@@ -152,3 +152,39 @@ Resolution: Lead AI determined that 193-component single-file specification was 
 Author DESIGN_LANGUAGE.md at repo root — compact document covering brand tokens, color palette (Warm Modern with Bright Box light blue + navy), typography stack, motion language, component aesthetic guidelines, canonical CTA copy ("Book a Consultation"). Single prompt scope, compact deliverable (target 200-400 lines). After DESIGN_LANGUAGE.md commits clean, the subsequent prompt scaffolds the Next.js monorepo and begins code.
 
 ---
+
+## Entry 3 — DESIGN_LANGUAGE.md and Next.js Monorepo Scaffold
+
+**Date:** 2026-06-06
+**Commit hash:** 622937e (scaffold commit, deployed to Vercel production)
+**Phase:** Phase 1A — Marketing Site Build (beginning)
+**Session scope:** Author DESIGN_LANGUAGE.md governance file, scaffold pnpm workspaces monorepo, fix Vercel deployment configuration.
+
+**Outcome:**
+- DESIGN_LANGUAGE.md committed at cfbda5c (359 lines, 16,528 bytes, UTF-8 no BOM verified, SHA-256 99db20bde6a890d03e0c00a3254798385652f98e5a8200825ecbbe3e6bb3e851). Covers brand tokens, color palette (4 brand colors operator-confirmed), Plus Jakarta Sans / Inter / JetBrains Mono type stack, 8px spacing grid, motion language with 4 timing tiers, scroll-reveal choreography, hero loading sequence, component aesthetic principles (buttons, cards, forms, shadows, radii), 12 explicit anti-patterns, Tailwind config mapping.
+- Monorepo scaffold committed at 622937e (43 files: root workspace config, apps/web Next.js 15 app with App Router, 16 Phase 1A route stubs, 3 Phase 1B placeholder directories, packages/configurator empty scaffold). Build passes clean: 19 static pages prerendered, zero TypeScript errors, zero ESLint errors.
+- Vercel deployment fixed: Root Directory set from null to apps/web, framework set from null to nextjs via Vercel API. Redeployed 622937e to production — status READY. Deployment protection remains active (all_except_custom_domains).
+
+**Operator decisions locked in this session:**
+- Brand color palette confirmed: --bb-blue #4A9BD9, --bb-navy #1B2D4F, --bb-blue-light #E8F2FB, --bb-blue-dark #2E6FA3
+- DESIGN_LANGUAGE.md locked per CONTRACT-014
+
+**Violations and incidents:**
+- No new violations. Vercel Root Directory misconfiguration was a pre-existing gap (project created before app code existed), not a discipline violation.
+
+**Open blockers:**
+- Apple Cabin pricing pending operator
+- Space Capsule pricing pending operator
+- Customer testimonials and delivered-unit photos pending
+- Color palette files pending operator restructuring
+- Acorn partner ID pending
+- Manufacturer marketing usage rights pending
+- Configurator brand name + domain pending (Phase 1B)
+- Stripe Connect setup pending (Phase 1B)
+- Cal.com account creation pending
+- brightboxhomes.com domain not yet attached to Vercel (required before supplier-inspectable milestone)
+
+**Next action:**
+Author shared layout components: Header (with navigation, logo, phone number, "Book a Consultation" CTA), Footer (contact info, legal links, country-of-origin disclosure, FAITH Foundation badge), mobile navigation. Wire into (marketing)/layout.tsx. Single prompt scope.
+
+---

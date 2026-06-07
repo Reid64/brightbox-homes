@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 // Server component - no interactivity. Contact info per BLUEPRINT.md Section 13,
@@ -36,9 +37,13 @@ export default function Footer() {
       <div className="mx-auto max-w-[1280px] px-6 py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <span className="font-heading text-lg font-bold text-bb-white">
-              BRIGHT BOX HOMES
-            </span>
+            <Image
+              src="/images/logo.png"
+              alt="Bright Box Homes"
+              width={48}
+              height={32}
+              className="h-8 w-auto"
+            />
             <p className="mt-3 font-body text-sm text-bb-gray-400">
               American Owned. Globally Sourced. US Delivered.
             </p>

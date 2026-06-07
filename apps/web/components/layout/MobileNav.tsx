@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -79,7 +80,13 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         }`}
       >
         <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
-          <span className="font-heading font-bold text-white">BRIGHT BOX HOMES</span>
+          <Image
+            src="/images/logo.png"
+            alt="Bright Box Homes"
+            width={54}
+            height={36}
+            className="h-9 w-auto"
+          />
           <button
             ref={closeButtonRef}
             type="button"

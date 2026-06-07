@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, Menu, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -56,12 +57,15 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
-        {/* TODO: Replace with logo image when asset provided */}
-        <Link
-          href="/"
-          className="font-heading text-lg font-bold tracking-tight text-white"
-        >
-          BRIGHT BOX HOMES
+        <Link href="/" className="flex items-center" aria-label="Bright Box Homes home">
+          <Image
+            src="/images/logo.png"
+            alt="Bright Box Homes"
+            width={60}
+            height={40}
+            priority
+            className="h-10 w-auto"
+          />
         </Link>
 
         {/* Desktop navigation (lg and up per anti-pattern #6) */}

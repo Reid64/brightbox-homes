@@ -537,4 +537,24 @@ These constraints are ABSOLUTE. Violating any of these is a launch blocker.
 
 ---
 
+## 14. Planned Entities and Multi-Site Strategy (Phase 2/3)
+
+### 14.1 Unrestricted Land Organization
+A new Series LLC sub-entity filed under the operator's existing Wyoming holding company. Purpose: educate buyers on finding and purchasing unrestricted land for prefab home placement. Own website with curated state-by-state and county-level directory of unrestricted land resources, county GIS/assessor links, land listing affiliate integrations, and educational content.
+
+**Working name:** TBD (operator to select)
+**Entity structure:** Series LLC sub-series under existing Wyoming holding company (~$25 filing)
+**Website:** Standalone domain, independently branded, cross-linked with Bright Box Homes
+**Phase:** 2/3 - domain registration and placeholder in Phase 2, content buildout in Phase 3
+
+### 14.2 Multi-Site Backlink Strategy
+Three independently legitimate websites cross-linked with genuine unique content:
+1. **Bright Box Homes** (brightboxhomes.com) - primary commerce and product site
+2. **FAITH Foundation** (domain TBD) - 501(c)(3) nonprofit, down payment assistance
+3. **Unrestricted Land Organization** (domain TBD) - land education and directory
+
+Each site serves a distinct audience with unique content. Cross-linking is organic and contextual, not manufactured. Google rewards interconnected legitimate properties.
+
+---
+
 END OF BLUEPRINT.

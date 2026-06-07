@@ -61,12 +61,13 @@ const features = [
 ];
 
 const floorPlans = [
-  { name: '20x10 - Studio', src: '/images/floor-plans/expandable-20x10.png', alt: '20x10 expandable home studio floor plan.' },
-  { name: '20x20 - 1 Bedroom', alt: '20x20 one-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-1br.pdf' },
-  { name: '20x20 - 2 Bedroom', alt: '20x20 two-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-2br.pdf' },
-  { name: '20x20 - 3 Bedroom', alt: '20x20 three-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-3br.pdf' },
-  { name: '20x40 - 1 Bedroom', alt: '20x40 one-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-1br.pdf' },
-  { name: '20x40 - 2 Bedroom', alt: '20x40 two-bedroom expandable floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-2br.pdf' },
+  { group: '20x10 Studio', name: 'Studio Layout', src: '/images/floor-plans/expandable-20x10-studio.png', alt: '20x10 studio floor plan.', width: 1585, height: 951 },
+  { group: '20x10 Studio', name: 'Studio Layout (Furnished)', src: '/images/floor-plans/expandable-20x10-studio-2.png', alt: 'Furnished 20x10 studio floor plan.', width: 1597, height: 985 },
+  { group: '20x20 Models', name: '1 Bedroom', src: '/images/floor-plans/expandable-20x20-1br-preview.png', alt: '20x20 one-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-1br.pdf', width: 1191, height: 1684 },
+  { group: '20x20 Models', name: '2 Bedroom', src: '/images/floor-plans/expandable-20x20-2br-preview.png', alt: '20x20 two-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-2br.pdf', width: 1191, height: 1684 },
+  { group: '20x20 Models', name: '3 Bedroom', src: '/images/floor-plans/expandable-20x20-3br-preview.png', alt: '20x20 three-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x20-3br.pdf', width: 1191, height: 1684 },
+  { group: '20x40 Models', name: '1 Bedroom', src: '/images/floor-plans/expandable-20x40-1br-preview.png', alt: '20x40 one-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-1br.pdf', width: 1191, height: 1684 },
+  { group: '20x40 Models', name: '2 Bedroom', src: '/images/floor-plans/expandable-20x40-2br-preview.png', alt: '20x40 two-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-2br.pdf', width: 1191, height: 1684 },
 ];
 
 const upgrades = [

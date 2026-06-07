@@ -50,13 +50,17 @@ const features = [
 const floorPlans = [
   {
     name: '27\'11" Model',
-    src: '/images/floor-plans/space-27ft.png',
+    src: '/images/floor-plans/space-capsule-27-11.png',
     alt: 'Space Capsule floor plan, 27 feet 11 inches long.',
+    width: 1708,
+    height: 921,
   },
   {
     name: '37\'9" Model',
-    src: '/images/floor-plans/space-37ft.png',
+    src: '/images/floor-plans/space-capsule-37-9.png',
     alt: 'Space Capsule floor plan, 37 feet 9 inches long.',
+    width: 1774,
+    height: 887,
   },
 ];
 

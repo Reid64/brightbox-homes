@@ -24,6 +24,9 @@ interface FloorPlan {
   src?: string;
   alt: string;
   pdfSrc?: string;
+  group?: string;
+  width?: number;
+  height?: number;
 }
 
 interface UpgradeItem {
@@ -78,6 +81,16 @@ export default function ProductPageTemplate({
   // ("Coming Soon", "Contact for Pricing") render as a gray label: value.
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
+
+  // Group floor plans by their optional `group` (e.g. size). Plans with no
+  // group fall into a single unnamed group rendered without a sub-heading.
+  const floorPlanGroups: { name: string; items: FloorPlan[] }[] = [];
+  for (const fp of floorPlans ?? []) {
+    const key = fp.group ?? '';
+    const existing = floorPlanGroups.find((g) => g.name === key);
+    if (existing) existing.items.push(fp);
+    else floorPlanGroups.push({ name: key, items: [fp] });
+  }
 
   return (
     <>
@@ -193,41 +206,53 @@ export default function ProductPageTemplate({
             <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
               Choose Your Layout
             </h2>
-            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {floorPlans.map((fp) => (
-                <div
-                  key={fp.name}
-                  className="rounded-xl border border-white/10 bg-white/5 p-4"
-                >
-                  {fp.src ? (
-                    <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-white">
-                      <Image
-                        src={fp.src}
-                        alt={fp.alt}
-                        fill
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="object-contain p-2"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-bb-charcoal text-sm text-gray-500">
-                      PDF floor plan
-                    </div>
+            <div className="mt-10 space-y-12">
+              {floorPlanGroups.map((grp) => (
+                <div key={grp.name || 'plans'}>
+                  {grp.name && (
+                    <h3 className="mb-4 font-heading text-xl font-semibold text-bb-blue">
+                      {grp.name}
+                    </h3>
                   )}
-                  <div className="mt-4 flex items-center justify-between gap-4">
-                    <span className="font-heading font-semibold text-white">
-                      {fp.name}
-                    </span>
-                    {fp.pdfSrc && (
-                      <a
-                        href={fp.pdfSrc}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 text-sm text-bb-blue transition-colors duration-fast ease-out hover:text-white"
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    {grp.items.map((fp) => (
+                      <div
+                        key={fp.name}
+                        className="rounded-xl border border-white/10 bg-white/5 p-4"
                       >
-                        Download PDF
-                      </a>
-                    )}
+                        {fp.src ? (
+                          <div className="overflow-hidden rounded-lg bg-white p-2">
+                            <Image
+                              src={fp.src}
+                              alt={fp.alt}
+                              width={fp.width ?? 1200}
+                              height={fp.height ?? 800}
+                              sizes="(min-width: 1024px) 50vw, 100vw"
+                              className="h-auto w-full"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-bb-charcoal text-sm text-gray-500">
+                            PDF floor plan
+                          </div>
+                        )}
+                        <div className="mt-4 flex items-center justify-between gap-4">
+                          <span className="font-heading font-semibold text-white">
+                            {fp.name}
+                          </span>
+                          {fp.pdfSrc && (
+                            <a
+                              href={fp.pdfSrc}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="shrink-0 text-sm text-bb-blue transition-colors duration-fast ease-out hover:text-white"
+                            >
+                              Download PDF
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}

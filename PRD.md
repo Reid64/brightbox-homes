@@ -2824,4 +2824,15 @@ This document specifies every product feature for Bright Box Homes and the stand
 
 ---
 
+## Unrestricted Land Organization Features (Phase 2/3)
+
+| Feature ID | Feature Name | Priority | Phase |
+|---|---|---|---|
+| LAND-001 | Unrestricted Land State/County Directory | P2 | Phase 2 |
+| LAND-002 | County GIS/Assessor Link Database | P2 | Phase 2 |
+| LAND-003 | Land Listing Affiliate Integration | P3 | Phase 3 |
+| LAND-004 | "How to Verify Unrestricted Land" Guide | P2 | Phase 2 |
+
+---
+
 END OF PRD.md

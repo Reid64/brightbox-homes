@@ -49,8 +49,10 @@ const features = [
 const floorPlans = [
   {
     name: '27\'11" Model',
-    src: '/images/floor-plans/apple-27ft.png',
-    alt: "Apple Cabin floor plan, 27 feet 11 inches long.",
+    src: '/images/floor-plans/apple-cabin-27-11.png',
+    alt: 'Apple Cabin floor plan, 27 feet 11 inches long.',
+    width: 1708,
+    height: 921,
   },
 ];
 

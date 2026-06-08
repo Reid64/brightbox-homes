@@ -33,10 +33,11 @@ const base =
   'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ' +
   'aria-disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:pointer-events-none';
 
+// White primary buttons pop against the dark theme; lighter secondary borders.
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-bb-blue text-white hover:bg-bb-blue-dark',
-  secondary: 'border border-bb-blue text-bb-blue bg-transparent hover:bg-bb-blue-light',
-  ghost: 'text-bb-blue bg-transparent hover:underline',
+  primary: 'bg-white text-bb-navy font-semibold hover:bg-gray-100',
+  secondary: 'border border-white/40 text-white bg-transparent hover:bg-white/10',
+  ghost: 'text-white bg-transparent hover:text-bb-blue',
 };
 
 // Horizontal padding space-6 (px-6), vertical padding space-3 (py-3) per spec.

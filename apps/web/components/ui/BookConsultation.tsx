@@ -19,8 +19,8 @@ const base =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue focus-visible:ring-offset-2';
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-bb-blue text-white hover:bg-bb-blue-dark',
-  secondary: 'border border-bb-blue text-bb-blue bg-transparent hover:bg-bb-blue-light',
+  primary: 'bg-white text-bb-navy font-semibold hover:bg-gray-100',
+  secondary: 'border border-white/40 text-white bg-transparent hover:bg-white/10',
 };
 
 const sizeClasses: Record<Size, string> = {

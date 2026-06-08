@@ -120,7 +120,7 @@ export default function ProductPageTemplate({
 
   return (
     <div className="bg-bb-charcoal">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-0 px-6 lg:flex-row lg:gap-12">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-0 px-6 lg:flex-row lg:gap-8">
         <ProductSideNav productName={name} sections={navSections} />
 
         <div className="min-w-0 flex-1">
@@ -154,7 +154,7 @@ export default function ProductPageTemplate({
                 <h1 className="font-heading text-4xl font-bold text-white md:text-5xl">
                   {name}
                 </h1>
-                <p className="mt-4 text-lg text-gray-400">{tagline}</p>
+                <p className="mt-4 text-lg text-gray-300">{tagline}</p>
                 {isQuote ? (
                   <p className="mt-4 font-mono text-2xl text-gray-500">
                     {priceLabel}: {price}
@@ -240,7 +240,7 @@ export default function ProductPageTemplate({
                       {grp.items.map((fp) => (
                         <div
                           key={fp.name}
-                          className="rounded-xl border border-white/10 bg-white/5 p-4"
+                          className="rounded-xl border border-white/15 bg-[#1E2430] p-4"
                         >
                           {fp.src ? (
                             <div className="overflow-hidden rounded-lg bg-white p-2">
@@ -297,7 +297,7 @@ export default function ProductPageTemplate({
                       {cat.items.map((item) => (
                         <div
                           key={item.name}
-                          className="overflow-hidden rounded-xl border border-white/5 bg-bb-surface-dark"
+                          className="overflow-hidden rounded-xl border border-white/15 bg-[#1E2430]"
                         >
                           {item.image && (
                             <div className="relative aspect-video w-full bg-white/5">
@@ -313,7 +313,7 @@ export default function ProductPageTemplate({
                           <div className="p-4">
                             <p className="font-body font-medium text-white">{item.name}</p>
                             {item.description && (
-                              <p className="mt-1 text-sm text-gray-400">{item.description}</p>
+                              <p className="mt-1 text-sm text-gray-300">{item.description}</p>
                             )}
                           </div>
                         </div>
@@ -334,7 +334,7 @@ export default function ProductPageTemplate({
                   key={spec.label}
                   className="flex items-baseline justify-between gap-4 border-b border-white/5 py-4"
                 >
-                  <dt className="text-gray-400">{spec.label}</dt>
+                  <dt className="text-gray-300">{spec.label}</dt>
                   <dd className="text-right font-mono text-white">{spec.value}</dd>
                 </div>
               ))}

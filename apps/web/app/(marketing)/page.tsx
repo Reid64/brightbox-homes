@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { BookConsultation } from '@/components/ui/BookConsultation';
+import HeroVideo from '@/components/ui/HeroVideo';
 import Link from 'next/link';
-import { Shield, Home, Truck, Award, ChevronDown, ArrowRight } from 'lucide-react';
+import { Shield, Home, Truck, Award, ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import AnimatedText from '@/components/ui/AnimatedText';
@@ -20,10 +21,10 @@ const productLines = [
     name: 'Expandable Container Homes',
     price: '$35,995',
     description:
-      '200-800 sq ft steel-frame homes with expandable side sections and 60+ exterior color options.',
+      '200-800 sq ft steel-frame homes with 60+ exterior colors, customizable interiors, cabinets, flooring, and finishes.',
     href: '/products/expandable-homes',
-    image: '/images/products/expandable-homes/exterior/01.jpeg',
-    alt: 'Delivered expandable home with a covered porch among palm trees.',
+    image: '/images/products/expandable-homes/exterior/03.jpeg',
+    alt: 'Delivered white expandable home on a rural property.',
   },
   {
     name: 'Apple Cabin Homes',
@@ -49,8 +50,8 @@ const productLines = [
     description:
       'Modular units that connect to create custom multi-room layouts for any use case.',
     href: '/products/assembly-homes',
-    image: '/images/products/assembly-homes/exterior/01.png',
-    alt: 'Two-story stacked modular assembly unit with glass fronts.',
+    image: '/images/products/assembly-homes/exterior/10.jpg',
+    alt: 'Two-story white modular assembly home with a balcony and staircase.',
   },
   {
     name: 'Apartments & Office Buildings',
@@ -76,8 +77,8 @@ const productLines = [
     description:
       'Rapidly deployable emergency and disaster housing. Fire-grade A materials, set up in hours.',
     href: '/products/emergency-housing',
-    image: '/images/products/emergency-housing/exterior/02.png',
-    alt: 'Bright Box emergency housing systems overview.',
+    image: '/images/products/emergency-housing/exterior/folding-house.png',
+    alt: 'Folding emergency house shown folded and unfolded.',
   },
 ];
 
@@ -104,22 +105,22 @@ const valueProps = [
   },
 ];
 
-const paymentSteps = [
+const journeySteps = [
   {
-    title: 'Order Placement',
-    text: 'Sign your agreement, lock your configuration, and pay your first 25%.',
+    title: 'Choose Your Home',
+    text: 'Select the floor plan, size, and model that best fits your needs.',
   },
   {
-    title: 'Production Starts',
-    text: 'Your home enters production. Materials ordered, build slot confirmed. Second 25%.',
+    title: 'Personalize Your Home',
+    text: 'Choose colors, finishes, upgrades, appliances, solar packages, and other options.',
   },
   {
-    title: 'Pre-Ship Approval',
-    text: 'Review factory photos and video of your completed home. Authorize shipping. Third 25%.',
+    title: 'Prepare Your Site',
+    text: "Whether you already own land or need assistance finding it, we'll help determine site requirements, utilities, access, permits, and foundation needs.",
   },
   {
-    title: 'Delivery Day',
-    text: 'Receive your Bill of Lading, prepare your site, and pay the final 25%.',
+    title: 'Delivery & Installation',
+    text: 'We coordinate delivery, setup, utility connections, and final walkthrough so you can move in faster.',
   },
 ];
 
@@ -135,6 +136,18 @@ const deliveredPhotos = [
   {
     src: '/images/delivered/delivered-3.jpg',
     alt: 'Delivered gray expandable home with a covered porch among palm trees.',
+  },
+  {
+    src: '/images/delivered/delivered-4.jpg',
+    alt: 'Delivered expandable home with a covered porch on a prepared pad.',
+  },
+  {
+    src: '/images/delivered/delivered-5.jpg',
+    alt: 'Delivered expandable home with glass entry doors on a rural lot.',
+  },
+  {
+    src: '/images/delivered/delivered-6.jpg',
+    alt: 'Delivered expandable home set on a concrete foundation.',
   },
 ];
 
@@ -157,7 +170,7 @@ export default function HomePage() {
       <ScrollProgress />
 
       {/* SECTION A: Hero */}
-      <section className="relative flex min-h-screen items-end overflow-hidden">
+      <section className="relative flex min-h-[85vh] items-center overflow-hidden">
         <Image
           src="/images/home-hero.png"
           alt="Two-story expandable container home with balconies, landscaped gardens, and a family enjoying the backyard."
@@ -166,10 +179,10 @@ export default function HomePage() {
           sizes="100vw"
           className="animate-fade-in object-cover"
         />
-        {/* Dark legibility scrim (single-hue charcoal fade, not a decorative gradient) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-bb-charcoal via-bb-charcoal/60 to-bb-charcoal/30" />
+        {/* Dark legibility scrim (single-hue charcoal fade, lighter so the image shows through) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bb-charcoal via-bb-charcoal/40 to-bb-charcoal/20" />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-end gap-12 px-6 pb-20 lg:flex-row lg:justify-between lg:pb-28">
+        <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-start gap-12 px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-16">
           {/* Left */}
           <div className="lg:w-3/5">
             <span
@@ -211,18 +224,7 @@ export default function HomePage() {
             className="hidden animate-slide-in-right lg:block lg:w-2/5"
             style={{ animationDelay: '600ms' }}
           >
-            <div className="mx-auto max-w-[480px] animate-float overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(74,155,217,0.15)]">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                aria-label="Ambient footage of a Bright Box home"
-                className="aspect-video w-full object-cover"
-              >
-                <source src="/videos/hero-video.mp4" type="video/mp4" />
-              </video>
-            </div>
+            <HeroVideo />
           </div>
         </div>
 
@@ -245,7 +247,7 @@ export default function HomePage() {
               as="h2"
               className="font-heading text-4xl font-bold text-white md:text-5xl"
             />
-            <p className="mt-4 text-lg text-gray-400">
+            <p className="mt-4 text-lg text-gray-300">
               Five product lines, one standard - uncompromising quality.
             </p>
           </ScrollReveal>
@@ -270,7 +272,7 @@ export default function HomePage() {
                       ) : (
                         <div className="flex h-full w-full flex-col items-center justify-center text-bb-blue/60">
                           <Home size={32} aria-hidden="true" />
-                          <span className="mt-2 font-heading text-sm font-semibold text-gray-400">
+                          <span className="mt-2 font-heading text-sm font-semibold text-gray-300">
                             {product.name}
                           </span>
                         </div>
@@ -289,7 +291,7 @@ export default function HomePage() {
                           {product.price}
                         </p>
                       )}
-                      <p className="mt-3 line-clamp-2 flex-1 text-sm text-gray-400">
+                      <p className="mt-3 line-clamp-2 flex-1 text-sm text-gray-300">
                         {product.description}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-1 text-sm text-bb-blue group-hover:underline">
@@ -328,7 +330,7 @@ export default function HomePage() {
               prefix="$"
               className="font-heading text-3xl font-bold text-white md:text-4xl"
             />
-            <p className="mt-1 text-sm text-gray-400">Starting From</p>
+            <p className="mt-1 text-sm text-gray-300">Starting From</p>
           </div>
           <div>
             <AnimatedCounter
@@ -363,7 +365,7 @@ export default function HomePage() {
                     <h3 className="mt-4 font-heading text-lg font-semibold text-white">
                       {prop.title}
                     </h3>
-                    <p className="mt-2 text-sm text-gray-400">{prop.text}</p>
+                    <p className="mt-2 text-sm text-gray-300">{prop.text}</p>
                   </div>
                 </ScrollReveal>
               );
@@ -385,26 +387,27 @@ export default function HomePage() {
           </ScrollReveal>
 
           <ol className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-6">
-            {paymentSteps.map((step, i) => (
+            {journeySteps.map((step, i) => (
               <ScrollReveal key={step.title} delay={i * 100} className="relative">
                 <li className="relative">
-                  {/* Connecting line (desktop, between steps) */}
-                  {i < paymentSteps.length - 1 && (
-                    <span
+                  {/* Arrow pointing to the next step (desktop) */}
+                  {i < journeySteps.length - 1 && (
+                    <ChevronRight
                       aria-hidden="true"
-                      className="absolute left-16 top-8 hidden h-px w-full border-t border-bb-blue/20 lg:block"
+                      size={28}
+                      className="absolute -right-2 top-4 hidden text-white/50 lg:block"
                     />
                   )}
                   <span
                     aria-hidden="true"
-                    className="block font-heading text-6xl font-bold text-bb-blue/15"
+                    className="block font-heading text-6xl font-bold text-red-500"
                   >
                     {i + 1}
                   </span>
                   <h3 className="mt-2 font-heading text-lg font-semibold text-white">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-gray-400">{step.text}</p>
+                  <p className="mt-2 text-sm text-gray-300">{step.text}</p>
                 </li>
               </ScrollReveal>
             ))}
@@ -441,7 +444,7 @@ export default function HomePage() {
           </div>
 
           <ScrollReveal>
-            <p className="mx-auto mt-12 max-w-2xl text-center text-gray-400">
+            <p className="mx-auto mt-12 max-w-2xl text-center text-gray-300">
               Every home is factory-inspected, photo-documented, and backed by a
               7-day no-defect inspection window.
             </p>

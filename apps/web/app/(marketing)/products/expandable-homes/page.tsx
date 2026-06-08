@@ -90,7 +90,7 @@ export default function ExpandableHomesOverviewPage() {
                 <div className="p-6">
                   <h2 className="font-heading text-xl font-semibold text-white">{s.name}</h2>
                   <p className="mt-1 font-mono text-sm text-bb-blue">{s.price}</p>
-                  <p className="mt-3 text-sm text-gray-400">{s.blurb}</p>
+                  <p className="mt-3 text-sm text-gray-300">{s.blurb}</p>
                   <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-bb-blue">
                     View Model <ArrowRight size={16} aria-hidden="true" />
                   </span>

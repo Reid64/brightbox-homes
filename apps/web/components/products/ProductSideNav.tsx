@@ -42,8 +42,8 @@ export default function ProductSideNav({
   return (
     <>
       {/* Desktop sticky sidebar (lg+) */}
-      <aside className="hidden lg:block lg:w-56 lg:shrink-0 lg:border-r lg:border-white/10 lg:pr-6">
-        <div className="sticky top-20 py-10">
+      <aside className="hidden lg:block lg:w-56 lg:shrink-0 lg:border-r lg:border-white/10 lg:pr-4">
+        <div className="sticky top-20 py-8">
           <p className="font-heading text-lg font-bold text-white">{productName}</p>
           <nav className="mt-6 flex flex-col gap-1" aria-label="Section navigation">
             {sections.map((s) => (
@@ -51,10 +51,10 @@ export default function ProductSideNav({
                 key={s.id}
                 href={`#${s.id}`}
                 aria-current={active === s.id ? 'true' : undefined}
-                className={`rounded-md px-3 py-2 text-sm transition-colors duration-fast ease-out ${
+                className={`rounded-md border-l-2 px-3 py-2 text-base font-medium transition-colors duration-fast ease-out ${
                   active === s.id
-                    ? 'bg-bb-blue/10 text-bb-blue'
-                    : 'text-gray-400 hover:text-white'
+                    ? 'border-bb-blue bg-bb-blue/20 font-semibold text-white'
+                    : 'border-transparent text-gray-200 hover:text-white'
                 }`}
               >
                 {s.label}
@@ -65,9 +65,9 @@ export default function ProductSideNav({
             <BookConsultation className="w-full" />
             <a
               href="tel:8002591745"
-              className="mt-3 flex items-center gap-2 px-3 text-sm text-gray-400 transition-colors duration-fast ease-out hover:text-white"
+              className="mt-3 flex items-center gap-2 px-3 text-base font-semibold text-gray-200 transition-colors duration-fast ease-out hover:text-white"
             >
-              <Phone size={16} aria-hidden="true" className="text-red-500" />
+              <Phone size={18} aria-hidden="true" className="text-red-500" />
               800-259-1745
             </a>
           </div>
@@ -85,8 +85,8 @@ export default function ProductSideNav({
               key={s.id}
               href={`#${s.id}`}
               aria-current={active === s.id ? 'true' : undefined}
-              className={`whitespace-nowrap rounded-md px-3 py-2 text-sm transition-colors duration-fast ease-out ${
-                active === s.id ? 'bg-bb-blue/10 text-bb-blue' : 'text-gray-400'
+              className={`whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors duration-fast ease-out ${
+                active === s.id ? 'bg-bb-blue/20 font-semibold text-white' : 'text-gray-200'
               }`}
             >
               {s.label}

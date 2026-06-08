@@ -14,7 +14,7 @@ export default function Marquee({ items, speed = 30 }: MarqueeProps) {
   const renderRun = (keyPrefix: string) =>
     items.map((item, i) => (
       <Fragment key={`${keyPrefix}-${i}`}>
-        <span className="px-6 text-xs uppercase tracking-widest text-bb-gray-400">
+        <span className="px-6 text-xs uppercase tracking-widest text-gray-300">
           {item}
         </span>
         <span aria-hidden="true" className="text-bb-blue/60">
@@ -24,7 +24,7 @@ export default function Marquee({ items, speed = 30 }: MarqueeProps) {
     ));
 
   return (
-    <div className="group overflow-hidden border-y border-white/5 bg-bb-surface-dark py-4">
+    <div className="group overflow-hidden border-y border-white/10 bg-white/5 py-4">
       {/* Animated track (duplicated for seamless loop). The global reduced-motion
           rule freezes the animation (no scroll) for users who request it. */}
       <div

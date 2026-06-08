@@ -173,7 +173,7 @@ export default function DesignPage() {
                 height={1049}
                 className="h-auto w-full"
               />
-              <figcaption className="p-4 text-sm text-gray-400">
+              <figcaption className="p-4 text-sm text-gray-300">
                 Standard Metal Roof Truss System
               </figcaption>
             </figure>
@@ -185,7 +185,7 @@ export default function DesignPage() {
                 height={1049}
                 className="h-auto w-full"
               />
-              <figcaption className="p-4 text-sm text-gray-400">
+              <figcaption className="p-4 text-sm text-gray-300">
                 Reinforced Truss for Solar Panel Support
               </figcaption>
             </figure>
@@ -203,7 +203,7 @@ export default function DesignPage() {
                 <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
               </video>
             </div>
-            <figcaption className="mt-3 text-sm text-gray-400">
+            <figcaption className="mt-3 text-sm text-gray-300">
               Watch: Metal Roof Truss System
             </figcaption>
           </figure>

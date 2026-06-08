@@ -44,7 +44,7 @@ export default function Footer() {
               height={33}
               className="h-8 w-auto"
             />
-            <p className="mt-3 font-body text-sm text-bb-gray-400">
+            <p className="mt-3 font-body text-sm text-bb-gray-300">
               American Owned. Globally Sourced. US Delivered.
             </p>
             <a href="tel:8002591745" className={linkClass}>

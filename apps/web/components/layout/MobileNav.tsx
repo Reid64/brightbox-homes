@@ -105,7 +105,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-gray-400 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
           >
             <X size={24} aria-hidden="true" />
           </button>
@@ -131,7 +131,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="flex min-h-11 items-center rounded-sm px-4 font-body text-sm text-gray-400 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                      className="flex min-h-11 items-center rounded-sm px-4 font-body text-sm text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
                     >
                       {child.label}
                     </Link>

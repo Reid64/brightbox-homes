@@ -16,6 +16,8 @@ const exteriorImages = [
   { src: '/images/products/assembly-homes/exterior/06.png', alt: 'Single-story glass-front modular assembly home.' },
   { src: '/images/products/assembly-homes/exterior/07.png', alt: 'Two-story brown and white modular assembly home with a balcony.' },
   { src: '/images/products/assembly-homes/exterior/08.png', alt: 'Two-story glass modular assembly home on a hillside.' },
+  { src: '/images/products/assembly-homes/exterior/09.jpg', alt: 'Two-story light-brown modular assembly home with a balcony among palm trees.' },
+  { src: '/images/products/assembly-homes/exterior/10.jpg', alt: 'Two-story white modular assembly home with a balcony and external staircase.' },
 ];
 
 const specs = [

@@ -136,7 +136,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
           </button>
 
           {/* Counter */}
-          <p className="pointer-events-none absolute bottom-4 left-1/2 z-[55] -translate-x-1/2 text-sm text-gray-400">
+          <p className="pointer-events-none absolute bottom-4 left-1/2 z-[55] -translate-x-1/2 text-sm text-gray-300">
             {openIndex + 1} / {images.length}
           </p>
         </div>

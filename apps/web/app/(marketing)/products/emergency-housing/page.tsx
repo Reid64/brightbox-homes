@@ -7,12 +7,11 @@ export const metadata: Metadata = {
     'Rapidly deployable emergency and disaster housing from $2,000. Fire-grade A folding shelters that set up in hours, with optional bathroom, kitchenette, AC/heating, and solar modules.',
 };
 
+// Gallery shows real product photography only. The Bright Box-branded spec
+// sheets / infographics (01-05.png) remain in /public for reference but are not
+// displayed in the gallery.
 const exteriorImages = [
-  { src: '/images/products/emergency-housing/exterior/01.png', alt: 'Emergency House folded and unfolded views with imperial dimensions.' },
-  { src: '/images/products/emergency-housing/exterior/02.png', alt: 'Emergency Housing Systems overview - rapidly deployable temporary housing.' },
-  { src: '/images/products/emergency-housing/exterior/03.png', alt: 'Emergency housing product details and component breakdown.' },
-  { src: '/images/products/emergency-housing/exterior/04.png', alt: 'Folding emergency house variants in wood, white, and glass finishes.' },
-  { src: '/images/products/emergency-housing/exterior/05.png', alt: 'Three-step quick-assembly diagram for disaster housing setup.' },
+  { src: '/images/products/emergency-housing/exterior/folding-house.png', alt: 'Folding emergency house shown folded and unfolded.' },
 ];
 
 const specs = [

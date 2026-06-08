@@ -85,7 +85,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop navigation (lg and up per anti-pattern #6) */}
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-3 lg:flex">
           <div
             className="relative"
             onMouseEnter={openProducts}
@@ -158,9 +158,9 @@ export default function Header() {
 
           <a
             href="tel:8002591745"
-            className="ml-2 flex min-h-11 items-center gap-2 px-3 font-body text-gray-400 transition-colors duration-fast ease-out hover:text-white"
+            className="ml-2 flex min-h-11 items-center gap-2 px-3 font-body text-base font-semibold text-gray-100 transition-colors duration-fast ease-out hover:text-white"
           >
-            <Phone size={20} aria-hidden="true" className="text-red-500" />
+            <Phone size={22} aria-hidden="true" className="text-red-500" />
             800-259-1745
           </a>
         </nav>

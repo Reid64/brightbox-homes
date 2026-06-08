@@ -117,7 +117,7 @@ export default function FaithFoundationPage() {
                   <h3 className="mt-2 font-heading text-lg font-semibold text-white">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-gray-400">{step.text}</p>
+                  <p className="mt-2 text-sm text-gray-300">{step.text}</p>
                 </li>
               </ScrollReveal>
             ))}

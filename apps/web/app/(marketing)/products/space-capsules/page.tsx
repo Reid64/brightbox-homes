@@ -147,7 +147,7 @@ const spaceCapsuleSections = (
                 <h3 className="mt-4 font-heading text-lg font-semibold text-white">
                   {uc.title}
                 </h3>
-                <p className="mt-2 text-sm text-gray-400">{uc.text}</p>
+                <p className="mt-2 text-sm text-gray-300">{uc.text}</p>
               </div>
             );
           })}

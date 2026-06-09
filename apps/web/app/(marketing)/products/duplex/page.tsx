@@ -25,8 +25,8 @@ export default function ExpandableDuplexPage() {
             Two homes, one footprint. The smartest way to turn a purchase into an
             income-producing asset.
           </p>
-          <p className="mt-4 font-mono text-2xl text-gray-500">
-            Pricing: Contact for Pricing
+          <p className="mt-4 font-mono text-2xl text-bb-blue">
+            Starting at $59,995
           </p>
           <div className="mt-8">
             <BookConsultation size="lg" />

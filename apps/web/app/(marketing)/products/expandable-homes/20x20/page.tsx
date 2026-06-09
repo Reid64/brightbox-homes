@@ -26,6 +26,12 @@ const specs = [
   { label: 'Price', value: '$45,995' },
 ];
 
+const pageImages = [
+  { src: '/images/products/expandable-homes/20x20/exterior/01.jpg', alt: 'Gray 20x20 expandable home with a white covered porch, front view.' },
+  { src: '/images/products/expandable-homes/20x20/exterior/02.jpg', alt: 'Gray 20x20 expandable home with a covered porch, side view.' },
+  ...exteriorImages,
+];
+
 export default function Expandable20x20Page() {
   return (
     <ProductPageTemplate
@@ -34,8 +40,8 @@ export default function Expandable20x20Page() {
       description="The 20x20 is our most versatile expandable home - 400 sq ft of finished living space available in one-, two-, or three-bedroom layouts. Built on a galvanized steel frame with expandable side sections, it works equally well as a primary residence, rental, or multi-room ADU. Every unit ships standard with a mini-split HVAC system, tankless water heater, induction kitchen, and a covered front porch, with 60+ RAL exterior colors to choose from."
       price="$45,995"
       priceLabel="Starting at"
-      heroImages={exteriorImages}
-      exteriorImages={exteriorImages}
+      heroImages={pageImages}
+      exteriorImages={pageImages}
       interiorImages={interiorImages}
       intro={intro}
       keyFeatures={keyFeatures}

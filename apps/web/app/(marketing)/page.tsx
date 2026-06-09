@@ -28,7 +28,7 @@ const productLines = [
   },
   {
     name: 'Duplex Homes',
-    price: 'Contact for Pricing',
+    price: '$59,995',
     description:
       'Two expandable units stacked into one two-story footprint. Live in one, rent the other - an income property from day one.',
     href: '/products/duplex',

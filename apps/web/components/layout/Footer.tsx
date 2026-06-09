@@ -144,9 +144,9 @@ export default function Footer() {
               key={file}
               src={`/images/badges/${file}.png`}
               alt={alt}
-              width={160}
-              height={160}
-              className="h-16 w-auto"
+              width={200}
+              height={200}
+              className="h-20 w-auto"
             />
           ))}
         </div>

@@ -153,7 +153,7 @@ export default function ProductPageTemplate({
         <div className="min-w-0 flex-1 space-y-8">
           {/* Overview */}
           <section id="overview" className={bandDark}>
-            <div className="flex flex-col gap-10 lg:flex-row lg:items-center">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
               {hero.length > 0 && (
                 <div className="order-first lg:order-last lg:w-1/2">
                   <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">

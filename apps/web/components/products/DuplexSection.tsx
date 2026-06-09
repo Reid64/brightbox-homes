@@ -26,7 +26,7 @@ export default function DuplexSection({
   heroImage?: GalleryImage;
 }) {
   return (
-    <section className="bg-bb-charcoal py-16 lg:py-24">
+    <section className="bg-bb-charcoal py-8 lg:py-12">
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start">
           {/* Left: heading + copy */}

@@ -13,11 +13,12 @@ const exteriorImages = [
   { src: '/images/products/emergency-housing/exterior/folding-house.png', alt: 'Folding emergency house shown folded and unfolded.' },
 ];
 
-// The five Bright Box-branded documentation graphics, each captioned.
+// Bright Box-branded documentation graphics, each captioned. (The old
+// "product details / component breakdown" graphic was removed - it did not
+// depict the foldable home.)
 const documentation = [
   { src: '/images/products/emergency-housing/exterior/01.png', caption: 'Dimensions and standard configuration' },
   { src: '/images/products/emergency-housing/exterior/02.png', caption: 'Emergency Housing Systems overview' },
-  { src: '/images/products/emergency-housing/exterior/03.png', caption: 'Product details and component breakdown' },
   { src: '/images/products/emergency-housing/exterior/05.png', caption: 'Three-step setup process' },
   { src: '/images/products/emergency-housing/exterior/04.png', caption: 'Finish and configuration options' },
 ];
@@ -71,18 +72,20 @@ const documentationSection = (
     </p>
     <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
       {documentation.map((doc) => (
-        <figure key={doc.src} className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1">
-          <div className="overflow-hidden rounded-lg bg-white">
+        <figure
+          key={doc.src}
+          className="mx-auto w-full max-w-md overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
+        >
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-white">
             <Image
               src={doc.src}
               alt={doc.caption}
-              width={1600}
-              height={900}
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="h-auto w-full"
+              fill
+              sizes="(min-width: 768px) 28rem, 100vw"
+              className="object-contain p-2"
             />
           </div>
-          <figcaption className="px-2 py-3 text-sm text-gray-300">{doc.caption}</figcaption>
+          <figcaption className="px-2 py-3 text-center text-sm text-gray-300">{doc.caption}</figcaption>
         </figure>
       ))}
     </div>

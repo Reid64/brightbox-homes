@@ -78,20 +78,20 @@ export default function ProductSideNav({
               <Phone size={18} aria-hidden="true" className="text-red-500" />
               800-259-1745
             </a>
-            <div className="mt-4 flex flex-col items-center gap-2">
+            <div className="mt-4 flex flex-row items-center justify-center gap-4">
               <Image
                 src="/images/badges/faith-foundation-partnership.png"
                 alt="FAITH Foundation Partner"
-                width={120}
-                height={120}
-                className="h-12 w-auto"
+                width={140}
+                height={140}
+                className="h-14 w-auto"
               />
               <Image
                 src="/images/badges/faith-2500-donation.png"
                 alt="$2,500 donated per home sold"
-                width={120}
-                height={120}
-                className="h-12 w-auto"
+                width={140}
+                height={140}
+                className="h-14 w-auto"
               />
             </div>
           </div>

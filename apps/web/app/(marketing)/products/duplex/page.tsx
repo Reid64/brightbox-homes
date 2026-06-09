@@ -35,7 +35,13 @@ export default function ExpandableDuplexPage() {
       </section>
 
       {/* Investment section + gallery */}
-      <DuplexSection images={duplexImages} />
+      <DuplexSection
+        images={duplexImages}
+        heroImage={{
+          src: '/images/products/duplex/hero.png',
+          alt: 'Two-story Bright Box duplex with balconies and a family in the backyard.',
+        }}
+      />
 
       {/* CTA */}
       <section className="bg-bb-navy py-16 lg:py-24">

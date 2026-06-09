@@ -27,8 +27,8 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
                   className="flex w-full items-center gap-3 text-left"
                 >
                   <span
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white transition-transform duration-fast ease-out ${
-                      active === i ? 'scale-110 bg-red-500' : 'bg-red-500/30'
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white transition-transform duration-fast ease-out ${
+                      active === i ? 'scale-110 ring-2 ring-white ring-offset-2 ring-offset-bb-charcoal' : ''
                     }`}
                   >
                     {i + 1}
@@ -42,9 +42,9 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
                   </span>
                 </button>
                 {i < steps.length - 1 && (
-                  <div className="ml-4 flex flex-col items-center py-1" aria-hidden="true">
-                    <span className="h-6 w-0.5 bg-red-500" />
-                    <ChevronDown size={16} className="-mt-1 text-red-500" />
+                  <div className="ml-[13px] flex flex-col items-center py-1" aria-hidden="true">
+                    <span className="h-6 w-1.5 rounded-full bg-red-500" />
+                    <ChevronDown size={18} className="-mt-1 text-red-500" />
                   </div>
                 )}
               </li>
@@ -74,13 +74,13 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
                 onClick={() => onSelect(i)}
                 aria-label={`Step ${i + 1}: ${label}`}
                 aria-current={active === i ? 'step' : undefined}
-                className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white transition-transform duration-fast ease-out ${
-                  active === i ? 'scale-110 bg-red-500' : 'bg-red-500/30'
+                className={`flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white transition-transform duration-fast ease-out ${
+                  active === i ? 'scale-110 ring-2 ring-white ring-offset-2 ring-offset-bb-charcoal' : ''
                 }`}
               >
                 {i + 1}
               </button>
-              {i < steps.length - 1 && <span className="h-0.5 w-6 bg-red-500" />}
+              {i < steps.length - 1 && <span className="h-1 w-6 rounded-full bg-red-500" />}
             </div>
           ))}
         </div>

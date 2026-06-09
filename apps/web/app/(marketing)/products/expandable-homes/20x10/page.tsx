@@ -25,6 +25,11 @@ const specs = [
   { label: 'Price', value: '$35,995' },
 ];
 
+const pageImages = [
+  { src: '/images/products/expandable-homes/exterior/model-20x10-front.png', alt: 'White 20x10 expandable home with black trim.' },
+  ...exteriorImages,
+];
+
 export default function Expandable20x10Page() {
   return (
     <ProductPageTemplate
@@ -33,8 +38,8 @@ export default function Expandable20x10Page() {
       description="The 20x10 is our most compact expandable home - a 200 sq ft studio that arrives on a galvanized steel frame and unfolds on site into a finished single room with a full kitchen and bathroom. It makes an ideal backyard ADU, guest suite, rental unit, or off-grid cabin. Every unit ships standard with a mini-split HVAC system, tankless water heater, induction kitchen, and a covered front porch."
       price="$35,995"
       priceLabel="Starting at"
-      heroImages={exteriorImages}
-      exteriorImages={exteriorImages}
+      heroImages={pageImages}
+      exteriorImages={pageImages}
       interiorImages={interiorImages}
       intro={intro}
       keyFeatures={keyFeatures}

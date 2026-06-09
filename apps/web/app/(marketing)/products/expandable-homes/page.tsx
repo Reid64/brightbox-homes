@@ -7,7 +7,7 @@ import { BookConsultation } from '@/components/ui/BookConsultation';
 export const metadata: Metadata = {
   title: 'Expandable Container Homes | Bright Box Homes',
   description:
-    'Steel-frame expandable container homes from $35,995. Five sizes from a 200 sq ft studio to an 800 sq ft family home, plus a two-story duplex. Delivered anywhere in the US.',
+    'Steel-frame expandable container homes from $35,995. Five sizes from a 200 sq ft studio to an 800 sq ft family home, Delivered anywhere in the US.',
 };
 
 const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
@@ -18,7 +18,7 @@ const sizes = [
     price: 'Starting at $35,995',
     blurb: '200 sq ft studio - ideal ADU, guest suite, or rental.',
     href: '/products/expandable-homes/20x10',
-    image: '/images/products/expandable-homes/exterior/11.png',
+    image: '/images/products/expandable-homes/exterior/model-20x10-front.png',
   },
   {
     name: '20x20 Models',
@@ -32,7 +32,7 @@ const sizes = [
     price: 'Starting at $49,995',
     blurb: '600 sq ft of finished living space for growing families.',
     href: '/products/expandable-homes/20x30',
-    image: '/images/products/expandable-homes/exterior/02.jpeg',
+    image: '/images/products/expandable-homes/exterior/model-20x30.png',
   },
   {
     name: '20x40 Models',

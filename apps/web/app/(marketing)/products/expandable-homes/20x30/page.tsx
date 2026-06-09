@@ -20,6 +20,11 @@ const specs = [
   { label: 'Price', value: '$49,995' },
 ];
 
+const pageImages = [
+  { src: '/images/products/expandable-homes/exterior/model-20x30.png', alt: 'Wood-finish 20x30 expandable home with dark trim.' },
+  ...exteriorImages,
+];
+
 export default function Expandable20x30Page() {
   return (
     <ProductPageTemplate
@@ -28,8 +33,8 @@ export default function Expandable20x30Page() {
       description="The 20x30 expands to 600 sq ft of finished living space - room for multiple bedrooms, a full kitchen, and a comfortable living area. Built on a galvanized steel frame with expandable side sections, it bridges the gap between our compact studios and our largest family homes. Every unit ships standard with a mini-split HVAC system, tankless water heater, induction kitchen, and a covered front porch, with 60+ RAL exterior colors to choose from."
       price="$49,995"
       priceLabel="Starting at"
-      heroImages={exteriorImages}
-      exteriorImages={exteriorImages}
+      heroImages={pageImages}
+      exteriorImages={pageImages}
       interiorImages={interiorImages}
       intro={intro}
       keyFeatures={keyFeatures}

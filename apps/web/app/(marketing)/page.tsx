@@ -23,8 +23,8 @@ const productLines = [
     description:
       '200-800 sq ft steel-frame homes with 60+ exterior colors, customizable interiors, cabinets, flooring, and finishes.',
     href: '/products/expandable-homes',
-    image: '/images/products/expandable-homes/exterior/03.jpeg',
-    alt: 'Delivered white expandable home on a rural property.',
+    image: '/images/products/expandable-homes/exterior/homepage-20x20.jpg',
+    alt: 'Gray expandable home with a white covered porch and deck.',
   },
   {
     name: 'Duplex Homes',

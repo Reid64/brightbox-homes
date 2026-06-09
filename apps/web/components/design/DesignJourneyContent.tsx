@@ -114,82 +114,85 @@ export default function DesignJourneyContent({ active }: { active: number }) {
       {active === 2 && (
         <div>
           <h1 className={heading}>Choose Your Roof</h1>
+          <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-start">
+            {/* Left: roof color chart, full column height */}
+            <div className="lg:w-1/2">
+              <Image
+                src="/images/colors/metal-roof-colors.png"
+                alt="19 metal roof color chart"
+                width={1191}
+                height={1320}
+                className="h-auto w-full rounded-lg border border-white/10"
+              />
+            </div>
 
-          {/* Roof color chart */}
-          <Image
-            src="/images/colors/metal-roof-colors.png"
-            alt="19 metal roof color chart"
-            width={1191}
-            height={1320}
-            className={`mt-8 max-w-2xl ${chartImg}`}
-          />
+            {/* Right: explanation, pricing, truss images, video */}
+            <div className="space-y-8 lg:w-1/2">
+              <p className="text-sm text-gray-300">
+                The LRV (Light Reflectance Value) and SRI (Solar Reflectance Index) values
+                shown at the bottom of the color chart indicate each color&apos;s energy
+                efficiency. Higher values reflect more sunlight and reduce cooling costs - an
+                important consideration for hot climates like Texas. Choose lighter colors for
+                maximum energy savings.
+              </p>
 
-          {/* LRV / SRI explanation */}
-          <p className="mt-4 max-w-2xl text-sm text-gray-300">
-            The LRV (Light Reflectance Value) and SRI (Solar Reflectance Index) values shown
-            at the bottom of the color chart indicate each color&apos;s energy efficiency.
-            Higher values reflect more sunlight and reduce cooling costs - an important
-            consideration for hot climates like Texas. Choose lighter colors for maximum
-            energy savings.
-          </p>
-
-          {/* Upgrade pricing */}
-          <div className="mt-10">
-            <h2 className="font-heading text-xl font-semibold text-bb-blue">Metal Roof Upgrade Pricing</h2>
-            <p className="mt-2 max-w-2xl text-sm text-gray-300">
-              Upgrade to a full pitched metal roof system with high-grade 24-gauge steel
-              roofing panels, a complete metal truss system, and all fasteners included.
-            </p>
-            <div className="mt-4 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
-              {[
-                ["10' Home", '$1,995'],
-                ["20' Home", '$3,995'],
-                ["30' Home", '$4,995'],
-                ["40' Home", '$5,995'],
-              ].map(([size, price]) => (
-                <div key={size} className="rounded-xl border border-white/10 bg-bb-surface-dark p-4 text-center">
-                  <p className="text-sm text-gray-300">{size}</p>
-                  <p className="mt-1 font-mono text-xl font-bold text-bb-blue">{price}</p>
+              <div>
+                <h2 className="font-heading text-xl font-semibold text-bb-blue">Metal Roof Upgrade Pricing</h2>
+                <p className="mt-2 text-sm text-gray-300">
+                  Upgrade to a full pitched metal roof system with high-grade 24-gauge steel
+                  roofing panels, a complete metal truss system, and all fasteners included.
+                </p>
+                <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {[
+                    ["10' Home", '$1,995'],
+                    ["20' Home", '$3,995'],
+                    ["30' Home", '$4,995'],
+                    ["40' Home", '$5,995'],
+                  ].map(([size, price]) => (
+                    <div key={size} className="rounded-xl border border-white/10 bg-bb-surface-dark p-3 text-center">
+                      <p className="text-xs text-gray-300">{size}</p>
+                      <p className="mt-1 font-mono text-lg font-bold text-bb-blue">{price}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <div className="flex gap-4">
+                <figure className="w-full max-w-[180px]">
+                  <Image
+                    src="/images/upgrades/metal-roof-truss-standard.png"
+                    alt="Standard metal roof truss system"
+                    width={1499}
+                    height={1049}
+                    className="h-auto w-full rounded-lg border border-white/10 bg-white/5"
+                  />
+                  <figcaption className="mt-2 text-xs text-gray-300">Standard Metal Truss System</figcaption>
+                </figure>
+                <figure className="w-full max-w-[180px]">
+                  <Image
+                    src="/images/upgrades/metal-roof-truss-reinforced-solar.png"
+                    alt="Reinforced truss for solar installations"
+                    width={1500}
+                    height={1049}
+                    className="h-auto w-full rounded-lg border border-white/10 bg-white/5"
+                  />
+                  <figcaption className="mt-2 text-xs text-gray-300">Reinforced Truss for Solar Installations</figcaption>
+                </figure>
+              </div>
+
+              {/* Ambient looping truss video (no controls) */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label="Metal roof truss system"
+                className="w-full max-w-sm rounded-lg border border-white/10"
+              >
+                <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
-
-          {/* Truss images */}
-          <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-start">
-            <figure className="w-full max-w-[250px]">
-              <Image
-                src="/images/upgrades/metal-roof-truss-standard.png"
-                alt="Standard metal roof truss system"
-                width={1499}
-                height={1049}
-                className="h-auto w-full rounded-lg border border-white/10 bg-white/5"
-              />
-              <figcaption className="mt-2 text-sm text-gray-300">Standard Metal Truss System</figcaption>
-            </figure>
-            <figure className="w-full max-w-[250px]">
-              <Image
-                src="/images/upgrades/metal-roof-truss-reinforced-solar.png"
-                alt="Reinforced truss for solar installations"
-                width={1500}
-                height={1049}
-                className="h-auto w-full rounded-lg border border-white/10 bg-white/5"
-              />
-              <figcaption className="mt-2 text-sm text-gray-300">Reinforced Truss for Solar Installations</figcaption>
-            </figure>
-          </div>
-
-          {/* Ambient looping truss video (no controls) */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-label="Metal roof truss system"
-            className="mt-8 w-full max-w-sm rounded-lg border border-white/10"
-          >
-            <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
-          </video>
         </div>
       )}
 

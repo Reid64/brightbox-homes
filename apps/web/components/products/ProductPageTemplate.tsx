@@ -50,6 +50,14 @@ interface IconCard {
   text: string;
 }
 
+interface FrameImage {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
 interface ProductPageTemplateProps {
   name: string;
   tagline: string;
@@ -66,6 +74,7 @@ interface ProductPageTemplateProps {
   useCases?: IconCard[];
   floorPlans?: FloorPlan[];
   upgrades?: UpgradeCategory[];
+  frames?: FrameImage[];
   specs: Spec[];
   features: string[];
   ctaText?: string;
@@ -100,6 +109,7 @@ export default function ProductPageTemplate({
   useCases,
   floorPlans,
   upgrades,
+  frames,
   specs,
   features,
   ctaText = 'Book a Consultation',
@@ -411,6 +421,31 @@ export default function ProductPageTemplate({
                 </div>
               ))}
             </dl>
+
+            {frames && frames.length > 0 && (
+              <div className="mt-10">
+                <h3 className="font-heading text-xl font-semibold text-bb-blue">
+                  Construction &amp; Frame
+                </h3>
+                <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  {frames.map((fr) => (
+                    <figure key={fr.src} className="max-w-md">
+                      <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1">
+                        <Image
+                          src={fr.src}
+                          alt={fr.alt}
+                          width={fr.width}
+                          height={fr.height}
+                          sizes="(min-width: 640px) 28rem, 100vw"
+                          className="h-auto w-full rounded-lg"
+                        />
+                      </div>
+                      <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
 
           {/* CTA */}

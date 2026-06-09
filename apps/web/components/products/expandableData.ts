@@ -16,6 +16,10 @@ export const keyFeatures = [
   { icon: Home, title: 'Covered Front Porch', text: 'Every model ships with a covered porch and railing - usable outdoor space from day one.' },
 ];
 
+export const frames = [
+  { src: '/images/frames/expandable-frame.png', alt: 'Galvanized steel frame of an expandable container home.', caption: 'Galvanized steel frame - the same rugged structure as a shipping container.', width: 777, height: 589 },
+];
+
 export const useCases = [
   { icon: Home, title: 'Primary Residence', text: 'Full-time, full-comfort living at an affordable price point.' },
   { icon: Tent, title: 'Vacation Home', text: 'A turnkey getaway for the lake, mountains, or rural acreage.' },

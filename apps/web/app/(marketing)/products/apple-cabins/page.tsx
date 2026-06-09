@@ -21,6 +21,11 @@ const useCases = [
   { icon: Sparkles, title: 'Retreat Center', text: 'A serene escape for wellness, meditation, or guest stays.' },
 ];
 
+const frames = [
+  { src: '/images/frames/apple-frame.png', alt: 'Steel frame of an Apple Cabin under construction.', caption: 'Galvanized steel frame beneath the aluminum-panel shell.', width: 541, height: 376 },
+  { src: '/images/frames/apple-frame-2.png', alt: 'Apple Cabin steel frame structure.', caption: 'Reinforced steel structure engineered for the rounded form.', width: 1729, height: 910 },
+];
+
 export const metadata: Metadata = {
   title: 'Apple Cabin Homes | Bright Box Homes',
   description:
@@ -93,6 +98,7 @@ export default function AppleCabinsPage() {
       keyFeatures={keyFeatures}
       useCases={useCases}
       floorPlans={floorPlans}
+      frames={frames}
       specs={specs}
       features={features}
     />

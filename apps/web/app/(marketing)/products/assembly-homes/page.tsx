@@ -56,6 +56,10 @@ const useCases = [
   { icon: Briefcase, title: 'Modular Office', text: 'Connect units into flexible commercial or office space.' },
 ];
 
+const frames = [
+  { src: '/images/frames/assembly-frame.webp', alt: 'Steel frame of an assembly modular unit.', caption: 'Steel-frame modular unit - independently structured and stackable.', width: 800, height: 571 },
+];
+
 export default function AssemblyHomesPage() {
   return (
     <ProductPageTemplate
@@ -69,6 +73,7 @@ export default function AssemblyHomesPage() {
       intro={intro}
       keyFeatures={keyFeatures}
       useCases={useCases}
+      frames={frames}
       specs={specs}
       features={features}
     />

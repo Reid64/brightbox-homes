@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
-import { exteriorImages, interiorImages, features, upgrades, intro, keyFeatures, useCases } from '@/components/products/expandableData';
+import { exteriorImages, interiorImages, features, upgrades, intro, keyFeatures, useCases, frames } from '@/components/products/expandableData';
 
 export const metadata: Metadata = {
   title: '20x30 Expandable Home | Bright Box Homes',
@@ -40,6 +40,7 @@ export default function Expandable20x30Page() {
       keyFeatures={keyFeatures}
       useCases={useCases}
       upgrades={upgrades}
+      frames={frames}
       specs={specs}
       features={features}
     />

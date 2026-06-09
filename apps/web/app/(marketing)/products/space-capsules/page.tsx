@@ -134,6 +134,10 @@ const modelLineup = [
   { model: 'V1', size: "13' x 10'", area: '129 sq ft', layout: '1 room, 1 bath' },
 ];
 
+const frames = [
+  { src: '/images/frames/space-frame.png', alt: 'Galvanized steel frame of a Space Capsule.', caption: 'Galvanized steel frame with an insulated, waterproof, shock-proof shell.', width: 1666, height: 944 },
+];
+
 const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
 
 const spaceCapsuleSections = (
@@ -223,6 +227,7 @@ export default function SpaceCapsulesPage() {
       keyFeatures={keyFeatures}
       afterGalleries={spaceCapsuleSections}
       floorPlans={floorPlans}
+      frames={frames}
       upgrades={upgrades}
       specs={specs}
       features={features}

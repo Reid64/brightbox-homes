@@ -1,12 +1,28 @@
 'use client';
 
-import { ChevronDown, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
 interface SidebarProps {
   steps: string[];
   active: number;
   onSelect: (index: number) => void;
+}
+
+// Solid red down-pointing arrow (stem + head).
+function DownArrow({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      width="18"
+      height="22"
+      viewBox="0 0 16 20"
+      fill="#EF4444"
+      aria-hidden="true"
+      className={className}
+    >
+      <polygon points="8,20 0,8 4,8 4,0 12,0 12,8 16,8" />
+    </svg>
+  );
 }
 
 export default function DesignJourneySidebar({ steps, active, onSelect }: SidebarProps) {
@@ -42,9 +58,8 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
                   </span>
                 </button>
                 {i < steps.length - 1 && (
-                  <div className="ml-[13px] flex flex-col items-center py-1" aria-hidden="true">
-                    <span className="h-6 w-1.5 rounded-full bg-red-500" />
-                    <ChevronDown size={18} className="-mt-1 text-red-500" />
+                  <div className="ml-[7px] py-1.5" aria-hidden="true">
+                    <DownArrow />
                   </div>
                 )}
               </li>
@@ -80,7 +95,7 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
               >
                 {i + 1}
               </button>
-              {i < steps.length - 1 && <span className="h-1 w-6 rounded-full bg-red-500" />}
+              {i < steps.length - 1 && <DownArrow className="mx-0.5 -rotate-90" />}
             </div>
           ))}
         </div>

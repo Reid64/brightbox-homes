@@ -58,6 +58,10 @@ const useCases = [
   { icon: Briefcase, title: 'Construction Office', text: 'A secure on-site office that sets up in hours.' },
 ];
 
+const frames = [
+  { src: '/images/frames/emergency-frame.png', alt: 'Steel frame of a folding emergency house.', caption: 'Steel container frame that folds flat for shipping and locks rigid on site.', width: 352, height: 236 },
+];
+
 const documentationSection = (
   <section className="scroll-mt-24 rounded-2xl border border-white/10 bg-bb-surface-dark p-6 lg:p-10">
     <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue">Documentation</p>
@@ -99,6 +103,7 @@ export default function EmergencyHousingPage() {
       keyFeatures={keyFeatures}
       useCases={useCases}
       afterGalleries={documentationSection}
+      frames={frames}
       specs={specs}
       features={features}
     />

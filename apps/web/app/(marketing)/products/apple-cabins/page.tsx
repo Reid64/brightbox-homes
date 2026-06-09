@@ -45,6 +45,8 @@ const interiorImages = [
   { src: '/images/products/apple-cabins/interior/02.jpg', alt: 'Apple Cabin lounge with a white sofa and curved floor-to-ceiling glass.' },
   { src: '/images/products/apple-cabins/interior/03.webp', alt: 'Apple Cabin bedroom with a wood platform bed and storage drawers.' },
   { src: '/images/products/apple-cabins/interior/04.jpg', alt: 'Apple Cabin interior with wood-paneled walls, a desk, and kitchenette.' },
+  { src: '/images/products/apple-cabins/interior/05.jpg', alt: 'Apple Cabin bedroom with an upholstered headboard and a garden view.' },
+  { src: '/images/products/apple-cabins/interior/06.jpg', alt: 'Apple Cabin interior with a bed, lounge chair, and skylight.' },
 ];
 
 const specs = [

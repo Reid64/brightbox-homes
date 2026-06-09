@@ -27,6 +27,15 @@ const productLines = [
     alt: 'Delivered white expandable home on a rural property.',
   },
   {
+    name: 'Duplex Homes',
+    price: 'Contact for Pricing',
+    description:
+      'Two expandable units stacked into one two-story footprint. Live in one, rent the other - an income property from day one.',
+    href: '/products/duplex',
+    image: '/images/products/expandable-homes/duplex/01.png',
+    alt: 'Two-story duplex expandable home with balconies and a landscaped yard.',
+  },
+  {
     name: 'Apple Cabin Homes',
     price: 'Coming Soon',
     description:

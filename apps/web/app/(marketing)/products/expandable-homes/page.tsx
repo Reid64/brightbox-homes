@@ -41,13 +41,6 @@ const sizes = [
     href: '/products/expandable-homes/20x40',
     image: '/images/products/expandable-homes/exterior/10.png',
   },
-  {
-    name: '20x20 Duplex',
-    price: 'Contact for Pricing',
-    blurb: 'Two stacked units. Live in one, rent the other.',
-    href: '/products/expandable-homes/duplex',
-    image: '/images/products/expandable-homes/duplex/01.png',
-  },
 ];
 
 export default function ExpandableHomesOverviewPage() {
@@ -58,12 +51,12 @@ export default function ExpandableHomesOverviewPage() {
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={label}>Expandable Container Homes</p>
           <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-            Five Sizes, Endless Possibilities
+            Four Sizes, Endless Possibilities
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-gray-300">
             Our flagship line ships compact and unfolds on site into finished
             living space. Choose your model - from a 200 sq ft studio to an 800 sq
-            ft family home, plus a two-story duplex built for investors.
+            ft family home. Looking to invest? Explore the two-story Duplex.
           </p>
         </div>
       </section>

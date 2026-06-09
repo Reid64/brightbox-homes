@@ -38,8 +38,6 @@ const interiorImages = [
   { src: '/images/products/space-capsules/interior/02.jpg', alt: 'Space Capsule interior with a kitchenette and lounge seating.' },
   { src: '/images/products/space-capsules/interior/03.jpg', alt: 'Furnished Space Capsule interior with dining, sofa, and bed.' },
   { src: '/images/products/space-capsules/interior/04.jpg', alt: 'Space Capsule interior with a bed, sofa, and floor-to-ceiling glass.' },
-  { src: '/images/products/space-capsules/interior/05.jpg', alt: 'Space Capsule bedroom with armchairs and a garden view.' },
-  { src: '/images/products/space-capsules/interior/06.jpg', alt: 'Luxury Space Capsule interior with a bed, lounge chair, and skylight.' },
 ];
 
 const specs = [

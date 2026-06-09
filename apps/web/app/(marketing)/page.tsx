@@ -324,16 +324,16 @@ export default function HomePage() {
       </section>
 
       {/* SECTION D2: Trust badges */}
-      <section className="border-y border-white/10 bg-bb-surface-dark py-8">
-        <div className="mx-auto grid max-w-[1280px] grid-cols-2 items-center justify-items-center gap-8 px-6 sm:flex sm:justify-center sm:gap-16">
+      <section className="border-y border-white/10 bg-bb-surface-dark py-10">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-2 items-center justify-items-center gap-8 px-6 sm:flex sm:justify-center sm:gap-12">
           {trustBadges.map((b) => (
             <Image
               key={b.src}
               src={b.src}
               alt={b.alt}
-              width={200}
-              height={200}
-              className="h-16 w-auto sm:h-20"
+              width={320}
+              height={320}
+              className="h-24 w-auto sm:h-32"
             />
           ))}
         </div>

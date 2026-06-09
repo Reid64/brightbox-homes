@@ -81,6 +81,7 @@ interface ProductPageTemplateProps {
   features: string[];
   ctaText?: string;
   warmCards?: boolean;
+  hideGalleries?: boolean;
 }
 
 const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
@@ -116,9 +117,10 @@ export default function ProductPageTemplate({
   specs,
   features,
   warmCards = false,
+  hideGalleries = false,
 }: ProductPageTemplateProps) {
   const featureCardClass = warmCards
-    ? 'rounded-xl border border-[#4A3D2E]/30 bg-[#2C2519] p-6 transition-colors duration-fast ease-out hover:bg-[#332E22]'
+    ? 'rounded-xl border border-[#8A7A66]/40 bg-[#6B5D4D] p-6 transition-colors duration-fast ease-out hover:bg-[#7A6B58]'
     : 'rounded-xl border border-white/10 bg-white/5 p-6';
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
@@ -139,11 +141,13 @@ export default function ProductPageTemplate({
   const hasUpgrades = !!(upgrades && upgrades.length > 0);
 
   const navSections: NavSection[] = [{ id: 'overview', label: 'Overview' }];
-  if (usingGalleries) {
-    galleries!.forEach((g) => navSections.push({ id: slug(g.label), label: g.label }));
-  } else {
-    navSections.push({ id: 'exterior', label: 'Exterior' });
-    if (hasInterior) navSections.push({ id: 'interior', label: 'Interior' });
+  if (!hideGalleries) {
+    if (usingGalleries) {
+      galleries!.forEach((g) => navSections.push({ id: slug(g.label), label: g.label }));
+    } else {
+      navSections.push({ id: 'exterior', label: 'Exterior' });
+      if (hasInterior) navSections.push({ id: 'interior', label: 'Interior' });
+    }
   }
   if (hasKeyFeatures) navSections.push({ id: 'features', label: 'Features' });
   if (hasUseCases) navSections.push({ id: 'use-cases', label: "Who It's For" });
@@ -227,7 +231,7 @@ export default function ProductPageTemplate({
           )}
 
           {/* Galleries */}
-          {usingGalleries ? (
+          {hideGalleries ? null : usingGalleries ? (
             galleries!.map((g) => (
               <section key={g.label} id={slug(g.label)} className={bandDeep}>
                 <p className={label}>{g.label}</p>

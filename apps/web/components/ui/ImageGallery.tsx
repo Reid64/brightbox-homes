@@ -70,9 +70,24 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
                 />
               </div>
             </button>
-            {image.caption && (
-              <figcaption className="mt-2 text-sm italic text-gray-400">{image.caption}</figcaption>
-            )}
+            {image.caption &&
+              (() => {
+                const idx = image.caption.indexOf(' - ');
+                return (
+                  <figcaption className="mt-2 text-sm italic text-gray-400">
+                    {idx === -1 ? (
+                      image.caption
+                    ) : (
+                      <>
+                        <span className="font-bold not-italic text-white">
+                          {image.caption.slice(0, idx)}
+                        </span>
+                        {image.caption.slice(idx)}
+                      </>
+                    )}
+                  </figcaption>
+                );
+              })()}
           </figure>
         ))}
       </div>

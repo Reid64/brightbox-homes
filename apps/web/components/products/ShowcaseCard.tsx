@@ -1,5 +1,9 @@
+'use client';
+
+import { useState, useEffect, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import Image from 'next/image';
+import { X } from 'lucide-react';
 
 interface ShowcaseCardProps {
   index: number;
@@ -8,14 +12,34 @@ interface ShowcaseCardProps {
   children: ReactNode;
 }
 
-// Full-width horizontal showcase card. Odd cards (index 0, 2, ...) image-left;
-// even cards (index 1, 3, ...) image-right - for visual rhythm.
+// Full-width horizontal showcase card. Odd cards image-left, even image-right.
+// The image is shown uncropped (object-contain) and is clickable to enlarge.
 export default function ShowcaseCard({ index, image, alt, children }: ShowcaseCardProps) {
   const imageLeft = index % 2 === 0;
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') close();
+    }
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open, close]);
+
   return (
     <div className="overflow-hidden rounded-xl border border-white/10 bg-bb-surface-dark lg:flex">
-      <div
-        className={`relative aspect-video w-full lg:aspect-auto lg:w-2/5 ${
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label={`Enlarge image: ${alt}`}
+        className={`relative block aspect-video w-full cursor-zoom-in bg-bb-charcoal lg:aspect-auto lg:w-2/5 ${
           imageLeft ? 'lg:order-first' : 'lg:order-last'
         }`}
       >
@@ -24,10 +48,38 @@ export default function ShowcaseCard({ index, image, alt, children }: ShowcaseCa
           alt={alt}
           fill
           sizes="(min-width: 1024px) 40vw, 100vw"
-          className="object-cover"
+          className="object-contain"
         />
-      </div>
+      </button>
       <div className="p-8 lg:w-3/5">{children}</div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image viewer"
+          onClick={close}
+        >
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              close();
+            }}
+            aria-label="Close"
+            className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20"
+          >
+            <X size={24} aria-hidden="true" />
+          </button>
+          <div
+            className="relative h-[85vh] w-[90vw] max-w-5xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image src={image} alt={alt} fill sizes="90vw" className="object-contain" priority />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -26,8 +26,8 @@ export default function DuplexSection({
   heroImage?: GalleryImage;
 }) {
   return (
-    <section className="bg-bb-charcoal py-8 lg:py-12">
-      <div className="mx-auto max-w-[1280px] px-6">
+    <section id="investment" className="scroll-mt-24 rounded-2xl border border-white/10 bg-bb-surface-dark p-6 lg:p-10">
+      <div>
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start">
           {/* Left: heading + copy */}
           <div className={heroImage ? 'lg:w-1/2' : 'w-full'}>

@@ -32,9 +32,10 @@ const linkClass =
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-bb-navy text-bb-gray-200">
+    <footer className="border-t border-white/10 bg-bb-charcoal text-bb-gray-200">
       {/* 1. Main footer grid */}
-      <div className="mx-auto max-w-[1280px] px-6 py-16">
+      <div className="bg-bb-surface-dark">
+       <div className="mx-auto max-w-[1280px] px-6 py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Image
@@ -101,6 +102,7 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
+       </div>
       </div>
 
       {/* 2. FAITH Foundation bar */}
@@ -130,8 +132,8 @@ export default function Footer() {
       </div>
 
       {/* 4. Trust badges */}
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-4 px-6 py-6 opacity-80">
+      <div className="border-t border-white/10 bg-bb-surface-dark">
+        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-6 px-6 py-8 opacity-90">
           {[
             ['faith-foundation-partnership', 'FAITH Foundation Partner'],
             ['faith-2500-donation', '$2,500 donated per home sold'],
@@ -142,9 +144,9 @@ export default function Footer() {
               key={file}
               src={`/images/badges/${file}.png`}
               alt={alt}
-              width={100}
-              height={100}
-              className="h-10 w-auto"
+              width={160}
+              height={160}
+              className="h-16 w-auto"
             />
           ))}
         </div>

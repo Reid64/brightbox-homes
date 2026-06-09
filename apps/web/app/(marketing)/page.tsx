@@ -82,7 +82,7 @@ const productLines = [
   },
   {
     name: 'Emergency Housing',
-    price: '$2,000',
+    price: 'From $2,000',
     description:
       'Rapidly deployable emergency and disaster housing. Fire-grade A materials, set up in hours.',
     href: '/products/emergency-housing',
@@ -298,7 +298,7 @@ export default function HomePage() {
                       <h3 className="font-heading text-xl font-semibold text-white">
                         {product.name}
                       </h3>
-                      {product.price.startsWith('$') ? (
+                      {product.price.includes('$') ? (
                         <p className="mt-1 font-mono text-lg text-bb-blue">
                           {product.price}
                         </p>
@@ -498,14 +498,14 @@ export default function HomePage() {
               for low-income families.
             </p>
             <div className="mt-8">
-              <Button href="/faith-foundation" variant="secondary">
+              <Button href="/faith-foundation" variant="primary">
                 Learn About Our Mission
               </Button>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={100} className="text-center lg:text-right">
-            <span className="block font-heading text-7xl font-bold text-bb-blue/20">
+            <span className="block font-heading text-7xl font-bold text-bb-blue">
               $2,500
             </span>
             <span className="mt-2 block text-gray-500">donated per home sold</span>

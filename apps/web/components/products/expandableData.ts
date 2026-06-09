@@ -17,7 +17,7 @@ export const keyFeatures = [
 ];
 
 export const frames = [
-  { src: '/images/frames/expandable-frame.png', alt: 'Galvanized steel frame of an expandable container home.', caption: 'Galvanized steel frame - the same rugged structure as a shipping container.', width: 777, height: 589 },
+  { src: '/images/frames/expandable-frame.png', alt: 'Galvanized steel frame of an expandable container home.', caption: 'Galvanized Steel Frame Construction', width: 777, height: 589 },
 ];
 
 export const useCases = [

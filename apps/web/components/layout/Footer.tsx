@@ -129,7 +129,28 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* 4. Copyright bar */}
+      {/* 4. Trust badges */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-4 px-6 py-6 opacity-80">
+          {[
+            ['faith-foundation-partnership', 'FAITH Foundation Partner'],
+            ['faith-2500-donation', '$2,500 donated per home sold'],
+            ['exclusive-us-distributor', 'Exclusive US Distributor'],
+            ['american-owned-globally-sourced', 'American Owned, Globally Sourced'],
+          ].map(([file, alt]) => (
+            <Image
+              key={file}
+              src={`/images/badges/${file}.png`}
+              alt={alt}
+              width={100}
+              height={100}
+              className="h-10 w-auto"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* 5. Copyright bar */}
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-[1280px] px-6 py-4">
           <p className="font-body text-xs text-gray-500">

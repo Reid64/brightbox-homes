@@ -172,6 +172,13 @@ const marqueeItems = [
 
 const sectionLabel = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
 
+const trustBadges = [
+  { src: '/images/badges/faith-foundation-partnership.png', alt: 'FAITH Foundation Partner' },
+  { src: '/images/badges/faith-2500-donation.png', alt: '$2,500 donated per home sold' },
+  { src: '/images/badges/exclusive-us-distributor.png', alt: 'Exclusive US Distributor' },
+  { src: '/images/badges/american-owned-globally-sourced.png', alt: 'American Owned, Globally Sourced' },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -313,6 +320,22 @@ export default function HomePage() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* SECTION D2: Trust badges */}
+      <section className="border-y border-white/10 bg-bb-surface-dark py-8">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-2 items-center justify-items-center gap-8 px-6 sm:flex sm:justify-center sm:gap-16">
+          {trustBadges.map((b) => (
+            <Image
+              key={b.src}
+              src={b.src}
+              alt={b.alt}
+              width={200}
+              height={200}
+              className="h-16 w-auto sm:h-20"
+            />
+          ))}
         </div>
       </section>
 

@@ -59,7 +59,7 @@ const useCases = [
 ];
 
 const frames = [
-  { src: '/images/frames/emergency-frame.png', alt: 'Steel frame of a folding emergency house.', caption: 'Steel container frame that folds flat for shipping and locks rigid on site.', width: 352, height: 236 },
+  { src: '/images/frames/emergency-frame.png', alt: 'Steel frame of a folding emergency house.', caption: 'Foldable Steel Frame System', width: 352, height: 236 },
 ];
 
 const documentationSection = (

@@ -22,8 +22,8 @@ const useCases = [
 ];
 
 const frames = [
-  { src: '/images/frames/apple-frame.png', alt: 'Steel frame of an Apple Cabin under construction.', caption: 'Galvanized steel frame beneath the aluminum-panel shell.', width: 541, height: 376 },
-  { src: '/images/frames/apple-frame-2.png', alt: 'Apple Cabin steel frame structure.', caption: 'Reinforced steel structure engineered for the rounded form.', width: 1729, height: 910 },
+  { src: '/images/frames/apple-frame.png', alt: 'Steel frame of an Apple Cabin under construction.', caption: 'Aluminum Alloy Housing with Galvanized Steel Frame', width: 541, height: 376 },
+  { src: '/images/frames/apple-frame-2.png', alt: 'Apple Cabin steel frame structure.', caption: 'Reinforced steel structure engineered for the rounded form', width: 1729, height: 910 },
 ];
 
 export const metadata: Metadata = {

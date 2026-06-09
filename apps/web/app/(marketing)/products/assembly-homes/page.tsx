@@ -57,7 +57,7 @@ const useCases = [
 ];
 
 const frames = [
-  { src: '/images/frames/assembly-frame.webp', alt: 'Steel frame of an assembly modular unit.', caption: 'Steel-frame modular unit - independently structured and stackable.', width: 800, height: 571 },
+  { src: '/images/frames/assembly-frame.webp', alt: 'Steel frame of an assembly modular unit.', caption: 'Modular Steel Frame Unit', width: 800, height: 571 },
 ];
 
 export default function AssemblyHomesPage() {

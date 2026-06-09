@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import { Phone, Mail } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -49,8 +50,15 @@ export default function FaithFoundationPage() {
               <BookConsultation size="lg">Book a Consultation</BookConsultation>
             </div>
           </div>
-          <div className="text-center lg:text-right">
-            <span className="block font-heading text-7xl font-bold text-bb-blue/20">
+          <div className="flex flex-col items-center lg:items-end">
+            <Image
+              src="/images/badges/faith-foundation-partnership.png"
+              alt="FAITH Foundation Partner"
+              width={320}
+              height={320}
+              className="h-40 w-auto"
+            />
+            <span className="mt-6 block font-heading text-7xl font-bold text-bb-blue/20">
               $2,500
             </span>
             <span className="mt-2 block text-gray-500">donated per home sold</span>

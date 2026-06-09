@@ -5,7 +5,7 @@ import Accordion from '@/components/ui/Accordion';
 export const metadata: Metadata = {
   title: 'FAQ | Bright Box Homes - Everything You Need to Know',
   description:
-    'Answers to the most common questions about expandable container homes, permits, delivery, costs, off-grid living, and unrestricted land.',
+    'Answers to the most common questions about expandable container homes, permits, delivery, true costs, off-grid living, financing, building code, and unrestricted land.',
 };
 
 const faqSections = [
@@ -13,34 +13,29 @@ const faqSections = [
     title: 'Buying & Cost',
     items: [
       {
+        question: 'How much does an expandable container home really cost?',
+        answer:
+          'The listed price - $35,995 for the 20x10 up to $59,995 for the 20x40 - is the home itself, fully built and equipped. Your total project cost depends on your site. Plan for freight from port to your property, a crane or forklift to unload and place the unit, a foundation ($3,000-$15,000 depending on slab, piers, or helical piles), utility connections (electrical service and water/sewer or septic tie-ins), permits, and site prep. A realistic all-in budget runs well above the sticker price - but our 25/25/25/25 payment plan spreads the home cost across four milestones so you never pay more than 25% at once.',
+      },
+      {
         question: 'What is included in the listed price?',
         answer:
-          'The listed price covers the complete home unit with all standard inclusions: mini-split HVAC, tankless water heater, induction stove with range hood, dual-pane windows, covered front porch with railing, garbage disposal, washer/dryer hookups, upgraded 125-amp electrical panel, and your choice of 60+ RAL exterior colors, cabinet colors, interior flooring, bathroom wall finishes, and ceiling-mounted air movers. What you see in our standard inclusions list is what ships with every home.',
+          'Everything factory-installed: a mini-split HVAC system, tankless water heater, induction stove, dual-pane windows, a covered front porch, an upgraded 125-amp electrical panel, washer/dryer hookups, a garbage disposal, and a walk-in shower. You also choose from 60+ exterior colors, interior flooring, wall panels, and cabinet colors - all included in the base price.',
       },
       {
         question: 'What is NOT included in the price?',
         answer:
-          "Land, permits, foundation, delivery freight, crane or forklift for placement, septic system, utility trenching and hookups (water, sewer, electric), water meter, decks and skirting beyond the included porch, engineering or survey work, and local contractor labor for final connections. We're transparent about this because the 'all-in' cost matters more than the sticker price.",
+          'Land, foundation, permits, delivery and freight, the crane or forklift to unload, a septic system, utility trenching, the electrical service connection, a water meter, decks beyond the standard porch, skirting, engineering or surveys, and the local contractor labor to tie utilities in. These vary too much by site to bundle into the home price.',
       },
       {
-        question: 'How much does an expandable container home really cost after everything?',
+        question: 'Can expandable container homes be financed or insured?',
         answer:
-          "The honest answer depends on your site. A typical all-in budget beyond the home price includes: delivery freight ($3,000-$8,000 depending on distance), foundation ($3,000-$10,000 for slab or piers), utility hookups ($2,000-$8,000), septic if needed ($5,000-$15,000), crane placement ($500-$2,000), and permits ($500-$3,000). For a 20x20 home at $45,995, a realistic all-in range is $60,000-$80,000 depending on site conditions. We'd rather you know this upfront than be surprised.",
+          'Both are possible but differ from a traditional home. Because these are classified as temporary structures in most jurisdictions, conventional mortgages are difficult - many buyers use personal-property or chattel financing, and we can point you toward partners like Acorn. Insurance is available through specialty insurers that cover manufactured and modular structures, typically as personal property rather than real property.',
       },
       {
         question: 'Are expandable container homes actually cheaper than traditional homes?',
         answer:
-          "In most cases, yes - significantly. The national median new home price exceeds $400,000. A fully set up Bright Box Home including site work typically comes in at $60,000-$100,000 all-in. The tradeoff is size and customization depth - these aren't 2,500 sq ft custom builds. But for 200-800 sq ft of well-equipped living space, the value proposition is hard to beat.",
-      },
-      {
-        question: 'Can these homes be financed or insured?',
-        answer:
-          "Yes to both, but the process differs from traditional homes. Most lenders classify these as personal property (like manufactured homes) rather than real property, so you'll typically work with personal property lenders or chattel loan providers. Insurance is available through carriers that cover manufactured or modular structures. We can connect you with financing partners who specialize in prefab homes.",
-      },
-      {
-        question: 'What size options are available?',
-        answer:
-          'Our Expandable Container Homes come in five sizes: 20x10 (200 sq ft studio, $35,995), 20x20 (400 sq ft, 1-3 bedroom options, $45,995), 20x30 (600 sq ft, $49,995), 20x40 (800 sq ft, $59,995), and the 20x20 Duplex (800 sq ft combined two-story, $64,995). We also offer Apple Cabins, Space Capsules, Assembly Homes, Vending Units, and Emergency Housing.',
+          'For the structure itself, yes - significantly. Once you add foundation, utilities, permits, and site work the gap narrows, but an expandable home is still typically 40-60% less than comparable site-built construction and goes up in a fraction of the time. The savings are real; just budget for the full project, not only the home.',
       },
     ],
   },
@@ -50,27 +45,27 @@ const faqSections = [
       {
         question: 'Are expandable container homes legal where I live?',
         answer:
-          'It depends entirely on your local jurisdiction. Zoning, building codes, and permit requirements vary by city, county, and state. Here is what we recommend: look for unrestricted land, typically found in rural and unincorporated areas. Unrestricted land has no zoning overlays, no HOA restrictions, and minimal permitting requirements. Many of our buyers specifically seek out unrestricted rural acreage for exactly this reason. We can help you understand what to look for.',
+          'It depends on your jurisdiction. Bright Box Homes are classified as temporary structures, which in most areas do not require full building-code compliance. The easiest path by far is unrestricted rural land - no zoning overlay, no HOA, and minimal permitting. City and county rules vary widely, so always confirm with your local building department before you buy.',
       },
       {
         question: 'Can I put one on rural land?',
         answer:
-          'Rural land is often the best option for prefab homes - especially unrestricted land in unincorporated areas. With unrestricted land, you typically avoid zoning restrictions, residential design standards, and HOA rules that can complicate placement in subdivisions or city limits. Check for deed restrictions, floodplain status, and utility access. Many Texas counties, for example, have large areas of unrestricted land ideal for expandable container homes.',
+          "Rural land is our number-one recommended placement strategy. Many rural counties have minimal or no zoning. Look specifically for 'unrestricted' land - no deed restrictions, no HOA, and no residential design standards. Before buying, verify flood-plain status, setback requirements, and utility or well/septic access. Unrestricted acreage is where expandable homes are easiest to place and live in legally.",
       },
       {
         question: 'Can I put one inside city limits?',
         answer:
-          "Usually more challenging than rural placement. Cities enforce zoning codes, residential design standards, minimum square footage requirements, foundation specifications, and occupancy permits. Some cities explicitly allow accessory dwelling units (ADUs) which can work for smaller models. Check with your city's planning department before purchasing.",
+          'Usually harder. Municipalities enforce zoning, residential design standards, foundation specifications, and occupancy permits, and some restrict temporary structures outright. A few cities allow them as accessory dwelling units (ADUs). Check your local ordinances first - but rural, unrestricted land remains the simpler path.',
       },
       {
-        question: 'Do expandable container homes need a foundation?',
+        question: 'Do expandable container homes meet building code?',
         answer:
-          'Yes. Every expandable home needs a stable, level foundation. Options include concrete slab, concrete piers, helical piles, or engineered support systems depending on your site conditions, soil type, and local requirements. We provide foundation specification guides for each model.',
+          'Bright Box Homes are classified as temporary buildings and do not require local building-code compliance in most jurisdictions. They can be built and outfitted to meet certain specifications, but final approval always depends on your local jurisdiction. Consult your building department about how a temporary structure is treated where you intend to place it.',
       },
       {
-        question: 'What site preparation is required before delivery?',
+        question: 'Can I use one as an ADU, guest house, rental, or office?',
         answer:
-          'At minimum: a level pad or foundation, utility stub-outs (water, sewer/septic, electrical), clear vehicle access for the delivery truck (minimum 12 ft wide road), adequate space for crane or forklift operation, and proper drainage. We provide a detailed site prep checklist after purchase.',
+          'All are common uses, each with its own rules. ADU regulations vary by city and state; guest houses usually fall under accessory-structure rules; rentals require local landlord-tenant compliance; and office or commercial use needs commercial zoning or a home-occupation permit. Confirm the specific use you intend with your local authority.',
       },
     ],
   },
@@ -80,12 +75,17 @@ const faqSections = [
       {
         question: 'How is the home delivered and unloaded?',
         answer:
-          "Homes ship via flatbed truck from port to your property. A crane or forklift places the unit on your prepared foundation. You'll need road access wide enough for a flatbed (12 ft minimum), overhead clearance, and a staging area for the crane. We coordinate the entire delivery process including customs, port handling, and last-mile logistics.",
+          'The home ships on a flatbed truck. Your site needs adequate road access, a cleared and level staging area, and room for a crane or forklift to unload and set the unit on its foundation. Bright Box coordinates the delivery logistics from port to property.',
       },
       {
         question: 'How long does setup take?',
         answer:
-          "The home itself unfolds and is placed in a matter of hours. But 'move-in ready' includes more: foundation curing (1-7 days depending on type), utility connections (1-3 days with a licensed contractor), permit inspections, and any site finishing like decks, skirting, or landscaping. Realistic timeline from delivery to move-in is 1-4 weeks depending on site readiness and local inspection schedules.",
+          "The unit itself unfolds and is placed in a matter of hours. 'Move-in ready,' though, also includes the foundation (days to weeks), utility connections (days), any required inspections, and finishing like decks or skirting. A realistic timeline is 2-6 weeks from delivery to move-in, depending mostly on how prepared your site is.",
+      },
+      {
+        question: 'What site preparation is required before delivery?',
+        answer:
+          'At minimum: a level pad or foundation, an access road wide enough for a flatbed and crane, utility stub-outs (electrical, water, sewer or septic), a cleared work area, proper drainage grading, and compliance with any setback requirements.',
       },
     ],
   },
@@ -95,12 +95,12 @@ const faqSections = [
       {
         question: 'How are plumbing, sewer, water, and electrical connected?',
         answer:
-          "Homes ship with pre-installed internal plumbing, electrical wiring, breaker panel, and fixture connections. What you complete on-site is the 'last mile' - connecting the home's stub-outs to your local water supply, sewer or septic system, and electrical service. This requires licensed local contractors and typically takes 1-3 days.",
+          "Homes arrive with plumbing and electrical rough-ins already installed, plus a factory-installed water heater, HVAC, and appliances. On site, a licensed electrician connects the panel to your utility service and a licensed plumber ties into water and sewer or a septic system. It is the 'last mile,' not a full build-out.",
       },
       {
         question: 'Can an expandable container home be off-grid?',
         answer:
-          'Absolutely - this is one of the most popular use cases. We offer solar-ready packages, generator-ready electrical, and our homes are compatible with off-grid systems including solar panels, battery storage, propane water heaters, well water, rainwater collection, composting toilets, and generator backup. Many buyers place these on unrestricted rural land specifically for off-grid living.',
+          'Yes - it is one of the most popular setups. Add a solar package (8kW or 10kW kits), battery storage, and a generator (15kW-22kW), pair it with a septic system, well or rainwater collection, and propane for cooking. Bright Box offers solar-ready and generator-ready packages factory-installed, and unrestricted rural land is ideal for going fully off-grid.',
       },
     ],
   },
@@ -110,17 +110,17 @@ const faqSections = [
       {
         question: 'Are expandable container homes durable?',
         answer:
-          'Durability depends on build quality. Our homes use galvanized steel frames, 24-gauge corrugated metal roofing, dual-pane windows, and quality hinges and weatherseals. The steel frame structure is inherently strong - these are built from the same materials as shipping containers that survive ocean transit. Proper foundation, drainage, and maintenance extend the lifespan to decades.',
+          'Yes. Expandable homes are built on a galvanized steel frame - the same rugged structure as a shipping container - with optional 24-gauge metal roofing, dual-pane windows, and proper insulation. Long-term durability comes down to a quality foundation, good site drainage, and routine maintenance.',
       },
       {
-        question: 'Are these homes insulated well enough for hot or cold climates?',
+        question: 'Are they insulated well enough for Texas heat or cold climates?',
         answer:
-          'Standard insulation handles moderate climates well. For extreme heat (like Texas summers) or cold winters, we offer upgraded 3-inch Rockwool insulation that significantly improves thermal performance. Combined with the 24,000 BTU mini-split HVAC system, our homes maintain comfortable temperatures year-round. Proper installation and sealing at the site level is critical.',
+          'Standard insulation is included, with a 3-inch Rockwool upgrade available for extreme climates. The 24,000 BTU mini-split handles both heating and cooling, dual-pane windows cut thermal transfer, and ceiling air movers improve circulation. For Texas heat or cold-winter regions, we recommend the insulation upgrade.',
       },
       {
         question: 'Do expandable homes have condensation or moisture problems?',
         answer:
-          'Steel structures can be prone to condensation if not properly insulated and ventilated. Our homes address this with insulated wall panels, ceiling-mounted air movers for circulation, and proper vapor barrier installation. Correct foundation drainage and site grading are also essential. Follow our installation guidelines and condensation is manageable.',
+          'Condensation is possible in any tightly sealed structure that is not properly ventilated. Bright Box homes include ventilation, HVAC, and insulation to minimize it, and proper site drainage plus a sound foundation prevent moisture intrusion from below. Follow the ventilation guidance and it is very manageable.',
       },
     ],
   },
@@ -128,10 +128,14 @@ const faqSections = [
     title: 'Use Cases',
     items: [
       {
-        question:
-          'Can I use one as an ADU, guest house, cabin, rental, office, or workforce housing?',
+        question: 'What size options are available?',
         answer:
-          'All of the above. Our buyers use expandable homes as ADUs (accessory dwelling units), Airbnb rentals, hunting cabins, home offices, in-law suites, workforce housing, and primary residences. Each use case may have different local requirements - ADU rules vary by city, short-term rental permits vary by county, and workforce housing may have commercial zoning needs. We recommend checking your local regulations for your specific intended use.',
+          'Five expandable sizes: 20x10 (studio, ~200 sq ft), 20x20 (~400 sq ft), 20x30 (~600 sq ft), 20x40 (~800 sq ft), and the 20x20 Duplex (two-story, ~800 sq ft combined). Beyond the expandable line we also offer Apple Cabins, Space Capsules, Assembly Homes, and Emergency Housing.',
+      },
+      {
+        question: 'Can I customize the layout, exterior, kitchen, bathroom, and finishes?',
+        answer:
+          'Yes. Choose from 60+ exterior colors, 19 roof colors, interior wall colors, flooring options, cabinet colors, and bathroom wall designs. Kitchen and bathroom locations follow the floor plan you select, but the finishes throughout are yours to customize.',
       },
     ],
   },
@@ -141,17 +145,12 @@ const faqSections = [
       {
         question: 'Are cheap container homes from overseas reliable?',
         answer:
-          "Quality varies enormously. The cheapest units from unknown factories often cut corners on steel gauge, weld quality, insulation, electrical safety, and weathersealing. Bright Box Homes works exclusively with vetted, factory-authorized manufacturers. Every home is inspected before shipping, photo-documented during production, and backed by our 7-day no-defect inspection window upon delivery. We're transparent about our sourcing because your trust matters more than a sale.",
+          'Quality varies enormously between sellers. Bright Box Homes works with vetted factory partners, runs pre-ship photo and video inspections, and gives you a 7-day no-defect inspection window after delivery - protections many overseas sellers do not offer. Before buying from anyone, verify steel gauge, weld quality, insulation type, US-standard 120V/240V electrical, plumbing compatibility, and warranty terms.',
       },
       {
-        question: 'What should I inspect before buying any expandable container home?',
+        question: 'What should I inspect before buying from any seller?',
         answer:
-          'Check steel gauge and frame thickness, weld quality, hinge mechanisms, roof pitch and drainage, weatherseals around all expansion joints, floor system construction, electrical panel rating, plumbing layout, insulation type and R-value, window and door quality, and any certifications or warranties. We publish our full specifications because we want informed buyers.',
-      },
-      {
-        question: 'Do they meet building code?',
-        answer:
-          "Our homes are classified as temporary structures and do not require local building code compliance in most jurisdictions. However, if you intend to use one as a permanent residence in an area with building codes, you'll need to work with your local building department on permitting, foundation engineering, and inspections. This is another reason we recommend unrestricted land - in many rural areas, these requirements don't apply.",
+          'Check the steel gauge and frame quality, weld consistency, hinge mechanisms, roof pitch and drainage, weatherproof seals, the floor system, the electrical panel rating, plumbing layout, insulation R-value, window and door quality, certifications, and warranty terms. A reputable seller will share all of this before you commit.',
       },
     ],
   },
@@ -187,8 +186,8 @@ export default function FaqPage() {
             Everything You Need to Know
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-gray-300">
-            Real answers to the questions buyers actually ask - about permits,
-            costs, delivery, off-grid living, and finding the right land.
+            Honest answers about cost, permits, delivery, off-grid living, financing,
+            and finding the right land for your Bright Box Home.
           </p>
         </div>
       </section>
@@ -207,13 +206,13 @@ export default function FaqPage() {
             Still have questions?
           </h2>
           <p className="mt-4 text-lg text-gray-300">
-            Our team is happy to walk you through anything - from land to delivery
-            to financing.
+            Our team is happy to walk you through anything - from land to delivery to
+            financing.
           </p>
           <div className="mt-8 flex justify-center">
-            <BookConsultation size="lg">Book a Consultation</BookConsultation>
+            <BookConsultation size="lg" />
           </div>
-          <p className="mt-6 text-sm text-gray-500">
+          <p className="mt-6 text-sm text-gray-400">
             800-259-1745 &middot; info@brightboxhomes.com
           </p>
         </div>

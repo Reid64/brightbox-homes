@@ -20,8 +20,16 @@ interface AccordionProps {
 const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
 
 export default function Accordion({ sections }: AccordionProps) {
-  // One open item at a time across the whole accordion.
-  const [openId, setOpenId] = useState<string | null>(null);
+  // Multiple items can be open simultaneously.
+  const [openIds, setOpenIds] = useState<Set<string>>(new Set());
+
+  const toggle = (id: string) =>
+    setOpenIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
 
   return (
     <div className="space-y-16">
@@ -31,7 +39,7 @@ export default function Accordion({ sections }: AccordionProps) {
           <div className="border-t border-white/5">
             {section.items.map((item, ii) => {
               const id = `${si}-${ii}`;
-              const open = openId === id;
+              const open = openIds.has(id);
               const panelId = `faq-panel-${id}`;
               const btnId = `faq-btn-${id}`;
               return (
@@ -41,7 +49,7 @@ export default function Accordion({ sections }: AccordionProps) {
                     type="button"
                     aria-expanded={open}
                     aria-controls={panelId}
-                    onClick={() => setOpenId(open ? null : id)}
+                    onClick={() => toggle(id)}
                     className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors duration-fast ease-out hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
                   >
                     <span className="font-body font-medium text-white">

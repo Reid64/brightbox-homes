@@ -25,8 +25,8 @@ const config: Config = {
           white: '#FFFFFF',
           'warm-white': '#FAFAF7',
           // Dark premium surfaces (DESIGN_LANGUAGE 2.2).
-          charcoal: '#1E2530',
-          'surface-dark': '#262D3A',
+          charcoal: '#232B3A',
+          'surface-dark': '#2C3546',
           gray: {
             100: '#F3F4F6',
             200: '#E5E7EB',

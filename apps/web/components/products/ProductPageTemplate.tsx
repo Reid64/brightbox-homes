@@ -75,7 +75,7 @@ const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue'
 const headingClass = 'font-heading text-3xl font-bold text-white md:text-4xl';
 const bandBase = 'scroll-mt-24 rounded-2xl border border-white/10 p-6 lg:p-10';
 const bandDark = `${bandBase} bg-bb-surface-dark`;
-const bandDeep = `${bandBase} bg-[#0D1117]`;
+const bandDeep = `${bandBase} bg-bb-charcoal`;
 
 function slug(s: string): string {
   return s
@@ -312,7 +312,7 @@ export default function ProductPageTemplate({
                       {grp.items.map((fp) => (
                         <div
                           key={fp.name}
-                          className="rounded-xl border border-white/15 bg-[#1E2430] p-4"
+                          className="rounded-xl border border-white/15 bg-white/5 p-4"
                         >
                           {fp.src ? (
                             <div className="overflow-hidden rounded-lg bg-white p-2">
@@ -369,7 +369,7 @@ export default function ProductPageTemplate({
                       {cat.items.map((item) => (
                         <div
                           key={item.name}
-                          className="overflow-hidden rounded-xl border border-white/15 bg-[#1E2430]"
+                          className="overflow-hidden rounded-xl border border-white/15 bg-white/5"
                         >
                           {item.image && (
                             <div className="relative aspect-video w-full bg-white/5">

@@ -82,16 +82,16 @@ export default function ProductSideNav({
               <Image
                 src="/images/badges/faith-foundation-partnership.png"
                 alt="FAITH Foundation Partner"
-                width={140}
-                height={140}
-                className="h-14 w-auto"
+                width={160}
+                height={160}
+                className="h-16 w-auto"
               />
               <Image
                 src="/images/badges/faith-2500-donation.png"
                 alt="$2,500 donated per home sold"
-                width={140}
-                height={140}
-                className="h-14 w-auto"
+                width={160}
+                height={160}
+                className="h-16 w-auto"
               />
             </div>
           </div>

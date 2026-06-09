@@ -65,6 +65,11 @@ const features = [
   'Workforce housing developments',
 ];
 
+const frames = [
+  { src: '/images/products/assembly-homes/specs/frame.webp', alt: 'Modular assembly steel frame.', caption: 'Built with the same modular assembly system - scalable to multi-story commercial configurations.', width: 800, height: 571 },
+  { src: '/images/products/assembly-homes/specs/specs.png', alt: 'Modular assembly technical specifications.', caption: 'Technical specifications - modular steel construction.', width: 1173, height: 1341 },
+];
+
 export default function ApartmentsOfficeBuildingsPage() {
   return (
     <ProductPageTemplate
@@ -79,6 +84,7 @@ export default function ApartmentsOfficeBuildingsPage() {
       intro={intro}
       keyFeatures={keyFeatures}
       useCases={useCases}
+      frames={frames}
       specs={specs}
       features={features}
     />

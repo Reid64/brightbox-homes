@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
 import { BedDouble, Tent, Briefcase, Users, Sparkles, ShieldCheck, Thermometer, Bath, LayoutGrid, Sun } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+import ShowcaseCard from '@/components/products/ShowcaseCard';
+
+const capsuleModels = [
+  { name: 'V-6', price: '$43,995', length: "28' long", image: '/images/products/space-capsules/models/v6.png' },
+  { name: 'V-7', price: '$59,995', length: "37.9' long", image: '/images/products/space-capsules/models/v7.png' },
+  { name: 'V-9', price: '$67,995', length: "42.8' long", image: '/images/products/space-capsules/models/v9-large.png' },
+  { name: 'V-9 Compact', price: '$67,995', length: "28' long", image: '/images/products/space-capsules/models/v9-compact.png' },
+];
 
 const intro =
   'The Space Capsule is the futuristic statement piece of the lineup - a panoramic glass pod that turns any setting into a destination. Floor-to-ceiling LOW-E glass, a private balcony, and a smart, fully-finished interior make it equally at home as a luxury rental, a lakeside resort unit, or a serene backyard office. Nine layouts scale from a compact solo pod to a two-bedroom cabin.';
@@ -142,6 +150,29 @@ const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue'
 
 const spaceCapsuleSections = (
   <>
+    {/* Models & Pricing */}
+    <section className="bg-bb-surface-dark py-16 lg:py-24">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <p className={label}>Models &amp; Pricing</p>
+        <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+          Choose Your Capsule
+        </h2>
+        <div className="mt-10 space-y-8">
+          {capsuleModels.map((m, i) => (
+            <ShowcaseCard key={m.image} index={i} image={m.image} alt={`${m.name} space capsule, ${m.length}`}>
+              <h3 className="font-heading text-2xl font-bold text-white">{m.name}</h3>
+              <p className="mt-2 font-mono text-2xl text-bb-blue">{m.price}</p>
+              <p className="mt-3 text-gray-300">{m.length}</p>
+              <p className="mt-3 text-sm text-gray-400">
+                Panoramic glass capsule with LOW-E tempered glass, full bath, and smart
+                interior - finished and ready to place.
+              </p>
+            </ShowcaseCard>
+          ))}
+        </div>
+      </div>
+    </section>
+
     {/* Use Cases */}
     <section className="bg-bb-charcoal py-16 lg:py-24">
       <div className="mx-auto max-w-[1280px] px-6">

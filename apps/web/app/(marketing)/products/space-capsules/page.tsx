@@ -7,7 +7,7 @@ const capsuleModels = [
   { name: 'V-6', price: '$43,995', length: "28' long", image: '/images/products/space-capsules/models/v6.png' },
   { name: 'V-7', price: '$59,995', length: "37.9' long", image: '/images/products/space-capsules/models/v7.png' },
   { name: 'V-9', price: '$67,995', length: "42.8' long", image: '/images/products/space-capsules/models/v9-large.png' },
-  { name: 'V-9 Compact', price: '$67,995', length: "28' long", image: '/images/products/space-capsules/models/v9-compact.png' },
+  { name: 'V-5', price: '$44,995', length: "28' long", image: '/images/products/space-capsules/models/v9-compact.png' },
 ];
 
 const intro =
@@ -29,23 +29,23 @@ export const metadata: Metadata = {
 };
 
 const exteriorImages = [
-  { src: '/images/products/space-capsules/exterior/01.png', alt: 'Space Capsule home with orange accents overlooking a lake at sunset.' },
-  { src: '/images/products/space-capsules/exterior/02.png', alt: 'Space Capsule home with an American flag beside a lake.' },
-  { src: '/images/products/space-capsules/exterior/03.png', alt: 'Space Capsule home with purple LED accents at dusk.' },
-  { src: '/images/products/space-capsules/exterior/04.png', alt: 'Space Capsule home with sculpted white panels in a garden.' },
-  { src: '/images/products/space-capsules/exterior/05.png', alt: 'Space Capsule home on a lakeside glamping deck at sunset.' },
-  { src: '/images/products/space-capsules/exterior/06.jpg', alt: 'Space Capsule pod with a deck overlooking water.' },
-  { src: '/images/products/space-capsules/exterior/07.jpg', alt: 'Space Capsule pods arranged as a lakeside resort.' },
-  { src: '/images/products/space-capsules/exterior/08.jpg', alt: 'Space Capsule pods beside a quarry lake.' },
-  { src: '/images/products/space-capsules/exterior/09.jpg', alt: 'Aerial view of a Space Capsule pod village by the water.' },
-  { src: '/images/products/space-capsules/exterior/10.jpg', alt: 'Space Capsule pod with lounge chairs on a grassy lawn.' },
+  { src: '/images/products/space-capsules/exterior/01.png', alt: 'Space Capsule home with orange accents overlooking a lake at sunset.', caption: 'Golden hour by the lake - the pod silhouette glows at sunset.' },
+  { src: '/images/products/space-capsules/exterior/02.png', alt: 'Space Capsule home with an American flag beside a lake.', caption: "American-made escape - a private capsule at the water's edge." },
+  { src: '/images/products/space-capsules/exterior/03.png', alt: 'Space Capsule home with purple LED accents at dusk.', caption: 'After dark, integrated LED accents turn the pod into a statement.' },
+  { src: '/images/products/space-capsules/exterior/04.png', alt: 'Space Capsule home with sculpted white panels in a garden.', caption: 'Sculpted white panels make a striking centerpiece in any garden.' },
+  { src: '/images/products/space-capsules/exterior/05.png', alt: 'Space Capsule home on a lakeside glamping deck at sunset.', caption: 'A glamping deck built for sunsets and premium nightly rates.' },
+  { src: '/images/products/space-capsules/exterior/06.jpg', alt: 'Space Capsule pod with a deck overlooking water.', caption: 'Wake up over the water with a private deck off the pod.' },
+  { src: '/images/products/space-capsules/exterior/07.jpg', alt: 'Space Capsule pods arranged as a lakeside resort.', caption: 'Cluster several pods into an instant lakeside resort.' },
+  { src: '/images/products/space-capsules/exterior/08.jpg', alt: 'Space Capsule pods beside a quarry lake.', caption: 'A scenic capsule retreat perched beside a quarry lake.' },
+  { src: '/images/products/space-capsules/exterior/09.jpg', alt: 'Aerial view of a Space Capsule pod village by the water.', caption: 'From above - a pod village that reads as a destination.' },
+  { src: '/images/products/space-capsules/exterior/10.jpg', alt: 'Space Capsule pod with lounge chairs on a grassy lawn.', caption: 'Lounge-ready living, dropped onto an open green lawn.' },
 ];
 
 const interiorImages = [
-  { src: '/images/products/space-capsules/interior/01.jpg', alt: 'Space Capsule living area with curved glass and forest views.' },
-  { src: '/images/products/space-capsules/interior/02.jpg', alt: 'Space Capsule interior with a kitchenette and lounge seating.' },
-  { src: '/images/products/space-capsules/interior/03.jpg', alt: 'Furnished Space Capsule interior with dining, sofa, and bed.' },
-  { src: '/images/products/space-capsules/interior/04.jpg', alt: 'Space Capsule interior with a bed, sofa, and floor-to-ceiling glass.' },
+  { src: '/images/products/space-capsules/interior/01.jpg', alt: 'Space Capsule living area with curved glass and forest views.', caption: 'Curved glass frames the forest - the outdoors becomes your wall art.' },
+  { src: '/images/products/space-capsules/interior/02.jpg', alt: 'Space Capsule interior with a kitchenette and lounge seating.', caption: 'A compact kitchenette and lounge, finished to resort standard.' },
+  { src: '/images/products/space-capsules/interior/03.jpg', alt: 'Furnished Space Capsule interior with dining, sofa, and bed.', caption: 'Dining, sofa, and bed in one beautifully resolved pod.' },
+  { src: '/images/products/space-capsules/interior/04.jpg', alt: 'Space Capsule interior with a bed, sofa, and floor-to-ceiling glass.', caption: 'Floor-to-ceiling glass wraps the bed in light and view.' },
 ];
 
 const specs = [
@@ -164,8 +164,9 @@ const spaceCapsuleSections = (
               <p className="mt-2 font-mono text-2xl text-bb-blue">{m.price}</p>
               <p className="mt-3 text-gray-300">{m.length}</p>
               <p className="mt-3 text-sm text-gray-400">
-                Panoramic glass capsule with LOW-E tempered glass, full bath, and smart
-                interior - finished and ready to place.
+                Panoramic glass capsule with LOW-E tempered glass, skylights for natural
+                overhead light, a full bath, and a smart interior - finished and ready to
+                place.
               </p>
             </ShowcaseCard>
           ))}
@@ -173,8 +174,24 @@ const spaceCapsuleSections = (
       </div>
     </section>
 
-    {/* Use Cases */}
+    {/* Investment & Resort Potential */}
     <section className="bg-bb-charcoal py-16 lg:py-24">
+      <div className="mx-auto max-w-3xl px-6">
+        <p className={label}>Investment &amp; Resort Potential</p>
+        <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+          Build a Destination
+        </h2>
+        <p className="mt-6 text-lg text-gray-300">
+          Deploy multiple Space Capsules to create a boutique resort, glamping retreat, or
+          wellness campus. The distinctive pod silhouette creates an iconic resort aesthetic
+          that photographs beautifully and commands premium nightly rates. Ideal for
+          investors, resort operators, and hospitality entrepreneurs.
+        </p>
+      </div>
+    </section>
+
+    {/* Use Cases */}
+    <section className="bg-bb-surface-dark py-16 lg:py-24">
       <div className="mx-auto max-w-[1280px] px-6">
         <p className={label}>Use Cases</p>
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">

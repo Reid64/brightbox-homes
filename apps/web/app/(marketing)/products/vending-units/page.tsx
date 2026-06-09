@@ -28,13 +28,13 @@ export const metadata: Metadata = {
 };
 
 const exteriorImages = [
-  { src: '/images/products/vending-units/exterior/01.jpg', alt: 'Deployed container food stand with custom illuminated signage at night.' },
-  { src: '/images/products/vending-units/exterior/02.png', alt: 'Orange container food stand on a boardwalk with outdoor seating.' },
-  { src: '/images/products/vending-units/exterior/03.png', alt: 'Container food kiosk in a city park with patio seating.' },
-  { src: '/images/products/vending-units/exterior/04.png', alt: 'Green container cafe with customers ordering at the counter.' },
-  { src: '/images/products/vending-units/exterior/05.jpg', alt: 'Orange container vending unit with fold-up serving windows.' },
-  { src: '/images/products/vending-units/exterior/06.jpg', alt: 'Customizable black container cafe with bar seating and branding space.' },
-  { src: '/images/products/vending-units/exterior/07.jpg', alt: 'Glass-front container retail unit.' },
+  { src: '/images/products/vending-units/exterior/01.jpg', alt: 'Deployed container food stand with custom illuminated signage at night.', caption: 'Open for business after dark - custom illuminated signage that draws a crowd.' },
+  { src: '/images/products/vending-units/exterior/02.png', alt: 'Orange container food stand on a boardwalk with outdoor seating.', caption: 'Prime boardwalk real estate with built-in outdoor seating.' },
+  { src: '/images/products/vending-units/exterior/03.png', alt: 'Container food kiosk in a city park with patio seating.', caption: 'A turnkey park kiosk - patio seating and foot traffic included.' },
+  { src: '/images/products/vending-units/exterior/04.png', alt: 'Green container cafe with customers ordering at the counter.', caption: 'A cafe that pulls a line - serving window built for fast flow.' },
+  { src: '/images/products/vending-units/exterior/05.jpg', alt: 'Orange container vending unit with fold-up serving windows.', caption: 'Fold-up serving windows open wide and lock down secure after hours.' },
+  { src: '/images/products/vending-units/exterior/06.jpg', alt: 'Customizable black container cafe with bar seating and branding space.', caption: 'Bar seating and bold branding space - your concept, your colors.' },
+  { src: '/images/products/vending-units/exterior/07.jpg', alt: 'Glass-front container retail unit.', caption: 'A glass-front retail unit that puts your products on display.' },
 ];
 
 const specs = [

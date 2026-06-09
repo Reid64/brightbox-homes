@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const exteriorImages = [
-  { src: '/images/products/emergency-housing/exterior/folding-house.png', alt: 'Folding emergency house shown folded and unfolded.' },
+  { src: '/images/products/emergency-housing/exterior/folding-house.png', alt: 'Folding emergency house shown folded and unfolded.', caption: 'Folded flat for shipping, unfolded into a finished shelter in hours.' },
 ];
 
 // Bright Box-branded documentation graphics, each captioned. (The old

@@ -11,6 +11,7 @@ import type { NavSection } from '@/components/products/ProductSideNav';
 interface GalleryImage {
   src: string;
   alt: string;
+  caption?: string;
 }
 
 interface Spec {
@@ -79,6 +80,7 @@ interface ProductPageTemplateProps {
   specs: Spec[];
   features: string[];
   ctaText?: string;
+  warmCards?: boolean;
 }
 
 const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
@@ -113,7 +115,11 @@ export default function ProductPageTemplate({
   frames,
   specs,
   features,
+  warmCards = false,
 }: ProductPageTemplateProps) {
+  const featureCardClass = warmCards
+    ? 'rounded-xl border border-[#4A3D2E]/30 bg-[#2C2519] p-6 transition-colors duration-fast ease-out hover:bg-[#332E22]'
+    : 'rounded-xl border border-white/10 bg-white/5 p-6';
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
 
@@ -266,7 +272,7 @@ export default function ProductPageTemplate({
                   return (
                     <div
                       key={f.title}
-                      className="rounded-xl border border-white/10 bg-white/5 p-6"
+                      className={featureCardClass}
                     >
                       <Icon size={28} aria-hidden="true" className="text-bb-blue" />
                       <h3 className="mt-4 font-heading text-lg font-semibold text-white">
@@ -291,7 +297,7 @@ export default function ProductPageTemplate({
                   return (
                     <div
                       key={u.title}
-                      className="rounded-xl border border-white/10 bg-white/5 p-6"
+                      className={featureCardClass}
                     >
                       <Icon size={28} aria-hidden="true" className="text-bb-blue" />
                       <h3 className="mt-4 font-heading text-base font-semibold text-white">

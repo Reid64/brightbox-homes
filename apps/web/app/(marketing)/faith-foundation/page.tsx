@@ -58,7 +58,7 @@ export default function FaithFoundationPage() {
               height={320}
               className="h-40 w-auto"
             />
-            <span className="mt-6 block font-heading text-7xl font-bold text-bb-blue/20">
+            <span className="mt-6 block font-heading text-7xl font-bold text-bb-blue">
               $2,500
             </span>
             <span className="mt-2 block text-gray-500">donated per home sold</span>

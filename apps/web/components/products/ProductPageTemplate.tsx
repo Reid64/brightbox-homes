@@ -137,7 +137,7 @@ export default function ProductPageTemplate({
 
   return (
     <div className="bg-bb-charcoal">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:gap-8">
+      <div className="flex flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:gap-8">
         <ProductSideNav productName={name} sections={navSections} />
 
         <div className="min-w-0 flex-1 space-y-8">

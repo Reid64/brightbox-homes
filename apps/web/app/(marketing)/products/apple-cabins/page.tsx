@@ -1,5 +1,25 @@
 import type { Metadata } from 'next';
+import { ShieldCheck, Sun, Thermometer, Layers, Sparkles, Truck, Tent, KeyRound, Briefcase } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+
+const intro =
+  "The Apple Cabin wraps premium materials in a soft, rounded silhouette unlike anything else on your street. Fluorocarbon-coated aluminum panels, double-pane insulated glass, and a galvanized steel frame make it as durable as it is striking - a turnkey pod that drops onto almost any site and instantly becomes the centerpiece. It's the favorite of glamping operators, Airbnb hosts, and anyone who wants a backyard retreat with serious wow factor.";
+
+const keyFeatures = [
+  { icon: ShieldCheck, title: 'Aluminum-Panel Shell', text: 'Fluorocarbon-coated aluminum panels resist weather, UV, and corrosion for years.' },
+  { icon: Sun, title: 'Double-Pane Glass', text: 'Insulated double-pane glazing keeps interiors bright, quiet, and temperature-stable.' },
+  { icon: Thermometer, title: 'Polyurethane Insulation', text: 'A dense, sealed shell holds comfortable temperatures in heat and cold alike.' },
+  { icon: Layers, title: 'Stone Flooring', text: 'Microcrystalline stone flooring - tough, easy to clean, and premium underfoot.' },
+  { icon: Sparkles, title: 'Rounded Aesthetic', text: 'A distinctive organic form that photographs beautifully and stands out.' },
+  { icon: Truck, title: 'Ships Turnkey', text: 'Arrives fully finished and ready to place with minimal site work.' },
+];
+
+const useCases = [
+  { icon: Tent, title: 'Glamping Resort', text: 'A high-end, photogenic unit for resort and campground operators.' },
+  { icon: KeyRound, title: 'Airbnb Rental', text: 'A standout short-term rental that commands premium nightly rates.' },
+  { icon: Briefcase, title: 'Backyard Studio', text: 'A quiet office, studio, or creative space steps from home.' },
+  { icon: Sparkles, title: 'Retreat Center', text: 'A serene escape for wellness, meditation, or guest stays.' },
+];
 
 export const metadata: Metadata = {
   title: 'Apple Cabin Homes | Bright Box Homes',
@@ -67,6 +87,9 @@ export default function AppleCabinsPage() {
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      intro={intro}
+      keyFeatures={keyFeatures}
+      useCases={useCases}
       floorPlans={floorPlans}
       specs={specs}
       features={features}

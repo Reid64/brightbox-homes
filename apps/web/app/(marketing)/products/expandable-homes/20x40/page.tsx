@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
-import { exteriorImages, interiorImages, features, upgrades } from '@/components/products/expandableData';
+import { exteriorImages, interiorImages, features, upgrades, intro, keyFeatures, useCases } from '@/components/products/expandableData';
 
 export const metadata: Metadata = {
   title: '20x40 Expandable Home | Bright Box Homes',
   description:
-    'The 20x40 Expandable Home from $45,995. An 800 sq ft steel-frame home available in 1 or 2 bedroom layouts with mini-split HVAC, tankless water heater, and a covered porch.',
+    'The 20x40 Expandable Home from $59,995. An 800 sq ft steel-frame home available in 1 or 2 bedroom layouts with mini-split HVAC, tankless water heater, and a covered porch.',
 };
 
 const floorPlans = [
@@ -22,7 +22,7 @@ const specs = [
   { label: 'HVAC', value: '24,000 BTU mini-split' },
   { label: 'Water Heater', value: 'Tankless' },
   { label: 'Exterior Colors', value: '60+ RAL options' },
-  { label: 'Price', value: '$45,995' },
+  { label: 'Price', value: '$59,995' },
 ];
 
 export default function Expandable20x40Page() {
@@ -31,11 +31,14 @@ export default function Expandable20x40Page() {
       name="20x40 Expandable Home"
       tagline="Our largest single-story home - 800 sq ft in 1 or 2 bedroom layouts."
       description="The 20x40 is our largest single-story expandable home - 800 sq ft of finished living space in one- or two-bedroom layouts. Built on a galvanized steel frame with expandable side sections, it delivers full-home comfort with room for a generous living area, full kitchen, and multiple bedrooms. Every unit ships standard with a mini-split HVAC system, tankless water heater, induction kitchen, and a covered front porch, with 60+ RAL exterior colors to choose from."
-      price="$45,995"
+      price="$59,995"
       priceLabel="Starting at"
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      intro={intro}
+      keyFeatures={keyFeatures}
+      useCases={useCases}
       floorPlans={floorPlans}
       upgrades={upgrades}
       specs={specs}

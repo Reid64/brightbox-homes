@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
-import { exteriorImages, interiorImages, features, upgrades } from '@/components/products/expandableData';
+import { exteriorImages, interiorImages, features, upgrades, intro, keyFeatures, useCases } from '@/components/products/expandableData';
 
 export const metadata: Metadata = {
   title: '20x20 Expandable Home | Bright Box Homes',
   description:
-    'The 20x20 Expandable Home from $35,995. A 400 sq ft steel-frame home available in 1, 2, or 3 bedroom layouts with mini-split HVAC, tankless water heater, and a covered porch.',
+    'The 20x20 Expandable Home from $45,995. A 400 sq ft steel-frame home available in 1, 2, or 3 bedroom layouts with mini-split HVAC, tankless water heater, and a covered porch.',
 };
 
 const floorPlans = [
@@ -23,7 +23,7 @@ const specs = [
   { label: 'HVAC', value: '24,000 BTU mini-split' },
   { label: 'Water Heater', value: 'Tankless' },
   { label: 'Exterior Colors', value: '60+ RAL options' },
-  { label: 'Price', value: '$35,995' },
+  { label: 'Price', value: '$45,995' },
 ];
 
 export default function Expandable20x20Page() {
@@ -32,11 +32,14 @@ export default function Expandable20x20Page() {
       name="20x20 Expandable Home"
       tagline="400 sq ft in your choice of 1, 2, or 3 bedroom layouts."
       description="The 20x20 is our most versatile expandable home - 400 sq ft of finished living space available in one-, two-, or three-bedroom layouts. Built on a galvanized steel frame with expandable side sections, it works equally well as a primary residence, rental, or multi-room ADU. Every unit ships standard with a mini-split HVAC system, tankless water heater, induction kitchen, and a covered front porch, with 60+ RAL exterior colors to choose from."
-      price="$35,995"
+      price="$45,995"
       priceLabel="Starting at"
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      intro={intro}
+      keyFeatures={keyFeatures}
+      useCases={useCases}
       floorPlans={floorPlans}
       upgrades={upgrades}
       specs={specs}

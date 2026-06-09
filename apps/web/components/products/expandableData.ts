@@ -1,6 +1,27 @@
+import { ShieldCheck, Thermometer, Droplets, Palette, Zap, Home, KeyRound, Users, Tent } from 'lucide-react';
+
 // Shared content for the Expandable Homes size-specific pages. Photography is
 // not size-tagged at the source, so the general exterior/interior galleries and
 // upgrade list are shared across sizes; floor plans and specs are per-size.
+
+export const intro =
+  "Our flagship line and best value: steel-frame homes that ship compact and unfold on site into fully finished living space. Every Bright Box expandable home arrives move-in ready with a complete kitchen, full bathroom, climate control, and a covered porch - then customizes to your taste with 60+ exterior colors and a full range of interior finishes. Whether it's your first home, an income property, or a backyard ADU, it delivers real-home comfort at a fraction of traditional construction cost.";
+
+export const keyFeatures = [
+  { icon: ShieldCheck, title: 'Galvanized Steel Frame', text: 'Built on the same rugged steel structure as shipping containers - engineered to last decades.' },
+  { icon: Thermometer, title: 'Climate Controlled', text: '24,000 BTU 20 SEER mini-split HVAC keeps every room comfortable year-round.' },
+  { icon: Droplets, title: 'Full Kitchen & Bath', text: 'Tankless water heater, induction stove, walk-in shower, and garbage disposal - standard.' },
+  { icon: Palette, title: '60+ Color Options', text: 'Choose 60+ RAL exterior colors plus customizable interior walls, floors, and cabinets.' },
+  { icon: Zap, title: 'Move-In Ready Wiring', text: 'Upgraded 125-amp panel with 110V, 240V, and GFCI outlets pre-installed throughout.' },
+  { icon: Home, title: 'Covered Front Porch', text: 'Every model ships with a covered porch and railing - usable outdoor space from day one.' },
+];
+
+export const useCases = [
+  { icon: Home, title: 'Primary Residence', text: 'Full-time, full-comfort living at an affordable price point.' },
+  { icon: Tent, title: 'Vacation Home', text: 'A turnkey getaway for the lake, mountains, or rural acreage.' },
+  { icon: KeyRound, title: 'Airbnb Rental', text: 'A photogenic, income-producing short-term rental unit.' },
+  { icon: Users, title: 'ADU / Guest House', text: 'Extra living space for family, guests, or a home office.' },
+];
 
 export const exteriorImages = [
   { src: '/images/products/expandable-homes/exterior/01.jpeg', alt: 'Delivered brown expandable home with a covered porch among palm trees.' },

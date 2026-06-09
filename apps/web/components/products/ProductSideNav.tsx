@@ -41,31 +41,31 @@ export default function ProductSideNav({
 
   return (
     <>
-      {/* Desktop sticky sidebar (lg+) */}
-      <aside className="hidden lg:block lg:w-56 lg:shrink-0 lg:border-r lg:border-white/10 lg:pr-4">
-        <div className="sticky top-20 py-8">
+      {/* Desktop sticky sidebar (lg+) - a real panel, flush to the content's left edge */}
+      <aside className="hidden lg:block lg:w-60 lg:shrink-0">
+        <div className="sticky top-20 rounded-2xl border border-white/10 bg-bb-surface-dark p-5">
           <p className="font-heading text-lg font-bold text-white">{productName}</p>
-          <nav className="mt-6 flex flex-col gap-1" aria-label="Section navigation">
+          <nav className="mt-5 flex flex-col gap-1" aria-label="Section navigation">
             {sections.map((s) => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
                 aria-current={active === s.id ? 'true' : undefined}
-                className={`rounded-md border-l-2 px-3 py-2 text-base font-medium transition-colors duration-fast ease-out ${
+                className={`rounded-md border-l-4 px-3 py-2 text-base font-semibold transition-colors duration-fast ease-out ${
                   active === s.id
-                    ? 'border-bb-blue bg-bb-blue/20 font-semibold text-white'
-                    : 'border-transparent text-gray-200 hover:text-white'
+                    ? 'border-bb-blue bg-bb-blue/15 text-white'
+                    : 'border-transparent text-gray-200 hover:bg-white/5 hover:text-white'
                 }`}
               >
                 {s.label}
               </a>
             ))}
           </nav>
-          <div className="mt-8">
+          <div className="mt-6">
             <BookConsultation className="w-full" />
             <a
               href="tel:8002591745"
-              className="mt-3 flex items-center gap-2 px-3 text-base font-semibold text-gray-200 transition-colors duration-fast ease-out hover:text-white"
+              className="mt-3 flex items-center justify-center gap-2 px-3 text-base font-semibold text-gray-200 transition-colors duration-fast ease-out hover:text-white"
             >
               <Phone size={18} aria-hidden="true" className="text-red-500" />
               800-259-1745

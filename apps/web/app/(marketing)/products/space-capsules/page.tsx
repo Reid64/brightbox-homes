@@ -1,6 +1,18 @@
 import type { Metadata } from 'next';
-import { BedDouble, Tent, Briefcase, Users } from 'lucide-react';
+import { BedDouble, Tent, Briefcase, Users, Sparkles, ShieldCheck, Thermometer, Bath, LayoutGrid, Sun } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+
+const intro =
+  'The Space Capsule is the futuristic statement piece of the lineup - a panoramic glass pod that turns any setting into a destination. Floor-to-ceiling LOW-E glass, a private balcony, and a smart, fully-finished interior make it equally at home as a luxury rental, a lakeside resort unit, or a serene backyard office. Nine layouts scale from a compact solo pod to a two-bedroom cabin.';
+
+const keyFeatures = [
+  { icon: Sparkles, title: 'Panoramic Glass', text: 'Floor-to-ceiling LOW-E tempered glass curtain walls flood the pod with light.' },
+  { icon: ShieldCheck, title: 'Steel + Aluminum Build', text: 'Galvanized steel frame with an insulated, waterproof, shock-proof shell.' },
+  { icon: Thermometer, title: 'Climate Ready', text: 'Air conditioning and an insulated shell keep it comfortable in any season.' },
+  { icon: Bath, title: 'Smart Bathroom', text: 'Full bath with marble floor, bath heater, and a smart toilet.' },
+  { icon: LayoutGrid, title: 'Nine Layouts', text: 'Choose from nine models, ~129 to ~463 sq ft, solo pod to two-bedroom.' },
+  { icon: Sun, title: 'Resort-Grade Finish', text: 'A panoramic balcony and exterior light belt give it a premium silhouette.' },
+];
 
 export const metadata: Metadata = {
   title: 'Space Capsule Homes | Bright Box Homes',
@@ -209,6 +221,8 @@ export default function SpaceCapsulesPage() {
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
       interiorImages={interiorImages}
+      intro={intro}
+      keyFeatures={keyFeatures}
       afterGalleries={spaceCapsuleSections}
       floorPlans={floorPlans}
       upgrades={upgrades}

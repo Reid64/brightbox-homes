@@ -1,5 +1,25 @@
 import type { Metadata } from 'next';
+import { Store, Palette, ShieldCheck, Zap, Truck, Sparkles, ShoppingBag, Coffee, Building2, UtensilsCrossed } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+
+const intro =
+  'Vending Units turn a shipping-container shell into a turnkey storefront. Built for food stands, retail kiosks, and mobile pop-ups, each unit is customized with serving windows, branding, and the utilities your business needs - then delivered ready to open. Rugged, lockable, and relocatable, it is the fastest way to put a branded business on any lot.';
+
+const keyFeatures = [
+  { icon: Store, title: 'Serving Windows', text: 'Configurable fold-up serving and retail windows built for fast customer flow.' },
+  { icon: Palette, title: 'Custom Branding', text: 'Finish the exterior in your brand colors, logo, and signage.' },
+  { icon: ShieldCheck, title: 'Steel Container Shell', text: 'Lockable, weatherproof steel construction that travels and secures easily.' },
+  { icon: Zap, title: 'Business-Ready Utilities', text: 'Electrical, lighting, and equipment hookups configured for your use.' },
+  { icon: Truck, title: 'Relocatable', text: 'Move your storefront to events, seasons, or new locations as needed.' },
+  { icon: Sparkles, title: 'Turnkey Setup', text: 'Delivered ready to operate - open for business with minimal on-site work.' },
+];
+
+const useCases = [
+  { icon: UtensilsCrossed, title: 'Food Stand', text: 'A compact, equipped kitchen-to-counter food service unit.' },
+  { icon: ShoppingBag, title: 'Retail Kiosk', text: 'A secure, branded shop for products and merchandise.' },
+  { icon: Coffee, title: 'Coffee Bar', text: 'A high-traffic espresso and beverage stand.' },
+  { icon: Building2, title: 'Pop-Up Shop', text: 'A relocatable storefront for events and seasonal sales.' },
+];
 
 export const metadata: Metadata = {
   title: 'Vending Units | Bright Box Homes',
@@ -43,6 +63,9 @@ export default function VendingUnitsPage() {
       priceLabel="Commercial"
       heroImages={exteriorImages}
       exteriorImages={exteriorImages}
+      intro={intro}
+      keyFeatures={keyFeatures}
+      useCases={useCases}
       specs={specs}
       features={features}
     />

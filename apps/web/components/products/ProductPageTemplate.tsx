@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import { Check } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
@@ -43,6 +44,12 @@ interface UpgradeCategory {
   items: UpgradeItem[];
 }
 
+interface IconCard {
+  icon: LucideIcon;
+  title: string;
+  text: string;
+}
+
 interface ProductPageTemplateProps {
   name: string;
   tagline: string;
@@ -54,6 +61,9 @@ interface ProductPageTemplateProps {
   interiorImages?: GalleryImage[];
   galleries?: GallerySection[];
   afterGalleries?: ReactNode;
+  intro?: string;
+  keyFeatures?: IconCard[];
+  useCases?: IconCard[];
   floorPlans?: FloorPlan[];
   upgrades?: UpgradeCategory[];
   specs: Spec[];
@@ -62,8 +72,10 @@ interface ProductPageTemplateProps {
 }
 
 const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
-const sectionClass = 'scroll-mt-24 border-t border-white/5 py-12 lg:py-16';
 const headingClass = 'font-heading text-3xl font-bold text-white md:text-4xl';
+const bandBase = 'scroll-mt-24 rounded-2xl border border-white/10 p-6 lg:p-10';
+const bandDark = `${bandBase} bg-bb-surface-dark`;
+const bandDeep = `${bandBase} bg-[#0D1117]`;
 
 function slug(s: string): string {
   return s
@@ -83,6 +95,9 @@ export default function ProductPageTemplate({
   interiorImages,
   galleries,
   afterGalleries,
+  intro,
+  keyFeatures,
+  useCases,
   floorPlans,
   upgrades,
   specs,
@@ -92,7 +107,6 @@ export default function ProductPageTemplate({
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
 
-  // Group floor plans by their optional `group` (e.g. size).
   const floorPlanGroups: { name: string; items: FloorPlan[] }[] = [];
   for (const fp of floorPlans ?? []) {
     const key = fp.group ?? '';
@@ -103,10 +117,11 @@ export default function ProductPageTemplate({
 
   const usingGalleries = !!(galleries && galleries.length > 0);
   const hasInterior = !!(interiorImages && interiorImages.length > 0);
+  const hasKeyFeatures = !!(keyFeatures && keyFeatures.length > 0);
+  const hasUseCases = !!(useCases && useCases.length > 0);
   const hasFloorPlans = !!(floorPlans && floorPlans.length > 0);
   const hasUpgrades = !!(upgrades && upgrades.length > 0);
 
-  // Build sidebar nav from the sections that actually render.
   const navSections: NavSection[] = [{ id: 'overview', label: 'Overview' }];
   if (usingGalleries) {
     galleries!.forEach((g) => navSections.push({ id: slug(g.label), label: g.label }));
@@ -114,18 +129,20 @@ export default function ProductPageTemplate({
     navSections.push({ id: 'exterior', label: 'Exterior' });
     if (hasInterior) navSections.push({ id: 'interior', label: 'Interior' });
   }
+  if (hasKeyFeatures) navSections.push({ id: 'features', label: 'Features' });
+  if (hasUseCases) navSections.push({ id: 'use-cases', label: "Who It's For" });
   if (hasFloorPlans) navSections.push({ id: 'floor-plans', label: 'Floor Plans' });
   if (hasUpgrades) navSections.push({ id: 'upgrades', label: 'Upgrades' });
   navSections.push({ id: 'specs', label: 'Specs' });
 
   return (
     <div className="bg-bb-charcoal">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-0 px-6 lg:flex-row lg:gap-8">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:gap-8">
         <ProductSideNav productName={name} sections={navSections} />
 
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 space-y-8">
           {/* Overview */}
-          <section id="overview" className="scroll-mt-24 py-12 lg:py-16">
+          <section id="overview" className={bandDark}>
             <div className="flex flex-col gap-10 lg:flex-row lg:items-center">
               {hero.length > 0 && (
                 <div className="order-first lg:order-last lg:w-1/2">
@@ -133,16 +150,18 @@ export default function ProductPageTemplate({
                     {hero.map((image, i) => (
                       <div
                         key={image.src}
-                        className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/5"
+                        className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
                       >
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          priority={i === 0}
-                          sizes="(min-width: 1024px) 40vw, 100vw"
-                          className="object-cover"
-                        />
+                        <div className="relative h-full w-full overflow-hidden rounded-lg">
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            priority={i === 0}
+                            sizes="(min-width: 1024px) 40vw, 100vw"
+                            className="object-cover"
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -156,7 +175,7 @@ export default function ProductPageTemplate({
                 </h1>
                 <p className="mt-4 text-lg text-gray-300">{tagline}</p>
                 {isQuote ? (
-                  <p className="mt-4 font-mono text-2xl text-gray-500">
+                  <p className="mt-4 font-mono text-2xl text-gray-400">
                     {priceLabel}: {price}
                   </p>
                 ) : (
@@ -170,11 +189,7 @@ export default function ProductPageTemplate({
                   <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <Check
-                          size={20}
-                          aria-hidden="true"
-                          className="mt-0.5 shrink-0 text-bb-blue"
-                        />
+                        <Check size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-bb-blue" />
                         <span className="text-sm text-gray-300">{feature}</span>
                       </li>
                     ))}
@@ -188,10 +203,17 @@ export default function ProductPageTemplate({
             </div>
           </section>
 
+          {/* Intro */}
+          {intro && (
+            <section className={bandDeep}>
+              <p className="max-w-3xl text-lg leading-relaxed text-gray-200">{intro}</p>
+            </section>
+          )}
+
           {/* Galleries */}
           {usingGalleries ? (
             galleries!.map((g) => (
-              <section key={g.label} id={slug(g.label)} className={sectionClass}>
+              <section key={g.label} id={slug(g.label)} className={bandDeep}>
                 <p className={label}>{g.label}</p>
                 <h2 className={headingClass}>{g.heading}</h2>
                 <ImageGallery images={g.images} className="mt-8" />
@@ -199,20 +221,20 @@ export default function ProductPageTemplate({
             ))
           ) : (
             <>
-              <section id="exterior" className={sectionClass}>
+              <section id="exterior" className={bandDeep}>
                 <p className={label}>Exterior</p>
                 <h2 className={headingClass}>See It From Every Angle</h2>
                 {exteriorImages.length > 0 ? (
                   <ImageGallery images={exteriorImages} className="mt-8" />
                 ) : (
-                  <div className="mt-8 flex min-h-40 items-center justify-center rounded-lg border border-white/5 bg-bb-surface-dark p-8 text-center text-gray-500">
+                  <div className="mt-8 flex min-h-40 items-center justify-center rounded-lg border border-white/10 bg-white/5 p-8 text-center text-gray-400">
                     Product photography coming soon.
                   </div>
                 )}
               </section>
 
               {hasInterior && (
-                <section id="interior" className={sectionClass}>
+                <section id="interior" className={bandDeep}>
                   <p className={label}>Interior</p>
                   <h2 className={headingClass}>Take a Look Inside</h2>
                   <ImageGallery images={interiorImages!} className="mt-8" />
@@ -223,9 +245,59 @@ export default function ProductPageTemplate({
 
           {afterGalleries}
 
+          {/* Key Features */}
+          {hasKeyFeatures && (
+            <section id="features" className={bandDark}>
+              <p className={label}>Key Features</p>
+              <h2 className={headingClass}>Built to a Higher Standard</h2>
+              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {keyFeatures!.map((f) => {
+                  const Icon = f.icon;
+                  return (
+                    <div
+                      key={f.title}
+                      className="rounded-xl border border-white/10 bg-white/5 p-6"
+                    >
+                      <Icon size={28} aria-hidden="true" className="text-bb-blue" />
+                      <h3 className="mt-4 font-heading text-lg font-semibold text-white">
+                        {f.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-gray-300">{f.text}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* Who It's For */}
+          {hasUseCases && (
+            <section id="use-cases" className={bandDeep}>
+              <p className={label}>Who It&apos;s For</p>
+              <h2 className={headingClass}>One Home, Many Possibilities</h2>
+              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {useCases!.map((u) => {
+                  const Icon = u.icon;
+                  return (
+                    <div
+                      key={u.title}
+                      className="rounded-xl border border-white/10 bg-white/5 p-6"
+                    >
+                      <Icon size={28} aria-hidden="true" className="text-bb-blue" />
+                      <h3 className="mt-4 font-heading text-base font-semibold text-white">
+                        {u.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-gray-300">{u.text}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
           {/* Floor Plans */}
           {hasFloorPlans && (
-            <section id="floor-plans" className={sectionClass}>
+            <section id="floor-plans" className={bandDark}>
               <p className={label}>Floor Plans</p>
               <h2 className={headingClass}>Choose Your Layout</h2>
               <div className="mt-8 space-y-12">
@@ -254,7 +326,7 @@ export default function ProductPageTemplate({
                               />
                             </div>
                           ) : (
-                            <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-bb-charcoal text-sm text-gray-500">
+                            <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-bb-charcoal text-sm text-gray-400">
                               PDF floor plan
                             </div>
                           )}
@@ -284,7 +356,7 @@ export default function ProductPageTemplate({
 
           {/* Upgrades */}
           {hasUpgrades && (
-            <section id="upgrades" className={sectionClass}>
+            <section id="upgrades" className={bandDeep}>
               <p className={label}>Upgrades</p>
               <h2 className={headingClass}>Customize Your Home</h2>
               <div className="mt-8 space-y-12">
@@ -326,7 +398,7 @@ export default function ProductPageTemplate({
           )}
 
           {/* Specs */}
-          <section id="specs" className={sectionClass}>
+          <section id="specs" className={bandDark}>
             <p className={label}>Specifications</p>
             <dl className="mt-2 grid grid-cols-1 gap-x-12 md:grid-cols-2">
               {specs.map((spec) => (
@@ -342,12 +414,12 @@ export default function ProductPageTemplate({
           </section>
 
           {/* CTA */}
-          <section className="border-t border-white/5 py-12 text-center lg:py-16">
+          <section className="rounded-2xl border border-white/10 bg-bb-navy p-8 text-center lg:p-12">
             <h2 className={headingClass}>Ready to learn more about {name}?</h2>
             <div className="mt-8 flex justify-center">
               <BookConsultation size="lg">{ctaText}</BookConsultation>
             </div>
-            <p className="mt-6 text-sm text-gray-500">Call us at 800-259-1745</p>
+            <p className="mt-6 text-sm text-gray-300">Call us at 800-259-1745</p>
           </section>
         </div>
       </div>

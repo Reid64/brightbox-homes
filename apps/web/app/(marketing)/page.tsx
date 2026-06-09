@@ -314,6 +314,10 @@ export default function HomePage() {
                         View Details
                         <ArrowRight size={16} aria-hidden="true" />
                       </span>
+                      <span className="mt-1 inline-flex items-center gap-1 text-xs text-gray-400">
+                        Get a Quote
+                        <ArrowRight size={12} aria-hidden="true" />
+                      </span>
                     </div>
                   </Link>
                 </TiltCard>
@@ -525,8 +529,14 @@ export default function HomePage() {
             <p className="mt-4 text-lg text-gray-300">
               Speak with our team about the right home for your needs.
             </p>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <BookConsultation size="lg">Book a Consultation</BookConsultation>
+              <Link
+                href="/reserve"
+                className="rounded-lg bg-red-500 px-8 py-4 text-lg font-bold text-white transition-colors duration-fast ease-out hover:bg-red-600"
+              >
+                Reserve Your Home - $500
+              </Link>
             </div>
             <p className="mt-6 text-sm text-gray-500">
               800-259-1745 &middot; info@brightboxhomes.com

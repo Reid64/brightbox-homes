@@ -58,7 +58,7 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
                   </span>
                 </button>
                 {i < steps.length - 1 && (
-                  <div className="ml-[7px] py-1.5" aria-hidden="true">
+                  <div className="ml-[7px] flex flex-col gap-1 py-3" aria-hidden="true">
                     <DownArrow />
                   </div>
                 )}

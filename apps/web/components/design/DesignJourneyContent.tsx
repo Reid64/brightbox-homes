@@ -84,7 +84,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
       {active === 1 && (
         <div>
           <h1 className={heading}>Pick Your Exterior Color</h1>
-          <div className="mt-8 space-y-10">
+          <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div>
               <h2 className="font-heading text-xl font-semibold text-bb-blue">Standard RAL Colors (60+ Options)</h2>
               <Image
@@ -92,20 +92,23 @@ export default function DesignJourneyContent({ active }: { active: number }) {
                 alt="60+ RAL exterior color chart"
                 width={1086}
                 height={1448}
-                className={`mt-4 max-w-2xl ${chartImg}`}
+                className={`mt-4 w-full ${chartImg}`}
               />
               <p className="mt-3 text-sm text-gray-300">All colors factory-applied with UV and weather-resistant coating.</p>
             </div>
             <div>
-              <h2 className="font-heading text-xl font-semibold text-bb-blue">Carved Metal Plate Finish (Premium)</h2>
+              <h2 className="font-heading text-xl font-semibold text-bb-blue">Carved Metal Plate Finish - $1,000 Upgrade</h2>
               <Image
                 src="/images/colors/carved-metal-plate.png"
                 alt="Carved metal plate exterior finishes"
                 width={1024}
                 height={1536}
-                className={`mt-4 max-w-2xl ${chartImg}`}
+                className={`mt-4 w-full ${chartImg}`}
               />
-              <p className="mt-3 text-sm text-gray-300">A distinctive wood-grain carved metal facade upgrade.</p>
+              <p className="mt-3 text-sm text-gray-300">
+                Premium carved metal plate exterior panels. Available in the colors shown.
+                $1,000 upgrade from standard RAL finish.
+              </p>
             </div>
           </div>
         </div>

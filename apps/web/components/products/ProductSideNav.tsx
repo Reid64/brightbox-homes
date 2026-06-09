@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Phone } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
@@ -63,7 +64,13 @@ export default function ProductSideNav({
             ))}
           </nav>
           <div className="mt-6">
-            <BookConsultation className="w-full" />
+            <BookConsultation className="w-full">Get a Custom Quote</BookConsultation>
+            <Link
+              href="/reserve"
+              className="mt-2 block w-full rounded-sm bg-red-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-colors duration-fast ease-out hover:bg-red-600"
+            >
+              Reserve - $500
+            </Link>
             <a
               href="tel:8002591745"
               className="mt-3 flex items-center justify-center gap-2 px-3 text-base font-semibold text-gray-200 transition-colors duration-fast ease-out hover:text-white"

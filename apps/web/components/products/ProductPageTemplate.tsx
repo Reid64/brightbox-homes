@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import ImageGallery from '@/components/ui/ImageGallery';
@@ -112,7 +113,6 @@ export default function ProductPageTemplate({
   frames,
   specs,
   features,
-  ctaText = 'Book a Consultation',
 }: ProductPageTemplateProps) {
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
@@ -206,8 +206,8 @@ export default function ProductPageTemplate({
                   </ul>
                 )}
 
-                <div className="mt-8 lg:hidden">
-                  <BookConsultation size="lg">{ctaText}</BookConsultation>
+                <div className="mt-8">
+                  <BookConsultation size="lg">Get a Custom Quote</BookConsultation>
                 </div>
               </div>
             </div>
@@ -448,13 +448,24 @@ export default function ProductPageTemplate({
             )}
           </section>
 
-          {/* CTA */}
-          <section className="rounded-2xl border border-white/10 bg-bb-navy p-8 text-center lg:p-12">
-            <h2 className={headingClass}>Ready to learn more about {name}?</h2>
+          {/* Reserve CTA band */}
+          <section className="rounded-2xl border border-white/10 bg-gradient-to-br from-bb-navy to-bb-surface-dark p-8 text-center lg:p-12">
+            <h2 className={headingClass}>Ready to Reserve?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-300">
+              Secure your home with a fully refundable $500 deposit. We&apos;ll contact you
+              within 24 hours to finalize your configuration.
+            </p>
             <div className="mt-8 flex justify-center">
-              <BookConsultation size="lg">{ctaText}</BookConsultation>
+              <Link
+                href="/reserve"
+                className="rounded-lg bg-red-500 px-8 py-4 text-lg font-bold text-white transition-colors duration-fast ease-out hover:bg-red-600"
+              >
+                Reserve Your Home - $500
+              </Link>
             </div>
-            <p className="mt-6 text-sm text-gray-300">Call us at 800-259-1745</p>
+            <p className="mt-4 text-sm text-gray-400">
+              100% refundable &middot; No obligation &middot; Locks your configuration
+            </p>
           </section>
         </div>
       </div>

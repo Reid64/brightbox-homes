@@ -57,7 +57,10 @@ const useCases = [
 ];
 
 const frames = [
-  { src: '/images/frames/assembly-frame.webp', alt: 'Steel frame of an assembly modular unit.', caption: 'Modular Steel Frame Unit', width: 800, height: 571 },
+  { src: '/images/products/assembly-homes/specs/frame.webp', alt: 'Galvanized steel frame of an assembly modular unit.', caption: 'Galvanized Steel Frame - Modular Unit Construction', width: 800, height: 571 },
+  { src: '/images/products/assembly-homes/specs/specs.png', alt: 'Assembly home technical specifications and component breakdown.', caption: 'Technical Specifications', width: 1173, height: 1341 },
+  { src: '/images/products/assembly-homes/specs/folded-dimensions.png', alt: 'Assembly home folded and expanded dimensions.', caption: 'Assembly Home Dimensions - Expanded and Folded', width: 1570, height: 1001 },
+  { src: '/images/products/assembly-homes/specs/modular-shower.png', alt: 'Optional modular bathroom and shower unit.', caption: 'Optional Modular Bathroom Unit', width: 1296, height: 1213 },
 ];
 
 export default function AssemblyHomesPage() {

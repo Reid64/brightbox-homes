@@ -27,15 +27,12 @@ export const useCases = [
   { icon: Users, title: 'ADU / Guest House', text: 'Extra living space for family, guests, or a home office.' },
 ];
 
+// Construction-stage / cinder-block photos removed for a premium look:
+// 02, 04, 08 (prominent cinder-block piles), 05 (blocks + junk tires),
+// 06 (mid-crane, unfinished), 07 (ladder, under assembly). Files kept in repo.
 export const exteriorImages = [
   { src: '/images/products/expandable-homes/exterior/01.jpeg', alt: 'Delivered brown expandable home with a covered porch among palm trees.', caption: 'Delivered and ready - a warm-toned home with a covered porch under the palms.' },
-  { src: '/images/products/expandable-homes/exterior/02.jpeg', alt: 'Delivered gray expandable home with a covered porch.', caption: 'Modern gray exterior with a full-width covered porch for everyday porch life.' },
   { src: '/images/products/expandable-homes/exterior/03.jpeg', alt: 'Delivered white expandable home on a rural property.', caption: 'Crisp white finish, set and settled on open rural land.' },
-  { src: '/images/products/expandable-homes/exterior/04.jpeg', alt: 'Expandable home with glass entry doors set on a wooded lot.', caption: 'Glass entry doors open onto a private, tree-lined retreat.' },
-  { src: '/images/products/expandable-homes/exterior/05.jpeg', alt: 'Brown expandable home with a covered porch and solar panel.', caption: 'Off-grid ready - covered porch and rooftop solar in one tidy package.' },
-  { src: '/images/products/expandable-homes/exterior/06.jpeg', alt: 'A white expandable home being delivered by crane truck.', caption: 'Delivery day - craned into place and standing in hours, not months.' },
-  { src: '/images/products/expandable-homes/exterior/07.jpeg', alt: 'A delivered expandable home with a covered porch under assembly.', caption: 'Unfolding on site into full, finished living space.' },
-  { src: '/images/products/expandable-homes/exterior/08.jpeg', alt: 'Side view of a delivered brown expandable home on a foundation.', caption: 'Solid on its foundation - the profile of a home built to last.' },
   { src: '/images/products/expandable-homes/exterior/09.png', alt: 'Two-story expandable home with balconies and a landscaped backyard.', caption: 'Two stories, twin balconies, and a backyard made for gathering.' },
   { src: '/images/products/expandable-homes/exterior/10.png', alt: 'Single-story expandable home with a covered front porch.', caption: 'Single-level living with a welcoming covered porch out front.' },
   { src: '/images/products/expandable-homes/exterior/11.png', alt: 'Compact expandable home with a carport and gravel driveway.', caption: 'Compact footprint, full function - complete with its own carport.' },

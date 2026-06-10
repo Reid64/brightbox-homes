@@ -65,3 +65,6 @@ coverage/
 # internal price list, Chinese-named files). Optimize, rename, and move selected
 # assets into apps/web/public/ before use. Never commit this dump wholesale.
 website-products-and-assets/
+
+# Office temporary lock files
+~$*

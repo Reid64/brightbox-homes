@@ -10,11 +10,12 @@ interface ShowcaseCardProps {
   image: string;
   alt: string;
   children: ReactNode;
+  beige?: boolean;
 }
 
 // Full-width horizontal showcase card. Odd cards image-left, even image-right.
 // The image is shown uncropped (object-contain) and is clickable to enlarge.
-export default function ShowcaseCard({ index, image, alt, children }: ShowcaseCardProps) {
+export default function ShowcaseCard({ index, image, alt, children, beige = false }: ShowcaseCardProps) {
   const imageLeft = index % 2 === 0;
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
@@ -51,7 +52,7 @@ export default function ShowcaseCard({ index, image, alt, children }: ShowcaseCa
           className="object-contain"
         />
       </button>
-      <div className="p-8 lg:w-3/5">{children}</div>
+      <div className={`p-8 lg:w-3/5 ${beige ? 'bg-[#D4C4A8]' : ''}`}>{children}</div>
 
       {open && (
         <div

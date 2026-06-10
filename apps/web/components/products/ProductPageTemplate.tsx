@@ -120,7 +120,7 @@ export default function ProductPageTemplate({
   hideGalleries = false,
 }: ProductPageTemplateProps) {
   const featureCardClass = warmCards
-    ? 'rounded-xl border border-[#B8A888] bg-[#D4C4A8] p-6 transition-colors duration-fast ease-out hover:bg-[#C9B898]'
+    ? 'rounded-xl border border-[#B8A888] bg-[#D4C4A8] p-6 transition-colors duration-fast ease-out hover:bg-[#C8B898]'
     : 'rounded-xl border border-white/10 bg-white/5 p-6';
   const featureHeadingClass = warmCards ? 'text-gray-900' : 'text-white';
   const featureTextClass = warmCards ? 'text-gray-700' : 'text-gray-300';

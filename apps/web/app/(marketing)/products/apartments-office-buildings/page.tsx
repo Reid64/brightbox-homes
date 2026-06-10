@@ -85,6 +85,7 @@ export default function ApartmentsOfficeBuildingsPage() {
       keyFeatures={keyFeatures}
       useCases={useCases}
       frames={frames}
+      warmCards
       specs={specs}
       features={features}
     />

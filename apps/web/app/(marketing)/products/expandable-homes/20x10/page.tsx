@@ -47,6 +47,7 @@ export default function Expandable20x10Page() {
       floorPlans={floorPlans}
       upgrades={upgrades}
       frames={frames}
+      warmCards
       specs={specs}
       features={features}
     />

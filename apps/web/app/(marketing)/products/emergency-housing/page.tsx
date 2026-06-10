@@ -107,6 +107,7 @@ export default function EmergencyHousingPage() {
       useCases={useCases}
       afterGalleries={documentationSection}
       frames={frames}
+      warmCards
       specs={specs}
       features={features}
     />

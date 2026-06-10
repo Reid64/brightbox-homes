@@ -66,6 +66,7 @@ export default function VendingUnitsPage() {
       intro={intro}
       keyFeatures={keyFeatures}
       useCases={useCases}
+      warmCards
       specs={specs}
       features={features}
     />

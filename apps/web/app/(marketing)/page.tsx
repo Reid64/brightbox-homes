@@ -345,36 +345,40 @@ export default function HomePage() {
 
       {/* SECTION E: Stats Bar */}
       <section className="border-y border-white/5 bg-bb-surface-dark py-16">
-        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-8 px-6 text-center sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <AnimatedCounter
-              target={5}
-              suffix=" Product Lines"
-              className="font-heading text-3xl font-bold text-white md:text-4xl"
-            />
-          </div>
-          <div>
-            <AnimatedCounter
-              target={60}
-              suffix="+ Exterior Colors"
-              className="font-heading text-3xl font-bold text-white md:text-4xl"
-            />
-          </div>
-          <div>
-            <AnimatedCounter
-              target={35995}
-              prefix="$"
-              className="font-heading text-3xl font-bold text-white md:text-4xl"
-            />
-            <p className="mt-1 text-sm text-gray-300">Starting From</p>
-          </div>
-          <div>
-            <AnimatedCounter
-              target={2500}
-              prefix="$"
-              suffix=" Donated Per Home"
-              className="font-heading text-3xl font-bold text-white md:text-4xl"
-            />
+        <div className="mx-auto max-w-[1280px] px-6">
+          <div className="rounded-2xl border border-white/5 bg-[#1A2030] p-6">
+            <div className="grid grid-cols-1 gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-xl bg-[#D4C4A8] p-6">
+                <AnimatedCounter
+                  target={5}
+                  suffix=" Product Lines"
+                  className="font-heading text-3xl font-bold text-gray-900 md:text-4xl"
+                />
+              </div>
+              <div className="rounded-xl bg-[#D4C4A8] p-6">
+                <AnimatedCounter
+                  target={60}
+                  suffix="+ Exterior Colors"
+                  className="font-heading text-3xl font-bold text-gray-900 md:text-4xl"
+                />
+              </div>
+              <div className="rounded-xl bg-[#D4C4A8] p-6">
+                <AnimatedCounter
+                  target={35995}
+                  prefix="$"
+                  className="font-heading text-3xl font-bold text-gray-900 md:text-4xl"
+                />
+                <p className="mt-1 text-sm text-gray-700">Starting From</p>
+              </div>
+              <div className="rounded-xl bg-[#D4C4A8] p-6">
+                <AnimatedCounter
+                  target={2500}
+                  prefix="$"
+                  suffix=" Donated Per Home"
+                  className="font-heading text-3xl font-bold text-gray-900 md:text-4xl"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -422,32 +426,34 @@ export default function HomePage() {
             />
           </ScrollReveal>
 
-          <ol className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-6">
-            {journeySteps.map((step, i) => (
-              <ScrollReveal key={step.title} delay={i * 100} className="relative">
-                <li className="relative">
-                  {/* Arrow pointing to the next step (desktop) */}
-                  {i < journeySteps.length - 1 && (
-                    <ChevronRight
+          <div className="mt-16 rounded-2xl border border-white/5 bg-[#1A2030] p-6">
+            <ol className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+              {journeySteps.map((step, i) => (
+                <ScrollReveal key={step.title} delay={i * 100} className="relative">
+                  <li className="relative h-full rounded-xl bg-[#D4C4A8] p-6">
+                    {/* Arrow pointing to the next step (desktop) */}
+                    {i < journeySteps.length - 1 && (
+                      <ChevronRight
+                        aria-hidden="true"
+                        size={28}
+                        className="absolute -right-5 top-1/2 hidden -translate-y-1/2 text-bb-blue lg:block"
+                      />
+                    )}
+                    <span
                       aria-hidden="true"
-                      size={28}
-                      className="absolute -right-2 top-4 hidden text-white/50 lg:block"
-                    />
-                  )}
-                  <span
-                    aria-hidden="true"
-                    className="block font-heading text-6xl font-bold text-red-500"
-                  >
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-2 font-heading text-lg font-semibold text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-gray-300">{step.text}</p>
-                </li>
-              </ScrollReveal>
-            ))}
-          </ol>
+                      className="block font-heading text-6xl font-bold text-red-500"
+                    >
+                      {i + 1}
+                    </span>
+                    <h3 className="mt-2 font-heading text-lg font-semibold text-gray-900">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-gray-700">{step.text}</p>
+                  </li>
+                </ScrollReveal>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 

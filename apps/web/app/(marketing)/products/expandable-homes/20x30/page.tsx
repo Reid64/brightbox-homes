@@ -41,6 +41,7 @@ export default function Expandable20x30Page() {
       useCases={useCases}
       upgrades={upgrades}
       frames={frames}
+      warmCards
       specs={specs}
       features={features}
     />

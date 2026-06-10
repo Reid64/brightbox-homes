@@ -79,19 +79,21 @@ export default function DuplexSection({
           )}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {highlights.map((h) => {
-            const Icon = h.icon;
-            return (
-              <div
-                key={h.text}
-                className="flex items-start gap-3 rounded-xl border border-white/5 bg-bb-surface-dark p-5"
-              >
-                <Icon size={24} aria-hidden="true" className="mt-0.5 shrink-0 text-bb-blue" />
-                <span className="text-sm text-gray-300">{h.text}</span>
-              </div>
-            );
-          })}
+        <div className="mt-10 rounded-2xl border border-white/5 bg-[#1A2030] p-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {highlights.map((h) => {
+              const Icon = h.icon;
+              return (
+                <div
+                  key={h.text}
+                  className="flex items-start gap-3 rounded-xl bg-[#D4C4A8] p-5 transition-colors duration-fast ease-out hover:bg-[#C8B898]"
+                >
+                  <Icon size={24} aria-hidden="true" className="mt-0.5 shrink-0 text-bb-blue" />
+                  <span className="text-sm text-gray-700">{h.text}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {images.length > 0 && <ImageGallery images={images} className="mt-12" />}

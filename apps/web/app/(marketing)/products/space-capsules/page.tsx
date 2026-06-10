@@ -197,22 +197,24 @@ const spaceCapsuleSections = (
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
           One Pod, Many Lives
         </h2>
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 rounded-2xl border border-white/5 bg-[#1A2030] p-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {useCases.map((uc) => {
             const Icon = uc.icon;
             return (
               <div
                 key={uc.title}
-                className="rounded-xl border border-white/5 bg-bb-surface-dark p-6"
+                className="rounded-xl bg-[#D4C4A8] p-6 transition-colors duration-fast ease-out hover:bg-[#C8B898]"
               >
                 <Icon size={28} aria-hidden="true" className="text-bb-blue" />
-                <h3 className="mt-4 font-heading text-lg font-semibold text-white">
+                <h3 className="mt-4 font-heading text-lg font-semibold text-gray-900">
                   {uc.title}
                 </h3>
-                <p className="mt-2 text-sm text-gray-300">{uc.text}</p>
+                <p className="mt-2 text-sm text-gray-700">{uc.text}</p>
               </div>
             );
           })}
+          </div>
         </div>
       </div>
     </section>
@@ -277,6 +279,7 @@ export default function SpaceCapsulesPage() {
       floorPlans={floorPlans}
       frames={frames}
       upgrades={upgrades}
+      warmCards
       specs={specs}
       features={features}
     />

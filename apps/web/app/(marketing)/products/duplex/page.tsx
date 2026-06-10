@@ -41,6 +41,7 @@ export default function ExpandableDuplexPage() {
       heroImages={heroImages}
       exteriorImages={duplexImages}
       afterGalleries={<DuplexSection images={[]} />}
+      warmCards
       specs={specs}
       features={features}
     />

@@ -77,14 +77,14 @@ const showcase = (
     <h2 className={headingClass}>Choose Your Model</h2>
     <div className="mt-8 space-y-8">
       {models.map((m, i) => (
-        <ShowcaseCard key={m.name} index={i} image={m.image} alt={m.alt}>
-          <h3 className="font-heading text-2xl font-bold text-white">{m.name}</h3>
-          <p className="mt-3 text-gray-300">{m.desc}</p>
+        <ShowcaseCard key={m.name} index={i} image={m.image} alt={m.alt} beige>
+          <h3 className="font-heading text-2xl font-bold text-gray-900">{m.name}</h3>
+          <p className="mt-3 text-gray-700">{m.desc}</p>
           <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {[...baseFeatures, ...(m.multiStory ? multiStoryFeatures : [])].map((f) => (
               <li key={f} className="flex items-start gap-2">
                 <Check size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-bb-blue" />
-                <span className="text-sm text-gray-300">{f}</span>
+                <span className="text-sm text-gray-700">{f}</span>
               </li>
             ))}
           </ul>
@@ -110,6 +110,7 @@ export default function AssemblyHomesPage() {
       keyFeatures={keyFeatures}
       useCases={useCases}
       frames={frames}
+      warmCards
       specs={specs}
       features={features}
     />

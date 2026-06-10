@@ -34,6 +34,29 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
+  openGraph: {
+    title: 'Bright Box Homes',
+    description:
+      'Premium prefab expandable container homes. American Owned. Globally Sourced. US Delivered.',
+    url: 'https://brightboxhomes.com',
+    siteName: 'Bright Box Homes',
+    images: [
+      {
+        url: 'https://brightboxhomes.com/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Bright Box Homes Logo',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bright Box Homes',
+    description:
+      'Premium prefab expandable container homes. American Owned. Globally Sourced. US Delivered.',
+    images: ['https://brightboxhomes.com/images/og-image.png'],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -35,7 +35,7 @@ export default function SmokeEffect() {
   useEffect(() => {
     const canvasEl = canvasRef.current;
     if (!canvasEl) return;
-    const context = canvasEl.getContext('2d');
+    const context = canvasEl.getContext('2d', { alpha: true });
     if (!context) return;
     // Explicitly non-null typed aliases so TS keeps the narrowing inside the
     // nested animation closures below.
@@ -162,8 +162,10 @@ export default function SmokeEffect() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
+      // No will-change: a 2D-draw canvas we never CSS-transform should not be
+      // force-promoted to its own large GPU layer (that starved the hero image
+      // layer and made it render white/pink). Composite normally instead.
       className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
-      style={{ willChange: 'transform' }}
     />
   );
 }

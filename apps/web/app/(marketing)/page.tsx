@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import HeroVideo from '@/components/ui/HeroVideo';
-import SmokeEffect from '@/components/SmokeEffect';
+// SmokeEffect temporarily disabled: its full-hero canvas overlay (z-[1] with
+// will-change) caused the hero background image to render white/pink after a
+// few seconds (GPU layer eviction). Re-enable once verified safe in-browser.
+// import SmokeEffect from '@/components/SmokeEffect';
 import Link from 'next/link';
 import { Shield, Home, Truck, Award, ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -199,8 +202,8 @@ export default function HomePage() {
         {/* Dark legibility scrim (single-hue charcoal fade, lighter so the image shows through) */}
         <div className="absolute inset-0 bg-gradient-to-t from-bb-charcoal via-bb-charcoal/40 to-bb-charcoal/20" />
 
-        {/* Subtle smoke rising from the grill (above image/scrim, below text/CTAs) */}
-        <SmokeEffect />
+        {/* Subtle smoke rising from the grill - DISABLED (caused hero bg to vanish). */}
+        {/* <SmokeEffect /> */}
 
         <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-start gap-12 px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-16">
           {/* Left */}

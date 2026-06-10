@@ -152,13 +152,13 @@ const UPGRADES: Upgrade[] = [
     specs: 'Upgraded bathroom vanity with modern fixtures and storage. Multiple style options available.',
     source: 'short description',
   },
-  // --- PLACEHOLDER (operator to supply full specs) ---
   {
     image: '/images/upgrades/kitchenette.png',
     name: 'Kitchenette',
-    blurb: 'Compact kitchen unit for Assembly Homes.',
-    specs: 'Compact kitchen unit for Assembly Homes. (Full specifications coming soon.)',
-    source: 'placeholder',
+    blurb: 'Compact kitchenette with a 2-burner induction stovetop. Available in White, Oak, or Brown.',
+    specs:
+      'Color options: White, Oak, Brown. Compact kitchenette with 2-burner induction stovetop. Includes refrigerator opening (28"W x 64"H x 28"D) and microwave cubby (24"W x 15"H x 18"D). Counter height: 36". Upper cabinets: 30"H x 12"D. Base cabinets: 24"D. Toe kick: 4"H. Fits approximately 90% of standard refrigerators and microwaves without modifications.',
+    source: 'spreadsheet',
   },
 ];
 

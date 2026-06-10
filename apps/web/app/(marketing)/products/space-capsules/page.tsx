@@ -130,16 +130,12 @@ const useCases = [
   },
 ];
 
+// Only the models featured in "Choose Your Capsule" (the source of truth) are listed here.
 const modelLineup = [
-  { model: 'V9', size: "43' x 11'", area: '463 sq ft', layout: '2 bedroom, 1 bath' },
-  { model: 'V7', size: "38' x 11'", area: '409 sq ft', layout: '2 bedroom, 1 bath' },
-  { model: 'F7', size: "31' x 11'", area: '344 sq ft', layout: '2 bedroom, 1 bath' },
-  { model: 'V6', size: "28' x 11'", area: '301 sq ft', layout: '2 bedroom, 1 bath' },
-  { model: 'V5', size: "28' x 11'", area: '301 sq ft', layout: '1 room, 1 bath' },
-  { model: 'F5', size: "22' x 11'", area: '248 sq ft', layout: '1 room, 1 bath' },
-  { model: 'V3', size: "19' x 10'6\"", area: '194 sq ft', layout: '1 room, 1 bath' },
-  { model: 'T3', size: "14'9\" round", area: '172 sq ft', layout: '1 room, 1 bath' },
-  { model: 'V1', size: "13' x 10'", area: '129 sq ft', layout: '1 room, 1 bath' },
+  { model: 'V-6', size: "28' x 11'", area: '301 sq ft', layout: '2 bedroom, 1 bath' },
+  { model: 'V-7', size: "37.9' x 11'", area: '409 sq ft', layout: '2 bedroom, 1 bath' },
+  { model: 'V-9', size: "42.8' x 11'", area: '463 sq ft', layout: '2 bedroom, 1 bath' },
+  { model: 'V-5', size: "28' x 11'", area: '301 sq ft', layout: '1 room, 1 bath' },
 ];
 
 const frames = [
@@ -224,7 +220,7 @@ const spaceCapsuleSections = (
       <div className="mx-auto max-w-[1280px] px-6">
         <p className={label}>Model Lineup</p>
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
-          Nine Layouts to Choose From
+          Four Layouts to Choose From
         </h2>
         <p className="mt-4 max-w-2xl text-gray-300">
           From a compact solo pod to a spacious two-bedroom cabin. Every model

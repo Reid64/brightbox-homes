@@ -120,8 +120,10 @@ export default function ProductPageTemplate({
   hideGalleries = false,
 }: ProductPageTemplateProps) {
   const featureCardClass = warmCards
-    ? 'rounded-xl border border-[#8A7A66]/40 bg-[#6B5D4D] p-6 transition-colors duration-fast ease-out hover:bg-[#7A6B58]'
+    ? 'rounded-xl border border-[#8F8070]/50 bg-[#A69580] p-6 transition-colors duration-fast ease-out hover:bg-[#9A8A75]'
     : 'rounded-xl border border-white/10 bg-white/5 p-6';
+  const featureHeadingClass = warmCards ? 'text-gray-900' : 'text-white';
+  const featureTextClass = warmCards ? 'text-gray-700' : 'text-gray-300';
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
 
@@ -279,10 +281,10 @@ export default function ProductPageTemplate({
                       className={featureCardClass}
                     >
                       <Icon size={28} aria-hidden="true" className="text-bb-blue" />
-                      <h3 className="mt-4 font-heading text-lg font-semibold text-white">
+                      <h3 className={`mt-4 font-heading text-lg font-semibold ${featureHeadingClass}`}>
                         {f.title}
                       </h3>
-                      <p className="mt-2 text-sm text-gray-300">{f.text}</p>
+                      <p className={`mt-2 text-sm ${featureTextClass}`}>{f.text}</p>
                     </div>
                   );
                 })}
@@ -304,10 +306,10 @@ export default function ProductPageTemplate({
                       className={featureCardClass}
                     >
                       <Icon size={28} aria-hidden="true" className="text-bb-blue" />
-                      <h3 className="mt-4 font-heading text-base font-semibold text-white">
+                      <h3 className={`mt-4 font-heading text-base font-semibold ${featureHeadingClass}`}>
                         {u.title}
                       </h3>
-                      <p className="mt-2 text-sm text-gray-300">{u.text}</p>
+                      <p className={`mt-2 text-sm ${featureTextClass}`}>{u.text}</p>
                     </div>
                   );
                 })}

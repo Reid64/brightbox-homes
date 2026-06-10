@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 
 interface Upgrade {
   image: string;
@@ -162,15 +162,61 @@ const UPGRADES: Upgrade[] = [
   },
 ];
 
+// Group the upgrades into collapsible categories (by product name).
+const CATEGORY_ORDER = [
+  'Solar & Power',
+  'Generators',
+  'Climate & Comfort',
+  'Kitchen',
+  'Bathroom',
+  'Exterior & Roofing',
+] as const;
+
+const CATEGORY_OF: Record<string, (typeof CATEGORY_ORDER)[number]> = {
+  '8KW Solar Kit': 'Solar & Power',
+  '10KW Solar Kit': 'Solar & Power',
+  'Metal Roof Truss Reinforced (Solar)': 'Solar & Power',
+  'DuroMax XP15000HX Generator': 'Generators',
+  '18kW Generac Whole House Generator': 'Generators',
+  '22kW Generac Whole House Generator': 'Generators',
+  '2-Ton Mini-Split Heat Pump': 'Climate & Comfort',
+  'Radiant Floor Heating': 'Climate & Comfort',
+  'Ceiling Mount Air Mover Fans': 'Climate & Comfort',
+  '5-Burner Inlaid Induction Stovetop': 'Kitchen',
+  Kitchenette: 'Kitchen',
+  'Custom Bathroom Vanity': 'Bathroom',
+  'Modular Shower': 'Bathroom',
+  'Tankless Hot Water Heater': 'Bathroom',
+  'Covered Side Patio': 'Exterior & Roofing',
+  'Side Deck': 'Exterior & Roofing',
+  'Metal Roof Truss Standard': 'Exterior & Roofing',
+};
+
+const CATEGORIES = CATEGORY_ORDER.map((name) => ({
+  name,
+  items: UPGRADES.filter((u) => CATEGORY_OF[u.name] === name),
+}));
+
 export default function UpgradesGrid() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const close = useCallback(() => setOpenIndex(null), []);
-  const active = openIndex !== null ? UPGRADES[openIndex] : null;
+  // All categories collapsed by default; multiple may be opened.
+  const [openCats, setOpenCats] = useState<Set<string>>(new Set());
+  const [openItems, setOpenItems] = useState<Set<string>>(new Set());
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  const toggle = (set: Set<string>, key: string) => {
+    const next = new Set(set);
+    if (next.has(key)) next.delete(key);
+    else next.add(key);
+    return next;
+  };
+
+  const active = lightbox ? UPGRADES.find((u) => u.image === lightbox) ?? null : null;
+  const closeLightbox = useCallback(() => setLightbox(null), []);
 
   useEffect(() => {
-    if (openIndex === null) return;
+    if (!lightbox) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape') closeLightbox();
     }
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
@@ -179,7 +225,7 @@ export default function UpgradesGrid() {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prev;
     };
-  }, [openIndex, close]);
+  }, [lightbox, closeLightbox]);
 
   return (
     <section id="upgrades" className="scroll-mt-24">
@@ -189,33 +235,105 @@ export default function UpgradesGrid() {
         Premium upgrades to make your Bright Box Home uniquely yours.
       </p>
 
-      <div className="mt-8 rounded-2xl border border-white/5 bg-[#1A2030] p-6">
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
-          {UPGRADES.map((u, i) => (
-            <button
-              key={u.image}
-              type="button"
-              onClick={() => setOpenIndex(i)}
-              aria-label={`View details: ${u.name}`}
-              className="flex flex-col rounded-xl bg-[#D4C4A8] p-4 text-left transition-colors duration-fast ease-out hover:bg-[#C8B898]"
-            >
-              <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-white">
-                <Image
-                  src={u.image}
-                  alt={u.name}
-                  fill
-                  sizes="(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 45vw"
-                  className="object-contain p-2"
+      <div className="mt-8 space-y-3 rounded-2xl border border-white/5 bg-[#1A2030] p-4 sm:p-6">
+        {CATEGORIES.map((cat) => {
+          const catOpen = openCats.has(cat.name);
+          return (
+            <div key={cat.name}>
+              {/* Category bar */}
+              <button
+                type="button"
+                aria-expanded={catOpen}
+                onClick={() => setOpenCats((s) => toggle(s, cat.name))}
+                className="flex w-full items-center justify-between rounded-xl bg-[#D4C4A8] px-5 py-4 text-left transition-colors duration-fast ease-out hover:bg-[#C8B898]"
+              >
+                <span className="font-heading text-lg font-bold text-gray-900">
+                  {cat.name}{' '}
+                  <span className="font-body text-base font-normal text-gray-700">
+                    ({cat.items.length} {cat.items.length === 1 ? 'option' : 'options'})
+                  </span>
+                </span>
+                <ChevronDown
+                  size={22}
+                  aria-hidden="true"
+                  className={`shrink-0 text-gray-900 transition-transform duration-200 ease-out ${
+                    catOpen ? 'rotate-180' : ''
+                  }`}
                 />
+              </button>
+
+              {/* Category items (animated open/collapse) */}
+              <div
+                className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                  catOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="space-y-2 pt-2">
+                    {cat.items.map((item) => {
+                      const itemOpen = openItems.has(item.image);
+                      return (
+                        <div
+                          key={item.image}
+                          className="overflow-hidden rounded-lg border border-white/10 bg-white/5"
+                        >
+                          <button
+                            type="button"
+                            aria-expanded={itemOpen}
+                            onClick={() => setOpenItems((s) => toggle(s, item.image))}
+                            className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left transition-colors duration-fast ease-out hover:bg-white/5"
+                          >
+                            <span className="font-body font-medium text-white">{item.name}</span>
+                            <span className="flex shrink-0 items-center gap-3">
+                              <span className="text-sm text-gray-400">Price: TBD</span>
+                              <ChevronDown
+                                size={16}
+                                aria-hidden="true"
+                                className={`text-gray-400 transition-transform duration-200 ease-out ${
+                                  itemOpen ? 'rotate-180' : ''
+                                }`}
+                              />
+                            </span>
+                          </button>
+
+                          {/* Item detail (image + specs) */}
+                          <div
+                            className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                              itemOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                            }`}
+                          >
+                            <div className="overflow-hidden">
+                              <div className="px-4 pb-4">
+                                <button
+                                  type="button"
+                                  onClick={() => setLightbox(item.image)}
+                                  aria-label={`Enlarge image: ${item.name}`}
+                                  className="block w-full cursor-zoom-in overflow-hidden rounded-lg bg-white"
+                                >
+                                  <div className="relative aspect-video w-full">
+                                    <Image
+                                      src={item.image}
+                                      alt={item.name}
+                                      fill
+                                      sizes="(min-width: 1024px) 40vw, 100vw"
+                                      className="object-contain p-2"
+                                    />
+                                  </div>
+                                </button>
+                                <p className="mt-3 text-sm text-gray-300">{item.specs}</p>
+                                <p className="mt-2 text-sm font-semibold text-bb-blue">Price: TBD</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
-              <h3 className="mt-3 font-heading text-base font-bold leading-snug text-gray-900">
-                {u.name}
-              </h3>
-              <p className="mt-1 flex-1 text-sm text-gray-700">{u.blurb}</p>
-              <p className="mt-3 text-sm font-semibold text-gray-900">Price: TBD</p>
-            </button>
-          ))}
-        </div>
+            </div>
+          );
+        })}
       </div>
 
       {active && (
@@ -224,13 +342,13 @@ export default function UpgradesGrid() {
           role="dialog"
           aria-modal="true"
           aria-label={`${active.name} details`}
-          onClick={close}
+          onClick={closeLightbox}
         >
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              close();
+              closeLightbox();
             }}
             aria-label="Close"
             className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20"

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BedDouble, Tent, Briefcase, Users, Sparkles, ShieldCheck, Thermometer, Bath, LayoutGrid, Sun } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
 import ShowcaseCard from '@/components/products/ShowcaseCard';
+import LightboxImage from '@/components/ui/LightboxImage';
 
 const capsuleModels = [
   { name: 'V-6', price: '$43,995', length: "28' long", image: '/images/products/space-capsules/models/v6.png' },
@@ -258,6 +259,24 @@ const spaceCapsuleSections = (
   </>
 );
 
+const structuralInfographic = (
+  <section id="structural" className="scroll-mt-24">
+    <p className={label}>Engineering</p>
+    <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+      Structural Engineering
+    </h2>
+    <div className="mt-8">
+      <LightboxImage
+        src="/images/products/space-capsules/structural-infographic.png"
+        alt="Space Capsule Structural Engineering Infographic"
+        width={1580}
+        height={995}
+        className="rounded-xl border border-white/10"
+      />
+    </div>
+  </section>
+);
+
 export default function SpaceCapsulesPage() {
   return (
     <ProductPageTemplate
@@ -277,6 +296,7 @@ export default function SpaceCapsulesPage() {
       upgrades={upgrades}
       warmCards
       specs={specs}
+      afterContent={structuralInfographic}
       features={features}
     />
   );

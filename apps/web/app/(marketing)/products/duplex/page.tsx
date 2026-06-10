@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+import UpgradesGrid from '@/components/products/UpgradesGrid';
 import DuplexSection from '@/components/products/DuplexSection';
 import { duplexImages } from '@/components/products/expandableData';
 
@@ -42,6 +43,7 @@ export default function ExpandableDuplexPage() {
       exteriorImages={duplexImages}
       afterGalleries={<DuplexSection images={[]} />}
       warmCards
+      afterContent={<UpgradesGrid />}
       specs={specs}
       features={features}
     />

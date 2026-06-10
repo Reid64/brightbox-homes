@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Check, Box, LayoutGrid, Layers, Wallet, Zap, Hammer, HardHat, GraduationCap, Briefcase } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+import UpgradesGrid from '@/components/products/UpgradesGrid';
 import ShowcaseCard from '@/components/products/ShowcaseCard';
 
 export const metadata: Metadata = {
@@ -111,6 +112,7 @@ export default function AssemblyHomesPage() {
       useCases={useCases}
       frames={frames}
       warmCards
+      afterContent={<UpgradesGrid />}
       specs={specs}
       features={features}
     />

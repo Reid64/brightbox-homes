@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Clock, Flame, Package, Boxes, ShieldCheck, Truck, LifeBuoy, HardHat, Shield, Users, Briefcase } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+import UpgradesGrid from '@/components/products/UpgradesGrid';
 
 export const metadata: Metadata = {
   title: 'Emergency Housing | Bright Box Homes',
@@ -108,6 +109,7 @@ export default function EmergencyHousingPage() {
       afterGalleries={documentationSection}
       frames={frames}
       warmCards
+      afterContent={<UpgradesGrid />}
       specs={specs}
       features={features}
     />

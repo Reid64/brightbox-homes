@@ -71,6 +71,7 @@ interface ProductPageTemplateProps {
   interiorImages?: GalleryImage[];
   galleries?: GallerySection[];
   afterGalleries?: ReactNode;
+  afterContent?: ReactNode;
   intro?: string;
   keyFeatures?: IconCard[];
   useCases?: IconCard[];
@@ -108,6 +109,7 @@ export default function ProductPageTemplate({
   interiorImages,
   galleries,
   afterGalleries,
+  afterContent,
   intro,
   keyFeatures,
   useCases,
@@ -467,6 +469,8 @@ export default function ProductPageTemplate({
               </div>
             )}
           </section>
+
+          {afterContent}
 
           {/* Reserve CTA band */}
           <section className="rounded-2xl border border-white/10 bg-gradient-to-br from-bb-navy to-bb-surface-dark p-8 text-center lg:p-12">

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
+import UpgradesGrid from '@/components/products/UpgradesGrid';
 import { exteriorImages, interiorImages, features, upgrades, intro, keyFeatures, useCases, frames } from '@/components/products/expandableData';
 
 export const metadata: Metadata = {
@@ -48,6 +49,7 @@ export default function Expandable20x10Page() {
       upgrades={upgrades}
       frames={frames}
       warmCards
+      afterContent={<UpgradesGrid />}
       specs={specs}
       features={features}
     />

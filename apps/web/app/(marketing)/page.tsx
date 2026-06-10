@@ -200,7 +200,7 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-start gap-12 px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-16">
           {/* Left */}
-          <div className="lg:w-3/5">
+          <div className="lg:-ml-24 lg:w-3/5">
             <span
               className="inline-block animate-fade-up rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur"
               style={{ animationDelay: '500ms' }}
@@ -228,7 +228,7 @@ export default function HomePage() {
 
             <a
               href="tel:8002591745"
-              className="mt-4 inline-block animate-fade-up text-sm text-gray-500 transition-colors duration-fast ease-out hover:text-gray-300"
+              className="mt-4 inline-block animate-fade-up text-sm font-bold text-white transition-colors duration-fast ease-out hover:text-white"
               style={{ animationDelay: '800ms' }}
             >
               or call 800-259-1745
@@ -237,7 +237,7 @@ export default function HomePage() {
 
           {/* Right: floating ambient video PiP (desktop only) */}
           <div
-            className="hidden animate-slide-in-right lg:block lg:w-2/5"
+            className="hidden animate-slide-in-right lg:block lg:w-2/5 lg:mt-20 lg:-translate-x-12"
             style={{ animationDelay: '600ms' }}
           >
             <HeroVideo />

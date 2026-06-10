@@ -198,8 +198,8 @@ const CATEGORIES = CATEGORY_ORDER.map((name) => ({
 }));
 
 export default function UpgradesGrid() {
-  // All categories collapsed by default; multiple may be opened.
-  const [openCats, setOpenCats] = useState<Set<string>>(new Set());
+  // Only one category open at a time; all collapsed by default.
+  const [activeCat, setActiveCat] = useState<string | null>(null);
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
   const [lightbox, setLightbox] = useState<string | null>(null);
 
@@ -235,100 +235,100 @@ export default function UpgradesGrid() {
         Premium upgrades to make your Bright Box Home uniquely yours.
       </p>
 
-      <div className="mt-8 space-y-3 rounded-2xl border border-white/5 bg-[#1A2030] p-4 sm:p-6">
-        {CATEGORIES.map((cat) => {
-          const catOpen = openCats.has(cat.name);
-          return (
-            <div key={cat.name}>
-              {/* Category bar */}
+      <div className="mt-8 rounded-2xl border border-white/5 bg-[#1A2030] p-4 sm:p-6">
+        {/* Compact category button grid */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          {CATEGORIES.map((cat) => {
+            const isActive = activeCat === cat.name;
+            return (
               <button
+                key={cat.name}
                 type="button"
-                aria-expanded={catOpen}
-                onClick={() => setOpenCats((s) => toggle(s, cat.name))}
-                className="flex w-full items-center justify-between rounded-xl bg-[#D4C4A8] px-5 py-4 text-left transition-colors duration-fast ease-out hover:bg-[#C8B898]"
-              >
-                <span className="font-heading text-lg font-bold text-gray-900">
-                  {cat.name}{' '}
-                  <span className="font-body text-base font-normal text-gray-700">
-                    ({cat.items.length} {cat.items.length === 1 ? 'option' : 'options'})
-                  </span>
-                </span>
-                <ChevronDown
-                  size={22}
-                  aria-hidden="true"
-                  className={`shrink-0 text-gray-900 transition-transform duration-200 ease-out ${
-                    catOpen ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-
-              {/* Category items (animated open/collapse) */}
-              <div
-                className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                  catOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                aria-expanded={isActive}
+                onClick={() => setActiveCat(isActive ? null : cat.name)}
+                className={`flex flex-col items-center justify-center rounded-xl bg-[#D4C4A8] px-4 py-5 text-center transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#C8B898] ${
+                  isActive ? 'ring-2 ring-bb-blue ring-offset-2 ring-offset-[#1A2030]' : ''
                 }`}
               >
-                <div className="overflow-hidden">
-                  <div className="space-y-2 pt-2">
-                    {cat.items.map((item) => {
-                      const itemOpen = openItems.has(item.image);
-                      return (
-                        <div
-                          key={item.image}
-                          className="overflow-hidden rounded-lg border border-white/10 bg-white/5"
-                        >
-                          <button
-                            type="button"
-                            aria-expanded={itemOpen}
-                            onClick={() => setOpenItems((s) => toggle(s, item.image))}
-                            className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left transition-colors duration-fast ease-out hover:bg-white/5"
-                          >
-                            <span className="font-body font-medium text-white">{item.name}</span>
-                            <span className="flex shrink-0 items-center gap-3">
-                              <span className="text-sm text-gray-400">Price: TBD</span>
-                              <ChevronDown
-                                size={16}
-                                aria-hidden="true"
-                                className={`text-gray-400 transition-transform duration-200 ease-out ${
-                                  itemOpen ? 'rotate-180' : ''
-                                }`}
-                              />
-                            </span>
-                          </button>
+                <span className="font-heading text-base font-bold leading-tight text-gray-900 sm:text-lg">
+                  {cat.name}
+                </span>
+                <span className="mt-1 text-sm text-gray-700">{cat.items.length} options</span>
+              </button>
+            );
+          })}
+        </div>
 
-                          {/* Item detail (image + specs) */}
-                          <div
-                            className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                              itemOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-                            }`}
-                          >
-                            <div className="overflow-hidden">
-                              <div className="px-4 pb-4">
-                                <button
-                                  type="button"
-                                  onClick={() => setLightbox(item.image)}
-                                  aria-label={`Enlarge image: ${item.name}`}
-                                  className="block w-full cursor-zoom-in overflow-hidden rounded-lg bg-white"
-                                >
-                                  <div className="relative aspect-video w-full">
-                                    <Image
-                                      src={item.image}
-                                      alt={item.name}
-                                      fill
-                                      sizes="(min-width: 1024px) 40vw, 100vw"
-                                      className="object-contain p-2"
-                                    />
-                                  </div>
-                                </button>
-                                <p className="mt-3 text-sm text-gray-300">{item.specs}</p>
-                                <p className="mt-2 text-sm font-semibold text-bb-blue">Price: TBD</p>
-                              </div>
+        {/* Expandable panel below the grid - only the active category expands */}
+        {CATEGORIES.map((cat) => {
+          const isActive = activeCat === cat.name;
+          return (
+            <div
+              key={cat.name}
+              className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="mt-4 space-y-2">
+                  {cat.items.map((item) => {
+                    const itemOpen = openItems.has(item.image);
+                    return (
+                      <div
+                        key={item.image}
+                        className="overflow-hidden rounded-lg border border-white/10 bg-white/5"
+                      >
+                        <button
+                          type="button"
+                          aria-expanded={itemOpen}
+                          onClick={() => setOpenItems((s) => toggle(s, item.image))}
+                          className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left transition-colors duration-fast ease-out hover:bg-white/5"
+                        >
+                          <span className="font-body font-medium text-white">{item.name}</span>
+                          <span className="flex shrink-0 items-center gap-3">
+                            <span className="text-sm text-gray-400">Price: TBD</span>
+                            <ChevronDown
+                              size={16}
+                              aria-hidden="true"
+                              className={`text-gray-400 transition-transform duration-200 ease-out ${
+                                itemOpen ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </span>
+                        </button>
+
+                        {/* Item detail (image + specs) */}
+                        <div
+                          className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                            itemOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="px-4 pb-4">
+                              <button
+                                type="button"
+                                onClick={() => setLightbox(item.image)}
+                                aria-label={`Enlarge image: ${item.name}`}
+                                className="block w-full cursor-zoom-in overflow-hidden rounded-lg bg-white"
+                              >
+                                <div className="relative aspect-video w-full">
+                                  <Image
+                                    src={item.image}
+                                    alt={item.name}
+                                    fill
+                                    sizes="(min-width: 1024px) 40vw, 100vw"
+                                    className="object-contain p-2"
+                                  />
+                                </div>
+                              </button>
+                              <p className="mt-3 text-sm text-gray-300">{item.specs}</p>
+                              <p className="mt-2 text-sm font-semibold text-bb-blue">Price: TBD</p>
                             </div>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>

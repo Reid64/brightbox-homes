@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Check } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import ImageGallery from '@/components/ui/ImageGallery';
 import ProductSideNav from '@/components/products/ProductSideNav';
@@ -83,6 +83,7 @@ interface ProductPageTemplateProps {
   ctaText?: string;
   warmCards?: boolean;
   hideGalleries?: boolean;
+  hideFinancing?: boolean;
 }
 
 const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
@@ -120,6 +121,7 @@ export default function ProductPageTemplate({
   features,
   warmCards = false,
   hideGalleries = false,
+  hideFinancing = false,
 }: ProductPageTemplateProps) {
   const featureCardClass = warmCards
     ? 'rounded-xl border border-[#B8A888] bg-[#D4C4A8] p-6 transition-colors duration-fast ease-out hover:bg-[#C8B898]'
@@ -210,6 +212,15 @@ export default function ProductPageTemplate({
                   <p className="mt-4 font-mono text-2xl text-bb-blue">
                     {priceLabel} {price}
                   </p>
+                )}
+                {!isQuote && !hideFinancing && (
+                  <Link
+                    href="/financing"
+                    className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-bb-blue underline-offset-4 hover:underline"
+                  >
+                    Flexible Financing Available
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
                 )}
                 <p className="mt-6 max-w-xl text-gray-300">{description}</p>
 

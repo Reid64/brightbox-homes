@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
 export const metadata: Metadata = {
@@ -24,6 +25,15 @@ export default function ReservePage() {
         <div className="mt-8 flex justify-center">
           <BookConsultation size="lg" />
         </div>
+        <p className="mt-4 text-sm text-gray-300">
+          Prefer to finance?{' '}
+          <Link
+            href="/financing"
+            className="font-medium text-bb-blue underline-offset-4 hover:underline"
+          >
+            Apply for Financing
+          </Link>
+        </p>
         <p className="mt-6 text-sm text-gray-400">
           100% refundable &middot; No obligation &middot; 800-259-1745
         </p>

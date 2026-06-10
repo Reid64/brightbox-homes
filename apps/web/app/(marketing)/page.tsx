@@ -324,6 +324,16 @@ export default function HomePage() {
               </ScrollReveal>
             ))}
           </div>
+
+          <p className="mt-10 text-center text-gray-300">
+            Flexible financing available on every model.{' '}
+            <Link
+              href="/financing"
+              className="font-medium text-bb-blue underline-offset-4 hover:underline"
+            >
+              Apply for Financing
+            </Link>
+          </p>
         </div>
       </section>
 

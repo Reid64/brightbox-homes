@@ -98,6 +98,7 @@ export default function AppleCabinsPage() {
       keyFeatures={keyFeatures}
       useCases={useCases}
       warmCards
+      hideFinancing
       floorPlans={floorPlans}
       frames={frames}
       specs={specs}

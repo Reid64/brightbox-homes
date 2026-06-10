@@ -295,6 +295,7 @@ export default function SpaceCapsulesPage() {
       frames={frames}
       upgrades={upgrades}
       warmCards
+      hideFinancing
       specs={specs}
       afterContent={structuralInfographic}
       features={features}

@@ -124,6 +124,10 @@ export default function ProductPageTemplate({
     : 'rounded-xl border border-white/10 bg-white/5 p-6';
   const featureHeadingClass = warmCards ? 'text-gray-900' : 'text-white';
   const featureTextClass = warmCards ? 'text-gray-700' : 'text-gray-300';
+  // Dark container behind the beige cards for a layered, three-depth effect.
+  const featureContainerClass = warmCards
+    ? 'mt-8 rounded-2xl border border-white/5 bg-[#1A2030] p-6'
+    : 'mt-8';
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
 
@@ -272,7 +276,8 @@ export default function ProductPageTemplate({
             <section id="features" className={bandDark}>
               <p className={label}>Key Features</p>
               <h2 className={headingClass}>Built to a Higher Standard</h2>
-              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className={featureContainerClass}>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {keyFeatures!.map((f) => {
                   const Icon = f.icon;
                   return (
@@ -289,6 +294,7 @@ export default function ProductPageTemplate({
                   );
                 })}
               </div>
+              </div>
             </section>
           )}
 
@@ -297,7 +303,8 @@ export default function ProductPageTemplate({
             <section id="use-cases" className={bandDeep}>
               <p className={label}>Who It&apos;s For</p>
               <h2 className={headingClass}>One Home, Many Possibilities</h2>
-              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div className={featureContainerClass}>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {useCases!.map((u) => {
                   const Icon = u.icon;
                   return (
@@ -313,6 +320,7 @@ export default function ProductPageTemplate({
                     </div>
                   );
                 })}
+              </div>
               </div>
             </section>
           )}

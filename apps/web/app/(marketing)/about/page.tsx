@@ -34,7 +34,7 @@ export default function AboutPage() {
           <p>
             We started Bright Box Homes on a simple belief: a well-built home should not
             cost a fortune or take a year to build. Expandable container homes deliver real,
-            finished living space at a fraction of traditional construction cost - and we
+            finished living space at a fraction of traditional construction costs - and we
             wanted to bring them to the US market the right way.
           </p>
           <p>
@@ -42,7 +42,9 @@ export default function AboutPage() {
             photo-documenting every unit during production, and backing each home with a
             7-day no-defect inspection window on delivery. It means our 25/25/25/25 payment
             plan, so you never pay more than 25% at once. And it means giving back - for
-            every home sold, we donate $2,500 to the FAITH Foundation.
+            every home sold, we donate $2,500 to the FAITH Foundation. Bright Box Homes is
+            currently pursuing UL certification for all electrical components, reinforcing
+            our commitment to safety and quality standards.
           </p>
         </div>
       </section>
@@ -69,6 +71,45 @@ export default function AboutPage() {
               height={320}
               className="h-32 w-auto sm:h-40"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Payment Plan */}
+      <section className="bg-bb-charcoal py-16 lg:py-24">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className={label}>Payments</p>
+          <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+            Our 25/25/25/25 Payment Plan
+          </h2>
+          <ul className="mt-8 space-y-4">
+            {[
+              ['25%', 'Due at order confirmation to secure your build slot'],
+              ['25%', 'Due at production start'],
+              ['25%', 'Due at shipping'],
+              ['25%', 'Due on delivery'],
+            ].map(([pct, when], i) => (
+              <li key={i} className="flex items-start gap-4 rounded-xl border border-white/10 bg-bb-surface-dark p-5">
+                <span className="font-heading text-2xl font-bold text-bb-blue">{pct}</span>
+                <span className="pt-1 text-gray-300">{when}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-lg text-gray-300">
+            This structure keeps your investment protected at every stage - you pay as your
+            home progresses from order to your doorstep.
+          </p>
+
+          <div className="mt-10">
+            <p className="text-gray-300">
+              Prefer monthly payments? Flexible financing options available.
+            </p>
+            <a
+              href="/financing"
+              className="mt-4 inline-block rounded-lg bg-bb-blue px-8 py-4 text-lg font-semibold text-white transition-colors duration-fast ease-out hover:bg-bb-blue-dark"
+            >
+              Apply for Financing
+            </a>
           </div>
         </div>
       </section>

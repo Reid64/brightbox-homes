@@ -10,9 +10,9 @@ import { useEffect, useRef } from 'react';
 const CANVAS_W = 250;
 const CANVAS_H = 400;
 
-// Origin = bottom-center of this small canvas (the grate).
-const ORIGIN_X = CANVAS_W / 2;
-const ORIGIN_Y = CANVAS_H - 12;
+// Origin over the grate: bottom-center, nudged up 64px and right 25px.
+const ORIGIN_X = CANVAS_W / 2 + 25;
+const ORIGIN_Y = CANVAS_H - 12 - 64;
 
 // Smoke
 const SMOKE_MAX = 18;

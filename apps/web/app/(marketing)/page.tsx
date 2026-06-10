@@ -130,7 +130,7 @@ const journeySteps = [
   },
   {
     title: 'Delivery & Installation',
-    text: 'We coordinate delivery, setup, utility connections, and final walkthrough so you can move in faster.',
+    text: 'Your home arrives ready to place on your prepared site. Our delivery team handles placement and setup. You handle utility connections and any local permitting with your own contractors.',
   },
 ];
 

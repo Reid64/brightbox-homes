@@ -237,7 +237,7 @@ export default function HomePage() {
 
           {/* Right: floating ambient video PiP (desktop only) */}
           <div
-            className="hidden animate-slide-in-right lg:block lg:w-2/5 lg:mt-20 lg:-translate-x-12"
+            className="relative hidden animate-slide-in-right lg:block lg:w-2/5 lg:top-16 lg:-left-16"
             style={{ animationDelay: '600ms' }}
           >
             <HeroVideo />

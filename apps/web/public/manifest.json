@@ -1,0 +1,26 @@
+{
+  "name": "Bright Box Homes",
+  "short_name": "Bright Box Homes",
+  "description": "Premium, customizable prefab homes delivered across the United States.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#232b3a",
+  "theme_color": "#232b3a",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ]
+}

@@ -25,6 +25,15 @@ export const metadata: Metadata = {
   title: 'Bright Box Homes | American Owned. Globally Sourced. US Delivered.',
   description:
     'Premium, customizable prefab homes delivered across the United States. Expandable container homes, cabins, and capsules with a transparent 25/25/25/25 payment structure. American owned, globally sourced, US delivered.',
+  manifest: '/manifest.json',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/favicon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

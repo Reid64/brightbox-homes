@@ -77,6 +77,15 @@ export default function SmokeEffect() {
     canvas.width = CANVAS_W;
     canvas.height = CANVAS_H;
 
+    // DEBUG (temporary): draw an opaque red marker immediately on mount so we can
+    // confirm the canvas renders and is positioned over the grill, independent of
+    // the rAF loop / IntersectionObserver. Remove after debugging.
+    ctx.fillStyle = 'rgba(255,0,0,1)';
+    ctx.beginPath();
+    ctx.arc(ORIGIN_X, 200, 50, 0, Math.PI * 2);
+    ctx.fill();
+    console.log('[smoke] mounted, canvas size', canvas.width, canvas.height);
+
     const smoke: SmokeParticle[] = [];
     const fire: FireParticle[] = [];
     let raf = 0;
@@ -85,6 +94,7 @@ export default function SmokeEffect() {
     let fireAcc = 0;
     let inView = false;
     let visible = !document.hidden;
+    let frameCount = 0; // DEBUG (temporary)
 
     function spawnSmoke() {
       if (smoke.length >= SMOKE_MAX) return;
@@ -123,6 +133,10 @@ export default function SmokeEffect() {
 
     function frame(ts: number) {
       raf = requestAnimationFrame(frame);
+      if (++frameCount % 60 === 0) {
+        // DEBUG (temporary)
+        console.log('[smoke] frame', { inView, visible, smoke: smoke.length, fire: fire.length });
+      }
       if (!inView || !visible) {
         last = ts;
         return;
@@ -143,6 +157,12 @@ export default function SmokeEffect() {
       }
 
       ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+
+      // DEBUG (temporary): persistent opaque red marker to confirm active drawing.
+      ctx.fillStyle = 'rgba(255,0,0,1)';
+      ctx.beginPath();
+      ctx.arc(ORIGIN_X, 200, 50, 0, Math.PI * 2);
+      ctx.fill();
 
       // Fire (drawn first, low at the grate)
       for (let i = fire.length - 1; i >= 0; i--) {
@@ -195,6 +215,7 @@ export default function SmokeEffect() {
     const io = new IntersectionObserver(
       (entries) => {
         inView = entries[0]?.isIntersecting ?? false;
+        console.log('[smoke] inView ->', inView); // DEBUG (temporary)
         last = 0;
       },
       { threshold: 0 },
@@ -222,7 +243,7 @@ export default function SmokeEffect() {
       aria-hidden="true"
       width={CANVAS_W}
       height={CANVAS_H}
-      className="pointer-events-none absolute left-[68%] top-[25%] z-[1] hidden lg:block"
+      className="pointer-events-none absolute left-[68%] top-[25%] z-[1] hidden border-2 border-red-500 lg:block"
       style={{ width: CANVAS_W, height: CANVAS_H }}
     />
   );

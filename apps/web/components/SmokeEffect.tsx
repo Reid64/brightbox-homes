@@ -2,7 +2,26 @@
 
 import { useEffect, useRef } from 'react';
 
-interface Particle {
+// SMALL, CONSTRAINED canvas (~250x400) positioned ONLY over the grill area -
+// NOT a full-hero inset-0 overlay. The v1 full-hero canvas forced Chrome to
+// promote a huge GPU layer that evicted the hero image's layer (white/pink
+// background bug). This version keeps the painted area tiny and never uses
+// will-change.
+const CANVAS_W = 250;
+const CANVAS_H = 400;
+
+// Origin = bottom-center of this small canvas (the grate).
+const ORIGIN_X = CANVAS_W / 2;
+const ORIGIN_Y = CANVAS_H - 12;
+
+// Smoke
+const SMOKE_MAX = 18;
+const SMOKE_SPAWN_INTERVAL = 0.7; // ~1.4/sec
+// Fire
+const FIRE_MAX = 8;
+const FIRE_SPAWN_INTERVAL = 0.4; // ~2.5/sec
+
+interface SmokeParticle {
   baseX: number;
   y: number;
   baseRadius: number;
@@ -12,23 +31,33 @@ interface Particle {
   wobbleFreq: number;
   wobblePhase: number;
   maxOpacity: number;
-  age: number; // seconds
-  lifespan: number; // seconds
+  age: number;
+  lifespan: number;
 }
 
-// Smoke origin as a fraction of the hero canvas - over the grill on the right.
-const ORIGIN_X = 0.72;
-const ORIGIN_Y = 0.57;
-const MAX_PARTICLES = 18;
-const SPAWN_INTERVAL = 0.7; // seconds between spawns (~1.4/sec)
+interface FireParticle {
+  x: number;
+  startY: number;
+  y: number;
+  radius: number;
+  travel: number; // total upward travel before fully fading
+  jitter: number;
+  maxOpacity: number;
+  color: [number, number, number];
+  age: number;
+  lifespan: number;
+}
+
+const FIRE_COLORS: Array<[number, number, number]> = [
+  [255, 140, 0],
+  [255, 80, 0],
+  [255, 200, 50],
+];
 
 function rand(min: number, max: number): number {
   return min + Math.random() * (max - min);
 }
 
-// A barely-visible rising-smoke particle overlay for the hero grill.
-// Lightweight canvas particle system; only animates while in view and the tab
-// is visible. Disabled for users who prefer reduced motion.
 export default function SmokeEffect() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -37,8 +66,6 @@ export default function SmokeEffect() {
     if (!canvasEl) return;
     const context = canvasEl.getContext('2d', { alpha: true });
     if (!context) return;
-    // Explicitly non-null typed aliases so TS keeps the narrowing inside the
-    // nested animation closures below.
     const canvas: HTMLCanvasElement = canvasEl;
     const ctx: CanvasRenderingContext2D = context;
 
@@ -46,78 +73,114 @@ export default function SmokeEffect() {
       return;
     }
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let width = 0;
-    let height = 0;
-    const particles: Particle[] = [];
+    // Fixed small backing store at 1x DPR (no window.devicePixelRatio multiply).
+    canvas.width = CANVAS_W;
+    canvas.height = CANVAS_H;
+
+    const smoke: SmokeParticle[] = [];
+    const fire: FireParticle[] = [];
     let raf = 0;
     let last = 0;
-    let spawnAcc = 0;
+    let smokeAcc = 0;
+    let fireAcc = 0;
     let inView = false;
     let visible = !document.hidden;
 
-    function resize() {
-      const rect = canvas.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
-      if (width === 0 || height === 0) return;
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function spawn() {
-      if (particles.length >= MAX_PARTICLES) return;
+    function spawnSmoke() {
+      if (smoke.length >= SMOKE_MAX) return;
       const r = rand(15, 40);
-      particles.push({
-        baseX: width * ORIGIN_X + rand(-6, 6),
-        y: height * ORIGIN_Y + rand(-4, 4),
+      smoke.push({
+        baseX: ORIGIN_X + rand(-8, 8),
+        y: ORIGIN_Y + rand(-4, 4),
         baseRadius: r,
         radius: r,
         vy: rand(0.3, 0.6),
         wobbleAmp: rand(10, 20),
         wobbleFreq: rand(0.3, 0.7),
         wobblePhase: rand(0, Math.PI * 2),
-        maxOpacity: rand(0.06, 0.1),
+        maxOpacity: rand(0.04, 0.06),
         age: 0,
         lifespan: rand(3, 5),
       });
     }
 
+    function spawnFire() {
+      if (fire.length >= FIRE_MAX) return;
+      const sy = ORIGIN_Y + rand(-3, 3);
+      fire.push({
+        x: ORIGIN_X + rand(-10, 10),
+        startY: sy,
+        y: sy,
+        radius: rand(3, 8),
+        travel: rand(20, 40),
+        jitter: rand(2, 5),
+        maxOpacity: rand(0.05, 0.08),
+        color: FIRE_COLORS[Math.floor(Math.random() * FIRE_COLORS.length)],
+        age: 0,
+        lifespan: rand(0.5, 1.5),
+      });
+    }
+
     function frame(ts: number) {
       raf = requestAnimationFrame(frame);
-      if (!inView || !visible || width === 0) {
+      if (!inView || !visible) {
         last = ts;
         return;
       }
       const dt = last ? Math.min((ts - last) / 1000, 0.05) : 0.016;
       last = ts;
-      const perFrame = dt * 60; // convert "px per frame" units to this delta
+      const perFrame = dt * 60;
 
-      spawnAcc += dt;
-      while (spawnAcc >= SPAWN_INTERVAL) {
-        spawnAcc -= SPAWN_INTERVAL;
-        spawn();
+      smokeAcc += dt;
+      while (smokeAcc >= SMOKE_SPAWN_INTERVAL) {
+        smokeAcc -= SMOKE_SPAWN_INTERVAL;
+        spawnSmoke();
+      }
+      fireAcc += dt;
+      while (fireAcc >= FIRE_SPAWN_INTERVAL) {
+        fireAcc -= FIRE_SPAWN_INTERVAL;
+        spawnFire();
       }
 
-      ctx.clearRect(0, 0, width, height);
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
+      ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+
+      // Fire (drawn first, low at the grate)
+      for (let i = fire.length - 1; i >= 0; i--) {
+        const p = fire[i];
         p.age += dt;
         const t = p.age / p.lifespan;
         if (t >= 1) {
-          particles.splice(i, 1);
+          fire.splice(i, 1);
           continue;
         }
-
-        p.y -= p.vy * perFrame; // rise upward
-        p.radius = p.baseRadius * (1 + t * 1.2); // disperse/expand as it rises
-        const x = p.baseX + Math.sin(p.age * p.wobbleFreq * Math.PI * 2 + p.wobblePhase) * p.wobbleAmp * t;
-
-        // Fade in then out (peaks mid-life), kept extremely faint.
+        p.y = p.startY - p.travel * t;
+        const x = p.x + Math.sin(p.age * 18 + p.startY) * p.jitter * (1 - t);
         const alpha = p.maxOpacity * Math.sin(t * Math.PI);
         if (alpha <= 0.002) continue;
+        const [r, g, b] = p.color;
+        const grad = ctx.createRadialGradient(x, p.y, 0, x, p.y, p.radius);
+        grad.addColorStop(0, `rgba(${r},${g},${b},${alpha})`);
+        grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
+      // Smoke (rises and disperses)
+      for (let i = smoke.length - 1; i >= 0; i--) {
+        const p = smoke[i];
+        p.age += dt;
+        const t = p.age / p.lifespan;
+        if (t >= 1) {
+          smoke.splice(i, 1);
+          continue;
+        }
+        p.y -= p.vy * perFrame;
+        p.radius = p.baseRadius * (1 + t * 1.2);
+        const x = p.baseX + Math.sin(p.age * p.wobbleFreq * Math.PI * 2 + p.wobblePhase) * p.wobbleAmp * t;
+        const alpha = p.maxOpacity * Math.sin(t * Math.PI);
+        if (alpha <= 0.002) continue;
         const grad = ctx.createRadialGradient(x, p.y, 0, x, p.y, p.radius);
         grad.addColorStop(0, `rgba(255,255,255,${alpha})`);
         grad.addColorStop(0.5, `rgba(228,228,228,${alpha * 0.5})`);
@@ -128,10 +191,6 @@ export default function SmokeEffect() {
         ctx.fill();
       }
     }
-
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -152,7 +211,6 @@ export default function SmokeEffect() {
 
     return () => {
       cancelAnimationFrame(raf);
-      ro.disconnect();
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
     };
@@ -162,10 +220,10 @@ export default function SmokeEffect() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      // No will-change: a 2D-draw canvas we never CSS-transform should not be
-      // force-promoted to its own large GPU layer (that starved the hero image
-      // layer and made it render white/pink). Composite normally instead.
-      className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
+      width={CANVAS_W}
+      height={CANVAS_H}
+      className="pointer-events-none absolute left-[68%] top-[25%] z-[1] hidden lg:block"
+      style={{ width: CANVAS_W, height: CANVAS_H }}
     />
   );
 }

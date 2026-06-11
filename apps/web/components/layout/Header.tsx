@@ -30,7 +30,6 @@ const navLinks = [
   { label: 'Design Your Home', href: '/design' },
   { label: 'About', href: '/about' },
   { label: '$5K Challenge', href: '/5k-challenge' },
-  { label: 'The Real Cost', href: '/the-real-cost' },
   { label: 'FAITH Foundation', href: '/faith-foundation' },
   { label: 'Blog', href: '/blog' },
   { label: 'FAQ', href: '/faq' },

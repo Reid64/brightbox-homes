@@ -56,7 +56,10 @@ export default function AnimatedText({
       {words.map((word, i) => (
         <Fragment key={`${word}-${i}`}>
           {i > 0 ? ' ' : ''}
-          <span className="inline-block overflow-hidden align-bottom">
+          {/* pb gives the overflow-hidden reveal mask room for descenders
+              (g, y, p, j, q) under the line-height:1 headings; -mb keeps the
+              margin box height unchanged so line spacing is unaffected. */}
+          <span className="inline-block overflow-hidden align-bottom pb-[0.2em] -mb-[0.2em]">
             <span
               className="inline-block transition-transform duration-700 ease-out"
               style={{

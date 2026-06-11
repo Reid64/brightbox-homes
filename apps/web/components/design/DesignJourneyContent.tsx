@@ -32,16 +32,18 @@ const products = [
   { name: 'Emergency Housing', price: '$2,000', href: '/products/emergency-housing', image: '/images/products/emergency-housing/exterior/folding-house.png' },
 ];
 
+// href points to the matching category on the master /upgrades catalog. Categories
+// without a dedicated product group (Laundry, Electrical, Insulation) open the catalog top.
 const upgradeCategories = [
-  { icon: Sun, name: 'Solar & Power', text: 'Solar-ready packages and kits.' },
-  { icon: Power, name: 'Generators', text: 'Portable and whole-house backup.' },
-  { icon: Thermometer, name: 'HVAC', text: 'Mini-split and radiant options.' },
-  { icon: UtensilsCrossed, name: 'Kitchen', text: 'Cabinets, induction, disposal.' },
-  { icon: Bath, name: 'Bathroom', text: 'Showers, vanities, finishes.' },
-  { icon: WashingMachine, name: 'Laundry', text: 'Washer/dryer and rough-ins.' },
-  { icon: Zap, name: 'Electrical', text: 'Panels, outlets, smart wiring.' },
-  { icon: Home, name: 'Exterior', text: 'Decks, porches, colors, roofing.' },
-  { icon: Layers, name: 'Insulation', text: 'Upgraded thermal packages.' },
+  { icon: Sun, name: 'Solar & Power', text: 'Solar-ready packages and kits.', href: '/upgrades#solar-power' },
+  { icon: Power, name: 'Generators', text: 'Portable and whole-house backup.', href: '/upgrades#generators' },
+  { icon: Thermometer, name: 'HVAC', text: 'Mini-split and radiant options.', href: '/upgrades#climate-comfort' },
+  { icon: UtensilsCrossed, name: 'Kitchen', text: 'Cabinets, induction, disposal.', href: '/upgrades#kitchen' },
+  { icon: Bath, name: 'Bathroom', text: 'Showers, vanities, finishes.', href: '/upgrades#bathroom' },
+  { icon: WashingMachine, name: 'Laundry', text: 'Washer/dryer and rough-ins.', href: '/upgrades' },
+  { icon: Zap, name: 'Electrical', text: 'Panels, outlets, smart wiring.', href: '/upgrades' },
+  { icon: Home, name: 'Exterior', text: 'Decks, porches, colors, roofing.', href: '/upgrades#exterior-roofing' },
+  { icon: Layers, name: 'Insulation', text: 'Upgraded thermal packages.', href: '/upgrades' },
 ];
 
 export default function DesignJourneyContent({ active }: { active: number }) {
@@ -239,11 +241,17 @@ export default function DesignJourneyContent({ active }: { active: number }) {
             {upgradeCategories.map((u) => {
               const Icon = u.icon;
               return (
-                <div key={u.name} className="rounded-xl border border-white/10 bg-bb-surface-dark p-5">
+                <Link
+                  key={u.name}
+                  href={u.href}
+                  className="group rounded-xl border border-white/10 bg-bb-surface-dark p-5 transition-colors duration-fast ease-out hover:border-bb-blue/50 hover:bg-white/5"
+                >
                   <Icon size={24} aria-hidden="true" className="text-red-500" />
-                  <h3 className="mt-3 font-heading text-base font-semibold text-white">{u.name}</h3>
+                  <h3 className="mt-3 font-heading text-base font-semibold text-white group-hover:text-bb-blue">
+                    {u.name}
+                  </h3>
                   <p className="mt-1 text-sm text-gray-300">{u.text}</p>
-                </div>
+                </Link>
               );
             })}
           </div>

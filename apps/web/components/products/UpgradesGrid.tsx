@@ -197,11 +197,44 @@ const CATEGORIES = CATEGORY_ORDER.map((name) => ({
   items: UPGRADES.filter((u) => CATEGORY_OF[u.name] === name),
 }));
 
-export default function UpgradesGrid() {
+// Category name -> URL anchor slug (e.g. "Solar & Power" -> "solar-power").
+export function categorySlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/&/g, ' ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+interface UpgradesGridProps {
+  heading?: string;
+  subheading?: string;
+}
+
+export default function UpgradesGrid({
+  heading = 'Customize Your Home',
+  subheading = 'Premium upgrades to make your Bright Box Home uniquely yours.',
+}: UpgradesGridProps = {}) {
   // Only one category open at a time; all collapsed by default.
   const [activeCat, setActiveCat] = useState<string | null>(null);
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
   const [lightbox, setLightbox] = useState<string | null>(null);
+
+  // Open (and scroll to) the category matching a URL hash, e.g. /upgrades#kitchen.
+  useEffect(() => {
+    function openFromHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+      const match = CATEGORIES.find((c) => categorySlug(c.name) === hash);
+      if (!match) return;
+      setActiveCat(match.name);
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    return () => window.removeEventListener('hashchange', openFromHash);
+  }, []);
 
   const toggle = (set: Set<string>, key: string) => {
     const next = new Set(set);
@@ -230,10 +263,8 @@ export default function UpgradesGrid() {
   return (
     <section id="upgrades" className="scroll-mt-24">
       <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue">Upgrades</p>
-      <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">Customize Your Home</h2>
-      <p className="mt-4 max-w-2xl text-gray-300">
-        Premium upgrades to make your Bright Box Home uniquely yours.
-      </p>
+      <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">{heading}</h2>
+      <p className="mt-4 max-w-2xl text-gray-300">{subheading}</p>
 
       <div className="mt-8 rounded-2xl border border-white/5 bg-[#1A2030] p-4 sm:p-6">
         {/* Compact category button grid */}
@@ -243,10 +274,11 @@ export default function UpgradesGrid() {
             return (
               <button
                 key={cat.name}
+                id={categorySlug(cat.name)}
                 type="button"
                 aria-expanded={isActive}
                 onClick={() => setActiveCat(isActive ? null : cat.name)}
-                className={`flex flex-col items-center justify-center rounded-xl bg-[#D4C4A8] px-4 py-5 text-center transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#C8B898] ${
+                className={`flex scroll-mt-24 flex-col items-center justify-center rounded-xl bg-[#D4C4A8] px-4 py-5 text-center transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#C8B898] ${
                   isActive ? 'ring-2 ring-bb-blue ring-offset-2 ring-offset-[#1A2030]' : ''
                 }`}
               >

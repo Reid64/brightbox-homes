@@ -149,6 +149,9 @@ export default function ProductPageTemplate({
   const hasUseCases = !!(useCases && useCases.length > 0);
   const hasFloorPlans = !!(floorPlans && floorPlans.length > 0);
   const hasUpgrades = !!(upgrades && upgrades.length > 0);
+  // 3+ frames (expandable photo rows) render as uniform object-cover tiles.
+  // 1-2 frames (which may be spec diagrams) keep object-contain to avoid cropping.
+  const uniformFrames = !!(frames && frames.length >= 3);
 
   const navSections: NavSection[] = [{ id: 'overview', label: 'Overview' }];
   if (!hideGalleries) {
@@ -462,24 +465,41 @@ export default function ProductPageTemplate({
                 </h3>
                 <div
                   className={`mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 ${
-                    frames.length >= 3 ? 'lg:grid-cols-3' : ''
+                    uniformFrames ? 'lg:grid-cols-3' : ''
                   }`}
                 >
-                  {frames.map((fr) => (
-                    <figure key={fr.src} className="max-w-md">
-                      <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1">
-                        <Image
-                          src={fr.src}
-                          alt={fr.alt}
-                          width={fr.width}
-                          height={fr.height}
-                          sizes="(min-width: 640px) 28rem, 100vw"
-                          className="h-auto w-full rounded-lg"
-                        />
-                      </div>
-                      <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
-                    </figure>
-                  ))}
+                  {frames.map((fr) =>
+                    uniformFrames ? (
+                      // Uniform fixed-aspect tiles - identical h/w/aspect across the row.
+                      <figure key={fr.src} className="w-full">
+                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
+                          <Image
+                            src={fr.src}
+                            alt={fr.alt}
+                            fill
+                            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                            className="object-cover"
+                          />
+                        </div>
+                        <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
+                      </figure>
+                    ) : (
+                      // Diagram-safe (no crop) for 1-2 frame products.
+                      <figure key={fr.src} className="max-w-md">
+                        <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1">
+                          <Image
+                            src={fr.src}
+                            alt={fr.alt}
+                            width={fr.width}
+                            height={fr.height}
+                            sizes="(min-width: 640px) 28rem, 100vw"
+                            className="h-auto w-full rounded-lg"
+                          />
+                        </div>
+                        <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
+                      </figure>
+                    ),
+                  )}
                 </div>
               </div>
             )}

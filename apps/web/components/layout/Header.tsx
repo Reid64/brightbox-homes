@@ -113,8 +113,14 @@ export default function Header() {
     };
   }, [productsOpen, closeAll]);
 
+  // MobileNav is rendered as a sibling of <header>, NOT a child: the header's
+  // `backdrop-blur-md` (a backdrop-filter) establishes a containing block for
+  // fixed-positioned descendants, which would clip the full-screen mobile
+  // overlay to the 64px header box. Keeping it outside anchors `fixed` to the
+  // viewport so the menu covers the page.
   return (
-    <header
+    <>
+      <header
       className={`sticky top-0 z-50 border-b border-white/10 bg-bb-charcoal/80 backdrop-blur-md transition-shadow duration-fast ease-out ${
         scrolled ? 'shadow-lg' : ''
       }`}
@@ -240,8 +246,9 @@ export default function Header() {
           </button>
         </div>
       </div>
+      </header>
 
       <MobileNav isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </header>
+    </>
   );
 }

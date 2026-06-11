@@ -20,7 +20,7 @@ const specs = [
   { label: 'Layout', value: 'Studio (1 room, 1 bath)' },
   { label: 'Frame', value: 'Galvanized steel' },
   { label: 'Roof', value: '24-gauge corrugated metal' },
-  { label: 'HVAC', value: '24,000 BTU mini-split' },
+  { label: 'HVAC', value: '12,000 BTU mini-split' },
   { label: 'Water Heater', value: 'Tankless' },
   { label: 'Exterior Colors', value: '60+ RAL options' },
   { label: 'Price', value: '$35,995' },
@@ -50,7 +50,7 @@ export default function Expandable20x10Page() {
       warmCards
       afterContent={<UpgradesGrid />}
       specs={specs}
-      features={features}
+      features={features.map((f) => (f.includes('24,000 BTU') ? '12,000 BTU mini-split' : f))}
     />
   );
 }

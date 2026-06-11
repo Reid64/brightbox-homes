@@ -61,15 +61,17 @@ export const interiorImages = [
 ];
 
 export const features = [
-  'Induction stove with range hood',
-  'Walk-in shower with fixtures',
+  'Induction stovetop, inlaid',
+  'Walk-in shower with custom shower head',
   'Tankless water heater',
   '24,000 BTU mini-split HVAC',
   'Covered front porch with railing',
   'Washer/dryer hookups',
-  'Garbage disposal',
+  '3/4 HP garbage disposal',
   'Dual-pane windows throughout',
   'Upgraded 125-amp electrical panel',
+  'Two external GFCI outlets with metal cover plates',
+  'GFCI outlets in bathroom and kitchen',
   '60+ RAL exterior color choices',
 ];
 

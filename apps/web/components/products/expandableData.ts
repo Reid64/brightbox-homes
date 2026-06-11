@@ -19,7 +19,7 @@ export const keyFeatures = [
 export const frames = [
   { src: '/images/frames/expandable-house-frame-1.jpg', alt: 'Expandable Home Steel Frame Construction', caption: 'Galvanized Steel Frame - Welded Construction', width: 1600, height: 1600 },
   { src: '/images/frames/expandable-house-frame-2.jpg', alt: 'Expandable Home Steel Frame Construction', caption: 'Precision-Welded Steel Frame Base', width: 1600, height: 1600 },
-  { src: '/images/frames/expandable-frame.png', alt: 'Galvanized steel frame of an expandable container home.', caption: 'Galvanized Steel Frame Construction', width: 777, height: 589 },
+  { src: '/images/frames/production-facility.png', alt: 'Bright Box Homes Production Facility', caption: 'Bright Box Homes Production Facility', width: 1694, height: 928 },
 ];
 
 export const useCases = [

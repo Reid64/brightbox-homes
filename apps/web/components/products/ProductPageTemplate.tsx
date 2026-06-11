@@ -460,7 +460,11 @@ export default function ProductPageTemplate({
                 <h3 className="font-heading text-xl font-semibold text-bb-blue">
                   Construction &amp; Frame
                 </h3>
-                <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div
+                  className={`mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 ${
+                    frames.length >= 3 ? 'lg:grid-cols-3' : ''
+                  }`}
+                >
                   {frames.map((fr) => (
                     <figure key={fr.src} className="max-w-md">
                       <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1">

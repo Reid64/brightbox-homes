@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import ClickableImage from '@/components/ui/ClickableImage';
 import { Clock, Flame, Package, Boxes, ShieldCheck, Truck, LifeBuoy, HardHat, Shield, Users, Briefcase } from 'lucide-react';
 import ProductPageTemplate from '@/components/products/ProductPageTemplate';
 import UpgradesGrid from '@/components/products/UpgradesGrid';
@@ -78,15 +78,15 @@ const documentationSection = (
           key={doc.src}
           className="mx-auto w-full max-w-md overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
         >
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-white">
-            <Image
-              src={doc.src}
-              alt={doc.caption}
-              fill
-              sizes="(min-width: 768px) 28rem, 100vw"
-              className="object-contain p-2"
-            />
-          </div>
+          <ClickableImage
+            src={doc.src}
+            alt={doc.caption}
+            caption={doc.caption}
+            fill
+            sizes="(min-width: 768px) 28rem, 100vw"
+            className="aspect-[16/10] w-full overflow-hidden rounded-lg bg-white"
+            imgClassName="object-contain p-2"
+          />
           <figcaption className="px-2 py-3 text-center text-sm text-gray-300">{doc.caption}</figcaption>
         </figure>
       ))}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Check, ArrowRight } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import ImageGallery from '@/components/ui/ImageGallery';
+import ClickableImage from '@/components/ui/ClickableImage';
 import ProductSideNav from '@/components/products/ProductSideNav';
 import type { NavSection } from '@/components/products/ProductSideNav';
 
@@ -361,16 +362,16 @@ export default function ProductPageTemplate({
                           className="rounded-xl border border-white/15 bg-white/5 p-4"
                         >
                           {fp.src ? (
-                            <div className="overflow-hidden rounded-lg bg-white p-2">
-                              <Image
-                                src={fp.src}
-                                alt={fp.alt}
-                                width={fp.width ?? 1200}
-                                height={fp.height ?? 800}
-                                sizes="(min-width: 1024px) 40vw, 100vw"
-                                className="h-auto w-full"
-                              />
-                            </div>
+                            <ClickableImage
+                              src={fp.src}
+                              alt={fp.alt}
+                              width={fp.width ?? 1200}
+                              height={fp.height ?? 800}
+                              caption={`${fp.name} floor plan`}
+                              sizes="(min-width: 1024px) 40vw, 100vw"
+                              className="overflow-hidden rounded-lg bg-white p-2"
+                              imgClassName="h-auto w-full"
+                            />
                           ) : (
                             <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-bb-charcoal text-sm text-gray-400">
                               PDF floor plan
@@ -472,30 +473,30 @@ export default function ProductPageTemplate({
                     uniformFrames ? (
                       // Uniform fixed-aspect tiles - identical h/w/aspect across the row.
                       <figure key={fr.src} className="w-full">
-                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                          <Image
-                            src={fr.src}
-                            alt={fr.alt}
-                            fill
-                            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                            className="object-cover"
-                          />
-                        </div>
+                        <ClickableImage
+                          src={fr.src}
+                          alt={fr.alt}
+                          caption={fr.caption}
+                          fill
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                          className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-white/5"
+                          imgClassName="object-cover"
+                        />
                         <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
                       </figure>
                     ) : (
                       // Diagram-safe (no crop) for 1-2 frame products.
                       <figure key={fr.src} className="max-w-md">
-                        <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1">
-                          <Image
-                            src={fr.src}
-                            alt={fr.alt}
-                            width={fr.width}
-                            height={fr.height}
-                            sizes="(min-width: 640px) 28rem, 100vw"
-                            className="h-auto w-full rounded-lg"
-                          />
-                        </div>
+                        <ClickableImage
+                          src={fr.src}
+                          alt={fr.alt}
+                          width={fr.width}
+                          height={fr.height}
+                          caption={fr.caption}
+                          sizes="(min-width: 640px) 28rem, 100vw"
+                          className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
+                          imgClassName="h-auto w-full rounded-lg"
+                        />
                         <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
                       </figure>
                     ),

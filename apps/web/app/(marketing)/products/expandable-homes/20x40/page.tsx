@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 const floorPlans = [
   { name: '1 Bedroom', src: '/images/floor-plans/expandable-20x40-1br-preview.png', alt: '20x40 one-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-1br.pdf', width: 1191, height: 1684 },
   { name: '2 Bedroom', src: '/images/floor-plans/expandable-20x40-2br-preview.png', alt: '20x40 two-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-2br.pdf', width: 1191, height: 1684 },
+  { name: '3 Bedroom', src: '/images/floor-plans/expandable-20x40-3br-preview.png', alt: '20x40 three-bedroom floor plan.', pdfSrc: '/images/floor-plans/expandable-20x40-3br.pdf', width: 1191, height: 1685 },
 ];
 
 const specs = [

@@ -8,6 +8,7 @@ import ImageGallery from '@/components/ui/ImageGallery';
 import ClickableImage from '@/components/ui/ClickableImage';
 import ProductSideNav from '@/components/products/ProductSideNav';
 import type { NavSection } from '@/components/products/ProductSideNav';
+import RealCostCallout from '@/components/products/RealCostCallout';
 
 interface GalleryImage {
   src: string;
@@ -341,6 +342,9 @@ export default function ProductPageTemplate({
               </div>
             </section>
           )}
+
+          {/* Real Cost nudge - educates buyers comparing against stripped-down shells */}
+          <RealCostCallout />
 
           {/* Floor Plans */}
           {hasFloorPlans && (

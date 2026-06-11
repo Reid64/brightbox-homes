@@ -17,6 +17,7 @@ const companyLinks = [
   { label: 'Blog', href: '/blog' },
   { label: 'FAQ', href: '/faq' },
   { label: '$5K Challenge', href: '/5k-challenge' },
+  { label: 'The Real Cost', href: '/the-real-cost' },
   { label: 'FAITH Foundation', href: '/faith-foundation' },
 ];
 

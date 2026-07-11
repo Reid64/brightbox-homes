@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { getCalApi } from '@calcom/embed-react';
 
 // Opens the Cal.com booking modal on click (no navigation). Styling mirrors
@@ -16,11 +16,27 @@ type Size = 'default' | 'sm' | 'lg';
 const base =
   'inline-flex items-center justify-center gap-2 rounded-sm font-body font-medium ' +
   'transition-colors duration-fast ease-out ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue focus-visible:ring-offset-2';
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7] focus-visible:ring-offset-2';
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-bb-blue text-white font-semibold hover:bg-bb-blue-dark',
-  secondary: 'border border-white/40 text-white bg-transparent hover:bg-white/10',
+  primary: 'font-semibold text-white',
+  secondary: 'text-white',
+};
+
+// Literal redesign styling (gradient + glow) applied inline.
+const variantStyle: Record<Variant, CSSProperties> = {
+  primary: {
+    background: 'linear-gradient(135deg, #4A7CE5, #6B9BF7)',
+    color: '#FFFFFF',
+    borderRadius: '10px',
+    boxShadow: '0 0 25px rgba(107,155,247,0.3)',
+  },
+  secondary: {
+    background: 'transparent',
+    border: '1.5px solid rgba(255,255,255,0.25)',
+    color: '#FFFFFF',
+    borderRadius: '10px',
+  },
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -71,6 +87,7 @@ export function BookConsultation({
       data-cal-link={CAL_LINK}
       data-cal-config='{"layout":"month_view","theme":"dark"}'
       className={cx(base, variantClasses[variant], sizeClasses[size], className)}
+      style={variantStyle[variant]}
     >
       {children}
     </button>

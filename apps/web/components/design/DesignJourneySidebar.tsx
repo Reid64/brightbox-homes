@@ -44,7 +44,7 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
                 >
                   <span
                     className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white transition-transform duration-fast ease-out ${
-                      active === i ? 'scale-110 ring-2 ring-white ring-offset-2 ring-offset-bb-charcoal' : ''
+                      active === i ? 'scale-110 ring-2 ring-white ring-offset-2 ring-offset-[#0F1729]' : ''
                     }`}
                   >
                     {i + 1}
@@ -80,7 +80,7 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
       </aside>
 
       {/* Mobile: horizontal scrollable step bar */}
-      <div className="sticky top-16 z-30 -mx-4 mb-2 border-b border-white/10 bg-bb-charcoal/90 backdrop-blur sm:-mx-6 lg:hidden">
+      <div className="sticky top-16 z-30 -mx-4 mb-2 border-b border-white/10 bg-[#0F1729]/90 backdrop-blur sm:-mx-6 lg:hidden">
         <div className="flex items-center gap-1 overflow-x-auto px-4 py-3 sm:px-6" role="tablist" aria-label="Design steps">
           {steps.map((label, i) => (
             <div key={label} className="flex shrink-0 items-center">
@@ -90,7 +90,7 @@ export default function DesignJourneySidebar({ steps, active, onSelect }: Sideba
                 aria-label={`Step ${i + 1}: ${label}`}
                 aria-current={active === i ? 'step' : undefined}
                 className={`flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white transition-transform duration-fast ease-out ${
-                  active === i ? 'scale-110 ring-2 ring-white ring-offset-2 ring-offset-bb-charcoal' : ''
+                  active === i ? 'scale-110 ring-2 ring-white ring-offset-2 ring-offset-[#0F1729]' : ''
                 }`}
               >
                 {i + 1}

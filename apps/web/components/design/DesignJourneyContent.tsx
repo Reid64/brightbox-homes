@@ -59,7 +59,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
               <Link
                 key={p.name}
                 href={p.href}
-                className="group overflow-hidden rounded-xl border border-white/10 bg-bb-surface-dark transition-colors duration-fast ease-out hover:border-white/20"
+                className="group overflow-hidden rounded-xl border border-white/10 bg-[#1C2438] transition-colors duration-fast ease-out hover:border-white/20"
               >
                 <div className="relative aspect-video w-full overflow-hidden">
                   <Image
@@ -72,8 +72,8 @@ export default function DesignJourneyContent({ active }: { active: number }) {
                 </div>
                 <div className="p-3">
                   <p className="font-heading text-sm font-semibold text-white">{p.name}</p>
-                  <p className="mt-0.5 font-mono text-xs text-bb-blue">{p.price}</p>
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs text-bb-blue">
+                  <p className="mt-0.5 font-mono text-xs text-[#6B9BF7]">{p.price}</p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs text-[#6B9BF7]">
                     Explore <ArrowRight size={12} aria-hidden="true" />
                   </span>
                 </div>
@@ -88,7 +88,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
           <h1 className={heading}>Pick Your Exterior Color</h1>
           <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div>
-              <h2 className="font-heading text-xl font-semibold text-bb-blue">Standard RAL Colors (60+ Options)</h2>
+              <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Standard RAL Colors (60+ Options)</h2>
               <Image
                 src="/images/colors/exterior-house-colors.png"
                 alt="60+ RAL exterior color chart"
@@ -99,7 +99,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
               <p className="mt-3 text-sm text-gray-300">All colors factory-applied with UV and weather-resistant coating.</p>
             </div>
             <div>
-              <h2 className="font-heading text-xl font-semibold text-bb-blue">Carved Metal Plate Finish - $1,000 Upgrade</h2>
+              <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Carved Metal Plate Finish - $1,000 Upgrade</h2>
               <Image
                 src="/images/colors/carved-metal-plate.png"
                 alt="Carved metal plate exterior finishes"
@@ -142,7 +142,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
               </p>
 
               <div>
-                <h2 className="font-heading text-xl font-semibold text-bb-blue">Metal Roof Upgrade Pricing</h2>
+                <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Metal Roof Upgrade Pricing</h2>
                 <p className="mt-2 text-sm text-gray-300">
                   Upgrade to a full pitched metal roof system with high-grade 24-gauge steel
                   roofing panels, a complete metal truss system, and all fasteners included.
@@ -154,9 +154,9 @@ export default function DesignJourneyContent({ active }: { active: number }) {
                     ["30' Home", '$4,995'],
                     ["40' Home", '$5,995'],
                   ].map(([size, price]) => (
-                    <div key={size} className="rounded-xl border border-white/10 bg-bb-surface-dark p-3 text-center">
+                    <div key={size} className="rounded-xl border border-white/10 bg-[#1C2438] p-3 text-center">
                       <p className="text-xs text-gray-300">{size}</p>
-                      <p className="mt-1 font-mono text-lg font-bold text-bb-blue">{price}</p>
+                      <p className="mt-1 font-mono text-lg font-bold text-[#6B9BF7]">{price}</p>
                     </div>
                   ))}
                 </div>
@@ -206,7 +206,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
           <h1 className={heading}>Customize Your Interior</h1>
           <div className="mt-8 space-y-8">
             <div>
-              <h2 className="font-heading text-xl font-semibold text-bb-blue">Interior Wall Colors</h2>
+              <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Interior Wall Colors</h2>
               <Image
                 src="/images/colors/interior-wall-colors.png"
                 alt="Interior wall color chart"
@@ -217,7 +217,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
               <p className="mt-3 text-sm text-gray-300">Bamboo wood fiber wall panels - durable, easy to clean, moisture resistant.</p>
             </div>
             <div className="border-t border-white/10 pt-8">
-              <h2 className="font-heading text-xl font-semibold text-bb-blue">Interior Flooring</h2>
+              <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Interior Flooring</h2>
               <Image
                 src="/images/colors/interior-floor-colors.jpg"
                 alt="Interior flooring color chart"
@@ -244,10 +244,10 @@ export default function DesignJourneyContent({ active }: { active: number }) {
                 <Link
                   key={u.name}
                   href={u.href}
-                  className="group rounded-xl border border-white/10 bg-bb-surface-dark p-5 transition-colors duration-fast ease-out hover:border-bb-blue/50 hover:bg-white/5"
+                  className="group rounded-xl border border-white/10 bg-[#1C2438] p-5 transition-colors duration-fast ease-out hover:border-[#6B9BF7]/50 hover:bg-white/5"
                 >
                   <Icon size={24} aria-hidden="true" className="text-red-500" />
-                  <h3 className="mt-3 font-heading text-base font-semibold text-white group-hover:text-bb-blue">
+                  <h3 className="mt-3 font-heading text-base font-semibold text-white group-hover:text-[#6B9BF7]">
                     {u.name}
                   </h3>
                   <p className="mt-1 text-sm text-gray-300">{u.text}</p>
@@ -257,7 +257,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
           </div>
           <Link
             href="/products/expandable-homes/20x20"
-            className="mt-6 inline-flex items-center gap-1 font-body font-medium text-bb-blue transition-colors duration-fast ease-out hover:text-white"
+            className="mt-6 inline-flex items-center gap-1 font-body font-medium text-[#6B9BF7] transition-colors duration-fast ease-out hover:text-white"
           >
             See detailed upgrade specs on your product page <ArrowRight size={16} aria-hidden="true" />
           </Link>

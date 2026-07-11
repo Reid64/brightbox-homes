@@ -28,14 +28,28 @@ const legalLinks = [
 ];
 
 const linkClass =
-  'inline-flex min-h-11 items-center font-body text-sm text-bb-gray-200 transition-colors duration-fast ease-out hover:text-bb-white';
+  'inline-flex min-h-11 items-center font-body text-sm text-[#9CA3AF] transition-colors duration-200 ease-out hover:text-[#FFFFFF]';
+
+const headingClass =
+  'font-heading text-xs font-bold uppercase tracking-[0.1em] text-[#9CA3AF]';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-bb-charcoal text-bb-gray-200">
+    <footer
+      className="text-[#9CA3AF]"
+      style={{ background: 'linear-gradient(180deg, #141B2D, #0F1729)' }}
+    >
+      {/* Gradient top border */}
+      <div
+        className="h-px w-full"
+        style={{
+          background:
+            'linear-gradient(to right, transparent, rgba(107,155,247,0.15), transparent)',
+        }}
+      />
+
       {/* 1. Main footer grid */}
-      <div className="bg-bb-surface-dark">
-       <div className="mx-auto max-w-[1280px] px-6 py-16">
+      <div className="mx-auto max-w-[1280px] px-6 py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Image
@@ -45,10 +59,13 @@ export default function Footer() {
               height={33}
               className="h-8 w-auto"
             />
-            <p className="mt-3 font-body text-sm text-bb-gray-300">
+            <p className="mt-3 font-body text-sm text-[#9CA3AF]">
               American Owned. Globally Sourced. US Delivered.
             </p>
-            <a href="tel:8002591745" className={linkClass}>
+            <a
+              href="tel:8002591745"
+              className="inline-flex min-h-11 items-center font-body text-sm font-semibold text-[#FFFFFF] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
+            >
               800-259-1745
             </a>
             <br />
@@ -58,9 +75,7 @@ export default function Footer() {
           </div>
 
           <nav aria-label="Products">
-            <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-bb-white">
-              Products
-            </h2>
+            <h2 className={headingClass}>Products</h2>
             <ul className="mt-2">
               {productLinks.map((link) => (
                 <li key={link.href}>
@@ -73,9 +88,7 @@ export default function Footer() {
           </nav>
 
           <nav aria-label="Company">
-            <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-bb-white">
-              Company
-            </h2>
+            <h2 className={headingClass}>Company</h2>
             <ul className="mt-2">
               {companyLinks.map((link) => (
                 <li key={link.href}>
@@ -88,9 +101,7 @@ export default function Footer() {
           </nav>
 
           <nav aria-label="Legal">
-            <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-bb-white">
-              Legal
-            </h2>
+            <h2 className={headingClass}>Legal</h2>
             <ul className="mt-2">
               {legalLinks.map((link) => (
                 <li key={link.href}>
@@ -102,15 +113,14 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
-       </div>
       </div>
 
       {/* 2. FAITH Foundation bar */}
-      <div className="border-t border-white/10 bg-bb-blue/10">
+      <div className="border-t border-white/[0.06] bg-[#6B9BF7]/10">
         <div className="mx-auto max-w-[1280px] px-6 py-4">
           <Link
             href="/faith-foundation"
-            className="inline-flex min-h-11 items-center font-body text-sm font-medium text-bb-blue transition-colors duration-fast ease-out hover:text-white"
+            className="inline-flex min-h-11 items-center font-body text-sm font-medium text-[#6B9BF7] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
           >
             For every home sold, we donate $2,500 to the FAITH Foundation.
           </Link>
@@ -118,12 +128,12 @@ export default function Footer() {
       </div>
 
       {/* 3. Legal disclosures */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/[0.06]">
         <div className="mx-auto max-w-[1280px] space-y-2 px-6 py-6">
-          <p className="font-body text-xs text-gray-500">
+          <p className="font-body text-xs text-[#6B7280]">
             Manufactured in China. Imported and distributed by Bright Box Homes LLC.
           </p>
-          <p className="font-body text-xs text-gray-500">
+          <p className="font-body text-xs text-[#6B7280]">
             Bright Box Homes are classified as temporary buildings and do not require
             local building code compliance in most jurisdictions. Consult your local
             building department for placement restrictions.
@@ -132,7 +142,7 @@ export default function Footer() {
       </div>
 
       {/* 4. Trust badges */}
-      <div className="border-t border-white/10 bg-bb-surface-dark">
+      <div className="border-t border-white/[0.06]">
         <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-6 px-6 py-8 opacity-90">
           {[
             ['faith-foundation-partnership', 'FAITH Foundation Partner'],
@@ -153,9 +163,9 @@ export default function Footer() {
       </div>
 
       {/* 5. Copyright bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/[0.06]">
         <div className="mx-auto max-w-[1280px] px-6 py-4">
-          <p className="font-body text-xs text-gray-500">
+          <p className="font-body text-xs text-[#6B7280]">
             &copy; 2026 Bright Box Homes LLC. All rights reserved.
           </p>
         </div>

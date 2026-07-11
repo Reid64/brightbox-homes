@@ -10,7 +10,10 @@ export const metadata: Metadata = {
     "Find a better-equipped, higher-quality home from any US competitor and we'll put $5,000 toward yours.",
 };
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
+const labelDark =
+  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
+const labelWarm =
+  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#3461C7]';
 
 const steps = [
   {
@@ -44,15 +47,18 @@ export default function FiveKChallengePage() {
   return (
     <>
       {/* A - Hero */}
-      <section className="bg-bb-surface-dark py-24 lg:py-32">
+      <section
+        className="py-24 lg:py-32"
+        style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+      >
         <div className="mx-auto max-w-[1280px] px-6">
-          <p className={label}>The Challenge</p>
+          <p className={labelDark}>The Challenge</p>
           <AnimatedText
             text="We'll Pay You $5,000 to Prove Us Wrong"
             as="h1"
-            className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+            className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl"
           />
-          <p className="mt-6 max-w-2xl text-lg text-gray-300">
+          <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
             Find a better-equipped, higher-quality home from any US competitor -
             and we&apos;ll put $5,000 toward yours.
           </p>
@@ -63,10 +69,10 @@ export default function FiveKChallengePage() {
       </section>
 
       {/* B - The Pitch */}
-      <section className="bg-bb-charcoal py-16 lg:py-24">
+      <section className="bg-[#F5F0E8] py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <ScrollReveal>
-            <div className="space-y-6 text-lg text-gray-300">
+            <div className="space-y-6 text-lg text-[#4B5563]">
               <p>
                 We built Bright Box Homes on one belief: nobody at this price
                 point delivers more home for the money. Every unit ships standard
@@ -76,7 +82,7 @@ export default function FiveKChallengePage() {
                 upgraded insulation, ceiling-mounted air moving fans, and 60+
                 exterior color options.
               </p>
-              <p className="font-heading text-2xl font-semibold text-white">
+              <p className="font-heading text-2xl font-semibold text-[#111827]">
                 So we&apos;re putting our money where our mouth is.
               </p>
               <p>
@@ -92,11 +98,11 @@ export default function FiveKChallengePage() {
       </section>
 
       {/* C - How It Works */}
-      <section className="bg-bb-surface-dark py-16 lg:py-24">
+      <section className="bg-[#1C2438] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
-            <p className={label}>How It Works</p>
-            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+            <p className={labelDark}>How It Works</p>
+            <h2 className="font-heading text-3xl font-bold text-[#FFFFFF] md:text-4xl">
               Four Steps to $5,000
             </h2>
           </ScrollReveal>
@@ -108,19 +114,19 @@ export default function FiveKChallengePage() {
                   {i < steps.length - 1 && (
                     <span
                       aria-hidden="true"
-                      className="absolute left-16 top-8 hidden h-px w-full border-t border-bb-blue/20 lg:block"
+                      className="absolute left-16 top-8 hidden h-px w-full border-t border-[#6B9BF7]/20 lg:block"
                     />
                   )}
                   <span
                     aria-hidden="true"
-                    className="block font-heading text-6xl font-bold text-bb-blue/15"
+                    className="block font-heading text-6xl font-bold text-[#6B9BF7]/15"
                   >
                     {i + 1}
                   </span>
-                  <h3 className="mt-2 font-heading text-lg font-semibold text-white">
+                  <h3 className="mt-2 font-heading text-lg font-semibold text-[#FFFFFF]">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-gray-300">{step.text}</p>
+                  <p className="mt-2 text-sm text-[#D1D5DB]">{step.text}</p>
                 </li>
               </ScrollReveal>
             ))}
@@ -129,11 +135,11 @@ export default function FiveKChallengePage() {
       </section>
 
       {/* D - The Fine Print */}
-      <section className="bg-bb-charcoal py-16 lg:py-24">
+      <section className="bg-[#D4C4A8] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
-            <p className={label}>The Details</p>
-            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+            <p className={labelWarm}>The Details</p>
+            <h2 className="font-heading text-3xl font-bold text-[#111827] md:text-4xl">
               The Fine Print
             </h2>
           </ScrollReveal>
@@ -143,9 +149,9 @@ export default function FiveKChallengePage() {
                 <Check
                   size={20}
                   aria-hidden="true"
-                  className="mt-0.5 shrink-0 text-bb-blue"
+                  className="mt-0.5 shrink-0 text-[#3461C7]"
                 />
-                <span className="text-gray-300">{detail}</span>
+                <span className="text-[#374151]">{detail}</span>
               </li>
             ))}
           </ul>
@@ -153,10 +159,10 @@ export default function FiveKChallengePage() {
       </section>
 
       {/* E - Closing CTA */}
-      <section className="bg-bb-navy py-16 lg:py-24">
+      <section className="bg-[#0F1729] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <ScrollReveal>
-            <p className="mx-auto max-w-2xl font-heading text-2xl font-semibold text-white md:text-3xl">
+            <p className="mx-auto max-w-2xl font-heading text-2xl font-semibold text-[#FFFFFF] md:text-3xl">
               We don&apos;t make this offer because we have to. We make it because
               we&apos;ve done the homework - and we know what you&apos;ll find.
             </p>
@@ -166,14 +172,14 @@ export default function FiveKChallengePage() {
             <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-6">
               <a
                 href="tel:8002591745"
-                className="inline-flex items-center gap-2 font-body text-white/80 transition-colors duration-fast ease-out hover:text-white"
+                className="inline-flex items-center gap-2 font-body text-[#D1D5DB] transition-colors duration-fast ease-out hover:text-[#FFFFFF]"
               >
                 <Phone size={20} aria-hidden="true" />
                 800-259-1745
               </a>
               <a
                 href="mailto:info@brightboxhomes.com"
-                className="inline-flex items-center gap-2 font-body text-white/80 transition-colors duration-fast ease-out hover:text-white"
+                className="inline-flex items-center gap-2 font-body text-[#D1D5DB] transition-colors duration-fast ease-out hover:text-[#FFFFFF]"
               >
                 <Mail size={20} aria-hidden="true" />
                 info@brightboxhomes.com

@@ -87,11 +87,16 @@ interface ProductPageTemplateProps {
   hideFinancing?: boolean;
 }
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
-const headingClass = 'font-heading text-3xl font-bold text-white md:text-4xl';
-const bandBase = 'scroll-mt-24 rounded-2xl border border-white/10 p-6 lg:p-10';
-const bandDark = `${bandBase} bg-bb-surface-dark`;
-const bandDeep = `${bandBase} bg-bb-charcoal`;
+// Redesign palette (literal hex, no tokens). Alternating dark navy and warm
+// cream bands stacked on a #0F1729 page background.
+const labelDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6B9BF7]';
+const labelLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#3461C7]';
+const headingOnDark = 'font-heading text-3xl font-bold text-[#FFFFFF] md:text-4xl';
+const headingOnLight = 'font-heading text-3xl font-bold text-[#111827] md:text-4xl';
+const bandBase = 'scroll-mt-24 rounded-2xl border p-6 lg:p-10';
+const bandDark = `${bandBase} border-white/10 bg-[#1C2438]`;
+const bandDeep = `${bandBase} border-white/10 bg-[#141B2D]`;
+const bandCream = `${bandBase} border-black/[0.04] bg-[#F5F0E8] shadow-[0_4px_16px_rgba(0,0,0,0.05)]`;
 
 function slug(s: string): string {
   return s
@@ -120,19 +125,9 @@ export default function ProductPageTemplate({
   frames,
   specs,
   features,
-  warmCards = false,
   hideGalleries = false,
   hideFinancing = false,
 }: ProductPageTemplateProps) {
-  const featureCardClass = warmCards
-    ? 'rounded-xl border border-[#B8A888] bg-[#D4C4A8] p-6 transition-colors duration-fast ease-out hover:bg-[#C8B898]'
-    : 'rounded-xl border border-white/10 bg-white/5 p-6';
-  const featureHeadingClass = warmCards ? 'text-gray-900' : 'text-white';
-  const featureTextClass = warmCards ? 'text-gray-700' : 'text-gray-300';
-  // Dark container behind the beige cards for a layered, three-depth effect.
-  const featureContainerClass = warmCards
-    ? 'mt-8 rounded-2xl border border-white/5 bg-[#1A2030] p-6'
-    : 'mt-8';
   const isQuote = !price.startsWith('$');
   const hero = heroImages.slice(0, 2);
 
@@ -170,13 +165,17 @@ export default function ProductPageTemplate({
   navSections.push({ id: 'specs', label: 'Specs' });
 
   return (
-    <div className="bg-bb-charcoal">
+    <div className="bg-[#0F1729]">
       <div className="flex flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:gap-8">
         <ProductSideNav productName={name} sections={navSections} />
 
         <div className="min-w-0 flex-1 space-y-8">
-          {/* Overview */}
-          <section id="overview" className={bandDark}>
+          {/* Overview (hero gradient) */}
+          <section
+            id="overview"
+            className={`${bandBase} border-white/10`}
+            style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+          >
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
               {hero.length > 0 && (
                 <div className="order-first lg:order-last lg:w-1/2">
@@ -203,37 +202,37 @@ export default function ProductPageTemplate({
               )}
 
               <div className={hero.length > 0 ? 'lg:w-1/2' : 'w-full'}>
-                <p className={label}>Bright Box Homes</p>
-                <h1 className="font-heading text-4xl font-bold text-white md:text-5xl">
+                <p className={labelDark}>Bright Box Homes</p>
+                <h1 className="font-heading text-4xl font-extrabold text-[#FFFFFF] md:text-5xl">
                   {name}
                 </h1>
-                <p className="mt-4 text-lg text-gray-300">{tagline}</p>
+                <p className="mt-4 text-lg text-[#D1D5DB]">{tagline}</p>
                 {isQuote ? (
-                  <p className="mt-4 font-mono text-2xl text-gray-400">
+                  <p className="mt-4 font-mono text-2xl text-[#9CA3AF]">
                     {priceLabel}: {price}
                   </p>
                 ) : (
-                  <p className="mt-4 font-mono text-2xl text-bb-blue">
+                  <p className="mt-4 font-mono text-2xl font-bold text-[#6B9BF7]">
                     {priceLabel} {price}
                   </p>
                 )}
                 {!isQuote && !hideFinancing && (
                   <Link
                     href="/financing"
-                    className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-bb-blue underline-offset-4 hover:underline"
+                    className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-[#6B9BF7] underline-offset-4 hover:underline"
                   >
                     Flexible Financing Available
                     <ArrowRight size={14} aria-hidden="true" />
                   </Link>
                 )}
-                <p className="mt-6 max-w-xl text-gray-300">{description}</p>
+                <p className="mt-6 max-w-xl text-[#D1D5DB]">{description}</p>
 
                 {features.length > 0 && (
                   <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <Check size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-bb-blue" />
-                        <span className="text-sm text-gray-300">{feature}</span>
+                        <Check size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-[#6B9BF7]" />
+                        <span className="text-sm text-[#D1D5DB]">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -249,7 +248,7 @@ export default function ProductPageTemplate({
           {/* Intro */}
           {intro && (
             <section className={bandDeep}>
-              <p className="max-w-3xl text-lg leading-relaxed text-gray-200">{intro}</p>
+              <p className="max-w-3xl text-lg leading-relaxed text-[#D1D5DB]">{intro}</p>
             </section>
           )}
 
@@ -257,20 +256,20 @@ export default function ProductPageTemplate({
           {hideGalleries ? null : usingGalleries ? (
             galleries!.map((g) => (
               <section key={g.label} id={slug(g.label)} className={bandDeep}>
-                <p className={label}>{g.label}</p>
-                <h2 className={headingClass}>{g.heading}</h2>
+                <p className={labelDark}>{g.label}</p>
+                <h2 className={headingOnDark}>{g.heading}</h2>
                 <ImageGallery images={g.images} className="mt-8" />
               </section>
             ))
           ) : (
             <>
               <section id="exterior" className={bandDeep}>
-                <p className={label}>Exterior</p>
-                <h2 className={headingClass}>See It From Every Angle</h2>
+                <p className={labelDark}>Exterior</p>
+                <h2 className={headingOnDark}>See It From Every Angle</h2>
                 {exteriorImages.length > 0 ? (
                   <ImageGallery images={exteriorImages} className="mt-8" />
                 ) : (
-                  <div className="mt-8 flex min-h-40 items-center justify-center rounded-lg border border-white/10 bg-white/5 p-8 text-center text-gray-400">
+                  <div className="mt-8 flex min-h-40 items-center justify-center rounded-lg border border-white/10 bg-white/5 p-8 text-center text-[#9CA3AF]">
                     Product photography coming soon.
                   </div>
                 )}
@@ -278,8 +277,8 @@ export default function ProductPageTemplate({
 
               {hasInterior && (
                 <section id="interior" className={bandDeep}>
-                  <p className={label}>Interior</p>
-                  <h2 className={headingClass}>Take a Look Inside</h2>
+                  <p className={labelDark}>Interior</p>
+                  <h2 className={headingOnDark}>Take a Look Inside</h2>
                   <ImageGallery images={interiorImages!} className="mt-8" />
                 </section>
               )}
@@ -288,70 +287,70 @@ export default function ProductPageTemplate({
 
           {afterGalleries}
 
-          {/* Key Features */}
+          {/* Key Features (warm cream, white cards) */}
           {hasKeyFeatures && (
-            <section id="features" className={bandDark}>
-              <p className={label}>Key Features</p>
-              <h2 className={headingClass}>Built to a Higher Standard</h2>
-              <div className={featureContainerClass}>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {keyFeatures!.map((f) => {
-                  const Icon = f.icon;
-                  return (
-                    <div
-                      key={f.title}
-                      className={featureCardClass}
-                    >
-                      <Icon size={28} aria-hidden="true" className="text-bb-blue" />
-                      <h3 className={`mt-4 font-heading text-lg font-semibold ${featureHeadingClass}`}>
-                        {f.title}
-                      </h3>
-                      <p className={`mt-2 text-sm ${featureTextClass}`}>{f.text}</p>
-                    </div>
-                  );
-                })}
-              </div>
+            <section id="features" className={bandCream}>
+              <p className={labelLight}>Key Features</p>
+              <h2 className={headingOnLight}>Built to a Higher Standard</h2>
+              <div className="mt-8">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {keyFeatures!.map((f) => {
+                    const Icon = f.icon;
+                    return (
+                      <div
+                        key={f.title}
+                        className="rounded-xl border border-black/[0.04] bg-[#FFFFFF] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+                      >
+                        <Icon size={28} aria-hidden="true" className="text-[#4A7CE5]" />
+                        <h3 className="mt-4 font-heading text-lg font-semibold text-[#111827]">
+                          {f.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-[#374151]">{f.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </section>
           )}
 
-          {/* Who It's For */}
+          {/* Who It's For (dark surface) */}
           {hasUseCases && (
             <section id="use-cases" className={bandDeep}>
-              <p className={label}>Who It&apos;s For</p>
-              <h2 className={headingClass}>One Home, Many Possibilities</h2>
-              <div className={featureContainerClass}>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {useCases!.map((u) => {
-                  const Icon = u.icon;
-                  return (
-                    <div
-                      key={u.title}
-                      className={featureCardClass}
-                    >
-                      <Icon size={28} aria-hidden="true" className="text-bb-blue" />
-                      <h3 className={`mt-4 font-heading text-base font-semibold ${featureHeadingClass}`}>
-                        {u.title}
-                      </h3>
-                      <p className={`mt-2 text-sm ${featureTextClass}`}>{u.text}</p>
-                    </div>
-                  );
-                })}
-              </div>
+              <p className={labelDark}>Who It&apos;s For</p>
+              <h2 className={headingOnDark}>One Home, Many Possibilities</h2>
+              <div className="mt-8">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {useCases!.map((u) => {
+                    const Icon = u.icon;
+                    return (
+                      <div
+                        key={u.title}
+                        className="rounded-xl border border-white/10 bg-[#232B45] p-6"
+                      >
+                        <Icon size={28} aria-hidden="true" className="text-[#6B9BF7]" />
+                        <h3 className="mt-4 font-heading text-base font-semibold text-[#FFFFFF]">
+                          {u.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-[#D1D5DB]">{u.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </section>
           )}
 
-          {/* Floor Plans */}
+          {/* Floor Plans (dark surface) */}
           {hasFloorPlans && (
             <section id="floor-plans" className={bandDark}>
-              <p className={label}>Floor Plans</p>
-              <h2 className={headingClass}>Choose Your Layout</h2>
+              <p className={labelDark}>Floor Plans</p>
+              <h2 className={headingOnDark}>Choose Your Layout</h2>
               <div className="mt-8 space-y-12">
                 {floorPlanGroups.map((grp) => (
                   <div key={grp.name || 'plans'}>
                     {grp.name && (
-                      <h3 className="mb-4 font-heading text-xl font-semibold text-bb-blue">
+                      <h3 className="mb-4 font-heading text-xl font-semibold text-[#6B9BF7]">
                         {grp.name}
                       </h3>
                     )}
@@ -359,7 +358,7 @@ export default function ProductPageTemplate({
                       {grp.items.map((fp) => (
                         <div
                           key={fp.name}
-                          className="rounded-xl border border-white/15 bg-white/5 p-4"
+                          className="rounded-xl border border-white/15 bg-[#232B45] p-4"
                         >
                           {fp.src ? (
                             <ClickableImage
@@ -373,12 +372,12 @@ export default function ProductPageTemplate({
                               imgClassName="h-auto w-full"
                             />
                           ) : (
-                            <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-bb-charcoal text-sm text-gray-400">
+                            <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-[#0F1729] text-sm text-[#9CA3AF]">
                               PDF floor plan
                             </div>
                           )}
                           <div className="mt-4 flex items-center justify-between gap-4">
-                            <span className="font-heading font-semibold text-white">
+                            <span className="font-heading font-semibold text-[#FFFFFF]">
                               {fp.name}
                             </span>
                             {fp.pdfSrc && (
@@ -386,7 +385,7 @@ export default function ProductPageTemplate({
                                 href={fp.pdfSrc}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="shrink-0 text-sm text-bb-blue transition-colors duration-fast ease-out hover:text-white"
+                                className="shrink-0 text-sm text-[#6B9BF7] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
                               >
                                 Download PDF
                               </a>
@@ -401,25 +400,25 @@ export default function ProductPageTemplate({
             </section>
           )}
 
-          {/* Upgrades */}
+          {/* Upgrades (warm cream, white cards) */}
           {hasUpgrades && (
-            <section id="upgrades" className={bandDeep}>
-              <p className={label}>Upgrades</p>
-              <h2 className={headingClass}>Customize Your Home</h2>
+            <section id="upgrades" className={bandCream}>
+              <p className={labelLight}>Upgrades</p>
+              <h2 className={headingOnLight}>Customize Your Home</h2>
               <div className="mt-8 space-y-12">
                 {upgrades!.map((cat) => (
                   <div key={cat.category}>
-                    <h3 className="font-heading text-xl font-semibold text-bb-blue">
+                    <h3 className="font-heading text-xl font-semibold text-[#3461C7]">
                       {cat.category}
                     </h3>
                     <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                       {cat.items.map((item) => (
                         <div
                           key={item.name}
-                          className="overflow-hidden rounded-xl border border-white/15 bg-white/5"
+                          className="overflow-hidden rounded-xl border border-black/[0.04] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
                         >
                           {item.image && (
-                            <div className="relative aspect-video w-full bg-white/5">
+                            <div className="relative aspect-video w-full bg-[#EFE8DC]">
                               <Image
                                 src={item.image}
                                 alt={item.name}
@@ -430,9 +429,9 @@ export default function ProductPageTemplate({
                             </div>
                           )}
                           <div className="p-4">
-                            <p className="font-body font-medium text-white">{item.name}</p>
+                            <p className="font-body font-medium text-[#111827]">{item.name}</p>
                             {item.description && (
-                              <p className="mt-1 text-sm text-gray-300">{item.description}</p>
+                              <p className="mt-1 text-sm text-[#4B5563]">{item.description}</p>
                             )}
                           </div>
                         </div>
@@ -444,24 +443,24 @@ export default function ProductPageTemplate({
             </section>
           )}
 
-          {/* Specs */}
+          {/* Specs (dark surface) */}
           <section id="specs" className={bandDark}>
-            <p className={label}>Specifications</p>
+            <p className={labelDark}>Specifications</p>
             <dl className="mt-2 grid grid-cols-1 gap-x-12 md:grid-cols-2">
               {specs.map((spec) => (
                 <div
                   key={spec.label}
                   className="flex items-baseline justify-between gap-4 border-b border-white/5 py-4"
                 >
-                  <dt className="text-gray-300">{spec.label}</dt>
-                  <dd className="text-right font-mono text-white">{spec.value}</dd>
+                  <dt className="text-[#9CA3AF]">{spec.label}</dt>
+                  <dd className="text-right font-mono text-[#FFFFFF]">{spec.value}</dd>
                 </div>
               ))}
             </dl>
 
             {frames && frames.length > 0 && (
               <div className="mt-10">
-                <h3 className="font-heading text-xl font-semibold text-bb-blue">
+                <h3 className="font-heading text-xl font-semibold text-[#6B9BF7]">
                   Construction &amp; Frame
                 </h3>
                 <div
@@ -482,7 +481,7 @@ export default function ProductPageTemplate({
                           className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-white/5"
                           imgClassName="object-cover"
                         />
-                        <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
+                        <figcaption className="mt-2 text-sm text-[#D1D5DB]">{fr.caption}</figcaption>
                       </figure>
                     ) : (
                       // Diagram-safe (no crop) for 1-2 frame products.
@@ -497,7 +496,7 @@ export default function ProductPageTemplate({
                           className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
                           imgClassName="h-auto w-full rounded-lg"
                         />
-                        <figcaption className="mt-2 text-sm text-gray-300">{fr.caption}</figcaption>
+                        <figcaption className="mt-2 text-sm text-[#D1D5DB]">{fr.caption}</figcaption>
                       </figure>
                     ),
                   )}
@@ -508,22 +507,36 @@ export default function ProductPageTemplate({
 
           {afterContent}
 
-          {/* Reserve CTA band */}
-          <section className="rounded-2xl border border-white/10 bg-gradient-to-br from-bb-navy to-bb-surface-dark p-8 text-center lg:p-12">
-            <h2 className={headingClass}>Ready to Reserve?</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-300">
+          {/* Reserve CTA band (navy glass) */}
+          <section
+            className="rounded-2xl p-8 text-center lg:p-12"
+            style={{
+              background: 'rgba(255,255,255,0.04)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 0 30px rgba(107,155,247,0.15)',
+            }}
+          >
+            <h2 className={headingOnDark}>Ready to Reserve?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-[#D1D5DB]">
               Secure your home with a fully refundable $500 deposit. We&apos;ll contact you
               within 24 hours to finalize your configuration.
             </p>
             <div className="mt-8 flex justify-center">
               <Link
                 href="/reserve"
-                className="rounded-lg bg-red-500 px-8 py-4 text-lg font-bold text-white transition-colors duration-fast ease-out hover:bg-red-600"
+                className="inline-flex min-h-12 items-center justify-center px-8 py-4 text-lg font-medium text-[#FFFFFF] transition-colors duration-200 ease-out hover:bg-white/10"
+                style={{
+                  background: 'transparent',
+                  border: '1.5px solid rgba(255,255,255,0.25)',
+                  borderRadius: '10px',
+                }}
               >
                 Reserve Your Home - $500
               </Link>
             </div>
-            <p className="mt-4 text-sm text-gray-400">
+            <p className="mt-4 text-sm text-[#9CA3AF]">
               100% refundable &middot; No obligation &middot; Locks your configuration
             </p>
           </section>

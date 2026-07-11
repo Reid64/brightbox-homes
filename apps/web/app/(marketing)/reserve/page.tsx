@@ -10,26 +10,29 @@ export const metadata: Metadata = {
 
 export default function ReservePage() {
   return (
-    <section className="bg-bb-charcoal py-24 lg:py-32">
+    <section
+      className="py-24 lg:py-32"
+      style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+    >
       <div className="mx-auto max-w-2xl px-6 text-center">
-        <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue">
+        <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">
           Reserve
         </p>
-        <h1 className="font-heading text-4xl font-bold text-white md:text-5xl">
+        <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl">
           Reserve Your Home - $500
         </h1>
-        <p className="mt-6 text-lg text-gray-300">
+        <p className="mt-6 text-lg text-[#D1D5DB]">
           Deposit checkout is coming soon. In the meantime, book a consultation and our
           team will reserve your configuration and walk you through the next steps.
         </p>
         <div className="mt-8 flex justify-center">
           <BookConsultation size="lg" />
         </div>
-        <p className="mt-4 text-sm text-gray-300">
+        <p className="mt-4 text-sm text-[#D1D5DB]">
           Prefer to finance?{' '}
           <Link
             href="/financing"
-            className="font-medium text-bb-blue underline-offset-4 hover:underline"
+            className="font-medium text-[#6B9BF7] underline-offset-4 hover:underline"
           >
             Apply for Financing
           </Link>

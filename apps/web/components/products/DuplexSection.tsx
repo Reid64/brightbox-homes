@@ -7,7 +7,7 @@ interface GalleryImage {
   alt: string;
 }
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
 
 const highlights = [
   { icon: DollarSign, text: 'Live in one, rent one - offset your mortgage immediately' },
@@ -26,7 +26,7 @@ export default function DuplexSection({
   heroImage?: GalleryImage;
 }) {
   return (
-    <section id="investment" className="scroll-mt-24 rounded-2xl border border-white/10 bg-bb-surface-dark p-6 lg:p-10">
+    <section id="investment" className="scroll-mt-24 rounded-2xl border border-white/10 bg-[#1C2438] p-6 lg:p-10">
       <div>
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start">
           {/* Left: heading + copy */}
@@ -35,7 +35,7 @@ export default function DuplexSection({
             <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
               Double Your Investment
             </h2>
-            <p className="mt-3 text-lg text-bb-blue">
+            <p className="mt-3 text-lg text-[#6B9BF7]">
               Stack two units. Live in one. Rent the other.
             </p>
 
@@ -88,7 +88,7 @@ export default function DuplexSection({
                   key={h.text}
                   className="flex items-start gap-3 rounded-xl bg-[#D4C4A8] p-5 transition-colors duration-fast ease-out hover:bg-[#C8B898]"
                 >
-                  <Icon size={24} aria-hidden="true" className="mt-0.5 shrink-0 text-bb-blue" />
+                  <Icon size={24} aria-hidden="true" className="mt-0.5 shrink-0 text-[#6B9BF7]" />
                   <span className="text-sm text-gray-700">{h.text}</span>
                 </div>
               );

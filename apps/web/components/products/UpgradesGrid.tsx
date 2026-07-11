@@ -262,7 +262,7 @@ export default function UpgradesGrid({
 
   return (
     <section id="upgrades" className="scroll-mt-24">
-      <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue">Upgrades</p>
+      <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">Upgrades</p>
       <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">{heading}</h2>
       <p className="mt-4 max-w-2xl text-gray-300">{subheading}</p>
 
@@ -279,7 +279,7 @@ export default function UpgradesGrid({
                 aria-expanded={isActive}
                 onClick={() => setActiveCat(isActive ? null : cat.name)}
                 className={`flex scroll-mt-24 flex-col items-center justify-center rounded-xl bg-[#D4C4A8] px-4 py-5 text-center transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#C8B898] ${
-                  isActive ? 'ring-2 ring-bb-blue ring-offset-2 ring-offset-[#1A2030]' : ''
+                  isActive ? 'ring-2 ring-[#6B9BF7] ring-offset-2 ring-offset-[#1A2030]' : ''
                 }`}
               >
                 <span className="font-heading text-base font-bold leading-tight text-gray-900 sm:text-lg">
@@ -354,7 +354,7 @@ export default function UpgradesGrid({
                                 </div>
                               </button>
                               <p className="mt-3 text-sm text-gray-300">{item.specs}</p>
-                              <p className="mt-2 text-sm font-semibold text-bb-blue">Price: TBD</p>
+                              <p className="mt-2 text-sm font-semibold text-[#6B9BF7]">Price: TBD</p>
                             </div>
                           </div>
                         </div>
@@ -388,7 +388,7 @@ export default function UpgradesGrid({
             <X size={24} aria-hidden="true" />
           </button>
           <div
-            className="my-auto w-full max-w-3xl overflow-hidden rounded-2xl bg-bb-surface-dark"
+            className="my-auto w-full max-w-3xl overflow-hidden rounded-2xl bg-[#1C2438]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative h-[45vh] w-full bg-white">
@@ -404,7 +404,7 @@ export default function UpgradesGrid({
             <div className="p-6 lg:p-8">
               <h3 className="font-heading text-2xl font-bold text-white">{active.name}</h3>
               <p className="mt-4 text-gray-300">{active.specs}</p>
-              <p className="mt-6 text-lg font-semibold text-bb-blue">Price: TBD</p>
+              <p className="mt-6 text-lg font-semibold text-[#6B9BF7]">Price: TBD</p>
             </div>
           </div>
         </div>

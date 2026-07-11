@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Steel-frame expandable container homes from $35,995. Five sizes from a 200 sq ft studio to an 800 sq ft family home, Delivered anywhere in the US.',
 };
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
 
 const sizes = [
   {
@@ -47,7 +47,7 @@ export default function ExpandableHomesOverviewPage() {
   return (
     <>
       {/* Hero / intro */}
-      <section className="bg-bb-surface-dark py-12 lg:py-16">
+      <section className="bg-[#1C2438] py-12 lg:py-16">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={label}>Expandable Container Homes</p>
           <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
@@ -62,14 +62,14 @@ export default function ExpandableHomesOverviewPage() {
       </section>
 
       {/* Size cards */}
-      <section className="bg-bb-charcoal py-16 lg:py-24">
+      <section className="bg-[#0F1729] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sizes.map((s) => (
               <Link
                 key={s.href}
                 href={s.href}
-                className="group overflow-hidden rounded-xl border border-white/5 bg-bb-surface-dark transition-colors duration-normal ease-out hover:border-white/10"
+                className="group overflow-hidden rounded-xl border border-white/5 bg-[#1C2438] transition-colors duration-normal ease-out hover:border-white/10"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
@@ -82,9 +82,9 @@ export default function ExpandableHomesOverviewPage() {
                 </div>
                 <div className="p-6">
                   <h2 className="font-heading text-xl font-semibold text-white">{s.name}</h2>
-                  <p className="mt-1 font-mono text-sm text-bb-blue">{s.price}</p>
+                  <p className="mt-1 font-mono text-sm text-[#6B9BF7]">{s.price}</p>
                   <p className="mt-3 text-sm text-gray-300">{s.blurb}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-bb-blue">
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#6B9BF7]">
                     View Model <ArrowRight size={16} aria-hidden="true" />
                   </span>
                 </div>
@@ -95,7 +95,7 @@ export default function ExpandableHomesOverviewPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-bb-navy py-16 lg:py-24">
+      <section className="bg-[#141B2D] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
             Not sure which size fits?

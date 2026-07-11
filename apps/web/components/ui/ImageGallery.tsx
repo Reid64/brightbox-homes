@@ -109,7 +109,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
               close();
             }}
             aria-label="Close"
-            className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
           >
             <X size={24} aria-hidden="true" />
           </button>
@@ -122,7 +122,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
               prev();
             }}
             aria-label="Previous image"
-            className="absolute left-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue sm:left-4"
+            className="absolute left-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7] sm:left-4"
           >
             <ChevronLeft size={28} aria-hidden="true" />
           </button>
@@ -152,7 +152,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
               next();
             }}
             aria-label="Next image"
-            className="absolute right-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue sm:right-4"
+            className="absolute right-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7] sm:right-4"
           >
             <ChevronRight size={28} aria-hidden="true" />
           </button>

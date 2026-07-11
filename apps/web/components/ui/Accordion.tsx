@@ -17,7 +17,7 @@ interface AccordionProps {
   sections: FaqSection[];
 }
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
+const label = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#3461C7]';
 
 export default function Accordion({ sections }: AccordionProps) {
   // Multiple items can be open simultaneously.
@@ -36,29 +36,29 @@ export default function Accordion({ sections }: AccordionProps) {
       {sections.map((section, si) => (
         <div key={section.title}>
           <p className={label}>{section.title}</p>
-          <div className="border-t border-white/5">
+          <div className="border-t border-black/10">
             {section.items.map((item, ii) => {
               const id = `${si}-${ii}`;
               const open = openIds.has(id);
               const panelId = `faq-panel-${id}`;
               const btnId = `faq-btn-${id}`;
               return (
-                <div key={id} className="border-b border-white/5">
+                <div key={id} className="border-b border-black/10">
                   <button
                     id={btnId}
                     type="button"
                     aria-expanded={open}
                     aria-controls={panelId}
                     onClick={() => toggle(id)}
-                    className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors duration-fast ease-out hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors duration-200 ease-out hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
                   >
-                    <span className="font-body font-medium text-white">
+                    <span className="font-body font-medium text-[#111827]">
                       {item.question}
                     </span>
                     <ChevronDown
                       size={20}
                       aria-hidden="true"
-                      className={`shrink-0 text-bb-blue transition-transform duration-normal ease-out ${
+                      className={`shrink-0 text-[#6B9BF7] transition-transform duration-normal ease-out ${
                         open ? 'rotate-180' : ''
                       }`}
                     />
@@ -72,7 +72,7 @@ export default function Accordion({ sections }: AccordionProps) {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="pb-5 pr-8 text-gray-300">{item.answer}</p>
+                      <p className="pb-5 pr-8 text-[#4B5563]">{item.answer}</p>
                     </div>
                   </div>
                 </div>

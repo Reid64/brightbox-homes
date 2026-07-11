@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 
 export default function UpgradesPage() {
   return (
-    <section className="bg-bb-charcoal py-16 lg:py-24">
+    <section
+      className="py-16 lg:py-24"
+      style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+    >
       <div className="mx-auto max-w-[1280px] px-6">
         <UpgradesGrid heading="Upgrade Options" />
       </div>

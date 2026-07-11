@@ -70,25 +70,15 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 lg:hidden ${isOpen ? '' : 'pointer-events-none'}`}
+      className={`fixed inset-0 z-[9999] lg:hidden ${isOpen ? '' : 'pointer-events-none'}`}
       aria-hidden={!isOpen}
     >
-      {/* Backdrop */}
-      <button
-        type="button"
-        aria-label="Close menu"
-        onClick={onClose}
-        className={`absolute inset-0 bg-black/60 transition-opacity duration-normal ease-out ${
-          isOpen ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
-
-      {/* Slide-in panel */}
+      {/* Full-screen overlay panel */}
       <div
         role="dialog"
         aria-modal="true"
         aria-label="Site navigation"
-        className={`absolute right-0 top-0 flex h-full w-80 max-w-full flex-col bg-bb-surface-dark shadow-lg transition-transform duration-normal ease-out ${
+        className={`absolute inset-0 flex h-full w-full flex-col bg-[#0F1729] transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -105,14 +95,14 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-blue"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-[#FFFFFF] transition-colors duration-200 ease-out hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
           >
             <X size={24} aria-hidden="true" />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-2 py-4">
-          <p className="px-4 pb-1 pt-2 font-heading text-sm font-bold uppercase tracking-wide text-gray-500">
+        <nav className="mx-auto w-full max-w-lg flex-1 overflow-y-auto px-2 py-4">
+          <p className="px-4 pb-1 pt-2 font-heading text-sm font-bold uppercase tracking-wide text-[#9CA3AF]">
             Products
           </p>
           {productLinks.map((link) => (
@@ -120,7 +110,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <Link
                 href={link.href}
                 onClick={onClose}
-                className="flex min-h-12 items-center rounded-sm px-4 font-body text-gray-200 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                className="flex min-h-12 items-center rounded-sm px-4 font-body text-[#D1D5DB] transition-colors duration-200 ease-out hover:bg-white/5 hover:text-[#FFFFFF]"
               >
                 {link.label}
               </Link>
@@ -131,7 +121,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="flex min-h-11 items-center rounded-sm px-4 font-body text-sm text-gray-300 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+                      className="flex min-h-11 items-center rounded-sm px-4 font-body text-sm text-[#9CA3AF] transition-colors duration-200 ease-out hover:bg-white/5 hover:text-[#D1D5DB]"
                     >
                       {child.label}
                     </Link>
@@ -141,7 +131,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             </div>
           ))}
 
-          <p className="px-4 pb-1 pt-4 font-heading text-sm font-bold uppercase tracking-wide text-gray-500">
+          <p className="px-4 pb-1 pt-4 font-heading text-sm font-bold uppercase tracking-wide text-[#9CA3AF]">
             Company
           </p>
           {companyLinks.map((link) => (
@@ -149,18 +139,18 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="flex min-h-12 items-center rounded-sm px-4 font-body text-gray-200 transition-colors duration-fast ease-out hover:bg-white/5 hover:text-white"
+              className="flex min-h-12 items-center rounded-sm px-4 font-body text-[#D1D5DB] transition-colors duration-200 ease-out hover:bg-white/5 hover:text-[#FFFFFF]"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="border-t border-white/10 px-6 py-4">
+        <div className="mx-auto w-full max-w-lg border-t border-white/10 px-6 py-4">
           <BookConsultation className="w-full" onClick={onClose}>Book a Consultation</BookConsultation>
           <a
             href="tel:8002591745"
-            className="mt-3 flex min-h-11 items-center justify-center gap-2 font-body text-gray-300 transition-colors duration-fast ease-out hover:text-white"
+            className="mt-3 flex min-h-11 items-center justify-center gap-2 font-body text-[#9CA3AF] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
           >
             <Phone size={20} aria-hidden="true" />
             800-259-1745

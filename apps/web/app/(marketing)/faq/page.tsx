@@ -177,15 +177,15 @@ export default function FaqPage() {
       />
 
       {/* Hero */}
-      <section className="bg-bb-surface-dark py-24 lg:py-32">
+      <section className="py-24 lg:py-32" style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}>
         <div className="mx-auto max-w-[1280px] px-6">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">
             FAQ
           </p>
-          <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl">
             Everything You Need to Know
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-gray-300">
+          <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
             Honest answers about cost, permits, delivery, off-grid living, financing,
             and finding the right land for your Bright Box Home.
           </p>
@@ -193,19 +193,19 @@ export default function FaqPage() {
       </section>
 
       {/* Accordion */}
-      <section className="bg-bb-charcoal py-16 lg:py-24">
+      <section className="bg-[#F5F0E8] py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <Accordion sections={faqSections} />
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-bb-navy py-16 lg:py-24">
+      <section className="bg-[#0F1729] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
-          <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+          <h2 className="font-heading text-3xl font-bold text-[#FFFFFF] md:text-4xl">
             Still have questions?
           </h2>
-          <p className="mt-4 text-lg text-gray-300">
+          <p className="mt-4 text-lg text-[#D1D5DB]">
             Our team is happy to walk you through anything - from land to delivery to
             financing.
           </p>

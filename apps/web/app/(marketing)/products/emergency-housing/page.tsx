@@ -66,8 +66,8 @@ const frames = [
 ];
 
 const documentationSection = (
-  <section className="scroll-mt-24 rounded-2xl border border-white/10 bg-bb-surface-dark p-6 lg:p-10">
-    <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue">Documentation</p>
+  <section className="scroll-mt-24 rounded-2xl border border-white/10 bg-[#1C2438] p-6 lg:p-10">
+    <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">Documentation</p>
     <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">How It Works</h2>
     <p className="mt-4 max-w-2xl text-gray-300">
       Specifications, components, and the three-step setup process at a glance.

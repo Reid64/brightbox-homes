@@ -143,12 +143,12 @@ const frames = [
   { src: '/images/frames/space-frame.png', alt: 'Galvanized steel frame of a Space Capsule.', caption: 'Capsule Frame Assembly', width: 1666, height: 944 },
 ];
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-blue';
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
 
 const spaceCapsuleSections = (
   <>
     {/* Models & Pricing */}
-    <section className="bg-bb-surface-dark py-16 lg:py-24">
+    <section className="bg-[#1C2438] py-16 lg:py-24">
       <div className="mx-auto max-w-[1280px] px-6">
         <p className={label}>Models &amp; Pricing</p>
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
@@ -158,7 +158,7 @@ const spaceCapsuleSections = (
           {capsuleModels.map((m, i) => (
             <ShowcaseCard key={m.image} index={i} image={m.image} alt={`${m.name} space capsule, ${m.length}`}>
               <h3 className="font-heading text-2xl font-bold text-white">{m.name}</h3>
-              <p className="mt-2 font-mono text-2xl text-bb-blue">{m.price}</p>
+              <p className="mt-2 font-mono text-2xl text-[#6B9BF7]">{m.price}</p>
               <p className="mt-3 text-gray-300">{m.length}</p>
               <p className="mt-3 text-sm text-gray-400">
                 Panoramic glass capsule with LOW-E tempered glass, skylights for natural
@@ -172,7 +172,7 @@ const spaceCapsuleSections = (
     </section>
 
     {/* Investment & Resort Potential */}
-    <section className="bg-bb-charcoal py-16 lg:py-24">
+    <section className="bg-[#0F1729] py-16 lg:py-24">
       <div className="mx-auto max-w-3xl px-6">
         <p className={label}>Investment &amp; Resort Potential</p>
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
@@ -188,7 +188,7 @@ const spaceCapsuleSections = (
     </section>
 
     {/* Use Cases */}
-    <section className="bg-bb-surface-dark py-16 lg:py-24">
+    <section className="bg-[#1C2438] py-16 lg:py-24">
       <div className="mx-auto max-w-[1280px] px-6">
         <p className={label}>Use Cases</p>
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
@@ -203,7 +203,7 @@ const spaceCapsuleSections = (
                 key={uc.title}
                 className="rounded-xl bg-[#D4C4A8] p-6 transition-colors duration-fast ease-out hover:bg-[#C8B898]"
               >
-                <Icon size={28} aria-hidden="true" className="text-bb-blue" />
+                <Icon size={28} aria-hidden="true" className="text-[#6B9BF7]" />
                 <h3 className="mt-4 font-heading text-lg font-semibold text-gray-900">
                   {uc.title}
                 </h3>
@@ -217,7 +217,7 @@ const spaceCapsuleSections = (
     </section>
 
     {/* Model Lineup */}
-    <section className="bg-bb-surface-dark py-16 lg:py-24">
+    <section className="bg-[#1C2438] py-16 lg:py-24">
       <div className="mx-auto max-w-[1280px] px-6">
         <p className={label}>Model Lineup</p>
         <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
@@ -231,7 +231,7 @@ const spaceCapsuleSections = (
         <div className="mt-10 overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left">
             <thead>
-              <tr className="border-b border-white/10 text-xs uppercase tracking-[0.15em] text-bb-blue">
+              <tr className="border-b border-white/10 text-xs uppercase tracking-[0.15em] text-[#6B9BF7]">
                 <th className="py-3 pr-4 font-medium">Model</th>
                 <th className="py-3 pr-4 font-medium">Footprint</th>
                 <th className="py-3 pr-4 font-medium">Area</th>

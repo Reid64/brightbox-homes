@@ -61,6 +61,9 @@ coverage/
 !apps/web/public/videos/metal-roof-truss.mp4
 .vercel
 
+# Local Claude Code harness config (per-machine, not part of the app)
+.claude/
+
 # Raw product asset staging area - not production-ready (originals, mixed naming,
 # internal price list, Chinese-named files). Optimize, rename, and move selected
 # assets into apps/web/public/ before use. Never commit this dump wholesale.

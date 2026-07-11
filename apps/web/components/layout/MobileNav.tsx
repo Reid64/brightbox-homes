@@ -31,11 +31,13 @@ const productLinks = [
   { label: 'Vending Units', href: '/products/vending-units' },
 ];
 
+// FAITH Foundation lives in the footer only (kept out of the primary nav).
 const companyLinks = [
+  { label: 'Find Land', href: '/find-land' },
   { label: 'Design Your Home', href: '/design' },
   { label: 'About', href: '/about' },
+  { label: 'Delivery', href: '/delivery' },
   { label: '$5K Challenge', href: '/5k-challenge' },
-  { label: 'FAITH Foundation', href: '/faith-foundation' },
   { label: 'Blog', href: '/blog' },
   { label: 'FAQ', href: '/faq' },
 ];

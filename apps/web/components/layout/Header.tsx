@@ -33,11 +33,14 @@ const productColumnRight = [
   { label: 'Vending Units', href: '/products/vending-units' },
 ];
 
+// Nav order (after the Products mega-menu): Find Land, Design Your Home, About,
+// Delivery, $5K Challenge, Blog, FAQ. FAITH Foundation lives in the footer only.
 const navLinks = [
+  { label: 'Find Land', href: '/find-land' },
   { label: 'Design Your Home', href: '/design' },
   { label: 'About', href: '/about' },
+  { label: 'Delivery', href: '/delivery' },
   { label: '$5K Challenge', href: '/5k-challenge' },
-  { label: 'FAITH Foundation', href: '/faith-foundation' },
   { label: 'Blog', href: '/blog' },
   { label: 'FAQ', href: '/faq' },
 ];

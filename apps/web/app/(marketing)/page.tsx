@@ -281,7 +281,7 @@ export default function HomePage() {
       <Marquee items={marqueeItems} />
 
       {/* SECTION D: Product Lines (warm cream) */}
-      <section className="bg-[#F5F0E8] py-24 lg:py-32">
+      <section className="py-24 lg:py-32" style={{ background: '#0D1526' }}>
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={eyebrowLight}>OUR HOMES</p>
@@ -301,7 +301,8 @@ export default function HomePage() {
                 <TiltCard className="h-full">
                   <Link
                     href={product.href}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.04] bg-[#FFFFFF] shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]"
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]"
+                    style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.18)', boxShadow: '0 4px 24px rgba(0,0,0,0.5)' }}
                   >
                     <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl bg-[#EFE8DC]">
                       {product.image ? (
@@ -322,26 +323,26 @@ export default function HomePage() {
                       )}
                     </div>
                     <div className="flex flex-1 flex-col p-6">
-                      <h3 className="font-heading text-xl font-bold text-[#111827]">
+                      <h3 className="font-heading text-xl font-bold text-[#FFFFFF]">
                         {product.name}
                       </h3>
                       {product.price.includes('$') ? (
-                        <p className="mt-1 font-mono text-lg font-semibold text-[#4A7CE5]">
+                        <p className="mt-1 font-mono text-lg font-semibold text-[#6B9BF7]">
                           {product.price}
                         </p>
                       ) : (
-                        <p className="mt-1 font-mono text-lg text-[#6B7280]">
+                        <p className="mt-1 font-mono text-lg text-[#9CA3AF]">
                           {product.price}
                         </p>
                       )}
-                      <p className="mt-3 line-clamp-2 flex-1 text-sm text-[#6B7280]">
+                      <p className="mt-3 line-clamp-2 flex-1 text-sm text-[#9CA3AF]">
                         {product.description}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#4A7CE5] group-hover:underline">
                         View Details
                         <ArrowRight size={16} aria-hidden="true" />
                       </span>
-                      <span className="mt-1 inline-flex items-center gap-1 text-xs text-[#6B7280]">
+                      <span className="mt-1 inline-flex items-center gap-1 text-xs text-[#9CA3AF]">
                         Get a Quote
                         <ArrowRight size={12} aria-hidden="true" />
                       </span>

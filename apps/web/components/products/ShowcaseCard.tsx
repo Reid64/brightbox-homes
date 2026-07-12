@@ -35,7 +35,7 @@ export default function ShowcaseCard({ index, image, alt, children, beige = fals
   }, [open, close]);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#1C2438] lg:flex">
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#232B45] shadow-[0_8px_24px_rgba(0,0,0,0.35)] lg:flex">
       <button
         type="button"
         onClick={() => setOpen(true)}

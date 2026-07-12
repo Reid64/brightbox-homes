@@ -59,7 +59,7 @@ export default function DesignJourneyContent({ active }: { active: number }) {
               <Link
                 key={p.name}
                 href={p.href}
-                className="group overflow-hidden rounded-xl border border-white/10 bg-[#1C2438] transition-colors duration-fast ease-out hover:border-white/20"
+                className="group overflow-hidden rounded-xl border border-white/10 bg-[#232B45] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#6B9BF7]/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
               >
                 <div className="relative aspect-video w-full overflow-hidden">
                   <Image

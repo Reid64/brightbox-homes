@@ -2,146 +2,461 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import {
-  ArrowRight,
-  Sun,
-  Power,
-  Thermometer,
-  UtensilsCrossed,
-  Bath,
-  WashingMachine,
-  Zap,
-  Home,
-  Layers,
-  X,
-} from 'lucide-react';
+import { X, Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
-const heading = 'font-heading text-3xl font-bold text-white md:text-4xl';
-const subheading = 'mt-3 text-gray-300';
-const addBtn =
-  'rounded-xl bg-[#6B9BF7] px-4 py-2 font-semibold text-white transition-colors duration-200 ease-out hover:bg-[#4A7CE5]';
+// ─── TYPES ───────────────────────────────────────────────────────────────────
 
-const products = [
-  { name: '20x10 Studio', price: '$35,995', href: '/products/expandable-homes/20x10', image: '/images/products/expandable-homes/exterior/model-20x10-front.png' },
-  { name: '20x20', price: '$45,995', href: '/products/expandable-homes/20x20', image: '/images/products/expandable-homes/exterior/homepage-20x20.jpg' },
-  { name: '20x30', price: '$49,995', href: '/products/expandable-homes/20x30', image: '/images/products/expandable-homes/exterior/model-20x30.png' },
-  { name: '20x40', price: '$59,995', href: '/products/expandable-homes/20x40', image: '/images/products/expandable-homes/exterior/model-20x40-b.jpg' },
-  { name: 'Duplex', price: '$59,995', href: '/products/duplex', image: '/images/products/duplex/hero.png' },
-  { name: 'Apple Cabin', price: 'Coming Soon', href: '/products/apple-cabins', image: '/images/products/apple-cabins/exterior/01.png' },
-  { name: 'Space Capsule', price: 'Coming Soon', href: '/products/space-capsules', image: '/images/products/space-capsules/exterior/01.png' },
-  { name: 'Assembly', price: '$25,995', href: '/products/assembly-homes', image: '/images/products/assembly-homes/exterior/10.jpg' },
-  { name: 'Emergency Housing', price: '$2,000', href: '/products/emergency-housing', image: '/images/products/emergency-housing/exterior/folding-house.png' },
-];
-
-const roofPricing = [
-  { size: "10' Home", key: 'roof-10ft', label: 'Metal Roof 10ft Upgrade', price: 1995 },
-  { size: "20' Home", key: 'roof-20ft', label: 'Metal Roof 20ft Upgrade', price: 3995 },
-  { size: "30' Home", key: 'roof-30ft', label: 'Metal Roof 30ft Upgrade', price: 4995 },
-  { size: "40' Home", key: 'roof-40ft', label: 'Metal Roof 40ft Upgrade', price: 5995 },
-];
-
-type Upgrade = {
-  id: string;
-  name: string;
-  image: string;
-  desc: string;
+interface OrderItem {
+  label: string;
   price: number;
-  orderKey: string;
-  orderLabel: string;
-};
-
-const upgrades: Upgrade[] = [
-  { id: 'solar-8kw', name: 'Solar 8kW', image: '/images/upgrades/solar-8kw.webp', desc: '8kW solar kit with panels, inverter, and mounting hardware. Ideal for most homes.', price: 8500, orderKey: 'solar', orderLabel: 'Solar 8kW Package' },
-  { id: 'solar-10kw', name: 'Solar 10kW', image: '/images/upgrades/solar-10kw.webp', desc: '10kW solar kit for larger homes or higher energy needs.', price: 11500, orderKey: 'solar', orderLabel: 'Solar 10kW Package' },
-  { id: 'generac-18kw', name: 'Generac 18kW Generator', image: '/images/upgrades/generac-18kw.webp', desc: 'Generac 18kW standby generator with automatic transfer switch.', price: 6500, orderKey: 'generator', orderLabel: 'Generac 18kW Generator' },
-  { id: 'generac-22kw', name: 'Generac 22kW Generator', image: '/images/upgrades/generac-22kw.webp', desc: 'Generac 22kW standby generator — whole-home backup power.', price: 8200, orderKey: 'generator', orderLabel: 'Generac 22kW Generator' },
-  { id: 'duromax', name: 'DuroMax Portable Generator', image: '/images/upgrades/duromax-xp15000hx.png', desc: 'DuroMax XP15000HX dual-fuel portable generator, 15,000W peak.', price: 1800, orderKey: 'generator', orderLabel: 'DuroMax Portable Generator' },
-  { id: 'mini-split', name: 'Mini-Split 2-Ton HVAC', image: '/images/upgrades/mini-split-2ton.png', desc: '2-ton ductless mini-split system. Cools and heats up to 800 sq ft.', price: 2200, orderKey: 'hvac', orderLabel: 'Mini-Split 2-Ton HVAC' },
-  { id: 'radiant-floor', name: 'Radiant Floor Heating', image: '/images/upgrades/radiant-floor-heating-bright-box-homes-640891.jpg', desc: 'Electric radiant floor heating system installed under vinyl plank flooring.', price: 3100, orderKey: 'floor-heat', orderLabel: 'Radiant Floor Heating' },
-  { id: 'ceiling-fans', name: 'Ceiling Air Mover Fans', image: '/images/upgrades/ceiling-air-mover-fans.png', desc: 'High-velocity ceiling air mover fans for improved circulation.', price: 450, orderKey: 'fans', orderLabel: 'Ceiling Air Mover Fans' },
-  { id: 'induction-stove', name: '5-Burner Induction Stove', image: '/images/upgrades/induction-5burner.png', desc: 'Professional 5-burner induction cooktop upgrade.', price: 890, orderKey: 'stove', orderLabel: '5-Burner Induction Stove' },
-  { id: 'kitchenette', name: 'Kitchenette Package', image: '/images/upgrades/kitchenette.png', desc: 'Compact kitchenette with sink, mini-fridge, and upper cabinets.', price: 2400, orderKey: 'kitchen', orderLabel: 'Kitchenette Package' },
-  { id: 'vanity', name: 'Custom Bathroom Vanity', image: '/images/upgrades/custom-bathroom-vanity.png', desc: 'Upgraded vanity with stone countertop and undermount sink.', price: 1200, orderKey: 'vanity', orderLabel: 'Custom Bathroom Vanity' },
-  { id: 'shower', name: 'Modular Shower', image: '/images/upgrades/modular-shower.png', desc: 'Pre-fabricated modular shower unit, easy installation.', price: 1800, orderKey: 'shower', orderLabel: 'Modular Shower Unit' },
-  { id: 'water-heater', name: 'Tankless Water Heater', image: '/images/upgrades/tankless-water-heater.png', desc: 'On-demand tankless water heater, propane or electric.', price: 950, orderKey: 'water-heater', orderLabel: 'Tankless Water Heater' },
-  { id: 'patio', name: 'Covered Front Patio', image: '/images/upgrades/covered-side-patio.jpeg', desc: 'Factory-built covered front patio with steel posts and metal roof extension.', price: 3500, orderKey: 'patio', orderLabel: 'Covered Front Patio' },
-  { id: 'side-deck', name: 'Side Deck', image: '/images/upgrades/side-deck.png', desc: 'Pressure-treated side deck with steel railing.', price: 2800, orderKey: 'deck', orderLabel: 'Side Deck' },
-];
-
-function priceLabel(price: number) {
-  return price === 0 ? 'Included' : `$${price.toLocaleString()}`;
+  category: string;
+  removable: boolean;
 }
 
-// Hover-expand image: scales to 110% on hover with a blue border glow.
-function ZoomImage({
-  src,
-  alt,
-  width,
-  height,
-  className,
+interface Swatch {
+  id: string;
+  label: string;
+  hex?: string;
+  imageSrc?: string;
+  imagePosition?: string;
+  meta?: string;
+}
+
+// ─── COLOR DATA ──────────────────────────────────────────────────────────────
+
+const RAL_EXTERIOR: Swatch[] = [
+  { id: 'RAL7000', label: 'RAL 7000', hex: '#7E8B92' },
+  { id: 'RAL7001', label: 'RAL 7001', hex: '#8F999F' },
+  { id: 'RAL7002', label: 'RAL 7002', hex: '#8D8D6C' },
+  { id: 'RAL7003', label: 'RAL 7003', hex: '#827F72' },
+  { id: 'RAL7004', label: 'RAL 7004', hex: '#969992' },
+  { id: 'RAL7005', label: 'RAL 7005', hex: '#6C7156' },
+  { id: 'RAL7006', label: 'RAL 7006', hex: '#756E61' },
+  { id: 'RAL7008', label: 'RAL 7008', hex: '#6A5F31' },
+  { id: 'RAL7009', label: 'RAL 7009', hex: '#4D5645' },
+  { id: 'RAL7010', label: 'RAL 7010', hex: '#4C5154' },
+  { id: 'RAL7011', label: 'RAL 7011', hex: '#434B4D' },
+  { id: 'RAL7012', label: 'RAL 7012', hex: '#4E5754' },
+  { id: 'RAL7013', label: 'RAL 7013', hex: '#464531' },
+  { id: 'RAL7015', label: 'RAL 7015', hex: '#3E4243' },
+  { id: 'RAL7016', label: 'RAL 7016', hex: '#293133' },
+  { id: 'RAL7021', label: 'RAL 7021', hex: '#1C1C1A' },
+  { id: 'RAL7022', label: 'RAL 7022', hex: '#4B4B48' },
+  { id: 'RAL7023', label: 'RAL 7023', hex: '#7E8072' },
+  { id: 'RAL7024', label: 'RAL 7024', hex: '#474A50' },
+  { id: 'RAL7026', label: 'RAL 7026', hex: '#2E3435' },
+  { id: 'RAL7030', label: 'RAL 7030', hex: '#8C8B7F' },
+  { id: 'RAL7031', label: 'RAL 7031', hex: '#5B6E78' },
+  { id: 'RAL7032', label: 'RAL 7032', hex: '#B5AC8A' },
+  { id: 'RAL7033', label: 'RAL 7033', hex: '#7F8976' },
+  { id: 'RAL7034', label: 'RAL 7034', hex: '#9DA08A' },
+  { id: 'RAL7035', label: 'RAL 7035', hex: '#CBD0CC' },
+  { id: 'RAL7036', label: 'RAL 7036', hex: '#9DA3A6' },
+  { id: 'RAL7037', label: 'RAL 7037', hex: '#7D7F7D' },
+  { id: 'RAL7038', label: 'RAL 7038', hex: '#B4B8B0' },
+  { id: 'RAL7039', label: 'RAL 7039', hex: '#6B6963' },
+  { id: 'RAL7040', label: 'RAL 7040', hex: '#9DA4A9' },
+  { id: 'RAL7042', label: 'RAL 7042', hex: '#8F9695' },
+  { id: 'RAL7043', label: 'RAL 7043', hex: '#4F5358' },
+  { id: 'RAL7044', label: 'RAL 7044', hex: '#BDBDB2' },
+  { id: 'RAL8000', label: 'RAL 8000', hex: '#887142' },
+  { id: 'RAL8001', label: 'RAL 8001', hex: '#9C6B30' },
+  { id: 'RAL8002', label: 'RAL 8002', hex: '#7B5141' },
+  { id: 'RAL8003', label: 'RAL 8003', hex: '#7D5B37' },
+  { id: 'RAL8004', label: 'RAL 8004', hex: '#8E402A' },
+  { id: 'RAL8007', label: 'RAL 8007', hex: '#6F4A2F' },
+  { id: 'RAL8008', label: 'RAL 8008', hex: '#6F4F28' },
+  { id: 'RAL8011', label: 'RAL 8011', hex: '#5A3825' },
+  { id: 'RAL8012', label: 'RAL 8012', hex: '#6C3B2A' },
+  { id: 'RAL8014', label: 'RAL 8014', hex: '#4A3526' },
+  { id: 'RAL8015', label: 'RAL 8015', hex: '#5E2F22' },
+  { id: 'RAL8016', label: 'RAL 8016', hex: '#4C2B1D' },
+  { id: 'RAL8017', label: 'RAL 8017', hex: '#44201B' },
+  { id: 'RAL8019', label: 'RAL 8019', hex: '#3D2B1F' },
+  { id: 'RAL8022', label: 'RAL 8022', hex: '#1A1110' },
+  { id: 'RAL8023', label: 'RAL 8023', hex: '#A65922' },
+  { id: 'RAL8024', label: 'RAL 8024', hex: '#79553D' },
+  { id: 'RAL8025', label: 'RAL 8025', hex: '#755C49' },
+  { id: 'RAL8028', label: 'RAL 8028', hex: '#4E3B31' },
+  { id: 'RAL9001', label: 'RAL 9001', hex: '#FDF4E3' },
+  { id: 'RAL9002', label: 'RAL 9002', hex: '#E7EBDA' },
+  { id: 'RAL9003', label: 'RAL 9003', hex: '#F4F4F4' },
+  { id: 'RAL9004', label: 'RAL 9004', hex: '#282828' },
+  { id: 'RAL9005', label: 'RAL 9005', hex: '#0A0A0A' },
+  { id: 'RAL9010', label: 'RAL 9010', hex: '#FFFFFF' },
+  { id: 'RAL9011', label: 'RAL 9011', hex: '#1C1C1C' },
+  { id: 'RAL9016', label: 'RAL 9016', hex: '#F6F6F6' },
+  { id: 'RAL9017', label: 'RAL 9017', hex: '#1E1E1E' },
+  { id: 'RAL9018', label: 'RAL 9018', hex: '#D7D7D7' },
+];
+
+const CARVED_METAL: Swatch[] = [
+  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 0%', meta: 'Light Pine' },
+  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 0%', meta: 'Dark Walnut' },
+  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 22%', meta: 'Russet Oak' },
+  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 22%', meta: 'Honey Cedar' },
+  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 44%', meta: 'Amber Teak' },
+  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 44%', meta: 'Ebony Ash' },
+  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 67%', meta: 'Blonde Maple' },
+  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 67%', meta: 'Olive Birch' },
+  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 100%', meta: 'Cognac Cherry' },
+];
+
+const ROOF_COLORS: Swatch[] = [
+  { id: 'B6-ZINC', label: 'Zincalume Plus', hex: '#B8BDB8', meta: 'SRI: 64 · LRV: 67' },
+  { id: 'B6-WHITE', label: 'Winter White', hex: '#F0EDE8', meta: 'SRI: 68 · LRV: 74' },
+  { id: 'B6-STONE', label: 'Light Stone', hex: '#C9BB9A', meta: 'SRI: 79 · LRV: 53' },
+  { id: 'B6-DESERT', label: 'Desert Beige', hex: '#B5A898', meta: 'SRI: 69 · LRV: 39' },
+  { id: 'B6-TAUPE', label: 'Taupe', hex: '#9E9088', meta: 'SRI: 59 · LRV: 28' },
+  { id: 'B6-PATINA', label: 'Patina Steel', hex: '#7A6E6A', meta: 'SRI: 34 · LRV: 17' },
+  { id: 'B6-CHESTNUT', label: 'Chestnut Brown', hex: '#4A3728', meta: 'SRI: 34 · LRV: 12' },
+  { id: 'B6-CANYON', label: 'Canyon Red', hex: '#8B3A2A', meta: 'SRI: 43 · LRV: 16' },
+  { id: 'B6-RUSTIC', label: 'Rustic Red', hex: '#7A1E1E', meta: 'SRI: 43 · LRV: 13' },
+  { id: 'B6-OLDTOWN', label: 'Old Town Gray', hex: '#7A7E82', meta: 'SRI: 43 · LRV: 27' },
+  { id: 'B6-OLDZINC', label: 'Old Zinc Gray', hex: '#5A5E60', meta: 'SRI: 43 · LRV: 22' },
+  { id: 'B6-COPPER', label: 'Weathered Copper', hex: '#5C5238', meta: 'SRI: 32 · LRV: 11' },
+  { id: 'B6-SLATE', label: 'Slate Gray', hex: '#3E4A52', meta: 'SRI: 32 · LRV: 13' },
+  { id: 'B6-TAHOE', label: 'Tahoe Blue', hex: '#1E4060', meta: 'SRI: 33 · LRV: 14' },
+  { id: 'B6-EVER', label: 'Everglade', hex: '#2E4A38', meta: 'SRI: 36 · LRV: 19' },
+  { id: 'B6-DENALI', label: 'Denali Green', hex: '#1A3D2A', meta: 'SRI: 29 · LRV: 11' },
+  { id: 'B6-FOREST', label: 'Forest Green', hex: '#1E3820', meta: 'SRI: 36 · LRV: 8' },
+  { id: 'B6-PENNY', label: 'Copper Penny', hex: '#A0522D', meta: 'SRI: 33 · LRV: 20' },
+  { id: 'B6-RUST', label: 'Natural Rust ★', hex: '#8B4513', meta: 'SRI: 32 · LRV: 15 · Premium' },
+];
+
+const INTERIOR_WALLS: Swatch[] = [
+  { id: 'B151A92', label: 'B-151-A92', hex: '#D8D4CB', meta: 'Linen Weave' },
+  { id: 'KM011', label: 'KM-011', hex: '#E8E6E0', meta: 'White Linen' },
+  { id: 'KM012', label: 'KM-012', hex: '#D4C9A8', meta: 'Warm Sand' },
+  { id: 'KM007', label: 'KM-007', hex: '#A8A8A8', meta: 'Silver Grain' },
+  { id: 'KM019', label: 'KM-019', hex: '#C8B888', meta: 'Golden Oak' },
+  { id: 'KM024', label: 'KM-024-XK7086', hex: '#D0D0CC', meta: 'Pearl Gray' },
+  { id: 'B006', label: 'B-006', hex: '#E8E0D0', meta: 'Ivory Basket' },
+  { id: 'B007', label: 'B-007', hex: '#E4E4E4', meta: 'Cloud White' },
+  { id: 'B008', label: 'B-008', hex: '#DCDCD8', meta: 'Mist Gray' },
+  { id: 'B092', label: 'B-092-365', hex: '#F0F0F0', meta: 'Pure White' },
+  { id: 'A001', label: 'A-001', hex: '#F4F4F2', meta: 'Whitewood Grain' },
+  { id: 'B0261', label: 'B-026-1', hex: '#E0E0DC', meta: 'Soft Silver' },
+];
+
+const FLOOR_COLORS: Swatch[] = [
+  { id: 'T701', label: 'T701', hex: '#5C3D1E', meta: 'Dark Walnut' },
+  { id: 'T702', label: 'T702', hex: '#C0BDB0', meta: 'Ash Gray' },
+  { id: 'T703', label: 'T703', hex: '#B8C0B0', meta: 'Gray Oak' },
+  { id: 'T705', label: 'T705', hex: '#B8622A', meta: 'Cherry Plank' },
+  { id: 'T706', label: 'T706', hex: '#C87840', meta: 'Honey Maple' },
+  { id: 'T708', label: 'T708', hex: '#A8A8A0', meta: 'Cool Gray' },
+  { id: 'T709', label: 'T709', hex: '#C8B890', meta: 'Natural Beige' },
+];
+
+// ─── PRODUCTS ─────────────────────────────────────────────────────────────────
+
+const PRODUCTS = [
+  { name: '20×10 Studio', price: 35995, href: '/products/expandable-homes/20x10', image: '/images/products/expandable-homes/exterior/model-20x10-front.png' },
+  { name: '20×20', price: 45995, href: '/products/expandable-homes/20x20', image: '/images/products/expandable-homes/exterior/homepage-20x20.jpg' },
+  { name: '20×30', price: 49995, href: '/products/expandable-homes/20x30', image: '/images/products/expandable-homes/exterior/model-20x30.png' },
+  { name: '20×40', price: 59995, href: '/products/expandable-homes/20x40', image: '/images/products/expandable-homes/exterior/model-20x40-b.jpg' },
+  { name: 'Duplex', price: 59995, href: '/products/duplex', image: '/images/products/duplex/hero.png' },
+  { name: 'Apple Cabin', price: null, href: '/products/apple-cabins', image: '/images/products/apple-cabins/exterior/01.png' },
+  { name: 'Space Capsule', price: null, href: '/products/space-capsules', image: '/images/products/space-capsules/exterior/01.png' },
+  { name: 'Assembly Home', price: 25995, href: '/products/assembly-homes', image: '/images/products/assembly-homes/exterior/10.jpg' },
+  { name: 'Emergency Housing', price: 2000, href: '/products/emergency-housing', image: '/images/products/emergency-housing/exterior/folding-house.png' },
+];
+
+// ─── UPGRADES ─────────────────────────────────────────────────────────────────
+
+const UPGRADES = [
+  { key: 'solar-8kw', category: 'solar', name: 'Solar 8kW Package', price: 8500, image: '/images/upgrades/solar-8kw.webp', spec: '8kW solar kit with panels, inverter, and roof mounting hardware. Produces ~10,000–12,000 kWh/year. Ideal for most single-family homes.' },
+  { key: 'solar-10kw', category: 'solar', name: 'Solar 10kW Package', price: 11500, image: '/images/upgrades/solar-10kw.webp', spec: '10kW solar kit for larger homes or high energy usage. Produces ~13,000–15,000 kWh/year. Compatible with reinforced truss system.' },
+  { key: 'gen-18kw', category: 'generator', name: 'Generac 18kW Standby Generator', price: 6500, image: '/images/upgrades/generac-18kw.webp', spec: 'Generac 18kW air-cooled standby generator with automatic transfer switch. Runs on natural gas or propane. Powers whole home automatically during outages.' },
+  { key: 'gen-22kw', category: 'generator', name: 'Generac 22kW Standby Generator', price: 8200, image: '/images/upgrades/generac-22kw.webp', spec: 'Generac 22kW liquid-cooled standby generator. The most powerful whole-home backup available. Automatic transfer, runs on natural gas or propane.' },
+  { key: 'gen-duromax', category: 'generator', name: 'DuroMax XP15000HX Portable', price: 1800, image: '/images/upgrades/duromax-xp15000hx.png', spec: 'DuroMax XP15000HX dual-fuel portable generator. 15,000W peak / 12,000W running. Runs on gasoline or propane. Includes wheel kit.' },
+  { key: 'hvac-minisplit', category: 'hvac', name: 'Mini-Split 2-Ton HVAC', price: 2200, image: '/images/upgrades/mini-split-2ton.png', spec: 'Ductless 2-ton mini-split system. Cools and heats up to 800 sq ft. 20 SEER rating. Includes wall-mount air handler and outdoor condenser unit.' },
+  { key: 'hvac-radiant', category: 'hvac', name: 'Radiant Floor Heating', price: 3100, image: '/images/upgrades/radiant-floor-heating-bright-box-homes-640891.jpg', spec: 'Electric radiant floor heating mat installed under vinyl plank flooring. Programmable thermostat included. Provides even, silent heat from the floor up.' },
+  { key: 'hvac-fans', category: 'hvac', name: 'Ceiling Air Mover Fans', price: 450, image: '/images/upgrades/ceiling-air-mover-fans.png', spec: 'High-velocity ceiling air mover fans for improved circulation. Quiet motor, variable speed. Significantly improves HVAC efficiency.' },
+  { key: 'kitchen-stove', category: 'kitchen', name: '5-Burner Induction Stove', price: 890, image: '/images/upgrades/induction-5burner.png', spec: 'Professional 5-burner induction cooktop. Faster than gas, safer than electric coil, and energy efficient. Glass ceramic surface, easy to clean.' },
+  { key: 'kitchen-kit', category: 'kitchen', name: 'Kitchenette Package', price: 2400, image: '/images/upgrades/kitchenette.png', spec: 'Compact kitchenette with stainless sink, mini-fridge, upper and lower cabinets, and countertop. Ideal for studio and ADU configurations.' },
+  { key: 'bath-vanity', category: 'bathroom', name: 'Custom Bathroom Vanity', price: 1200, image: '/images/upgrades/custom-bathroom-vanity.png', spec: 'Upgraded bathroom vanity with stone countertop, undermount sink, soft-close drawers, and polished chrome fixtures.' },
+  { key: 'bath-shower', category: 'bathroom', name: 'Modular Shower Unit', price: 1800, image: '/images/upgrades/modular-shower.png', spec: 'Pre-fabricated modular shower with tempered glass door, tile-pattern walls, and chrome fixtures. Easy single-day installation.' },
+  { key: 'water-heater', category: 'plumbing', name: 'Tankless Water Heater', price: 950, image: '/images/upgrades/tankless-water-heater.png', spec: 'On-demand tankless water heater available in propane or electric. Never run out of hot water. Energy savings vs. tank heaters up to 30%.' },
+  { key: 'ext-patio', category: 'exterior', name: 'Covered Front Patio', price: 3500, image: '/images/upgrades/covered-side-patio.jpeg', spec: 'Factory-built covered front patio with steel support posts, metal roof extension matching your chosen roof color, and concrete anchor points.' },
+  { key: 'ext-deck', category: 'exterior', name: 'Side Deck', price: 2800, image: '/images/upgrades/side-deck.png', spec: 'Pressure-treated wood side deck with galvanized steel railing. Dimensions vary by home size. Bolted directly to the home frame.' },
+];
+
+// ─── ROOF PRICING ─────────────────────────────────────────────────────────────
+
+const ROOF_PRICING = [
+  { size: "10' Home", price: 1995 },
+  { size: "20' Home", price: 3995 },
+  { size: "30' Home", price: 4995 },
+  { size: "40' Home", price: 5995 },
+];
+
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
+
+function fmt(n: number) {
+  return '$' + n.toLocaleString('en-US');
+}
+
+function needsDarkText(hex: string) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return (r * 299 + g * 587 + b * 114) / 1000 > 140;
+}
+
+// ─── SWATCH GRID ──────────────────────────────────────────────────────────────
+
+function SwatchGrid({
+  swatches,
+  selected,
+  onSelect,
+  size = 'md',
 }: {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  className?: string;
+  swatches: Swatch[];
+  selected: string | null;
+  onSelect: (s: Swatch) => void;
+  size?: 'sm' | 'md' | 'lg';
 }) {
+  const [zoomed, setZoomed] = useState<Swatch | null>(null);
+  const dim = size === 'sm' ? 'h-10 w-10' : size === 'lg' ? 'h-20 w-20' : 'h-14 w-14';
+
   return (
-    <div className={`group/zoom overflow-hidden rounded-lg border border-white/10 transition-colors duration-300 ease-out hover:border-[#6B9BF7]/50 ${className ?? ''}`}>
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className="h-auto w-full cursor-zoom-in transition-transform duration-300 ease-out group-hover/zoom:scale-110"
-      />
+    <>
+      <div className="flex flex-wrap gap-2">
+        {swatches.map((s) => {
+          const isSelected = selected === s.id;
+          return (
+            <button
+              key={s.id}
+              title={s.label + (s.meta ? ' — ' + s.meta : '')}
+              onClick={() => { onSelect(s); setZoomed(s); }}
+              className={`relative ${dim} overflow-hidden rounded-lg border-2 transition-all duration-200 hover:scale-110 hover:z-10 focus:outline-none focus:ring-2 focus:ring-[#6B9BF7]`}
+              style={{
+                borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
+                boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
+                background: s.hex ?? undefined,
+              }}
+            >
+              {s.imageSrc && (
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${s.imageSrc})`,
+                    backgroundSize: '200% 900%',
+                    backgroundPosition: s.imagePosition ?? '0% 0%',
+                  }}
+                />
+              )}
+              {isSelected && (
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <Check size={14} className={s.hex && needsDarkText(s.hex) ? 'text-black' : 'text-white'} strokeWidth={3} />
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Full-screen lightbox on click */}
+      {zoomed && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setZoomed(null)}
+        >
+          <div
+            className="relative flex flex-col items-center gap-6 rounded-2xl p-8 shadow-2xl"
+            style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 420, width: '90vw' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={() => setZoomed(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white">
+              <X size={20} />
+            </button>
+            <div
+              className="h-48 w-full rounded-xl border border-white/10"
+              style={
+                zoomed.imageSrc
+                  ? {
+                      backgroundImage: `url(${zoomed.imageSrc})`,
+                      backgroundSize: '200% 900%',
+                      backgroundPosition: zoomed.imagePosition ?? '0% 0%',
+                    }
+                  : { background: zoomed.hex }
+              }
+            />
+            <div className="text-center">
+              <p className="font-heading text-xl font-semibold text-white">{zoomed.label}</p>
+              {zoomed.meta && <p className="mt-1 text-sm text-gray-400">{zoomed.meta}</p>}
+            </div>
+            <button
+              onClick={() => { onSelect(zoomed); setZoomed(null); }}
+              className="w-full rounded-xl py-3 text-sm font-semibold text-white transition-colors"
+              style={{ background: selected === zoomed.id ? '#16A34A' : '#6B9BF7' }}
+            >
+              {selected === zoomed.id ? '✓ Added to Order' : 'Add to Order'}
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ─── ORDER PANEL ──────────────────────────────────────────────────────────────
+
+function OrderPanel({
+  order,
+  onRemove,
+}: {
+  order: Record<string, OrderItem>;
+  onRemove: (key: string) => void;
+}) {
+  const [open, setOpen] = useState(true);
+  const items = Object.entries(order);
+  const total = items.reduce((s, [, v]) => s + v.price, 0);
+
+  if (items.length === 0) return null;
+
+  return (
+    <div
+      className="fixed bottom-4 right-4 z-40 w-80 overflow-hidden rounded-2xl shadow-2xl lg:bottom-auto lg:right-6 lg:top-24"
+      style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 20px 60px rgba(0,0,0,0.25)' }}
+    >
+      {/* Header */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-5 py-4"
+        style={{ borderBottom: open ? '1px solid #E5E7EB' : 'none' }}
+      >
+        <div className="flex items-center gap-2">
+          <span className="font-heading text-base font-bold text-gray-900">Your Build</span>
+          <span
+            className="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white"
+            style={{ background: '#6B9BF7' }}
+          >
+            {items.length}
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-sm font-semibold text-gray-900">{fmt(total)}</span>
+          {open ? <ChevronUp size={16} className="text-gray-500" /> : <ChevronDown size={16} className="text-gray-500" />}
+        </div>
+      </button>
+
+      {open && (
+        <>
+          {/* Line items */}
+          <div className="max-h-72 overflow-y-auto px-5 py-3">
+            <table className="w-full">
+              <tbody>
+                {items.map(([key, item]) => (
+                  <tr key={key} className="border-b border-gray-100 last:border-0">
+                    <td className="py-2 pr-2">
+                      <p className="text-xs font-medium leading-tight text-gray-800">{item.label}</p>
+                      <p className="text-xs text-gray-400">{item.category}</p>
+                    </td>
+                    <td className="py-2 text-right">
+                      <span className="font-mono text-xs font-semibold text-gray-900">
+                        {item.price === 0 ? 'Included' : fmt(item.price)}
+                      </span>
+                    </td>
+                    <td className="py-2 pl-2 text-right">
+                      {item.removable && (
+                        <button
+                          onClick={() => onRemove(key)}
+                          className="text-gray-300 transition-colors hover:text-red-500"
+                        >
+                          <X size={14} />
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Total */}
+          <div
+            className="flex items-center justify-between px-5 py-3"
+            style={{ borderTop: '2px solid #E5E7EB' }}
+          >
+            <span className="text-sm font-bold text-gray-900">Estimated Total</span>
+            <span className="font-mono text-base font-bold text-gray-900">{fmt(total)}</span>
+          </div>
+
+          {/* CTA */}
+          <div className="px-5 pb-4">
+            <p className="mb-2 text-center text-xs text-gray-400">Base home price not included above</p>
+            <BookConsultation size="sm" className="w-full justify-center" />
+          </div>
+        </>
+      )}
     </div>
   );
 }
+
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 
 export default function DesignJourneyContent({
   active,
   setActive,
 }: {
   active: number;
-  setActive: (step: number) => void;
+  setActive: (n: number) => void;
 }) {
-  const [order, setOrder] = useState<Record<string, { label: string; price: number; removable: boolean }>>({});
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [order, setOrder] = useState<Record<string, OrderItem>>({});
+  const [selectedExterior, setSelectedExterior] = useState<string | null>(null);
+  const [selectedCarved, setSelectedCarved] = useState<string | null>(null);
+  const [selectedRoof, setSelectedRoof] = useState<string | null>(null);
+  const [selectedRoofSize, setSelectedRoofSize] = useState<string | null>(null);
+  const [selectedWall, setSelectedWall] = useState<string | null>(null);
+  const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
+  const [expandedUpgrade, setExpandedUpgrade] = useState<string | null>(null);
 
-  const addToOrder = (key: string, label: string, price: number, removable = true) =>
-    setOrder((prev) => ({ ...prev, [key]: { label, price, removable } }));
+  const addToOrder = (key: string, label: string, price: number, category: string, removable = true) => {
+    setOrder((prev) => ({ ...prev, [key]: { label, price, category, removable } }));
+  };
 
-  const removeFromOrder = (key: string) =>
+  const removeFromOrder = (key: string) => {
     setOrder((prev) => {
       const n = { ...prev };
       delete n[key];
       return n;
     });
+  };
 
-  const total = Object.values(order).reduce((s, i) => s + i.price, 0);
-  const hasOrder = Object.keys(order).length > 0;
+  const sectionHeading = 'font-heading text-3xl font-bold text-white';
+  const sectionSub = 'mt-2 text-sm font-normal text-gray-400';
+  const subHeading = 'font-heading text-lg font-semibold text-[#6B9BF7]';
+  const addBtn = 'mt-4 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors';
 
   return (
-    <div>
-      {/* Re-mount on step change for a subtle 200ms fade. */}
+    <>
+      <OrderPanel order={order} onRemove={removeFromOrder} />
+
       <div key={active} style={{ animation: 'fadeIn 200ms ease-out' }}>
+
+        {/* ── STEP 0: Choose Your Home ── */}
         {active === 0 && (
           <div>
-            <h1 className={heading}>Choose Your Home</h1>
-            <p className={subheading}>Select the model and size that fits your needs.</p>
+            <h1 className={sectionHeading}>Choose Your Home</h1>
+            <p className={sectionSub}>Select the model that fits your needs. Clicking selects it and moves you to exterior colors.</p>
             <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
-              {products.map((p) => (
+              {PRODUCTS.map((p) => (
                 <button
                   key={p.name}
-                  type="button"
                   onClick={() => {
-                    addToOrder('model', p.name, 0, false);
+                    addToOrder('model', p.name, p.price ?? 0, 'Home Model', false);
                     setActive(1);
                   }}
-                  className="group w-full overflow-hidden rounded-xl border border-white/10 bg-[#232B45] text-left shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#6B9BF7]/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+                  className="group overflow-hidden rounded-xl border text-left transition-all duration-200 hover:-translate-y-1"
+                  style={{
+                    background: '#1A2540',
+                    border: '1px solid rgba(107,155,247,0.15)',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                  }}
                 >
                   <div className="relative aspect-video w-full overflow-hidden">
                     <Image
@@ -149,15 +464,14 @@ export default function DesignJourneyContent({
                       alt={p.name}
                       fill
                       sizes="(min-width: 768px) 30vw, 50vw"
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-3">
                     <p className="font-heading text-sm font-semibold text-white">{p.name}</p>
-                    <p className="mt-0.5 font-mono text-xs text-[#6B9BF7]">{p.price}</p>
-                    <span className="mt-2 inline-flex items-center gap-1 text-xs text-[#6B9BF7]">
-                      Select <ArrowRight size={12} aria-hidden="true" />
-                    </span>
+                    <p className="mt-0.5 font-mono text-xs text-[#6B9BF7]">
+                      {p.price ? fmt(p.price) : 'Coming Soon'}
+                    </p>
                   </div>
                 </button>
               ))}
@@ -165,228 +479,245 @@ export default function DesignJourneyContent({
           </div>
         )}
 
+        {/* ── STEP 1: Exterior Color ── */}
         {active === 1 && (
-          <div>
-            <h1 className={heading}>Pick Your Exterior Color</h1>
-            <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
-              <div>
-                <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Standard Exterior Colors — Included</h2>
-                <ZoomImage
-                  src="/images/colors/exterior-house-colors.png"
-                  alt="60+ RAL exterior color chart"
-                  width={1086}
-                  height={1448}
-                  className="mt-4"
-                />
-                <p className="mt-3 text-sm text-gray-300">All colors factory-applied with UV and weather-resistant coating.</p>
-                <button
-                  type="button"
-                  onClick={() => addToOrder('exterior', 'Standard Exterior Color', 0)}
-                  className={`mt-4 ${addBtn}`}
-                >
-                  Add Standard Exterior to Order
-                </button>
-              </div>
-              <div>
-                <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Carved Metal Plate Finish — $1,000 Upgrade</h2>
-                <ZoomImage
-                  src="/images/colors/carved-metal-plate.png"
-                  alt="Carved metal plate exterior finishes"
-                  width={1024}
-                  height={1536}
-                  className="mt-4"
-                />
-                <p className="mt-3 text-sm text-gray-300">
-                  Premium carved metal plate exterior panels. Available in the colors shown. $1,000 upgrade from standard RAL finish.
+          <div className="space-y-10">
+            <div>
+              <h1 className={sectionHeading}>Pick Your Exterior Color</h1>
+              <p className={sectionSub}>Click any swatch to zoom in and add it to your order.</p>
+            </div>
+
+            {/* Standard RAL */}
+            <div>
+              <h2 className={subHeading}>Standard RAL Colors — Included</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">All colors factory-applied with UV and weather-resistant coating. 60+ options.</p>
+              <SwatchGrid
+                swatches={RAL_EXTERIOR}
+                selected={selectedExterior}
+                onSelect={(s) => {
+                  setSelectedExterior(s.id);
+                  addToOrder('exterior', `Exterior: ${s.label}`, 0, 'Exterior Color');
+                }}
+              />
+              {selectedExterior && (
+                <p className="mt-3 text-xs text-[#6B9BF7]">
+                  ✓ Selected: {RAL_EXTERIOR.find((s) => s.id === selectedExterior)?.label}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => addToOrder('exterior', 'Carved Metal Plate Finish', 1000)}
-                  className={`mt-4 ${addBtn}`}
-                >
-                  Add Carved Metal Plate to Order
-                </button>
-              </div>
+              )}
+            </div>
+
+            {/* Carved Metal */}
+            <div>
+              <h2 className={subHeading}>Carved Metal Plate Finish — $1,000 Upgrade</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">Premium wood-grain embossed metal panels. 9 finishes available. Click to zoom.</p>
+              <SwatchGrid
+                swatches={CARVED_METAL}
+                selected={selectedCarved}
+                onSelect={(s) => {
+                  setSelectedCarved(s.id);
+                  addToOrder('exterior', `Carved Metal Plate: ${s.label} — ${s.meta}`, 1000, 'Exterior Color');
+                }}
+                size="lg"
+              />
+              {selectedCarved && (
+                <p className="mt-3 text-xs text-[#6B9BF7]">
+                  ✓ Selected: {CARVED_METAL.find((s) => s.id === selectedCarved)?.label} — {CARVED_METAL.find((s) => s.id === selectedCarved)?.meta}
+                </p>
+              )}
             </div>
           </div>
         )}
 
+        {/* ── STEP 2: Roof ── */}
         {active === 2 && (
-          <div>
-            <h1 className={heading}>Choose Your Roof</h1>
+          <div className="space-y-8">
+            <div>
+              <h1 className={sectionHeading}>Choose Your Roof</h1>
+              <p className={sectionSub}>Select a color, then choose your home size for pricing.</p>
+            </div>
 
-            <div className="mt-8 rounded-xl border border-[#6B9BF7]/15 bg-[#1A2540] p-6">
-              <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Why a Metal Roof?</h2>
-              <p className="mt-3 text-sm text-gray-300">
-                A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading
-                cause of long-term structural damage in prefab construction. Metal roofs last 40-70 years, shed water instantly,
-                withstand 140mph winds, reflect solar heat to cut cooling costs, and are the only roofing system that properly
-                integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
+            {/* Benefits block */}
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}
+            >
+              <h2 className="font-heading text-base font-semibold text-[#6B9BF7]">Why a Metal Roof?</h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
+                Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
+                and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
               </p>
             </div>
 
-            <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-start">
-              <div className="lg:w-1/2">
-                <ZoomImage
-                  src="/images/colors/metal-roof-colors.png"
-                  alt="19 metal roof color chart"
-                  width={1191}
-                  height={1320}
-                />
-              </div>
-
-              <div className="space-y-8 lg:w-1/2">
-                <p className="text-sm text-gray-300">
-                  The LRV (Light Reflectance Value) and SRI (Solar Reflectance Index) values shown at the bottom of the color
-                  chart indicate each color&apos;s energy efficiency. Higher values reflect more sunlight and reduce cooling costs -
-                  an important consideration for hot climates like Texas. Choose lighter colors for maximum energy savings.
+            {/* Color swatches */}
+            <div>
+              <h2 className={subHeading}>Roof Colors — 19 Options</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">SRI and LRV values shown on zoom. Higher SRI = cooler roof in hot climates.</p>
+              <SwatchGrid
+                swatches={ROOF_COLORS}
+                selected={selectedRoof}
+                onSelect={(s) => {
+                  setSelectedRoof(s.id);
+                }}
+                size="lg"
+              />
+              {selectedRoof && (
+                <p className="mt-3 text-xs text-[#6B9BF7]">
+                  ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
                 </p>
+              )}
+            </div>
 
-                <div>
-                  <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Metal Roof Upgrade Pricing</h2>
-                  <p className="mt-2 text-sm text-gray-300">
-                    Upgrade to a full pitched metal roof system with high-grade 24-gauge steel roofing panels, a complete metal
-                    truss system, and all fasteners included.
-                  </p>
-                  <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    {roofPricing.map((r) => (
-                      <div key={r.key} className="flex flex-col rounded-xl border border-white/10 bg-[#1C2438] p-3 text-center">
-                        <p className="text-xs text-gray-300">{r.size}</p>
-                        <p className="mt-1 font-mono text-lg font-bold text-[#6B9BF7]">{priceLabel(r.price)}</p>
-                        <button
-                          type="button"
-                          onClick={() => addToOrder(r.key, r.label, r.price)}
-                          className="mt-3 rounded-lg bg-[#6B9BF7] px-2 py-1.5 text-xs font-semibold text-white transition-colors duration-200 ease-out hover:bg-[#4A7CE5]"
-                        >
-                          Add to Order
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <figure className="w-full max-w-[180px]">
-                    <Image
-                      src="/images/upgrades/metal-roof-truss-standard.png"
-                      alt="Standard metal roof truss system"
-                      width={1499}
-                      height={1049}
-                      className="h-auto w-full rounded-lg border border-white/10 bg-white/5"
-                    />
-                    <figcaption className="mt-2 text-xs text-gray-300">Standard Metal Truss System</figcaption>
-                  </figure>
-                  <figure className="w-full max-w-[180px]">
-                    <Image
-                      src="/images/upgrades/metal-roof-truss-reinforced-solar.png"
-                      alt="Reinforced truss for solar installations"
-                      width={1500}
-                      height={1049}
-                      className="h-auto w-full rounded-lg border border-white/10 bg-white/5"
-                    />
-                    <figcaption className="mt-2 text-xs text-gray-300">Reinforced Truss for Solar Installations</figcaption>
-                  </figure>
-                </div>
-
-                {/* Ambient looping truss video (no controls) */}
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  aria-label="Metal roof truss system"
-                  className="w-full max-w-sm rounded-lg border border-white/10"
-                >
-                  <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
-                </video>
+            {/* Pricing */}
+            <div>
+              <h2 className={subHeading}>Select Your Home Size — Add to Order</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">
+                Includes pitched metal roof panels, full truss system, all fasteners, and installation hardware.
+              </p>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {ROOF_PRICING.map((r) => (
+                  <button
+                    key={r.size}
+                    onClick={() => {
+                      setSelectedRoofSize(r.size);
+                      const colorLabel = selectedRoof
+                        ? ROOF_COLORS.find((s) => s.id === selectedRoof)?.label ?? 'Color TBD'
+                        : 'Color TBD';
+                      addToOrder('roof', `Metal Roof — ${r.size} — ${colorLabel}`, r.price, 'Roof Upgrade');
+                    }}
+                    className="rounded-xl border p-4 text-center transition-all duration-200"
+                    style={{
+                      background: selectedRoofSize === r.size ? '#6B9BF7' : '#1A2540',
+                      border: selectedRoofSize === r.size ? '1px solid #6B9BF7' : '1px solid rgba(107,155,247,0.15)',
+                    }}
+                  >
+                    <p className="text-xs text-gray-300">{r.size}</p>
+                    <p className="mt-1 font-mono text-lg font-bold text-white">{fmt(r.price)}</p>
+                    <p className="mt-1 text-xs text-[#6B9BF7]">
+                      {selectedRoofSize === r.size ? '✓ Added' : 'Add to Order'}
+                    </p>
+                  </button>
+                ))}
               </div>
+            </div>
+
+            {/* Truss images */}
+            <div className="flex gap-4">
+              <figure className="w-full max-w-[180px]">
+                <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" width={1499} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
+                <figcaption className="mt-2 text-xs text-gray-400">Standard Truss System</figcaption>
+              </figure>
+              <figure className="w-full max-w-[180px]">
+                <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" width={1500} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
+                <figcaption className="mt-2 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
+              </figure>
             </div>
           </div>
         )}
 
+        {/* ── STEP 3: Interior ── */}
         {active === 3 && (
-          <div>
-            <h1 className={heading}>Customize Your Interior</h1>
-            <div className="mt-8 space-y-8">
-              <div>
-                <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Interior Wall Colors</h2>
-                <ZoomImage
-                  src="/images/colors/interior-wall-colors.png"
-                  alt="Interior wall color chart"
-                  width={1063}
-                  height={1479}
-                  className="mt-4 max-w-2xl"
-                />
-                <p className="mt-3 text-sm text-gray-300">Bamboo wood fiber wall panels - durable, easy to clean, moisture resistant.</p>
-                <button
-                  type="button"
-                  onClick={() => addToOrder('interior-wall', 'Interior Wall Color', 0)}
-                  className={`mt-4 ${addBtn}`}
-                >
-                  Add Interior Wall Color Selection to Order
-                </button>
-              </div>
-              <div className="border-t border-white/10 pt-8">
-                <h2 className="font-heading text-xl font-semibold text-[#6B9BF7]">Interior Flooring</h2>
-                <ZoomImage
-                  src="/images/colors/interior-floor-colors.jpg"
-                  alt="Interior flooring color chart"
-                  width={1280}
-                  height={760}
-                  className="mt-4 max-w-2xl"
-                />
-                <p className="mt-3 text-sm text-gray-300">Factory-installed vinyl plank flooring in a range of finishes.</p>
-                <button
-                  type="button"
-                  onClick={() => addToOrder('interior-floor', 'Interior Flooring', 0)}
-                  className={`mt-4 ${addBtn}`}
-                >
-                  Add Flooring Selection to Order
-                </button>
-              </div>
+          <div className="space-y-10">
+            <div>
+              <h1 className={sectionHeading}>Customize Your Interior</h1>
+              <p className={sectionSub}>Click any swatch to zoom in and add to your order.</p>
+            </div>
+
+            <div>
+              <h2 className={subHeading}>Interior Wall Panels</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">Bamboo wood fiber wall panels — durable, moisture resistant, easy to clean. 12 finishes.</p>
+              <SwatchGrid
+                swatches={INTERIOR_WALLS}
+                selected={selectedWall}
+                onSelect={(s) => {
+                  setSelectedWall(s.id);
+                  addToOrder('interior-wall', `Wall Panel: ${s.label} — ${s.meta}`, 0, 'Interior');
+                }}
+                size="lg"
+              />
+              {selectedWall && (
+                <p className="mt-3 text-xs text-[#6B9BF7]">
+                  ✓ Selected: {INTERIOR_WALLS.find((s) => s.id === selectedWall)?.label}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <h2 className={subHeading}>Flooring</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">Factory-installed vinyl plank flooring. 7 finishes. Click to zoom.</p>
+              <SwatchGrid
+                swatches={FLOOR_COLORS}
+                selected={selectedFloor}
+                onSelect={(s) => {
+                  setSelectedFloor(s.id);
+                  addToOrder('interior-floor', `Flooring: ${s.label} — ${s.meta}`, 0, 'Interior');
+                }}
+                size="lg"
+              />
+              {selectedFloor && (
+                <p className="mt-3 text-xs text-[#6B9BF7]">
+                  ✓ Selected: {FLOOR_COLORS.find((s) => s.id === selectedFloor)?.label}
+                </p>
+              )}
             </div>
           </div>
         )}
 
+        {/* ── STEP 4: Upgrades ── */}
         {active === 4 && (
           <div>
-            <h1 className={heading}>Add Upgrades</h1>
-            <p className={subheading}>
-              Customize your home with solar packages, generators, appliances, upgraded electrical, and more.
-            </p>
-            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {upgrades.map((u) => {
-                const isOpen = expanded === u.id;
+            <h1 className={sectionHeading}>Add Upgrades</h1>
+            <p className={sectionSub}>Click any upgrade to expand specs and add to your order.</p>
+
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {UPGRADES.map((u) => {
+                const isExpanded = expandedUpgrade === u.key;
+                const isAdded = !!order[u.key];
                 return (
-                  <div key={u.id}>
+                  <div
+                    key={u.key}
+                    className="overflow-hidden rounded-xl transition-all duration-200"
+                    style={{
+                      background: '#1A2540',
+                      border: `1px solid ${isAdded ? 'rgba(107,155,247,0.5)' : 'rgba(107,155,247,0.12)'}`,
+                      boxShadow: isAdded ? '0 0 0 1px rgba(107,155,247,0.2)' : undefined,
+                    }}
+                  >
                     <button
-                      type="button"
-                      onClick={() => setExpanded(isOpen ? null : u.id)}
-                      aria-expanded={isOpen}
-                      className={`flex w-full items-start gap-4 border border-[#6B9BF7]/12 bg-[#1A2540] p-4 text-left transition-colors duration-200 ease-out hover:border-[#6B9BF7]/40 ${
-                        isOpen ? 'rounded-t-xl' : 'rounded-xl'
-                      }`}
+                      onClick={() => setExpandedUpgrade(isExpanded ? null : u.key)}
+                      className="flex w-full items-center gap-4 p-4 text-left"
                     >
-                      <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-white/5">
-                        <Image src={u.image} alt={u.name} fill sizes="80px" className="object-cover" />
+                      <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+                        <Image src={u.image} alt={u.name} fill className="object-cover" sizes="64px" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="flex items-start justify-between gap-2">
-                          <h3 className="font-heading text-base font-semibold text-white">{u.name}</h3>
-                          <p className="whitespace-nowrap font-mono text-sm font-bold text-[#6B9BF7]">{priceLabel(u.price)}</p>
-                        </div>
-                        <p className="mt-1 text-sm text-gray-300">{u.desc}</p>
+                        <p className="text-sm font-semibold leading-tight text-white">{u.name}</p>
+                        <p className="mt-0.5 font-mono text-xs text-[#6B9BF7]">{fmt(u.price)}</p>
+                        {isAdded && <p className="mt-1 text-xs text-green-400">✓ Added to order</p>}
+                      </div>
+                      <div className="flex-shrink-0 text-gray-500">
+                        {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                       </div>
                     </button>
-                    {isOpen && (
-                      <div className="rounded-b-xl border border-t-0 border-[#6B9BF7]/12 bg-[#111C33] p-4">
-                        <p className="text-sm text-gray-300">{u.desc}</p>
+
+                    {isExpanded && (
+                      <div
+                        className="px-4 pb-4"
+                        style={{ borderTop: '1px solid rgba(107,155,247,0.1)' }}
+                      >
+                        <p className="mt-3 text-sm leading-relaxed text-gray-300">{u.spec}</p>
                         <button
-                          type="button"
-                          onClick={() => addToOrder(u.orderKey, u.orderLabel, u.price)}
-                          className={`mt-4 ${addBtn}`}
+                          onClick={() => {
+                            if (isAdded) {
+                              removeFromOrder(u.key);
+                            } else {
+                              addToOrder(u.key, u.name, u.price, 'Upgrade');
+                            }
+                          }}
+                          className={`${addBtn} mt-4`}
+                          style={{ background: isAdded ? '#DC2626' : '#6B9BF7' }}
                         >
-                          Add to Order
+                          {isAdded ? 'Remove from Order' : `Add to Order — ${fmt(u.price)}`}
                         </button>
                       </div>
                     )}
@@ -394,63 +725,46 @@ export default function DesignJourneyContent({
                 );
               })}
             </div>
-            <Link
-              href="/products/expandable-homes/20x20"
-              className="mt-6 inline-flex items-center gap-1 font-body font-medium text-[#6B9BF7] transition-colors duration-fast ease-out hover:text-white"
-            >
-              See detailed upgrade specs on your product page <ArrowRight size={16} aria-hidden="true" />
-            </Link>
           </div>
         )}
 
+        {/* ── STEP 5: Get Started ── */}
         {active === 5 && (
           <div className="flex min-h-[40vh] flex-col items-center justify-center text-center">
-            <h1 className={heading}>Ready to Build?</h1>
+            <h1 className={sectionHeading}>Ready to Build?</h1>
             <p className="mt-4 max-w-lg text-lg text-gray-300">
-              You&apos;ve explored the options. Now let&apos;s make it real.
+              You&apos;ve designed your home. Now let&apos;s make it real. Share your build with our team.
             </p>
+            {Object.keys(order).length > 0 && (
+              <div
+                className="mt-8 w-full max-w-sm rounded-2xl p-6 text-left"
+                style={{ background: '#FFFFFF', border: '1px solid #E5E7EB' }}
+              >
+                <p className="mb-3 font-heading text-sm font-bold text-gray-900">Your Build Summary</p>
+                {Object.entries(order).map(([key, item]) => (
+                  <div key={key} className="flex justify-between border-b border-gray-100 py-1.5 last:border-0">
+                    <span className="text-xs text-gray-700">{item.label}</span>
+                    <span className="font-mono text-xs font-semibold text-gray-900">
+                      {item.price === 0 ? 'Included' : fmt(item.price)}
+                    </span>
+                  </div>
+                ))}
+                <div className="mt-3 flex justify-between">
+                  <span className="text-sm font-bold text-gray-900">Upgrades Total</span>
+                  <span className="font-mono text-sm font-bold text-gray-900">
+                    {fmt(Object.values(order).reduce((s, i) => s + i.price, 0))}
+                  </span>
+                </div>
+              </div>
+            )}
             <div className="mt-8">
               <BookConsultation size="lg" />
             </div>
-            <p className="mt-6 text-gray-300">800-259-1745 &middot; info@brightboxhomes.com</p>
-            <p className="mt-2 text-sm text-gray-400">Or call us - we&apos;ll walk you through every option.</p>
+            <p className="mt-6 text-gray-300">800-259-1745 · info@brightboxhomes.com</p>
           </div>
         )}
-      </div>
 
-      {/* Live order / build panel — desktop right rail, mobile bottom drawer. */}
-      {hasOrder && (
-        <div className="fixed inset-x-0 bottom-0 z-50 lg:inset-x-auto lg:bottom-auto lg:right-6 lg:top-24 lg:w-72">
-          <div className="max-h-[70vh] overflow-y-auto rounded-t-2xl border border-[#6B9BF7]/20 bg-[#1A2540] p-5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] lg:rounded-2xl">
-            <h2 className="font-heading text-lg font-bold text-white">Your Build</h2>
-            <ul className="mt-4 space-y-3">
-              {Object.entries(order).map(([key, item]) => (
-                <li key={key} className="flex items-start justify-between gap-2 text-sm">
-                  <span className="min-w-0 flex-1 text-gray-300">{item.label}</span>
-                  <span className="whitespace-nowrap font-mono font-semibold text-[#6B9BF7]">{priceLabel(item.price)}</span>
-                  {item.removable && (
-                    <button
-                      type="button"
-                      onClick={() => removeFromOrder(key)}
-                      aria-label={`Remove ${item.label}`}
-                      className="flex-shrink-0 text-red-500 transition-colors duration-200 ease-out hover:text-red-400"
-                    >
-                      <X size={16} aria-hidden="true" />
-                    </button>
-                  )}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
-              <span className="font-bold text-white">Estimated Total</span>
-              <span className="font-mono font-bold text-white">${total.toLocaleString()}</span>
-            </div>
-            <div className="mt-4">
-              <BookConsultation />
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 }

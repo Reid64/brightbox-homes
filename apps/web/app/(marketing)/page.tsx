@@ -135,16 +135,16 @@ const journeySteps = [
 
 const deliveredPhotos = [
   {
-    src: '/images/delivered/delivered-1.jpg',
-    alt: 'Delivered white expandable home set on a rural property.',
+    src: '/images/delivered/delivered-7.jpg',
+    alt: 'Delivered red expandable home unit sited beside a green house on a rural property.',
   },
   {
     src: '/images/delivered/delivered-2.jpg',
     alt: 'Delivered brown expandable home on a coastal lot.',
   },
   {
-    src: '/images/delivered/delivered-3.jpg',
-    alt: 'Delivered gray expandable home with a covered porch among palm trees.',
+    src: '/images/delivered/delivered-8.jpg',
+    alt: 'White expandable home being set in place by a crane during delivery.',
   },
   {
     src: '/images/delivered/delivered-4.jpg',

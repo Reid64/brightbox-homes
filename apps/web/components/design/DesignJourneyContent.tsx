@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { X, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { X, Check, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
 // ─── TYPES ───────────────────────────────────────────────────────────────────
@@ -92,15 +92,15 @@ const RAL_EXTERIOR: Swatch[] = [
 ];
 
 const CARVED_METAL: Swatch[] = [
-  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 5%', meta: 'Light Pine' },
-  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 16%', meta: 'Dark Walnut' },
-  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 27%', meta: 'Russet Oak' },
-  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 38%', meta: 'Honey Cedar' },
-  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 50%', meta: 'Amber Teak' },
-  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 61%', meta: 'Ebony Ash' },
-  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 72%', meta: 'Blonde Maple' },
-  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 83%', meta: 'Olive Birch' },
-  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 95%', meta: 'Cognac Cherry' },
+  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0%', meta: 'Light Pine' },
+  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-100%', meta: 'Dark Walnut' },
+  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-200%', meta: 'Russet Oak' },
+  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-300%', meta: 'Honey Cedar' },
+  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-400%', meta: 'Amber Teak' },
+  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-500%', meta: 'Ebony Ash' },
+  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-600%', meta: 'Blonde Maple' },
+  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-700%', meta: 'Olive Birch' },
+  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-800%', meta: 'Cognac Cherry' },
 ];
 
 const ROOF_COLORS: Swatch[] = [
@@ -237,16 +237,19 @@ function SwatchGrid({
                 borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
                 boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
                 background: s.hex ?? undefined,
+                fontWeight: 400,
+                WebkitFontSmoothing: 'antialiased',
               }}
             >
               {s.imageSrc && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={s.imageSrc}
-                  alt={s.label}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: s.imagePosition }}
-                />
+                <div className="absolute inset-0 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.imageSrc}
+                    alt={s.label}
+                    style={{ position: 'absolute', width: '200%', height: '900%', top: s.imagePosition, left: '0%' }}
+                  />
+                </div>
               )}
               {isSelected && (
                 <span className="absolute inset-0 flex items-center justify-center">
@@ -269,17 +272,18 @@ function SwatchGrid({
             style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 420, width: '90vw' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button onClick={() => setZoomed(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white">
+            <button onClick={() => setZoomed(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white" style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}>
               <X size={20} />
             </button>
             {zoomed.imageSrc ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={zoomed.imageSrc}
-                alt={zoomed.label}
-                className="h-48 w-full rounded-xl border border-white/10 object-cover"
-                style={{ objectPosition: zoomed.imagePosition }}
-              />
+              <div className="relative h-48 w-full overflow-hidden rounded-xl border border-white/10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={zoomed.imageSrc}
+                  alt={zoomed.label}
+                  style={{ position: 'absolute', width: '200%', height: '900%', top: zoomed.imagePosition, left: '0%' }}
+                />
+              </div>
             ) : (
               <div
                 className="h-48 w-full rounded-xl border border-white/10"
@@ -293,7 +297,7 @@ function SwatchGrid({
             <button
               onClick={() => { onSelect(zoomed); setZoomed(null); }}
               className="w-full rounded-xl py-3 text-sm font-semibold text-white transition-colors"
-              style={{ background: selected === zoomed.id ? '#16A34A' : '#6B9BF7' }}
+              style={{ background: selected === zoomed.id ? '#16A34A' : '#6B9BF7', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
             >
               {selected === zoomed.id ? '✓ Added to Order' : 'Add to Order'}
             </button>
@@ -322,22 +326,16 @@ function OrderPanel({
   return (
     <div
       className="fixed bottom-4 right-4 z-40 w-80 overflow-hidden rounded-2xl shadow-2xl lg:bottom-auto lg:right-6 lg:top-24"
-      style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 20px 60px rgba(0,0,0,0.25)' }}
+      style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 20px 60px rgba(0,0,0,0.25)', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}
     >
       {/* Header */}
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-5 py-4"
-        style={{ borderBottom: open ? '1px solid #E5E7EB' : 'none' }}
+        style={{ borderBottom: open ? '1px solid #E5E7EB' : 'none', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
       >
         <div className="flex items-center gap-2">
-          <span className="font-heading text-base font-bold text-gray-900">Your Build</span>
-          <span
-            className="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white"
-            style={{ background: '#6B9BF7' }}
-          >
-            {items.length}
-          </span>
+          <span className="font-heading text-base font-bold text-gray-900">Your Custom Build</span>
         </div>
         <div className="flex items-center gap-3">
           <span className="font-mono text-sm font-semibold text-gray-900">{fmt(total)}</span>
@@ -367,6 +365,7 @@ function OrderPanel({
                         <button
                           onClick={() => onRemove(key)}
                           className="text-gray-300 transition-colors hover:text-red-500"
+                          style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
                         >
                           <X size={14} />
                         </button>
@@ -457,6 +456,8 @@ export default function DesignJourneyContent({
                     background: '#1A2540',
                     border: '1px solid rgba(107,155,247,0.15)',
                     boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                    fontWeight: 400,
+                    WebkitFontSmoothing: 'antialiased',
                   }}
                 >
                   <div className="relative aspect-video w-full overflow-hidden">
@@ -563,9 +564,17 @@ export default function DesignJourneyContent({
                 size="lg"
               />
               {selectedRoof && (
-                <p className="mt-3 text-xs text-[#6B9BF7]">
-                  ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
-                </p>
+                <div className="mt-3 flex items-center gap-2">
+                  <p className="text-xs text-[#6B9BF7]">
+                    ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
+                  </p>
+                  <button
+                    onClick={() => { setSelectedRoof(null); removeFromOrder('roof'); }}
+                    style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
+                  >
+                    <Trash2 size={14} className="text-red-400 hover:text-red-600" />
+                  </button>
+                </div>
               )}
             </div>
 
@@ -590,6 +599,8 @@ export default function DesignJourneyContent({
                     style={{
                       background: selectedRoofSize === r.size ? '#6B9BF7' : '#1A2540',
                       border: selectedRoofSize === r.size ? '1px solid #6B9BF7' : '1px solid rgba(107,155,247,0.15)',
+                      fontWeight: 400,
+                      WebkitFontSmoothing: 'antialiased',
                     }}
                   >
                     <p className="text-xs text-gray-300">{r.size}</p>
@@ -687,6 +698,7 @@ export default function DesignJourneyContent({
                     <button
                       onClick={() => setExpandedUpgrade(isExpanded ? null : u.key)}
                       className="flex w-full items-center gap-4 p-4 text-left"
+                      style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
                     >
                       <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                         <Image src={u.image} alt={u.name} fill className="object-cover" sizes="64px" />
@@ -716,7 +728,7 @@ export default function DesignJourneyContent({
                             }
                           }}
                           className={`${addBtn} mt-4`}
-                          style={{ background: isAdded ? '#DC2626' : '#6B9BF7' }}
+                          style={{ background: isAdded ? '#DC2626' : '#6B9BF7', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
                         >
                           {isAdded ? 'Remove from Order' : `Add to Order — ${fmt(u.price)}`}
                         </button>

@@ -92,15 +92,15 @@ const RAL_EXTERIOR: Swatch[] = [
 ];
 
 const CARVED_METAL: Swatch[] = [
-  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 0%', meta: 'Light Pine' },
-  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 0%', meta: 'Dark Walnut' },
-  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 22%', meta: 'Russet Oak' },
-  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 22%', meta: 'Honey Cedar' },
-  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 44%', meta: 'Amber Teak' },
-  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 44%', meta: 'Ebony Ash' },
-  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 67%', meta: 'Blonde Maple' },
-  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 67%', meta: 'Olive Birch' },
-  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 100%', meta: 'Cognac Cherry' },
+  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 5%', meta: 'Light Pine' },
+  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 16%', meta: 'Dark Walnut' },
+  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 27%', meta: 'Russet Oak' },
+  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 38%', meta: 'Honey Cedar' },
+  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 50%', meta: 'Amber Teak' },
+  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 61%', meta: 'Ebony Ash' },
+  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 72%', meta: 'Blonde Maple' },
+  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 83%', meta: 'Olive Birch' },
+  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 95%', meta: 'Cognac Cherry' },
 ];
 
 const ROOF_COLORS: Swatch[] = [
@@ -231,7 +231,7 @@ function SwatchGrid({
             <button
               key={s.id}
               title={s.label + (s.meta ? ' — ' + s.meta : '')}
-              onClick={() => { onSelect(s); setZoomed(s); }}
+              onClick={() => setZoomed(s)}
               className={`relative ${dim} overflow-hidden rounded-lg border-2 transition-all duration-200 hover:scale-110 hover:z-10 focus:outline-none focus:ring-2 focus:ring-[#6B9BF7]`}
               style={{
                 borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
@@ -240,13 +240,12 @@ function SwatchGrid({
               }}
             >
               {s.imageSrc && (
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: `url(${s.imageSrc})`,
-                    backgroundSize: '200% 900%',
-                    backgroundPosition: s.imagePosition ?? '0% 0%',
-                  }}
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={s.imageSrc}
+                  alt={s.label}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: s.imagePosition }}
                 />
               )}
               {isSelected && (
@@ -273,18 +272,20 @@ function SwatchGrid({
             <button onClick={() => setZoomed(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white">
               <X size={20} />
             </button>
-            <div
-              className="h-48 w-full rounded-xl border border-white/10"
-              style={
-                zoomed.imageSrc
-                  ? {
-                      backgroundImage: `url(${zoomed.imageSrc})`,
-                      backgroundSize: '200% 900%',
-                      backgroundPosition: zoomed.imagePosition ?? '0% 0%',
-                    }
-                  : { background: zoomed.hex }
-              }
-            />
+            {zoomed.imageSrc ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={zoomed.imageSrc}
+                alt={zoomed.label}
+                className="h-48 w-full rounded-xl border border-white/10 object-cover"
+                style={{ objectPosition: zoomed.imagePosition }}
+              />
+            ) : (
+              <div
+                className="h-48 w-full rounded-xl border border-white/10"
+                style={{ background: zoomed.hex }}
+              />
+            )}
             <div className="text-center">
               <p className="font-heading text-xl font-semibold text-white">{zoomed.label}</p>
               {zoomed.meta && <p className="mt-1 text-sm text-gray-400">{zoomed.meta}</p>}
@@ -430,7 +431,7 @@ export default function DesignJourneyContent({
   const sectionHeading = 'font-heading text-3xl font-bold text-white';
   const sectionSub = 'mt-2 text-sm font-normal text-gray-400';
   const subHeading = 'font-heading text-lg font-semibold text-[#6B9BF7]';
-  const addBtn = 'mt-4 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors';
+  const addBtn = 'mt-4 rounded-xl px-5 py-2.5 text-sm font-medium text-white transition-colors';
 
   return (
     <>

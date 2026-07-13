@@ -543,6 +543,45 @@ export default function DesignJourneyContent({
               {/* LEFT COLUMN */}
               <div className="space-y-6">
                 <div>
+                  <h2 className={subHeading}>Roof Colors — 19 Options</h2>
+                  <p className="mb-4 mt-1 text-xs text-gray-400">Click any color to zoom and select.</p>
+                  <div className="grid grid-cols-5 gap-2">
+                    {ROOF_COLORS.map((s) => {
+                      const isSelected = selectedRoof === s.id;
+                      return (
+                        <button
+                          key={s.id}
+                          onClick={() => setZoomedRoof(s)}
+                          className="h-12 w-full rounded-lg border-2 transition-all duration-200"
+                          style={{
+                            background: s.hex,
+                            borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
+                            boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
+                          }}
+                        >
+                          {isSelected && (
+                            <span className="flex items-center justify-center">
+                              <Check size={12} className={s.hex && needsDarkText(s.hex) ? 'text-black' : 'text-white'} strokeWidth={3} />
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {selectedRoof && (
+                    <p className="mt-3 flex items-center gap-2 text-xs text-[#6B9BF7]">
+                      ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
+                      <button
+                        onClick={() => { setSelectedRoof(null); removeFromOrder('roof'); setSelectedRoofSize(null); }}
+                        style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
+                      >
+                        <Trash2 size={14} className="text-red-400 hover:text-red-600" />
+                      </button>
+                    </p>
+                  )}
+                </div>
+
+                <div>
                   <h2 className={subHeading}>Pricing by Home Size</h2>
                   <div className="mt-4 space-y-2">
                     {ROOF_PRICING.map((r) => {
@@ -602,45 +641,6 @@ export default function DesignJourneyContent({
                     Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
                     and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
                   </p>
-                </div>
-
-                <div>
-                  <h2 className={subHeading}>Roof Colors — 19 Options</h2>
-                  <p className="mb-4 mt-1 text-xs text-gray-400">Click any color to zoom and select.</p>
-                  <div className="grid grid-cols-5 gap-2">
-                    {ROOF_COLORS.map((s) => {
-                      const isSelected = selectedRoof === s.id;
-                      return (
-                        <button
-                          key={s.id}
-                          onClick={() => setZoomedRoof(s)}
-                          className="h-12 w-full rounded-lg border-2 transition-all duration-200"
-                          style={{
-                            background: s.hex,
-                            borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
-                            boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
-                          }}
-                        >
-                          {isSelected && (
-                            <span className="flex items-center justify-center">
-                              <Check size={12} className={s.hex && needsDarkText(s.hex) ? 'text-black' : 'text-white'} strokeWidth={3} />
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {selectedRoof && (
-                    <p className="mt-3 flex items-center gap-2 text-xs text-[#6B9BF7]">
-                      ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
-                      <button
-                        onClick={() => { setSelectedRoof(null); removeFromOrder('roof'); setSelectedRoofSize(null); }}
-                        style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
-                      >
-                        <Trash2 size={14} className="text-red-400 hover:text-red-600" />
-                      </button>
-                    </p>
-                  )}
                 </div>
 
                 <Image src="/images/colors/sri-lrv-index.png" alt="SRI and LRV index" width={800} height={600} className="h-auto w-full rounded-xl border border-white/10" />

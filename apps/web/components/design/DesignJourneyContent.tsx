@@ -411,6 +411,7 @@ export default function DesignJourneyContent({
   const [selectedCarved, setSelectedCarved] = useState<string | null>(null);
   const [selectedRoof, setSelectedRoof] = useState<string | null>(null);
   const [selectedRoofSize, setSelectedRoofSize] = useState<string | null>(null);
+  const [zoomedRoof, setZoomedRoof] = useState<Swatch | null>(null);
   const [selectedWall, setSelectedWall] = useState<string | null>(null);
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
   const [expandedUpgrade, setExpandedUpgrade] = useState<string | null>(null);
@@ -532,98 +533,149 @@ export default function DesignJourneyContent({
 
         {/* ── STEP 2: Roof ── */}
         {active === 2 && (
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div>
               <h1 className={sectionHeading}>Choose Your Roof</h1>
               <p className={sectionSub}>Select a color, then choose your home size for pricing.</p>
             </div>
 
-            {/* Benefits block */}
-            <div
-              className="rounded-2xl p-6"
-              style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}
-            >
-              <h2 className="font-heading text-base font-semibold text-[#6B9BF7]">Why a Metal Roof?</h2>
-              <p className="mt-3 text-sm leading-relaxed text-gray-300">
-                A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
-                Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
-                and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
-              </p>
-            </div>
-
-            {/* Color swatches */}
-            <div>
-              <h2 className={subHeading}>Roof Colors — 19 Options</h2>
-              <p className="mb-4 mt-1 text-xs text-gray-400">SRI and LRV values shown on zoom. Higher SRI = cooler roof in hot climates.</p>
-              <SwatchGrid
-                swatches={ROOF_COLORS}
-                selected={selectedRoof}
-                onSelect={(s) => {
-                  setSelectedRoof(s.id);
-                }}
-                size="lg"
-              />
-              {selectedRoof && (
-                <div className="mt-3 flex items-center gap-2">
-                  <p className="text-xs text-[#6B9BF7]">
-                    ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
-                  </p>
-                  <button
-                    onClick={() => { setSelectedRoof(null); removeFromOrder('roof'); }}
-                    style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
-                  >
-                    <Trash2 size={14} className="text-red-400 hover:text-red-600" />
-                  </button>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              {/* LEFT COLUMN */}
+              <div className="space-y-6">
+                <div>
+                  <h2 className={subHeading}>Pricing by Home Size</h2>
+                  <div className="mt-4 space-y-2">
+                    {ROOF_PRICING.map((r) => {
+                      const isSelected = selectedRoofSize === r.size;
+                      return (
+                        <button
+                          key={r.size}
+                          onClick={() => {
+                            setSelectedRoofSize(r.size);
+                            const colorLabel = selectedRoof
+                              ? ROOF_COLORS.find((s) => s.id === selectedRoof)?.label ?? 'Color TBD'
+                              : 'Color TBD';
+                            addToOrder('roof', `Metal Roof — ${r.size} — ${colorLabel}`, r.price, 'Roof Upgrade');
+                          }}
+                          className="flex w-full items-center justify-between rounded-xl px-4 py-3 transition-all duration-200"
+                          style={{
+                            background: isSelected ? 'rgba(107,155,247,0.15)' : '#1A2540',
+                            border: isSelected ? '1px solid #6B9BF7' : '1px solid rgba(107,155,247,0.12)',
+                            fontWeight: 400,
+                            WebkitFontSmoothing: 'antialiased',
+                          }}
+                        >
+                          <span className="text-sm text-gray-200">{r.size}</span>
+                          <div className="flex items-center gap-3">
+                            <span className="font-mono text-sm text-[#6B9BF7]">{fmt(r.price)}</span>
+                            {isSelected ? (
+                              <Check size={14} className="text-[#6B9BF7]" strokeWidth={3} />
+                            ) : (
+                              <span className="text-xs text-gray-400">Add</span>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              )}
-            </div>
 
-            {/* Pricing */}
-            <div>
-              <h2 className={subHeading}>Select Your Home Size — Add to Order</h2>
-              <p className="mb-4 mt-1 text-xs text-gray-400">
-                Includes pitched metal roof panels, full truss system, all fasteners, and installation hardware.
-              </p>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {ROOF_PRICING.map((r) => (
-                  <button
-                    key={r.size}
-                    onClick={() => {
-                      setSelectedRoofSize(r.size);
-                      const colorLabel = selectedRoof
-                        ? ROOF_COLORS.find((s) => s.id === selectedRoof)?.label ?? 'Color TBD'
-                        : 'Color TBD';
-                      addToOrder('roof', `Metal Roof — ${r.size} — ${colorLabel}`, r.price, 'Roof Upgrade');
-                    }}
-                    className="rounded-xl border p-4 text-center transition-all duration-200"
-                    style={{
-                      background: selectedRoofSize === r.size ? '#6B9BF7' : '#1A2540',
-                      border: selectedRoofSize === r.size ? '1px solid #6B9BF7' : '1px solid rgba(107,155,247,0.15)',
-                      fontWeight: 400,
-                      WebkitFontSmoothing: 'antialiased',
-                    }}
-                  >
-                    <p className="text-xs text-gray-300">{r.size}</p>
-                    <p className="mt-1 font-mono text-lg font-bold text-white">{fmt(r.price)}</p>
-                    <p className="mt-1 text-xs text-[#6B9BF7]">
-                      {selectedRoofSize === r.size ? '✓ Added' : 'Add to Order'}
+                {/* Truss images */}
+                <div className="flex gap-4">
+                  <figure className="w-full max-w-[140px]">
+                    <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" width={1499} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
+                    <figcaption className="mt-2 text-xs text-gray-400">Standard Truss System</figcaption>
+                  </figure>
+                  <figure className="w-full max-w-[140px]">
+                    <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" width={1500} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
+                    <figcaption className="mt-2 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              {/* RIGHT COLUMN */}
+              <div className="space-y-5">
+                <div className="rounded-xl p-4" style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}>
+                  <h2 className="text-sm font-semibold uppercase tracking-wider text-[#6B9BF7]">Why a Metal Roof?</h2>
+                  <p className="mt-3 text-xs leading-relaxed text-gray-300">
+                    A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
+                    Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
+                    and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 className={subHeading}>Roof Colors — 19 Options</h2>
+                  <p className="mb-4 mt-1 text-xs text-gray-400">Click any color to zoom and select.</p>
+                  <div className="grid grid-cols-5 gap-2">
+                    {ROOF_COLORS.map((s) => {
+                      const isSelected = selectedRoof === s.id;
+                      return (
+                        <button
+                          key={s.id}
+                          onClick={() => setZoomedRoof(s)}
+                          className="h-12 w-full rounded-lg border-2 transition-all duration-200"
+                          style={{
+                            background: s.hex,
+                            borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
+                            boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
+                          }}
+                        >
+                          {isSelected && (
+                            <span className="flex items-center justify-center">
+                              <Check size={12} className={s.hex && needsDarkText(s.hex) ? 'text-black' : 'text-white'} strokeWidth={3} />
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {selectedRoof && (
+                    <p className="mt-3 flex items-center gap-2 text-xs text-[#6B9BF7]">
+                      ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
+                      <button
+                        onClick={() => { setSelectedRoof(null); removeFromOrder('roof'); setSelectedRoofSize(null); }}
+                        style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
+                      >
+                        <Trash2 size={14} className="text-red-400 hover:text-red-600" />
+                      </button>
                     </p>
-                  </button>
-                ))}
+                  )}
+                </div>
+
+                <Image src="/images/colors/sri-lrv-index.png" alt="SRI and LRV index" width={800} height={600} className="h-auto w-full rounded-xl border border-white/10" />
               </div>
             </div>
 
-            {/* Truss images */}
-            <div className="flex gap-4">
-              <figure className="w-full max-w-[180px]">
-                <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" width={1499} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                <figcaption className="mt-2 text-xs text-gray-400">Standard Truss System</figcaption>
-              </figure>
-              <figure className="w-full max-w-[180px]">
-                <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" width={1500} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                <figcaption className="mt-2 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
-              </figure>
-            </div>
+            {/* Roof color zoom lightbox */}
+            {zoomedRoof && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+                onClick={() => setZoomedRoof(null)}
+              >
+                <div
+                  className="relative flex flex-col items-center gap-5 rounded-2xl p-8"
+                  style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 420, width: '90vw' }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button onClick={() => setZoomedRoof(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white" style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}>
+                    <X size={20} />
+                  </button>
+                  <div className="h-40 w-full rounded-xl" style={{ background: zoomedRoof.hex }} />
+                  <div className="text-center">
+                    <p className="font-heading text-xl font-semibold text-white">{zoomedRoof.label}</p>
+                    {zoomedRoof.meta && <p className="mt-1 text-sm text-gray-400">{zoomedRoof.meta}</p>}
+                  </div>
+                  <button
+                    onClick={() => { setSelectedRoof(zoomedRoof.id); setZoomedRoof(null); }}
+                    className="w-full rounded-xl py-3 text-sm text-white transition-colors"
+                    style={{ background: selectedRoof === zoomedRoof.id ? '#16A34A' : '#6B9BF7', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
+                  >
+                    {selectedRoof === zoomedRoof.id ? '✓ Selected' : 'Select This Color'}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
 

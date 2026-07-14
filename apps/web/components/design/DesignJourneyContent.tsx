@@ -610,32 +610,21 @@ export default function DesignJourneyContent({
                   </div>
                 </div>
 
-                {/* Truss images */}
-                <div className="flex gap-4">
-                  <figure className="w-full max-w-[140px]">
+                {/* Truss images + video */}
+                <div className="grid grid-cols-3 gap-4">
+                  <figure>
                     <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" width={1499} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                    <figcaption className="mt-2 text-xs text-gray-400">Standard Truss System</figcaption>
+                    <figcaption className="mt-1 text-xs text-gray-400">Standard Truss System</figcaption>
                   </figure>
-                  <figure className="w-full max-w-[140px]">
+                  <figure>
                     <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" width={1500} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                    <figcaption className="mt-2 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
+                    <figcaption className="mt-1 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
+                  </figure>
+                  <figure>
+                    <video autoPlay muted loop playsInline aria-label="Metal roof truss installation" className="h-auto w-full rounded-lg border border-white/10"><source src="/videos/metal-roof-truss.mp4" type="video/mp4" /></video>
+                    <figcaption className="mt-1 text-xs text-gray-400">Metal Roof Truss System</figcaption>
                   </figure>
                 </div>
-
-                {/* Truss system video */}
-                <figure>
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-label="Metal roof truss system animation"
-                    className="w-full rounded-lg border border-white/10"
-                  >
-                    <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
-                  </video>
-                  <figcaption className="mt-2 text-xs text-gray-400">Metal Roof Truss System</figcaption>
-                </figure>
               </div>
 
               {/* RIGHT COLUMN */}

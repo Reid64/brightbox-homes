@@ -6,10 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Phone, Menu, ChevronDown } from 'lucide-react';
 import MobileNav from '@/components/layout/MobileNav';
-import { BookConsultation } from '@/components/ui/BookConsultation';
 
-// Two-column Products mega-menu. Left/right columns per redesign spec. The
-// Expandable Homes entry shows its size sub-items inline (no nested flyout).
 const productColumnLeft = [
   {
     label: 'Expandable Homes',
@@ -33,8 +30,6 @@ const productColumnRight = [
   { label: 'Vending Units', href: '/products/vending-units' },
 ];
 
-// Nav order (after the Products mega-menu): Find Land, Design Your Home, About,
-// Delivery, $5K Challenge, Blog, FAQ. FAITH Foundation lives in the footer only.
 const navLinks = [
   { label: 'Find Land', href: '/find-land' },
   { label: 'Design Your Home', href: '/design' },
@@ -56,7 +51,6 @@ export default function Header() {
   const productsRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  // Generous close delay so the cursor can travel from the trigger into the panel.
   const CLOSE_DELAY = 400;
 
   useEffect(() => {
@@ -88,7 +82,6 @@ export default function Header() {
     productsTimer.current = setTimeout(() => setProductsOpen(false), CLOSE_DELAY);
   }
 
-  // Close on click-outside or Escape (only while open).
   useEffect(() => {
     if (!productsOpen) return;
     function onPointerDown(e: PointerEvent) {
@@ -109,9 +102,6 @@ export default function Header() {
 
   const productsActive = pathname?.startsWith('/products') ?? false;
 
-  // MobileNav is rendered as a sibling of <header>, NOT a child: the header's
-  // backdrop-filter establishes a containing block for fixed-positioned
-  // descendants, which would clip the full-screen mobile overlay to the header.
   return (
     <>
       <header
@@ -131,7 +121,7 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop navigation (lg and up) */}
+          {/* Desktop navigation */}
           <nav className="hidden items-center gap-2 lg:flex">
             <div
               className="relative"
@@ -153,13 +143,9 @@ export default function Header() {
               </button>
 
               {productsOpen && (
-                <div
-                  className="absolute left-0 top-full z-[9999] mt-2 w-[560px] max-w-[90vw] rounded-2xl border border-white/10 bg-[#0F1729] p-6 shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
-                >
-                  {/* Invisible bridge so the cursor can cross the gap into the panel */}
+                <div className="absolute left-0 top-full z-[9999] mt-2 w-[560px] max-w-[90vw] rounded-2xl border border-white/10 bg-[#0F1729] p-6 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
                   <div aria-hidden="true" className="absolute inset-x-0 -top-2 h-2" />
                   <div className="grid grid-cols-2 gap-8">
-                    {/* Left column */}
                     <div className="flex flex-col gap-1">
                       {productColumnLeft.map((link) => (
                         <div key={link.href}>
@@ -187,8 +173,6 @@ export default function Header() {
                         </div>
                       ))}
                     </div>
-
-                    {/* Right column */}
                     <div className="flex flex-col gap-1">
                       {productColumnRight.map((link) => (
                         <Link
@@ -228,13 +212,9 @@ export default function Header() {
               <Phone size={20} aria-hidden="true" className="text-red-500" />
               800-259-1745
             </a>
-
-            <BookConsultation size="default" className="ml-1">
-              Book a Consultation
-            </BookConsultation>
           </nav>
 
-          {/* Mobile controls (below lg) */}
+          {/* Mobile controls */}
           <div className="flex items-center gap-1 lg:hidden">
             <a
               href="tel:8002591745"

@@ -402,16 +402,11 @@ export function OrderPanel({
 export default function DesignJourneyContent({
   active,
   setActive,
-  order,
-  addToOrder,
-  removeFromOrder,
 }: {
   active: number;
   setActive: (n: number) => void;
-  order: Record<string, OrderItem>;
-  addToOrder: (key: string, label: string, price: number, category: string, removable?: boolean) => void;
-  removeFromOrder: (key: string) => void;
 }) {
+  const [order, setOrder] = useState<Record<string, OrderItem>>({});
   const [selectedExterior, setSelectedExterior] = useState<string | null>(null);
   const [selectedCarved, setSelectedCarved] = useState<string | null>(null);
   const [selectedRoof, setSelectedRoof] = useState<string | null>(null);
@@ -420,6 +415,18 @@ export default function DesignJourneyContent({
   const [selectedWall, setSelectedWall] = useState<string | null>(null);
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
   const [expandedUpgrade, setExpandedUpgrade] = useState<string | null>(null);
+
+  const addToOrder = (key: string, label: string, price: number, category: string, removable = true) => {
+    setOrder((prev) => ({ ...prev, [key]: { label, price, category, removable } }));
+  };
+
+  const removeFromOrder = (key: string) => {
+    setOrder((prev) => {
+      const n = { ...prev };
+      delete n[key];
+      return n;
+    });
+  };
 
   const sectionHeading = 'font-heading text-3xl font-bold text-white';
   const sectionSub = 'mt-2 text-sm font-normal text-gray-400';
@@ -609,36 +616,38 @@ export default function DesignJourneyContent({
                     })}
                   </div>
                 </div>
-
-                {/* Truss images + video */}
-                <div className="grid grid-cols-3 gap-4">
-                  <figure>
-                    <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" width={1499} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                    <figcaption className="mt-1 text-xs text-gray-400">Standard Truss System</figcaption>
-                  </figure>
-                  <figure>
-                    <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" width={1500} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                    <figcaption className="mt-1 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
-                  </figure>
-                  <figure>
-                    <video autoPlay muted loop playsInline aria-label="Metal roof truss installation" className="h-auto w-full rounded-lg border border-white/10"><source src="/videos/metal-roof-truss.mp4" type="video/mp4" /></video>
-                    <figcaption className="mt-1 text-xs text-gray-400">Metal Roof Truss System</figcaption>
-                  </figure>
-                </div>
               </div>
 
               {/* RIGHT COLUMN */}
               <div className="space-y-5">
-                <h2 className={subHeading}>Why a Metal Roof?</h2>
+                {/* Why a Metal Roof card */}
                 <div className="rounded-xl p-4" style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}>
-                  <p className="text-xs leading-relaxed text-gray-300">
+                  <h2 className="text-sm font-semibold uppercase tracking-wider text-[#6B9BF7]">Why a Metal Roof?</h2>
+                  <p className="mt-3 text-xs leading-relaxed text-gray-300">
                     A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
                     Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
                     and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
                   </p>
                 </div>
 
+                {/* SRI / LRV reference */}
                 <Image src="/images/colors/sri-lrv-index.png" alt="SRI and LRV index" width={800} height={600} className="h-auto w-full rounded-xl border border-white/10" />
+
+                {/* Truss images + video */}
+                <div className="grid grid-cols-3 gap-3 mt-4">
+                  <figure>
+                    <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" width={1499} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
+                    <figcaption className="mt-1 text-xs text-gray-400">Standard Truss</figcaption>
+                  </figure>
+                  <figure>
+                    <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" width={1500} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
+                    <figcaption className="mt-1 text-xs text-gray-400">Reinforced for Solar</figcaption>
+                  </figure>
+                  <figure>
+                    <video autoPlay muted loop playsInline className="h-auto w-full rounded-lg border border-white/10"><source src="/videos/metal-roof-truss.mp4" type="video/mp4" /></video>
+                    <figcaption className="mt-1 text-xs text-gray-400">Truss Installation</figcaption>
+                  </figure>
+                </div>
               </div>
             </div>
 

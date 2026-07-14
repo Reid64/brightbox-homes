@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import DesignJourneyStepBar from './DesignJourneySidebar';
-import DesignJourneyContent, { OrderPanel, type OrderItem } from './DesignJourneyContent';
+import DesignJourneyContent from './DesignJourneyContent';
 
 const STEPS = [
   'Choose Your Home',
@@ -15,19 +15,6 @@ const STEPS = [
 
 export default function DesignJourney() {
   const [active, setActive] = useState(0);
-  const [order, setOrder] = useState<Record<string, OrderItem>>({});
-
-  const addToOrder = (key: string, label: string, price: number, category: string, removable = true) => {
-    setOrder((prev) => ({ ...prev, [key]: { label, price, category, removable } }));
-  };
-
-  const removeFromOrder = (key: string) => {
-    setOrder((prev) => {
-      const n = { ...prev };
-      delete n[key];
-      return n;
-    });
-  };
 
   return (
     <div style={{ background: '#0D1526', minHeight: '100vh' }}>
@@ -38,21 +25,14 @@ export default function DesignJourney() {
 
           {/* LEFT: step content */}
           <div className="min-w-0 flex-1">
-            <h1 className="mb-6 font-heading text-2xl font-bold text-white">Design Your Home</h1>
-            <DesignJourneyContent
-              active={active}
-              setActive={setActive}
-              order={order}
-              addToOrder={addToOrder}
-              removeFromOrder={removeFromOrder}
-            />
+            <DesignJourneyContent active={active} setActive={setActive} />
           </div>
 
-          {/* RIGHT: sticky configurator + inline order panel */}
-          <div className="lg:w-[440px] lg:shrink-0">
+          {/* RIGHT: sticky configurator + invoice panel */}
+          <div className="lg:w-[380px] lg:shrink-0">
             <div className="sticky top-32 flex flex-col gap-4">
               <div
-                className="flex aspect-[4/3] w-full items-center justify-center rounded-2xl"
+                className="flex aspect-video w-full items-center justify-center rounded-2xl"
                 style={{
                   background: '#1A2540',
                   border: '1px solid rgba(107,155,247,0.2)',
@@ -64,7 +44,6 @@ export default function DesignJourney() {
                   <p className="mt-1 text-xs text-gray-500">Select a home to preview</p>
                 </div>
               </div>
-              <OrderPanel order={order} onRemove={removeFromOrder} />
             </div>
           </div>
 

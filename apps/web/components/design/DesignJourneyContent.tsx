@@ -621,6 +621,21 @@ export default function DesignJourneyContent({
                     <figcaption className="mt-2 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
                   </figure>
                 </div>
+
+                {/* Truss system video */}
+                <figure>
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    aria-label="Metal roof truss system animation"
+                    className="w-full rounded-lg border border-white/10"
+                  >
+                    <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
+                  </video>
+                  <figcaption className="mt-2 text-xs text-gray-400">Metal Roof Truss System</figcaption>
+                </figure>
               </div>
 
               {/* RIGHT COLUMN */}

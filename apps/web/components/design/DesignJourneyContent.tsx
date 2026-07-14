@@ -7,7 +7,7 @@ import { BookConsultation } from '@/components/ui/BookConsultation';
 
 // ─── TYPES ───────────────────────────────────────────────────────────────────
 
-interface OrderItem {
+export interface OrderItem {
   label: string;
   price: number;
   category: string;
@@ -310,7 +310,7 @@ function SwatchGrid({
 
 // ─── ORDER PANEL ──────────────────────────────────────────────────────────────
 
-function OrderPanel({
+export function OrderPanel({
   order,
   onRemove,
 }: {
@@ -325,7 +325,7 @@ function OrderPanel({
 
   return (
     <div
-      className="fixed bottom-4 right-4 z-40 w-80 overflow-hidden rounded-2xl shadow-2xl lg:bottom-auto lg:right-6 lg:top-24"
+      className="w-full overflow-hidden rounded-2xl shadow-2xl"
       style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 20px 60px rgba(0,0,0,0.25)', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}
     >
       {/* Header */}
@@ -402,11 +402,16 @@ function OrderPanel({
 export default function DesignJourneyContent({
   active,
   setActive,
+  order,
+  addToOrder,
+  removeFromOrder,
 }: {
   active: number;
   setActive: (n: number) => void;
+  order: Record<string, OrderItem>;
+  addToOrder: (key: string, label: string, price: number, category: string, removable?: boolean) => void;
+  removeFromOrder: (key: string) => void;
 }) {
-  const [order, setOrder] = useState<Record<string, OrderItem>>({});
   const [selectedExterior, setSelectedExterior] = useState<string | null>(null);
   const [selectedCarved, setSelectedCarved] = useState<string | null>(null);
   const [selectedRoof, setSelectedRoof] = useState<string | null>(null);
@@ -416,18 +421,6 @@ export default function DesignJourneyContent({
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
   const [expandedUpgrade, setExpandedUpgrade] = useState<string | null>(null);
 
-  const addToOrder = (key: string, label: string, price: number, category: string, removable = true) => {
-    setOrder((prev) => ({ ...prev, [key]: { label, price, category, removable } }));
-  };
-
-  const removeFromOrder = (key: string) => {
-    setOrder((prev) => {
-      const n = { ...prev };
-      delete n[key];
-      return n;
-    });
-  };
-
   const sectionHeading = 'font-heading text-3xl font-bold text-white';
   const sectionSub = 'mt-2 text-sm font-normal text-gray-400';
   const subHeading = 'font-heading text-lg font-semibold text-[#6B9BF7]';
@@ -435,8 +428,6 @@ export default function DesignJourneyContent({
 
   return (
     <>
-      <OrderPanel order={order} onRemove={removeFromOrder} />
-
       <div key={active} style={{ animation: 'fadeIn 200ms ease-out' }}>
 
         {/* ── STEP 0: Choose Your Home ── */}
@@ -539,7 +530,7 @@ export default function DesignJourneyContent({
               <p className={sectionSub}>Select a color, then choose your home size for pricing.</p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
               {/* LEFT COLUMN */}
               <div className="space-y-6">
                 <div>
@@ -634,9 +625,9 @@ export default function DesignJourneyContent({
 
               {/* RIGHT COLUMN */}
               <div className="space-y-5">
+                <h2 className={subHeading}>Why a Metal Roof?</h2>
                 <div className="rounded-xl p-4" style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}>
-                  <h2 className="text-sm font-semibold uppercase tracking-wider text-[#6B9BF7]">Why a Metal Roof?</h2>
-                  <p className="mt-3 text-xs leading-relaxed text-gray-300">
+                  <p className="text-xs leading-relaxed text-gray-300">
                     A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
                     Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
                     and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.

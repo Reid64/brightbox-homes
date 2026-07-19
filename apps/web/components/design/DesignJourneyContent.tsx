@@ -414,6 +414,11 @@ export default function DesignJourneyContent({
   const [selectedWall, setSelectedWall] = useState<string | null>(null);
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
   const [expandedUpgrade, setExpandedUpgrade] = useState<string | null>(null);
+  const [zoomedMedia, setZoomedMedia] = useState<{
+    src: string;
+    caption: string;
+    type: 'image' | 'video';
+  } | null>(null);
 
   const addToOrder = (key: string, label: string, price: number, category: string, removable = true) => {
     setOrder((prev) => ({ ...prev, [key]: { label, price, category, removable } }));
@@ -604,23 +609,35 @@ export default function DesignJourneyContent({
             {/* Truss images */}
             <div className="grid grid-cols-3 gap-4">
               <figure>
-                <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                <button
+                  onClick={() => setZoomedMedia({ src: '/images/upgrades/metal-roof-truss-standard.png', caption: 'Standard Truss System', type: 'image' })}
+                  className="relative w-full overflow-hidden rounded-xl border border-white/10 transition-colors hover:border-[#6B9BF7]"
+                  style={{ height: '200px' }}
+                >
                   <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" fill className="object-contain" />
-                </div>
+                </button>
                 <figcaption className="mt-2 text-xs text-gray-400">Standard Truss System</figcaption>
               </figure>
               <figure>
-                <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                <button
+                  onClick={() => setZoomedMedia({ src: '/images/upgrades/metal-roof-truss-reinforced-solar.png', caption: 'Reinforced Truss for Solar', type: 'image' })}
+                  className="relative w-full overflow-hidden rounded-xl border border-white/10 transition-colors hover:border-[#6B9BF7]"
+                  style={{ height: '200px' }}
+                >
                   <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" fill className="object-contain" />
-                </div>
+                </button>
                 <figcaption className="mt-2 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
               </figure>
               <figure>
-                <div className="w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                <button
+                  onClick={() => setZoomedMedia({ src: '/videos/metal-roof-truss.mp4', caption: 'Truss Assembly', type: 'video' })}
+                  className="w-full overflow-hidden rounded-xl border border-white/10 transition-colors hover:border-[#6B9BF7]"
+                  style={{ height: '200px' }}
+                >
                   <video autoPlay muted loop playsInline className="h-full w-full object-contain">
                     <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
                   </video>
-                </div>
+                </button>
                 <figcaption className="mt-2 text-xs text-gray-400">Truss Assembly</figcaption>
               </figure>
             </div>
@@ -777,6 +794,34 @@ export default function DesignJourneyContent({
         )}
 
       </div>
+
+      {/* Full-screen media lightbox */}
+      {zoomedMedia && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setZoomedMedia(null)}
+        >
+          <div
+            className="relative rounded-2xl p-8 shadow-2xl"
+            style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 900, width: '90vw' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={() => setZoomedMedia(null)} className="absolute right-4 top-4 z-10 text-gray-400 hover:text-white">
+              <X size={20} />
+            </button>
+            {zoomedMedia.type === 'video' ? (
+              <video autoPlay muted loop playsInline className="w-full">
+                <source src={zoomedMedia.src} type="video/mp4" />
+              </video>
+            ) : (
+              <div className="relative w-full" style={{ height: '60vh' }}>
+                <Image src={zoomedMedia.src} alt={zoomedMedia.caption} fill className="object-contain" />
+              </div>
+            )}
+            <p className="py-3 text-center text-sm text-gray-400">{zoomedMedia.caption}</p>
+          </div>
+        </div>
+      )}
     </>
   );
 }

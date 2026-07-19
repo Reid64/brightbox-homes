@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Truck, Ship, MapPin, PackageCheck, PlugZap, Ruler, Blocks, Wrench, Phone, PlayCircle, Zap, Droplets, HardHat, FileCheck } from 'lucide-react';
+import { Truck, Ship, PackageCheck, PlugZap, Ruler, Blocks, Wrench, Phone, PlayCircle, Zap, Droplets, HardHat, FileCheck } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
 export const metadata: Metadata = {
@@ -48,15 +48,7 @@ export default function DeliveryPage() {
           <h2 className="mb-8 font-heading text-3xl font-extrabold text-white md:text-4xl">
             See If You&apos;re in the Free Zone
           </h2>
-          <div className="flex min-h-[320px] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[#141B2D] shadow-2xl">
-            <div className="flex flex-col items-center gap-3 px-6 py-16 text-center">
-              <MapPin size={40} className="text-[#6B9BF7]" />
-              <p className="text-lg font-medium text-white">Nationwide delivery from every major US port</p>
-              <p className="max-w-md text-sm text-gray-400">
-                Enter your ZIP during your consultation and we&apos;ll confirm your delivery zone and any beyond-300-mile freight cost.
-              </p>
-            </div>
-          </div>
+          <div className="flex min-h-64 items-center justify-center rounded-2xl p-10 flex-col gap-4" style={{background:'#111C33',border:'1px solid rgba(255,255,255,0.1)'}}><p className="text-lg font-semibold text-white text-center">Free Delivery Within 300 Miles of Any Major US Port</p><p className="text-sm text-gray-400 text-center max-w-lg">Port cities: Houston TX, Los Angeles CA, Newark NJ, Savannah GA, Charleston SC, Seattle WA, Norfolk VA, Miami FL, New Orleans LA, Baltimore MD.</p></div>
           <p className="mt-4 text-center text-sm text-gray-400">
             Free delivery within 300 miles of any major US port · Beyond 300 miles: ~$3/mile from nearest port
           </p>

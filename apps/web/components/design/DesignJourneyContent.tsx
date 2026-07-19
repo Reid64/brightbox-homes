@@ -634,18 +634,24 @@ export default function DesignJourneyContent({
                 <Image src="/images/colors/sri-lrv-index.png" alt="SRI and LRV index" width={800} height={600} className="h-auto w-full rounded-xl border border-white/10" />
 
                 {/* Truss images + video */}
-                <div className="grid grid-cols-3 gap-3 mt-4">
-                  <figure>
-                    <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" width={1499} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                    <figcaption className="mt-1 text-xs text-gray-400">Standard Truss</figcaption>
+                <div className="mt-6 grid grid-cols-3 gap-4">
+                  <figure className="flex flex-col gap-2">
+                    <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                      <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss system" fill className="object-contain" sizes="33vw" />
+                    </div>
+                    <figcaption className="text-center text-xs text-gray-400">Standard Truss System</figcaption>
                   </figure>
-                  <figure>
-                    <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" width={1500} height={1049} className="h-auto w-full rounded-lg border border-white/10" />
-                    <figcaption className="mt-1 text-xs text-gray-400">Reinforced for Solar</figcaption>
+                  <figure className="flex flex-col gap-2">
+                    <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                      <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar installations" fill className="object-contain" sizes="33vw" />
+                    </div>
+                    <figcaption className="text-center text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
                   </figure>
-                  <figure>
-                    <video autoPlay muted loop playsInline className="h-auto w-full rounded-lg border border-white/10"><source src="/videos/metal-roof-truss.mp4" type="video/mp4" /></video>
-                    <figcaption className="mt-1 text-xs text-gray-400">Truss Installation</figcaption>
+                  <figure className="flex flex-col gap-2">
+                    <div className="w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                      <video autoPlay muted loop playsInline aria-label="Metal roof truss installation" className="h-full w-full object-cover"><source src="/videos/metal-roof-truss.mp4" type="video/mp4" /></video>
+                    </div>
+                    <figcaption className="text-center text-xs text-gray-400">Truss Installation</figcaption>
                   </figure>
                 </div>
               </div>

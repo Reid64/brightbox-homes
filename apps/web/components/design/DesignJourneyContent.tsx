@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { X, Check, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
+import { X, Check, ChevronDown, ChevronUp, ZoomIn } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
 // ─── TYPES ───────────────────────────────────────────────────────────────────
 
-export interface OrderItem {
+interface OrderItem {
   label: string;
   price: number;
   category: string;
@@ -92,15 +92,15 @@ const RAL_EXTERIOR: Swatch[] = [
 ];
 
 const CARVED_METAL: Swatch[] = [
-  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0%', meta: 'Light Pine' },
-  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-100%', meta: 'Dark Walnut' },
-  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-200%', meta: 'Russet Oak' },
-  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-300%', meta: 'Honey Cedar' },
-  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-400%', meta: 'Amber Teak' },
-  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-500%', meta: 'Ebony Ash' },
-  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-600%', meta: 'Blonde Maple' },
-  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-700%', meta: 'Olive Birch' },
-  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '-800%', meta: 'Cognac Cherry' },
+  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 0%', meta: 'Light Pine' },
+  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 0%', meta: 'Dark Walnut' },
+  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 22%', meta: 'Russet Oak' },
+  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 22%', meta: 'Honey Cedar' },
+  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 44%', meta: 'Amber Teak' },
+  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 44%', meta: 'Ebony Ash' },
+  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 67%', meta: 'Blonde Maple' },
+  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 67%', meta: 'Olive Birch' },
+  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 100%', meta: 'Cognac Cherry' },
 ];
 
 const ROOF_COLORS: Swatch[] = [
@@ -231,25 +231,23 @@ function SwatchGrid({
             <button
               key={s.id}
               title={s.label + (s.meta ? ' — ' + s.meta : '')}
-              onClick={() => setZoomed(s)}
+              onClick={() => { onSelect(s); setZoomed(s); }}
               className={`relative ${dim} overflow-hidden rounded-lg border-2 transition-all duration-200 hover:scale-110 hover:z-10 focus:outline-none focus:ring-2 focus:ring-[#6B9BF7]`}
               style={{
                 borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
                 boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
                 background: s.hex ?? undefined,
-                fontWeight: 400,
-                WebkitFontSmoothing: 'antialiased',
               }}
             >
               {s.imageSrc && (
-                <div className="absolute inset-0 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={s.imageSrc}
-                    alt={s.label}
-                    style={{ position: 'absolute', width: '200%', height: '900%', top: s.imagePosition, left: '0%' }}
-                  />
-                </div>
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${s.imageSrc})`,
+                    backgroundSize: '200% 900%',
+                    backgroundPosition: s.imagePosition ?? '0% 0%',
+                  }}
+                />
               )}
               {isSelected && (
                 <span className="absolute inset-0 flex items-center justify-center">
@@ -272,24 +270,21 @@ function SwatchGrid({
             style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 420, width: '90vw' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button onClick={() => setZoomed(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white" style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}>
+            <button onClick={() => setZoomed(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white">
               <X size={20} />
             </button>
-            {zoomed.imageSrc ? (
-              <div className="relative h-48 w-full overflow-hidden rounded-xl border border-white/10">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={zoomed.imageSrc}
-                  alt={zoomed.label}
-                  style={{ position: 'absolute', width: '200%', height: '900%', top: zoomed.imagePosition, left: '0%' }}
-                />
-              </div>
-            ) : (
-              <div
-                className="h-48 w-full rounded-xl border border-white/10"
-                style={{ background: zoomed.hex }}
-              />
-            )}
+            <div
+              className="h-48 w-full rounded-xl border border-white/10"
+              style={
+                zoomed.imageSrc
+                  ? {
+                      backgroundImage: `url(${zoomed.imageSrc})`,
+                      backgroundSize: '200% 900%',
+                      backgroundPosition: zoomed.imagePosition ?? '0% 0%',
+                    }
+                  : { background: zoomed.hex }
+              }
+            />
             <div className="text-center">
               <p className="font-heading text-xl font-semibold text-white">{zoomed.label}</p>
               {zoomed.meta && <p className="mt-1 text-sm text-gray-400">{zoomed.meta}</p>}
@@ -297,7 +292,7 @@ function SwatchGrid({
             <button
               onClick={() => { onSelect(zoomed); setZoomed(null); }}
               className="w-full rounded-xl py-3 text-sm font-semibold text-white transition-colors"
-              style={{ background: selected === zoomed.id ? '#16A34A' : '#6B9BF7', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
+              style={{ background: selected === zoomed.id ? '#16A34A' : '#6B9BF7' }}
             >
               {selected === zoomed.id ? '✓ Added to Order' : 'Add to Order'}
             </button>
@@ -310,7 +305,7 @@ function SwatchGrid({
 
 // ─── ORDER PANEL ──────────────────────────────────────────────────────────────
 
-export function OrderPanel({
+function OrderPanel({
   order,
   onRemove,
 }: {
@@ -325,17 +320,23 @@ export function OrderPanel({
 
   return (
     <div
-      className="w-full overflow-hidden rounded-2xl shadow-2xl"
-      style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 20px 60px rgba(0,0,0,0.25)', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}
+      className="fixed bottom-4 right-4 z-40 w-80 overflow-hidden rounded-2xl shadow-2xl lg:bottom-auto lg:right-6 lg:top-24"
+      style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 20px 60px rgba(0,0,0,0.25)' }}
     >
       {/* Header */}
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-5 py-4"
-        style={{ borderBottom: open ? '1px solid #E5E7EB' : 'none', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
+        style={{ borderBottom: open ? '1px solid #E5E7EB' : 'none' }}
       >
         <div className="flex items-center gap-2">
-          <span className="font-heading text-base font-bold text-gray-900">Your Custom Build</span>
+          <span className="font-heading text-base font-bold text-gray-900">Your Build</span>
+          <span
+            className="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white"
+            style={{ background: '#6B9BF7' }}
+          >
+            {items.length}
+          </span>
         </div>
         <div className="flex items-center gap-3">
           <span className="font-mono text-sm font-semibold text-gray-900">{fmt(total)}</span>
@@ -365,7 +366,6 @@ export function OrderPanel({
                         <button
                           onClick={() => onRemove(key)}
                           className="text-gray-300 transition-colors hover:text-red-500"
-                          style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
                         >
                           <X size={14} />
                         </button>
@@ -411,7 +411,6 @@ export default function DesignJourneyContent({
   const [selectedCarved, setSelectedCarved] = useState<string | null>(null);
   const [selectedRoof, setSelectedRoof] = useState<string | null>(null);
   const [selectedRoofSize, setSelectedRoofSize] = useState<string | null>(null);
-  const [zoomedRoof, setZoomedRoof] = useState<Swatch | null>(null);
   const [selectedWall, setSelectedWall] = useState<string | null>(null);
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
   const [expandedUpgrade, setExpandedUpgrade] = useState<string | null>(null);
@@ -431,10 +430,12 @@ export default function DesignJourneyContent({
   const sectionHeading = 'font-heading text-3xl font-bold text-white';
   const sectionSub = 'mt-2 text-sm font-normal text-gray-400';
   const subHeading = 'font-heading text-lg font-semibold text-[#6B9BF7]';
-  const addBtn = 'mt-4 rounded-xl px-5 py-2.5 text-sm font-medium text-white transition-colors';
+  const addBtn = 'mt-4 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors';
 
   return (
     <>
+      <OrderPanel order={order} onRemove={removeFromOrder} />
+
       <div key={active} style={{ animation: 'fadeIn 200ms ease-out' }}>
 
         {/* ── STEP 0: Choose Your Home ── */}
@@ -455,8 +456,6 @@ export default function DesignJourneyContent({
                     background: '#1A2540',
                     border: '1px solid rgba(107,155,247,0.15)',
                     boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
-                    fontWeight: 400,
-                    WebkitFontSmoothing: 'antialiased',
                   }}
                 >
                   <div className="relative aspect-video w-full overflow-hidden">
@@ -531,161 +530,100 @@ export default function DesignJourneyContent({
 
         {/* ── STEP 2: Roof ── */}
         {active === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div>
               <h1 className={sectionHeading}>Choose Your Roof</h1>
               <p className={sectionSub}>Select a color, then choose your home size for pricing.</p>
             </div>
 
-            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
-              {/* LEFT COLUMN */}
-              <div className="space-y-6">
-                <div>
-                  <h2 className={subHeading}>Roof Colors — 19 Options</h2>
-                  <p className="mb-4 mt-1 text-xs text-gray-400">Click any color to zoom and select.</p>
-                  <div className="grid grid-cols-5 gap-2">
-                    {ROOF_COLORS.map((s) => {
-                      const isSelected = selectedRoof === s.id;
-                      return (
-                        <button
-                          key={s.id}
-                          onClick={() => setZoomedRoof(s)}
-                          className="h-12 w-full rounded-lg border-2 transition-all duration-200"
-                          style={{
-                            background: s.hex,
-                            borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
-                            boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
-                          }}
-                        >
-                          {isSelected && (
-                            <span className="flex items-center justify-center">
-                              <Check size={12} className={s.hex && needsDarkText(s.hex) ? 'text-black' : 'text-white'} strokeWidth={3} />
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {selectedRoof && (
-                    <p className="mt-3 flex items-center gap-2 text-xs text-[#6B9BF7]">
-                      ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
-                      <button
-                        onClick={() => { setSelectedRoof(null); removeFromOrder('roof'); setSelectedRoofSize(null); }}
-                        style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
-                      >
-                        <Trash2 size={14} className="text-red-400 hover:text-red-600" />
-                      </button>
+            {/* Benefits block */}
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}
+            >
+              <h2 className="font-heading text-base font-semibold text-[#6B9BF7]">Why a Metal Roof?</h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
+                Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
+                and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
+              </p>
+            </div>
+
+            {/* Color swatches */}
+            <div>
+              <h2 className={subHeading}>Roof Colors — 19 Options</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">SRI and LRV values shown on zoom. Higher SRI = cooler roof in hot climates.</p>
+              <SwatchGrid
+                swatches={ROOF_COLORS}
+                selected={selectedRoof}
+                onSelect={(s) => {
+                  setSelectedRoof(s.id);
+                }}
+                size="lg"
+              />
+              {selectedRoof && (
+                <p className="mt-3 text-xs text-[#6B9BF7]">
+                  ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
+                </p>
+              )}
+            </div>
+
+            {/* Pricing */}
+            <div>
+              <h2 className={subHeading}>Select Your Home Size — Add to Order</h2>
+              <p className="mb-4 mt-1 text-xs text-gray-400">
+                Includes pitched metal roof panels, full truss system, all fasteners, and installation hardware.
+              </p>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {ROOF_PRICING.map((r) => (
+                  <button
+                    key={r.size}
+                    onClick={() => {
+                      setSelectedRoofSize(r.size);
+                      const colorLabel = selectedRoof
+                        ? ROOF_COLORS.find((s) => s.id === selectedRoof)?.label ?? 'Color TBD'
+                        : 'Color TBD';
+                      addToOrder('roof', `Metal Roof — ${r.size} — ${colorLabel}`, r.price, 'Roof Upgrade');
+                    }}
+                    className="rounded-xl border p-4 text-center transition-all duration-200"
+                    style={{
+                      background: selectedRoofSize === r.size ? '#6B9BF7' : '#1A2540',
+                      border: selectedRoofSize === r.size ? '1px solid #6B9BF7' : '1px solid rgba(107,155,247,0.15)',
+                    }}
+                  >
+                    <p className="text-xs text-gray-300">{r.size}</p>
+                    <p className="mt-1 font-mono text-lg font-bold text-white">{fmt(r.price)}</p>
+                    <p className="mt-1 text-xs text-[#6B9BF7]">
+                      {selectedRoofSize === r.size ? '✓ Added' : 'Add to Order'}
                     </p>
-                  )}
-                </div>
-
-                <div>
-                  <h2 className={subHeading}>Pricing by Home Size</h2>
-                  <div className="mt-4 space-y-2">
-                    {ROOF_PRICING.map((r) => {
-                      const isSelected = selectedRoofSize === r.size;
-                      return (
-                        <button
-                          key={r.size}
-                          onClick={() => {
-                            setSelectedRoofSize(r.size);
-                            const colorLabel = selectedRoof
-                              ? ROOF_COLORS.find((s) => s.id === selectedRoof)?.label ?? 'Color TBD'
-                              : 'Color TBD';
-                            addToOrder('roof', `Metal Roof — ${r.size} — ${colorLabel}`, r.price, 'Roof Upgrade');
-                          }}
-                          className="flex w-full items-center justify-between rounded-xl px-4 py-3 transition-all duration-200"
-                          style={{
-                            background: isSelected ? 'rgba(107,155,247,0.15)' : '#1A2540',
-                            border: isSelected ? '1px solid #6B9BF7' : '1px solid rgba(107,155,247,0.12)',
-                            fontWeight: 400,
-                            WebkitFontSmoothing: 'antialiased',
-                          }}
-                        >
-                          <span className="text-sm text-gray-200">{r.size}</span>
-                          <div className="flex items-center gap-3">
-                            <span className="font-mono text-sm text-[#6B9BF7]">{fmt(r.price)}</span>
-                            {isSelected ? (
-                              <Check size={14} className="text-[#6B9BF7]" strokeWidth={3} />
-                            ) : (
-                              <span className="text-xs text-gray-400">Add</span>
-                            )}
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              {/* RIGHT COLUMN */}
-              <div className="space-y-5">
-                {/* Why a Metal Roof card */}
-                <div className="rounded-xl p-4" style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}>
-                  <h2 className="text-sm font-semibold uppercase tracking-wider text-[#6B9BF7]">Why a Metal Roof?</h2>
-                  <p className="mt-3 text-xs leading-relaxed text-gray-300">
-                    A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
-                    Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
-                    and are the only roofing system that properly integrates with a steel-frame expandable home. Every Bright Box Home is engineered for a metal roof upgrade.
-                  </p>
-                </div>
-
-                {/* SRI / LRV reference */}
-                <Image src="/images/colors/sri-lrv-index.png" alt="SRI and LRV index" width={800} height={600} className="h-auto w-full rounded-xl border border-white/10" />
-
-                {/* Truss images + video */}
-                <div className="mt-6 grid grid-cols-3 gap-4">
-                  <figure className="flex flex-col gap-2">
-                    <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
-                      <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss system" fill className="object-contain" sizes="33vw" />
-                    </div>
-                    <figcaption className="text-center text-xs text-gray-400">Standard Truss System</figcaption>
-                  </figure>
-                  <figure className="flex flex-col gap-2">
-                    <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
-                      <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar installations" fill className="object-contain" sizes="33vw" />
-                    </div>
-                    <figcaption className="text-center text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
-                  </figure>
-                  <figure className="flex flex-col gap-2">
-                    <div className="w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
-                      <video autoPlay muted loop playsInline aria-label="Metal roof truss installation" className="h-full w-full object-cover"><source src="/videos/metal-roof-truss.mp4" type="video/mp4" /></video>
-                    </div>
-                    <figcaption className="text-center text-xs text-gray-400">Truss Installation</figcaption>
-                  </figure>
-                </div>
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Roof color zoom lightbox */}
-            {zoomedRoof && (
-              <div
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-                onClick={() => setZoomedRoof(null)}
-              >
-                <div
-                  className="relative flex flex-col items-center gap-5 rounded-2xl p-8"
-                  style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 420, width: '90vw' }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button onClick={() => setZoomedRoof(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white" style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}>
-                    <X size={20} />
-                  </button>
-                  <div className="h-40 w-full rounded-xl" style={{ background: zoomedRoof.hex }} />
-                  <div className="text-center">
-                    <p className="font-heading text-xl font-semibold text-white">{zoomedRoof.label}</p>
-                    {zoomedRoof.meta && <p className="mt-1 text-sm text-gray-400">{zoomedRoof.meta}</p>}
-                  </div>
-                  <button
-                    onClick={() => { setSelectedRoof(zoomedRoof.id); setZoomedRoof(null); }}
-                    className="w-full rounded-xl py-3 text-sm text-white transition-colors"
-                    style={{ background: selectedRoof === zoomedRoof.id ? '#16A34A' : '#6B9BF7', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
-                  >
-                    {selectedRoof === zoomedRoof.id ? '✓ Selected' : 'Select This Color'}
-                  </button>
+            {/* Truss images */}
+            <div className="grid grid-cols-3 gap-4">
+              <figure>
+                <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                  <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" fill className="object-contain" />
                 </div>
-              </div>
-            )}
+                <figcaption className="mt-2 text-xs text-gray-400">Standard Truss System</figcaption>
+              </figure>
+              <figure>
+                <div className="relative w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                  <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" fill className="object-contain" />
+                </div>
+                <figcaption className="mt-2 text-xs text-gray-400">Reinforced Truss for Solar</figcaption>
+              </figure>
+              <figure>
+                <div className="w-full overflow-hidden rounded-xl border border-white/10" style={{ height: '200px' }}>
+                  <video autoPlay muted loop playsInline className="h-full w-full object-contain">
+                    <source src="/videos/metal-roof-truss.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <figcaption className="mt-2 text-xs text-gray-400">Truss Assembly</figcaption>
+              </figure>
+            </div>
           </div>
         )}
 
@@ -760,7 +698,6 @@ export default function DesignJourneyContent({
                     <button
                       onClick={() => setExpandedUpgrade(isExpanded ? null : u.key)}
                       className="flex w-full items-center gap-4 p-4 text-left"
-                      style={{ fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
                     >
                       <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                         <Image src={u.image} alt={u.name} fill className="object-cover" sizes="64px" />
@@ -790,7 +727,7 @@ export default function DesignJourneyContent({
                             }
                           }}
                           className={`${addBtn} mt-4`}
-                          style={{ background: isAdded ? '#DC2626' : '#6B9BF7', fontWeight: 400, WebkitFontSmoothing: 'antialiased' }}
+                          style={{ background: isAdded ? '#DC2626' : '#6B9BF7' }}
                         >
                           {isAdded ? 'Remove from Order' : `Add to Order — ${fmt(u.price)}`}
                         </button>

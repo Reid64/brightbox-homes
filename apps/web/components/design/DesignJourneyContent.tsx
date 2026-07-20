@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import Image from 'next/image';
 import { X, Check, ChevronDown, ChevronUp, ZoomIn } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 
 // ─── TYPES ───────────────────────────────────────────────────────────────────
 
-interface OrderItem {
+export interface OrderItem {
   label: string;
   price: number;
   category: string;
@@ -402,11 +402,19 @@ function OrderPanel({
 export default function DesignJourneyContent({
   active,
   setActive,
+  order: orderProp,
+  setOrder: setOrderProp,
 }: {
   active: number;
   setActive: (n: number) => void;
+  order?: Record<string, OrderItem>;
+  setOrder?: Dispatch<SetStateAction<Record<string, OrderItem>>>;
 }) {
-  const [order, setOrder] = useState<Record<string, OrderItem>>({});
+  // Use lifted state when the parent provides it (so the sticky configurator can
+  // read the same order); otherwise fall back to self-managed internal state.
+  const [internalOrder, setInternalOrder] = useState<Record<string, OrderItem>>({});
+  const order = orderProp ?? internalOrder;
+  const setOrder = setOrderProp ?? setInternalOrder;
   const [selectedExterior, setSelectedExterior] = useState<string | null>(null);
   const [selectedCarved, setSelectedCarved] = useState<string | null>(null);
   const [selectedRoof, setSelectedRoof] = useState<string | null>(null);

@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import DesignJourneyStepBar from './DesignJourneySidebar';
-import DesignJourneyContent from './DesignJourneyContent';
+import DesignJourneyContent, { type OrderItem } from './DesignJourneyContent';
+import HomeConfigurator from './HomeConfigurator';
 
 const STEPS = [
   'Choose Your Home',
@@ -15,6 +16,7 @@ const STEPS = [
 
 export default function DesignJourney() {
   const [active, setActive] = useState(0);
+  const [order, setOrder] = useState<Record<string, OrderItem>>({});
 
   return (
     <div style={{ background: '#0D1526', minHeight: '100vh' }}>
@@ -25,25 +27,27 @@ export default function DesignJourney() {
 
           {/* LEFT: step content */}
           <div className="min-w-0 flex-1">
-            <DesignJourneyContent active={active} setActive={setActive} />
+            <DesignJourneyContent
+              active={active}
+              setActive={setActive}
+              order={order}
+              setOrder={setOrder}
+            />
           </div>
 
           {/* RIGHT: sticky configurator + invoice panel */}
           <div className="lg:w-[380px] lg:shrink-0">
             <div className="sticky top-32 flex flex-col gap-4">
-              <div
-                className="flex aspect-video w-full items-center justify-center rounded-2xl"
-                style={{
-                  background: '#1A2540',
-                  border: '1px solid rgba(107,155,247,0.2)',
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
-                }}
-              >
-                <div className="text-center">
-                  <p className="text-sm font-medium text-[#6B9BF7]">Home Configurator</p>
-                  <p className="mt-1 text-xs text-gray-500">Select a home to preview</p>
-                </div>
-              </div>
+              <HomeConfigurator
+                model={order.model?.label ?? null}
+                exteriorColor={order.exterior?.label ?? null}
+                roofColor={order.roof?.label ?? null}
+                hasRoof={!!order.roof}
+                hasPatio={!!order['ext-patio']}
+                hasDeck={!!order['ext-deck']}
+                hasSolar={!!(order['solar-8kw'] || order['solar-10kw'])}
+                orderTotal={Object.values(order).reduce((s, i) => s + i.price, 0)}
+              />
             </div>
           </div>
 

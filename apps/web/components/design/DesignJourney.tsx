@@ -4,6 +4,7 @@ import { useState } from 'react';
 import DesignJourneyStepBar from './DesignJourneySidebar';
 import DesignJourneyContent, { type OrderItem } from './DesignJourneyContent';
 import HomeConfigurator from './HomeConfigurator';
+import OrderPanel from './OrderPanel';
 
 const STEPS = [
   'Choose Your Home',
@@ -48,6 +49,16 @@ export default function DesignJourney() {
                 hasSolar={!!(order['solar-8kw'] || order['solar-10kw'])}
                 orderTotal={Object.values(order).reduce((s, i) => s + i.price, 0)}
               />
+              {Object.keys(order).length > 0 && (
+                <OrderPanel
+                  order={order}
+                  onRemove={(key) => {
+                    const n = { ...order };
+                    delete n[key];
+                    setOrder(n);
+                  }}
+                />
+              )}
             </div>
           </div>
 

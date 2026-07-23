@@ -193,7 +193,7 @@ export default function HomePage() {
       <ScrollProgress />
 
       {/* SECTION A: Hero */}
-      <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-[#0F1729]">
+      <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-[#1A2540]">
         <Image
           src="/images/home-hero.png"
           alt="Two-story expandable container home with balconies, landscaped gardens, and a family enjoying the backyard."
@@ -281,7 +281,7 @@ export default function HomePage() {
       <Marquee items={marqueeItems} />
 
       {/* SECTION D: Product Lines (warm cream) */}
-      <section className="py-24 lg:py-32" style={{ background: '#0D1526' }}>
+      <section className="py-24 lg:py-32" style={{ background: '#1A2540' }}>
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={eyebrowLight}>OUR HOMES</p>
@@ -451,9 +451,9 @@ export default function HomePage() {
                       className="flex h-12 w-12 items-center justify-center rounded-xl"
                       style={{ background: 'rgba(15,23,41,0.08)' }}
                     >
-                      <Icon size={24} aria-hidden="true" className="text-[#0F1729]" />
+                      <Icon size={24} aria-hidden="true" className="text-[#1A2540]" />
                     </div>
-                    <h3 className="mt-4 font-heading text-lg font-bold text-[#0F1729]">
+                    <h3 className="mt-4 font-heading text-lg font-bold text-[#1A2540]">
                       {prop.title}
                     </h3>
                     <p className="mt-2 text-sm" style={{ color: 'rgba(15,23,41,0.75)' }}>
@@ -511,7 +511,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION H: Delivered Homes (navy) */}
-      <section className="bg-[#0F1729] py-24 lg:py-32">
+      <section className="bg-[#1A2540] py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={eyebrowDark}>PROOF</p>
@@ -586,7 +586,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION J: Final CTA (navy, glass card) */}
-      <section className="bg-[#0F1729] py-24 lg:py-32">
+      <section className="bg-[#1A2540] py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <div

@@ -12,13 +12,13 @@ const CANVAS_H = 400;
 
 // Origin over the grate: bottom-center, nudged up 64px and right 25px.
 const ORIGIN_X = CANVAS_W / 2 + 25;
-const ORIGIN_Y = CANVAS_H - 12 - 64;
+const ORIGIN_Y = CANVAS_H - 8;
 
 // Smoke
 const SMOKE_MAX = 18;
 const SMOKE_SPAWN_INTERVAL = 0.7; // ~1.4/sec
 // Fire
-const FIRE_MAX = 8;
+const FIRE_MAX = 14;
 const FIRE_SPAWN_INTERVAL = 0.4; // ~2.5/sec
 
 interface SmokeParticle {
@@ -98,7 +98,7 @@ export default function SmokeEffect() {
         wobbleAmp: rand(10, 20),
         wobbleFreq: rand(0.3, 0.7),
         wobblePhase: rand(0, Math.PI * 2),
-        maxOpacity: rand(0.12, 0.18),
+        maxOpacity: rand(0.08, 0.14),
         age: 0,
         lifespan: rand(3, 5),
       });
@@ -114,7 +114,7 @@ export default function SmokeEffect() {
         radius: rand(3, 8),
         travel: rand(20, 40),
         jitter: rand(2, 5),
-        maxOpacity: rand(0.1, 0.15),
+        maxOpacity: rand(0.25, 0.45),
         color: FIRE_COLORS[Math.floor(Math.random() * FIRE_COLORS.length)],
         age: 0,
         lifespan: rand(0.5, 1.5),
@@ -222,8 +222,8 @@ export default function SmokeEffect() {
       aria-hidden="true"
       width={CANVAS_W}
       height={CANVAS_H}
-      className="pointer-events-none absolute left-[77%] top-[25%] z-[1] hidden lg:block"
-      style={{ width: CANVAS_W, height: CANVAS_H }}
+      className="pointer-events-none absolute z-[1] hidden lg:block"
+      style={{ width: CANVAS_W, height: CANVAS_H, left: '74%', bottom: '18%' }}
     />
   );
 }

@@ -12,7 +12,7 @@ const CANVAS_H = 400;
 
 // Origin over the grate: bottom-center, nudged up 64px and right 25px.
 const ORIGIN_X = CANVAS_W / 2 + 25;
-const ORIGIN_Y = CANVAS_H - 80;
+const ORIGIN_Y = CANVAS_H - 20;
 
 // Smoke
 const SMOKE_MAX = 18;
@@ -223,7 +223,7 @@ export default function SmokeEffect() {
       width={CANVAS_W}
       height={CANVAS_H}
       className="pointer-events-none absolute z-[1] hidden lg:block"
-      style={{ width: CANVAS_W, height: CANVAS_H, left: '72%', top: '52%' }}
+      style={{ width: CANVAS_W, height: CANVAS_H, left: '72%', top: '38%' }}
     />
   );
 }

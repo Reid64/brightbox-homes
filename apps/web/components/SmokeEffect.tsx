@@ -216,14 +216,5 @@ export default function SmokeEffect() {
     };
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      width={CANVAS_W}
-      height={CANVAS_H}
-      className="pointer-events-none absolute z-[1] hidden lg:block"
-      style={{ width: CANVAS_W, height: CANVAS_H, left: '72%', top: '38%' }}
-    />
-  );
+  return null;
 }

@@ -12,13 +12,13 @@ const CANVAS_H = 400;
 
 // Origin over the grate: bottom-center, nudged up 64px and right 25px.
 const ORIGIN_X = CANVAS_W / 2 + 25;
-const ORIGIN_Y = CANVAS_H - 8;
+const ORIGIN_Y = CANVAS_H - 80;
 
 // Smoke
 const SMOKE_MAX = 18;
 const SMOKE_SPAWN_INTERVAL = 0.7; // ~1.4/sec
 // Fire
-const FIRE_MAX = 14;
+const FIRE_MAX = 18;
 const FIRE_SPAWN_INTERVAL = 0.4; // ~2.5/sec
 
 interface SmokeParticle {
@@ -111,10 +111,10 @@ export default function SmokeEffect() {
         x: ORIGIN_X + rand(-10, 10),
         startY: sy,
         y: sy,
-        radius: rand(3, 8),
-        travel: rand(20, 40),
+        radius: rand(4, 10),
+        travel: rand(25, 50),
         jitter: rand(2, 5),
-        maxOpacity: rand(0.25, 0.45),
+        maxOpacity: rand(0.35, 0.55),
         color: FIRE_COLORS[Math.floor(Math.random() * FIRE_COLORS.length)],
         age: 0,
         lifespan: rand(0.5, 1.5),
@@ -223,7 +223,7 @@ export default function SmokeEffect() {
       width={CANVAS_W}
       height={CANVAS_H}
       className="pointer-events-none absolute z-[1] hidden lg:block"
-      style={{ width: CANVAS_W, height: CANVAS_H, left: '74%', bottom: '18%' }}
+      style={{ width: CANVAS_W, height: CANVAS_H, left: '72%', top: '52%' }}
     />
   );
 }

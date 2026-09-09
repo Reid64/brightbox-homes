@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'finding-unrestricted-land',
     title: 'How to Find Unrestricted Land for Your Prefab Home',
     category: 'Land & Placement',
-    date: 'Originally published December 2024',
+    date: 'Originally published December 12, 2024',
     excerpt:
       'Unrestricted land is the single easiest path to placing an expandable container home. Here is how to find it, what to verify, and which regions to look in.',
     image: '/images/products/expandable-homes/exterior/03.jpeg',
@@ -49,11 +49,11 @@ export const blogPosts: BlogPost[] = [
     slug: 'true-cost-expandable-container-home',
     title: "The True Cost of an Expandable Container Home: What You'll Really Pay",
     category: 'Buying & Cost',
-    date: 'Originally published December 2024',
+    date: 'Originally published December 19, 2024',
     excerpt:
       'The sticker price is the home itself. Here is an honest breakdown of freight, foundation, utilities, permits, and site prep - so you can budget the full project.',
     image: '/images/products/expandable-homes/exterior/homepage-20x20.jpg',
-    readingTime: '7 min read',
+    readingTime: '8 min read',
     content: [
       { type: 'para', text: 'The most common question we get is also the most important: what does an expandable container home really cost once everything is said and done? The honest answer is that the listed price is the home, fully built and equipped - and your total project cost depends heavily on your site. Here is how to budget for the whole thing.' },
       { type: 'heading', text: 'The home itself' },
@@ -76,11 +76,11 @@ export const blogPosts: BlogPost[] = [
     slug: 'container-home-legality-zoning-permits',
     title: 'Are Expandable Container Homes Legal? Zoning, Permits, and Placement Guide',
     category: 'Permits & Legality',
-    date: 'Originally published December 2024',
+    date: 'Originally published January 4, 2025',
     excerpt:
       'Legality comes down to your jurisdiction and how the home is classified. Here is how temporary-structure status, zoning, and unrestricted land fit together.',
     image: '/images/products/expandable-homes/exterior/01.jpeg',
-    readingTime: '6 min read',
+    readingTime: '5 min read',
     content: [
       { type: 'para', text: 'It is the question that stops most people before they buy: is this even legal where I want to put it? The answer is almost always yes - with the right land and a clear understanding of how these homes are classified. Here is the practical guide.' },
       { type: 'heading', text: 'Temporary-structure classification' },
@@ -102,7 +102,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'off-grid-container-home-solar-power',
     title: 'Off-Grid Living with an Expandable Container Home: Solar, Water, and Power Setup',
     category: 'Off-Grid',
-    date: 'Originally published December 2024',
+    date: 'Originally published January 18, 2025',
     excerpt:
       'Solar, batteries, generators, well water, and septic make a fully off-grid container home practical. Here is how the pieces fit - and what to factory-order.',
     image: '/images/products/expandable-homes/exterior/05.jpeg',
@@ -128,11 +128,11 @@ export const blogPosts: BlogPost[] = [
     slug: 'container-home-vs-traditional-construction',
     title: 'Container Home vs Traditional Construction: An Honest Comparison',
     category: 'Buying & Cost',
-    date: 'Originally published December 2024',
+    date: 'Originally published February 1, 2025',
     excerpt:
       'Cost, timeline, customization, durability, resale, financing, and insurance - an even-handed look at how expandable container homes stack up against site-built houses.',
     image: '/images/products/expandable-homes/exterior/09.png',
-    readingTime: '7 min read',
+    readingTime: '9 min read',
     content: [
       { type: 'para', text: 'Expandable container homes and traditional site-built houses solve the same problem - shelter you own - in very different ways. Neither is universally "better." Here is an honest, category-by-category comparison to help you decide which fits your situation.' },
       { type: 'heading', text: 'Cost' },
@@ -155,7 +155,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'whats-included-bright-box-home',
     title: "What's Included with Every Bright Box Home (And What You'll Need to Add)",
     category: 'Buying & Cost',
-    date: 'Originally published December 2024',
+    date: 'Originally published February 14, 2025',
     excerpt:
       'A clear, honest inventory of what ships in the base price of every Bright Box Home, what is not included, and the upgrades worth considering.',
     image: '/images/products/expandable-homes/interior/10.jpg',

@@ -21,12 +21,13 @@ export default function DesignJourney() {
 
   return (
     <div style={{ background: '#1C1C1E', minHeight: '100vh' }}>
-      <DesignJourneyStepBar steps={STEPS} active={active} onSelect={setActive} />
-
       <div className="mx-auto max-w-[1280px] px-6 py-8">
         <div className="flex flex-col gap-8 lg:flex-row">
 
-          {/* LEFT: step content */}
+          {/* LEFT: vertical step timeline (horizontal pills below lg) */}
+          <DesignJourneyStepBar steps={STEPS} active={active} onSelect={setActive} />
+
+          {/* CENTER: step content */}
           <div className="min-w-0 flex-1">
             <DesignJourneyContent
               active={active}

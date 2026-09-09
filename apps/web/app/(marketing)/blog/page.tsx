@@ -50,14 +50,19 @@ export default function BlogPage() {
       </section>
 
       {/* Post grid */}
-      <section className="bg-[#F5F0E8] py-16 lg:py-24">
+      <section className="py-16 lg:py-24" style={{ background: '#0D1526' }}>
         <div className="mx-auto max-w-[1280px] px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col overflow-hidden rounded-lg bg-[#FFFFFF] shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-shadow duration-normal ease-out hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)]"
+                className="group flex flex-col overflow-hidden rounded-lg transition-shadow duration-normal ease-out hover:shadow-[0_8px_28px_rgba(0,0,0,0.45)]"
+                style={{
+                  background: '#1A2540',
+                  border: '1px solid rgba(107,155,247,0.15)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                }}
               >
                 <div className="relative aspect-video w-full overflow-hidden">
                   <Image
@@ -69,16 +74,16 @@ export default function BlogPage() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-black/60">
+                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-[#D4A853]">
                     {post.category}
                   </p>
-                  <h2 className="mt-2 font-heading text-xl font-semibold text-[#111827]">
+                  <h2 className="mt-2 font-heading text-xl font-semibold text-[#FFFFFF]">
                     {post.title}
                   </h2>
-                  <p className="mt-2 text-sm text-[#4B5563]">
+                  <p className="mt-2 text-sm text-[#9CA3AF]">
                     {post.date} &middot; {post.readingTime}
                   </p>
-                  <p className="mt-3 flex-1 text-sm text-[#4B5563]">{post.excerpt}</p>
+                  <p className="mt-3 flex-1 text-sm text-[#D1D5DB]">{post.excerpt}</p>
                   <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#3461C7] group-hover:underline">
                     Read more <ArrowRight size={16} aria-hidden="true" />
                   </span>

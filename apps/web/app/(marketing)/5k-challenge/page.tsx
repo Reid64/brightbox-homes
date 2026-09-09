@@ -56,7 +56,7 @@ export default function FiveKChallengePage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-contain object-center"
           style={{ zIndex: 0 }}
         />
         {/* Legibility overlay: charcoal, heaviest behind the copy on the left. */}

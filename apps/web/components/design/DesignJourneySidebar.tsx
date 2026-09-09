@@ -27,8 +27,12 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
                   }}
                 >
                   <span
-                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+                    className="flex shrink-0 items-center justify-center rounded-full"
                     style={{
+                      width: '56px',
+                      height: '56px',
+                      fontSize: '22px',
+                      fontWeight: 900,
                       background: isActive ? 'rgba(255,255,255,0.25)' : isComplete ? '#6B9BF7' : '#EF4444',
                       color: '#ffffff',
                     }}
@@ -38,7 +42,14 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
                   <span className="hidden sm:inline">{label}</span>
                 </button>
                 {i < steps.length - 1 && (
-                  <span className="mx-1 text-gray-600" aria-hidden="true">›</span>
+                  <span className="mx-1 flex shrink-0 items-center" aria-hidden="true">
+                    <svg width="32" height="24" viewBox="0 0 32 24">
+                      <polygon
+                        points="0,6 20,6 20,0 32,12 20,24 20,18 0,18"
+                        fill={i <= active ? '#EF4444' : 'rgba(239,68,68,0.25)'}
+                      />
+                    </svg>
+                  </span>
                 )}
               </li>
             );

@@ -28,7 +28,7 @@ export default function DeliveryPage() {
           fill
           priority={true}
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-contain object-center"
           style={{ zIndex: 0 }}
         />
         <div

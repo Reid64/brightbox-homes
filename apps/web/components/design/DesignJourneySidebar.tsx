@@ -10,7 +10,7 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
   return (
     <nav className="sticky top-16 z-30 border-b border-white/10 bg-[#0D1526]/95 backdrop-blur-sm">
       <div className="mx-auto max-w-[1280px] px-6">
-        <ol className="flex items-center gap-1 overflow-x-auto py-3">
+        <ol className="flex flex-wrap items-center gap-x-1 gap-y-2 py-3">
           {steps.map((label, i) => {
             const isActive = active === i;
             const isComplete = i < active;

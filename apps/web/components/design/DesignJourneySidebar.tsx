@@ -10,12 +10,12 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
   return (
     <nav className="sticky top-16 z-30 border-b border-white/10 bg-[#0D1526]/95 backdrop-blur-sm">
       <div className="mx-auto max-w-[1280px] px-6">
-        <ol className="flex flex-wrap items-center gap-x-1 gap-y-2 py-3">
+        <ol className="flex flex-nowrap items-center gap-1 py-3">
           {steps.map((label, i) => {
             const isActive = active === i;
             const isComplete = i < active;
             return (
-              <li key={label} className="flex shrink-0 items-center">
+              <li key={label} className="flex min-w-0 items-center">
                 <button
                   type="button"
                   onClick={() => onSelect(i)}
@@ -39,7 +39,7 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
                   >
                     {i + 1}
                   </span>
-                  <span className="hidden sm:inline">{label}</span>
+                  <span className="hidden truncate sm:inline">{label}</span>
                 </button>
                 {i < steps.length - 1 && (
                   <span className="mx-1 flex shrink-0 items-center" aria-hidden="true">

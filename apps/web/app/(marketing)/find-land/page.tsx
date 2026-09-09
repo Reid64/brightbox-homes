@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { MapPin, Search, FileCheck, Handshake } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
@@ -34,21 +35,41 @@ export default function FindLandPage() {
     <>
       {/* Hero */}
       <section
-        className="py-24 lg:py-32"
+        className="relative overflow-hidden py-24 lg:py-32"
         style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
       >
-        <div className="mx-auto max-w-[1280px] px-6">
-          <p className={labelDark}>Find Land</p>
-          <h1 className="font-heading text-4xl font-extrabold text-[#FFFFFF] md:text-5xl lg:text-6xl">
-            Need Land? We&apos;ll Help You Find It.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
-            A great home needs somewhere to land. If you don&apos;t already own a lot, we&apos;ll help
-            you find a build-ready parcel and make sure it meets the site requirements for your
-            Bright Box Home.
-          </p>
-          <div className="mt-8">
-            <BookConsultation size="lg">Get Land Assistance</BookConsultation>
+        <Image
+          src="/images/find-land-hero.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority={true}
+          sizes="100vw"
+          className="object-cover object-center"
+          style={{ zIndex: 0 }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(13,21,38,0.85) 0%, rgba(13,21,38,0.5) 60%, rgba(13,21,38,0.3) 100%)',
+            zIndex: 1,
+          }}
+        />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div className="mx-auto max-w-[1280px] px-6">
+            <p className={labelDark}>Find Land</p>
+            <h1 className="font-heading text-4xl font-extrabold text-[#FFFFFF] md:text-5xl lg:text-6xl">
+              Need Land? We&apos;ll Help You Find It.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
+              A great home needs somewhere to land. If you don&apos;t already own a lot, we&apos;ll help
+              you find a build-ready parcel and make sure it meets the site requirements for your
+              Bright Box Home.
+            </p>
+            <div className="mt-8">
+              <BookConsultation size="lg">Get Land Assistance</BookConsultation>
+            </div>
           </div>
         </div>
       </section>

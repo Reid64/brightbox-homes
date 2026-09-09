@@ -15,20 +15,40 @@ export default function BlogPage() {
     <>
       {/* Hero */}
       <section
-        className="py-24 lg:py-32"
+        className="relative overflow-hidden py-24 lg:py-32"
         style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
       >
-        <div className="mx-auto max-w-[1280px] px-6">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">
-            The Bright Box Blog
-          </p>
-          <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl">
-            Guides for Smarter Prefab Buyers
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
-            Honest, in-depth guides on land, cost, permits, and off-grid living - so you
-            can plan your Bright Box Home with confidence.
-          </p>
+        <Image
+          src="/images/blog-hero.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority={true}
+          sizes="100vw"
+          className="object-cover object-center"
+          style={{ zIndex: 0 }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(13,21,38,0.85) 0%, rgba(13,21,38,0.5) 60%, rgba(13,21,38,0.3) 100%)',
+            zIndex: 1,
+          }}
+        />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div className="mx-auto max-w-[1280px] px-6">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">
+              The Bright Box Blog
+            </p>
+            <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl">
+              Guides for Smarter Prefab Buyers
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
+              Honest, in-depth guides on land, cost, permits, and off-grid living - so you
+              can plan your Bright Box Home with confidence.
+            </p>
+          </div>
         </div>
       </section>
 

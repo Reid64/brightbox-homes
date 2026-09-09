@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 // Delivery zone checker. Resolves a US ZIP to coordinates via Zippopotam, then
 // measures great-circle distance to the nearest port city we ship from.
-// Free inside 300 miles; beyond that, $3 per mile over the threshold.
+// Free inside 300 miles; beyond that, $8.50 per mile over the threshold.
 
 interface Port {
   name: string;
@@ -26,7 +26,7 @@ const PORTS: Port[] = [
 ];
 
 const FREE_RADIUS_MILES = 300;
-const RATE_PER_MILE = 3;
+const RATE_PER_MILE = 8.5;
 const EARTH_RADIUS_MILES = 3958.8;
 
 function toRadians(degrees: number): number {
@@ -111,7 +111,7 @@ export default function DeliveryZoneChecker() {
         free: rounded <= FREE_RADIUS_MILES,
         miles: rounded,
         portName: port.name,
-        fee: Math.max(0, rounded - FREE_RADIUS_MILES) * RATE_PER_MILE,
+        fee: Math.round(Math.max(0, rounded - FREE_RADIUS_MILES) * RATE_PER_MILE),
       });
     } catch {
       setError('Could not reach the lookup service. Check your connection and try again.');
@@ -220,7 +220,7 @@ export default function DeliveryZoneChecker() {
                   </p>
                   <p className="mt-1 text-gray-400">
                     Based on {result.miles} miles from {result.portName}, at $
-                    {RATE_PER_MILE} per mile beyond the first {FREE_RADIUS_MILES} miles.
+                    {RATE_PER_MILE.toFixed(2)} per mile beyond the first {FREE_RADIUS_MILES} miles.
                   </p>
                 </div>
               )}

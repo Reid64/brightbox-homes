@@ -13,8 +13,8 @@ export default function DesignPage() {
     <>
       {/* Hero */}
       <section
-        className="relative overflow-hidden py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
+        className="relative overflow-hidden py-16 lg:py-20"
+        style={{ background: '#1C1C1E', minHeight: 320 }}
       >
         <Image
           src="/images/design-hero.png"
@@ -23,14 +23,14 @@ export default function DesignPage() {
           fill
           priority={true}
           sizes="100vw"
-          className="object-cover object-top"
-          style={{ zIndex: 0, transform: 'scale(0.75)', transformOrigin: 'center top' }}
+          className="object-contain object-center"
+          style={{ zIndex: 0 }}
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to right, rgba(28,28,30,0.85) 0%, rgba(28,28,30,0.5) 60%, rgba(28,28,30,0.3) 100%)',
+              'linear-gradient(to right, rgba(28,28,30,0.92) 0%, rgba(28,28,30,0.75) 50%, rgba(28,28,30,0.4) 100%)',
             zIndex: 1,
           }}
         />
@@ -42,9 +42,12 @@ export default function DesignPage() {
             <h1 className="font-heading text-4xl font-extrabold text-[#FFFFFF] md:text-5xl lg:text-6xl">
               Build It Your Way
             </h1>
-            <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
-              Walk through every choice - model, exterior, roof, interior finishes, and
-              upgrades - and watch your Bright Box Home come together step by step.
+            <p className="mt-4 max-w-2xl text-lg text-[#D1D5DB]">
+              Walk through every choice — model, exterior, roof, interior finishes, and
+              upgrades — and watch your Bright Box Home come together step by step.
+            </p>
+            <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-[#D4A853]">
+              Six Easy Steps to Your Perfect Home
             </p>
           </div>
         </div>

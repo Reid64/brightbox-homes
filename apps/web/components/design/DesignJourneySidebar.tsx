@@ -22,8 +22,8 @@ const RED = '#EF4444';
 function ChevronDown() {
   return (
     <svg
-      width="24"
-      height="24"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
       stroke={RED}
@@ -59,7 +59,7 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
                 }}
               >
                 <span
-                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
                   style={{ background: RED }}
                 >
                   {i + 1}
@@ -87,7 +87,7 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
                 style={{ borderLeft: `3px solid ${isActive ? RED : 'transparent'}` }}
               >
                 <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-base font-bold text-white"
                   style={{ background: RED }}
                 >
                   {i + 1}
@@ -110,15 +110,15 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
 
               {/* Connector: red line broken by a chevron, aligned to the circle's axis */}
               {i < steps.length - 1 && (
-                <div className="ml-[30px] flex w-6 flex-col items-center" aria-hidden="true">
+                <div className="ml-[15px] flex w-10 flex-col items-center" aria-hidden="true">
                   <span
                     className="block"
-                    style={{ width: '2px', height: '10px', background: 'rgba(239,68,68,0.4)' }}
+                    style={{ width: '2px', height: '12px', background: 'rgba(239,68,68,0.4)' }}
                   />
                   <ChevronDown />
                   <span
                     className="block"
-                    style={{ width: '2px', height: '10px', background: 'rgba(239,68,68,0.4)' }}
+                    style={{ width: '2px', height: '12px', background: 'rgba(239,68,68,0.4)' }}
                   />
                 </div>
               )}

@@ -24,7 +24,7 @@ export default function DesignPage() {
           priority={true}
           sizes="100vw"
           className="object-cover object-top"
-          style={{ zIndex: 0, transform: 'scale(0.85)', transformOrigin: 'center top' }}
+          style={{ zIndex: 0, transform: 'scale(0.75)', transformOrigin: 'center top' }}
         />
         <div
           className="absolute inset-0"

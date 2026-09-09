@@ -34,7 +34,7 @@ export default function DeliveryPage() {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to right, rgba(13,21,38,0.85) 0%, rgba(13,21,38,0.5) 60%, rgba(13,21,38,0.3) 100%)',
+              'linear-gradient(to right, rgba(28,28,30,0.85) 0%, rgba(28,28,30,0.5) 60%, rgba(28,28,30,0.3) 100%)',
             zIndex: 1,
           }}
         />

@@ -57,7 +57,7 @@ export default function TiltCard({ children, className = '' }: TiltCardProps) {
         className="pointer-events-none absolute inset-0 z-10 rounded-lg transition-opacity duration-normal ease-out"
         style={{
           opacity: glow.on ? 1 : 0,
-          background: `radial-gradient(220px circle at ${glow.x}% ${glow.y}%, rgba(74,155,217,0.15), transparent 70%)`,
+          background: `radial-gradient(220px circle at ${glow.x}% ${glow.y}%, rgba(212,168,83,0.15), transparent 70%)`,
         }}
       />
       {children}

@@ -14,12 +14,9 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="relative overflow-hidden py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
-      >
+      <section className="relative overflow-hidden bg-bb-charcoal py-24 lg:py-32">
         <Image
-          src="/images/blog-hero.jpg"
+          src="/images/blog-hero.png"
           alt=""
           aria-hidden="true"
           fill
@@ -32,7 +29,7 @@ export default function BlogPage() {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to right, rgba(13,21,38,0.85) 0%, rgba(13,21,38,0.5) 60%, rgba(13,21,38,0.3) 100%)',
+              'linear-gradient(to right, rgba(28,28,30,0.85) 0%, rgba(28,28,30,0.5) 60%, rgba(28,28,30,0.3) 100%)',
             zIndex: 1,
           }}
         />

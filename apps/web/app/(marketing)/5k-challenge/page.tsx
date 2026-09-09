@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import { Check, Phone, Mail } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -47,23 +48,41 @@ export default function FiveKChallengePage() {
   return (
     <>
       {/* A - Hero */}
-      <section
-        className="py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
-      >
-        <div className="mx-auto max-w-[1280px] px-6">
-          <p className={labelDark}>The Challenge</p>
-          <AnimatedText
-            text="We'll Pay You $5,000 to Prove Us Wrong"
-            as="h1"
-            className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl"
-          />
-          <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
-            Find a better-equipped, higher-quality home from any US competitor -
-            and we&apos;ll put $5,000 toward yours.
-          </p>
-          <div className="mt-8">
-            <BookConsultation size="lg">Book a Consultation</BookConsultation>
+      <section className="relative overflow-hidden bg-bb-charcoal py-24 lg:py-32">
+        <Image
+          src="/images/5k-challenge-hero.png"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          style={{ zIndex: 0 }}
+        />
+        {/* Legibility overlay: charcoal, heaviest behind the copy on the left. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(28,28,30,0.85) 0%, rgba(28,28,30,0.5) 60%, rgba(28,28,30,0.3) 100%)',
+            zIndex: 1,
+          }}
+        />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div className="mx-auto max-w-[1280px] px-6">
+            <p className={labelDark}>The Challenge</p>
+            <AnimatedText
+              text="We'll Pay You $5,000 to Prove Us Wrong"
+              as="h1"
+              className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl"
+            />
+            <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
+              Find a better-equipped, higher-quality home from any US competitor -
+              and we&apos;ll put $5,000 toward yours.
+            </p>
+            <div className="mt-8">
+              <BookConsultation size="lg">Book a Consultation</BookConsultation>
+            </div>
           </div>
         </div>
       </section>

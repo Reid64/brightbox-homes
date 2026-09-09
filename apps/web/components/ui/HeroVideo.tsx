@@ -11,7 +11,7 @@ export default function HeroVideo() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-[400px] animate-float overflow-hidden rounded-lg border border-white/10 shadow-[0_8px_32px_rgba(74,155,217,0.15)]">
+    <div className="mx-auto max-w-[400px] animate-float overflow-hidden rounded-lg border border-white/10 shadow-[0_8px_32px_rgba(212,168,83,0.15)]">
       <video
         ref={ref}
         autoPlay

@@ -21,11 +21,16 @@ const config: Config = {
             dark: '#2E6FA3',
           },
           navy: '#1B2D4F',
+          // Amber gold accent (redesign). Used on charcoal surfaces; on cream
+          // surfaces emphasis is charcoal, since gold lacks contrast on light.
+          gold: '#D4A853',
           // Neutral palette (DESIGN_LANGUAGE 2.2).
           white: '#FFFFFF',
           'warm-white': '#FAFAF7',
+          // Warm cream section surface (redesign), alternates with charcoal.
+          cream: '#F5F0E8',
           // Dark premium surfaces (DESIGN_LANGUAGE 2.2).
-          charcoal: '#232B3A',
+          charcoal: '#1C1C1E',
           'surface-dark': '#2C3546',
           gray: {
             100: '#F3F4F6',

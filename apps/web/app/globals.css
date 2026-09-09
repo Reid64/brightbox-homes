@@ -14,10 +14,14 @@
   --bb-blue-light: #e8f2fb;
   --bb-blue-dark: #2e6fa3;
 
+  /* Redesign accent (amber gold) - primary accent on dark surfaces. */
+  --bb-gold: #d4a853;
+
   /* Neutral palette (2.2) */
   --bb-white: #ffffff;
   --bb-warm-white: #fafaf7;
-  --bb-charcoal: #232b3a;
+  --bb-charcoal: #1c1c1e;
+  --bb-cream: #f5f0e8;
   --bb-surface-dark: #2c3546;
   --bb-gray-100: #f3f4f6;
   --bb-gray-200: #e5e7eb;

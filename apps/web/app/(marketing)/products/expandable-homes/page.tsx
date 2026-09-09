@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Steel-frame expandable container homes from $35,995. Five sizes from a 200 sq ft studio to an 800 sq ft family home, Delivered anywhere in the US.',
 };
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-gold';
 
 const sizes = [
   {
@@ -47,7 +47,7 @@ export default function ExpandableHomesOverviewPage() {
   return (
     <>
       {/* Hero / intro */}
-      <section className="bg-[#1C2438] py-12 lg:py-16">
+      <section className="bg-bb-charcoal py-12 lg:py-16">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={label}>Expandable Container Homes</p>
           <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
@@ -62,14 +62,14 @@ export default function ExpandableHomesOverviewPage() {
       </section>
 
       {/* Size cards */}
-      <section className="bg-[#0F1729] py-16 lg:py-24">
+      <section className="bg-bb-cream py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sizes.map((s) => (
               <Link
                 key={s.href}
                 href={s.href}
-                className="group overflow-hidden rounded-xl border border-white/10 bg-[#232B45] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#6B9BF7]/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+                className="group overflow-hidden rounded-xl border border-black/[0.08] bg-white shadow-[0_4px_20px_rgba(28,28,30,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-bb-gold hover:shadow-[0_12px_32px_rgba(28,28,30,0.12)]"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
@@ -81,10 +81,10 @@ export default function ExpandableHomesOverviewPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h2 className="font-heading text-xl font-semibold text-white">{s.name}</h2>
-                  <p className="mt-1 font-mono text-sm text-[#6B9BF7]">{s.price}</p>
-                  <p className="mt-3 text-sm text-gray-300">{s.blurb}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#6B9BF7]">
+                  <h2 className="font-heading text-xl font-semibold text-[#1C1C1E]">{s.name}</h2>
+                  <p className="mt-1 font-mono text-sm text-[#1C1C1E]">{s.price}</p>
+                  <p className="mt-3 text-sm text-[#4B5563]">{s.blurb}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#3461C7]">
                     View Model <ArrowRight size={16} aria-hidden="true" />
                   </span>
                 </div>
@@ -95,7 +95,7 @@ export default function ExpandableHomesOverviewPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#141B2D] py-16 lg:py-24">
+      <section className="bg-bb-charcoal py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
             Not sure which size fits?
@@ -107,7 +107,7 @@ export default function ExpandableHomesOverviewPage() {
           <div className="mt-8 flex justify-center">
             <BookConsultation size="lg" />
           </div>
-          <p className="mt-6 text-sm text-gray-500">Call us at 800-259-1745</p>
+          <p className="mt-6 text-sm text-gray-400">Call us at 800-259-1745</p>
         </div>
       </section>
     </>

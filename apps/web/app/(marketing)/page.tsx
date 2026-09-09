@@ -13,8 +13,9 @@ import Marquee from '@/components/ui/Marquee';
 
 // Dark premium homepage. Static content (no database yet). Apple Cabin and
 // Space Capsule pricing is "Coming Soon" pending operator input (open blocker).
-// Redesign: alternating warm (cream/beige) and dark (navy) sections; all colors
-// written as literal hex / rgba (no design tokens) per redesign spec.
+// Redesign: sections alternate bb-charcoal (#1C1C1E) and bb-cream (#F5F0E8).
+// bb-gold (#D4A853) is the accent, used on charcoal surfaces only - on cream it
+// lacks contrast, so emphasis there is charcoal. Hyperlinks stay blue.
 
 const productLines = [
   {
@@ -170,9 +171,9 @@ const marqueeItems = [
   'FAITH FOUNDATION PARTNER',
 ];
 
-// Eyebrow labels: blue on light/warm sections, lighter blue on dark sections.
-const eyebrowLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#3461C7]';
-const eyebrowDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6B9BF7]';
+// Eyebrow labels: charcoal on cream sections, amber gold on charcoal sections.
+const eyebrowLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-black/60';
+const eyebrowDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-bb-gold';
 
 const trustBadges = [
   { src: '/images/badges/faith-foundation-partnership.png', alt: 'FAITH Foundation Partner' },
@@ -181,9 +182,9 @@ const trustBadges = [
   { src: '/images/badges/american-owned-globally-sourced.png', alt: 'American Owned, Globally Sourced' },
 ];
 
-// 1px gradient divider (transparent -> soft blue -> transparent).
+// 1px gradient divider (transparent -> soft gold -> transparent).
 const dividerStyle = {
-  background: 'linear-gradient(to right, transparent, rgba(107,155,247,0.2), transparent)',
+  background: 'linear-gradient(to right, transparent, rgba(212,168,83,0.28), transparent)',
 };
 
 export default function HomePage() {
@@ -193,7 +194,7 @@ export default function HomePage() {
       <ScrollProgress />
 
       {/* SECTION A: Hero */}
-      <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-[#1A2540]">
+      <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-bb-charcoal">
         <Image
           src="/images/home-hero.png"
           alt="Two-story expandable container home with balconies, landscaped gardens, and a family enjoying the backyard."
@@ -207,7 +208,7 @@ export default function HomePage() {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(180deg, rgba(15,23,41,0.3) 0%, rgba(20,27,45,0.2) 50%, rgba(15,23,41,0.45) 100%)',
+              'linear-gradient(180deg, rgba(28,28,30,0.3) 0%, rgba(28,28,30,0.2) 50%, rgba(28,28,30,0.45) 100%)',
           }}
         />
 
@@ -218,7 +219,7 @@ export default function HomePage() {
           {/* Left */}
           <div className="lg:-ml-24 lg:w-3/5">
             <span
-              className="inline-block animate-fade-up rounded-full border border-[#6B9BF7]/30 bg-[#6B9BF7]/15 px-4 py-2 text-sm text-[#93B8FA] backdrop-blur"
+              className="inline-block animate-fade-up rounded-full border border-bb-gold/40 bg-bb-gold/10 px-4 py-2 text-sm text-bb-gold backdrop-blur"
               style={{ animationDelay: '500ms' }}
             >
               American Owned. Globally Sourced. US Delivered.
@@ -255,7 +256,7 @@ export default function HomePage() {
 
             <a
               href="tel:8002591745"
-              className="mt-4 inline-block animate-fade-up text-sm font-bold text-[#FFFFFF] transition-colors duration-200 ease-out hover:text-[#93B8FA]"
+              className="mt-4 inline-block animate-fade-up text-sm font-bold text-[#FFFFFF] transition-colors duration-200 ease-out hover:text-bb-gold"
               style={{ animationDelay: '800ms' }}
             >
               or call 800-259-1745
@@ -281,7 +282,7 @@ export default function HomePage() {
       <Marquee items={marqueeItems} />
 
       {/* SECTION D: Product Lines (warm cream) */}
-      <section className="py-24 lg:py-32" style={{ background: '#1A2540' }}>
+      <section className="bg-bb-cream py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={eyebrowLight}>OUR HOMES</p>
@@ -302,9 +303,9 @@ export default function HomePage() {
                   <Link
                     href={product.href}
                     className="group flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]"
-                    style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.18)', boxShadow: '0 4px 24px rgba(0,0,0,0.5)' }}
+                    style={{ background: '#FFFFFF', border: '1px solid rgba(28,28,30,0.08)', boxShadow: '0 4px 20px rgba(28,28,30,0.06)' }}
                   >
-                    <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl bg-[#EFE8DC]">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl bg-bb-cream">
                       {product.image ? (
                         <Image
                           src={product.image}
@@ -314,7 +315,7 @@ export default function HomePage() {
                           className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
                         />
                       ) : (
-                        <div className="flex h-full w-full flex-col items-center justify-center text-[#4A7CE5]">
+                        <div className="flex h-full w-full flex-col items-center justify-center text-black/40">
                           <Home size={32} aria-hidden="true" />
                           <span className="mt-2 font-heading text-sm font-semibold text-[#111827]">
                             {product.name}
@@ -323,26 +324,26 @@ export default function HomePage() {
                       )}
                     </div>
                     <div className="flex flex-1 flex-col p-6">
-                      <h3 className="font-heading text-xl font-bold text-[#FFFFFF]">
+                      <h3 className="font-heading text-xl font-bold text-[#1C1C1E]">
                         {product.name}
                       </h3>
                       {product.price.includes('$') ? (
-                        <p className="mt-1 font-mono text-lg font-semibold text-[#6B9BF7]">
+                        <p className="mt-1 font-mono text-lg font-semibold text-[#1C1C1E]">
                           {product.price}
                         </p>
                       ) : (
-                        <p className="mt-1 font-mono text-lg text-[#9CA3AF]">
+                        <p className="mt-1 font-mono text-lg text-[#4B5563]">
                           {product.price}
                         </p>
                       )}
-                      <p className="mt-3 line-clamp-2 flex-1 text-sm text-[#9CA3AF]">
+                      <p className="mt-3 line-clamp-2 flex-1 text-sm text-[#4B5563]">
                         {product.description}
                       </p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#4A7CE5] group-hover:underline">
+                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#3461C7] group-hover:underline">
                         View Details
                         <ArrowRight size={16} aria-hidden="true" />
                       </span>
-                      <span className="mt-1 inline-flex items-center gap-1 text-xs text-[#9CA3AF]">
+                      <span className="mt-1 inline-flex items-center gap-1 text-xs text-[#4B5563]">
                         Get a Quote
                         <ArrowRight size={12} aria-hidden="true" />
                       </span>
@@ -357,7 +358,7 @@ export default function HomePage() {
             Flexible financing available on every model.{' '}
             <Link
               href="/financing"
-              className="font-semibold text-[#4A7CE5] underline-offset-4 hover:underline"
+              className="font-semibold text-[#3461C7] underline-offset-4 hover:underline"
             >
               Apply for Financing
             </Link>
@@ -370,7 +371,7 @@ export default function HomePage() {
 
       {/* SECTION D2: Trust badges (elevated dark strip) */}
       <section
-        className="bg-[#232B45] py-10"
+        className="bg-bb-charcoal py-10"
         style={{
           borderTop: '1px solid rgba(255,255,255,0.05)',
           borderBottom: '1px solid rgba(255,255,255,0.05)',
@@ -391,38 +392,38 @@ export default function HomePage() {
       </section>
 
       {/* SECTION E: Stats Bar (dark, beige stat cards) */}
-      <section className="bg-[#141B2D] py-16" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="bg-bb-cream py-16" style={{ borderBottom: '1px solid rgba(28,28,30,0.06)' }}>
         <div className="mx-auto max-w-[1280px] px-6">
-          <div className="rounded-2xl border border-white/5 bg-[#1C2438] p-6">
+          <div className="rounded-2xl border border-black/5 bg-[#FFFFFF] p-6">
             <div className="grid grid-cols-1 gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-xl bg-[#D4C4A8] p-6">
+              <div className="rounded-xl bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={5}
                   suffix=" Product Lines"
-                  className="font-heading text-3xl font-extrabold text-[#111827] md:text-4xl"
+                  className="font-heading text-3xl font-extrabold text-bb-cream md:text-4xl"
                 />
               </div>
-              <div className="rounded-xl bg-[#D4C4A8] p-6">
+              <div className="rounded-xl bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={60}
                   suffix="+ Exterior Colors"
-                  className="font-heading text-3xl font-extrabold text-[#111827] md:text-4xl"
+                  className="font-heading text-3xl font-extrabold text-bb-cream md:text-4xl"
                 />
               </div>
-              <div className="rounded-xl bg-[#D4C4A8] p-6">
+              <div className="rounded-xl bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={35995}
                   prefix="$"
-                  className="font-heading text-3xl font-extrabold text-[#111827] md:text-4xl"
+                  className="font-heading text-3xl font-extrabold text-bb-cream md:text-4xl"
                 />
-                <p className="mt-1 text-sm text-[#374151]">Starting From</p>
+                <p className="mt-1 text-sm text-bb-cream/70">Starting From</p>
               </div>
-              <div className="rounded-xl bg-[#D4C4A8] p-6">
+              <div className="rounded-xl bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={2500}
                   prefix="$"
                   suffix=" Donated Per Home"
-                  className="font-heading text-3xl font-extrabold text-[#111827] md:text-4xl"
+                  className="font-heading text-3xl font-extrabold text-bb-cream md:text-4xl"
                 />
               </div>
             </div>
@@ -431,13 +432,13 @@ export default function HomePage() {
       </section>
 
       {/* SECTION F: Built Different (dark surface, beige feature cards) */}
-      <section className="bg-[#1C2438] py-24 lg:py-32">
+      <section className="bg-bb-charcoal py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={eyebrowDark}>WHY BRIGHT BOX</p>
             <h2 className="font-heading text-4xl font-extrabold md:text-5xl">
               <span className="text-[#FFFFFF]">Built </span>
-              <span className="text-[#6B9BF7]">Different</span>
+              <span className="text-bb-gold">Different</span>
             </h2>
           </ScrollReveal>
 
@@ -446,17 +447,17 @@ export default function HomePage() {
               const Icon = prop.icon;
               return (
                 <ScrollReveal key={prop.title} delay={i * 100}>
-                  <div className="rounded-2xl bg-[#D4C4A8] p-10">
+                  <div className="rounded-2xl bg-bb-cream p-10">
                     <div
                       className="flex h-12 w-12 items-center justify-center rounded-xl"
-                      style={{ background: 'rgba(15,23,41,0.08)' }}
+                      style={{ background: 'rgba(28,28,30,0.08)' }}
                     >
-                      <Icon size={24} aria-hidden="true" className="text-[#1A2540]" />
+                      <Icon size={24} aria-hidden="true" className="text-[#1C1C1E]" />
                     </div>
-                    <h3 className="mt-4 font-heading text-lg font-bold text-[#1A2540]">
+                    <h3 className="mt-4 font-heading text-lg font-bold text-[#1C1C1E]">
                       {prop.title}
                     </h3>
-                    <p className="mt-2 text-sm" style={{ color: 'rgba(15,23,41,0.75)' }}>
+                    <p className="mt-2 text-sm" style={{ color: 'rgba(28,28,30,0.75)' }}>
                       {prop.text}
                     </p>
                   </div>
@@ -468,7 +469,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION G: Payment Process (warm cream, white step cards) */}
-      <section className="bg-[#F5F0E8] py-24 lg:py-32">
+      <section className="bg-bb-cream py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={eyebrowLight}>HOW IT WORKS</p>
@@ -489,12 +490,12 @@ export default function HomePage() {
                       <ChevronRight
                         aria-hidden="true"
                         size={28}
-                        className="absolute -right-5 top-1/2 hidden -translate-y-1/2 text-[#4A7CE5] lg:block"
+                        className="absolute -right-5 top-1/2 hidden -translate-y-1/2 text-black/30 lg:block"
                       />
                     )}
                     <span
                       aria-hidden="true"
-                      className="block font-heading text-6xl font-extrabold text-[#3461C7]"
+                      className="block font-heading text-6xl font-extrabold text-black/25"
                     >
                       {i + 1}
                     </span>
@@ -511,7 +512,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION H: Delivered Homes (navy) */}
-      <section className="bg-[#1A2540] py-24 lg:py-32">
+      <section className="bg-bb-charcoal py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={eyebrowDark}>PROOF</p>
@@ -525,7 +526,7 @@ export default function HomePage() {
           <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {deliveredPhotos.map((photo, i) => (
               <ScrollReveal key={photo.src} delay={i * 100}>
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-[#1C2438]">
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04]">
                   <Image
                     src={photo.src}
                     alt={photo.alt}
@@ -548,7 +549,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION I: FAITH Foundation (warm beige) */}
-      <section className="bg-[#D4C4A8] py-24 lg:py-32">
+      <section className="bg-bb-cream py-24 lg:py-32">
         <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
           <ScrollReveal>
             <p className={eyebrowLight}>GIVING BACK</p>
@@ -564,10 +565,10 @@ export default function HomePage() {
               <BookConsultation size="lg">Book a Consultation</BookConsultation>
               <Link
                 href="/faith-foundation"
-                className="inline-flex min-h-12 items-center justify-center px-8 py-4 text-lg font-medium text-[#3461C7] transition-colors duration-200 ease-out hover:bg-[#3461C7]/10"
+                className="inline-flex min-h-12 items-center justify-center px-8 py-4 text-lg font-medium text-[#1C1C1E] transition-colors duration-200 ease-out hover:bg-black/5"
                 style={{
                   background: 'transparent',
-                  border: '1.5px solid rgba(52,97,199,0.4)',
+                  border: '1.5px solid rgba(28,28,30,0.3)',
                   borderRadius: '10px',
                 }}
               >
@@ -577,7 +578,7 @@ export default function HomePage() {
           </ScrollReveal>
 
           <ScrollReveal delay={100} className="text-center lg:text-right">
-            <span className="block font-heading text-7xl font-extrabold text-[#3461C7]">
+            <span className="block font-heading text-7xl font-extrabold text-[#1C1C1E]">
               $2,500
             </span>
             <span className="mt-2 block text-[#374151]">donated per home sold</span>
@@ -586,7 +587,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION J: Final CTA (navy, glass card) */}
-      <section className="bg-[#1A2540] py-24 lg:py-32">
+      <section className="bg-bb-charcoal py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <div
@@ -596,7 +597,7 @@ export default function HomePage() {
                 backdropFilter: 'blur(20px)',
                 WebkitBackdropFilter: 'blur(20px)',
                 border: '1px solid rgba(255,255,255,0.08)',
-                boxShadow: '0 0 30px rgba(107,155,247,0.15)',
+                boxShadow: '0 0 30px rgba(212,168,83,0.15)',
               }}
             >
               <AnimatedText
@@ -621,7 +622,7 @@ export default function HomePage() {
                   Reserve Your Home - $500
                 </Link>
               </div>
-              <p className="mt-6 text-sm text-[#6B7280]">
+              <p className="mt-6 text-sm text-[#9CA3AF]">
                 800-259-1745 &middot; info@brightboxhomes.com
               </p>
             </div>

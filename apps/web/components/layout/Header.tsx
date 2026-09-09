@@ -41,7 +41,7 @@ const navLinks = [
 ];
 
 const navLinkBase =
-  'flex min-h-11 items-center border-b-2 px-3 font-body text-[#D1D5DB] transition-colors duration-200 ease-out hover:text-[#FFFFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]';
+  'flex min-h-11 items-center border-b-2 px-3 font-body text-[#D1D5DB] transition-colors duration-200 ease-out hover:text-[#FFFFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-gold';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -105,7 +105,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 border-b border-white/[0.06] bg-[#0F1729]/85 backdrop-blur-[20px] transition-shadow duration-200 ease-out ${
+        className={`sticky top-0 z-50 border-b border-white/[0.06] bg-bb-charcoal/85 backdrop-blur-[20px] transition-shadow duration-200 ease-out ${
           scrolled ? 'shadow-lg' : ''
         }`}
       >
@@ -134,8 +134,8 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-expanded={productsOpen}
                 onClick={() => setProductsOpen((v) => !v)}
-                className={`flex min-h-11 items-center gap-1 border-b-2 px-3 font-body text-[#D1D5DB] transition-colors duration-200 ease-out hover:text-[#FFFFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7] ${
-                  productsActive ? 'border-[#6B9BF7] text-[#FFFFFF]' : 'border-transparent'
+                className={`flex min-h-11 items-center gap-1 border-b-2 px-3 font-body text-[#D1D5DB] transition-colors duration-200 ease-out hover:text-[#FFFFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-gold ${
+                  productsActive ? 'border-bb-gold text-[#FFFFFF]' : 'border-transparent'
                 }`}
               >
                 Products
@@ -143,7 +143,7 @@ export default function Header() {
               </button>
 
               {productsOpen && (
-                <div className="absolute left-0 top-full z-[9999] mt-2 w-[560px] max-w-[90vw] rounded-2xl border border-white/10 bg-[#0F1729] p-6 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                <div className="absolute left-0 top-full z-[9999] mt-2 w-[560px] max-w-[90vw] rounded-2xl border border-white/10 bg-bb-charcoal p-6 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
                   <div aria-hidden="true" className="absolute inset-x-0 -top-2 h-2" />
                   <div className="grid grid-cols-2 gap-8">
                     <div className="flex flex-col gap-1">
@@ -197,7 +197,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   className={`${navLinkBase} ${
-                    active ? 'border-[#6B9BF7] text-[#FFFFFF]' : 'border-transparent'
+                    active ? 'border-bb-gold text-[#FFFFFF]' : 'border-transparent'
                   }`}
                 >
                   {link.label}
@@ -219,7 +219,7 @@ export default function Header() {
             <a
               href="tel:8002591745"
               aria-label="Call 800-259-1745"
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-sm transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-sm transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-gold"
             >
               <Phone size={24} aria-hidden="true" className="text-red-500" />
             </a>
@@ -228,7 +228,7 @@ export default function Header() {
               aria-label="Open menu"
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen(true)}
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-[#FFFFFF] transition-colors duration-200 ease-out hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-[#FFFFFF] transition-colors duration-200 ease-out hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-gold"
             >
               <Menu size={24} aria-hidden="true" />
             </button>

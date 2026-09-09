@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Bright Box Assembly Homes - named modular models from $25,995. Connect ~171 sq ft units in any arrangement: stack, line up, L-shape, or U-shape. Each unit independently wired and plumbed.',
 };
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]';
 const headingClass = 'font-heading text-3xl font-bold text-white md:text-4xl';
 
 const heroImages = [
@@ -84,7 +84,7 @@ const showcase = (
           <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {[...baseFeatures, ...(m.multiStory ? multiStoryFeatures : [])].map((f) => (
               <li key={f} className="flex items-start gap-2">
-                <Check size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-[#6B9BF7]" />
+                <Check size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-[#D4A853]" />
                 <span className="text-sm text-gray-700">{f}</span>
               </li>
             ))}

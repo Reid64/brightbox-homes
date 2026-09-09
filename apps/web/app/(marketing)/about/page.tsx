@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { BookConsultation } from '@/components/ui/BookConsultation';
+import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'About | Bright Box Homes',
@@ -8,14 +9,14 @@ export const metadata: Metadata = {
     'Bright Box Homes is an American-owned company delivering premium, globally-sourced expandable container homes across the US - with vetted factory partners and buyer-friendly payments.',
 };
 
-const labelDark = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
-const labelLight = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#3461C7]';
+const labelDark = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]';
+const labelLight = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-black/60';
 
 export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 lg:py-32" style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}>
+      <section className="py-24 lg:py-32" style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}>
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>About</p>
           <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl">
@@ -51,7 +52,7 @@ export default function AboutPage() {
       </section>
 
       {/* Trust */}
-      <section className="bg-[#1C2438] py-16 lg:py-24">
+      <section className="bg-[#252527] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <p className={labelDark}>Why Trust Bright Box</p>
           <h2 className="font-heading text-3xl font-bold text-[#FFFFFF] md:text-4xl">
@@ -77,7 +78,7 @@ export default function AboutPage() {
       </section>
 
       {/* Payment Plan */}
-      <section className="bg-[#D4C4A8] py-16 lg:py-24">
+      <section className="bg-[#F5F0E8] py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <p className={labelLight}>Payments</p>
           <h2 className="font-heading text-3xl font-bold text-[#111827] md:text-4xl">
@@ -90,8 +91,8 @@ export default function AboutPage() {
               ['25%', 'Due at shipping'],
               ['25%', 'Due on delivery'],
             ].map(([pct, when], i) => (
-              <li key={i} className="flex items-start gap-4 rounded-xl bg-[#FFFFFF] p-5 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
-                <span className="font-heading text-2xl font-bold text-[#3461C7]">{pct}</span>
+              <li key={i} className="flex items-start gap-4 rounded-lg bg-[#FFFFFF] p-5 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+                <span className="font-heading text-2xl font-bold text-[#1C1C1E]">{pct}</span>
                 <span className="pt-1 text-[#374151]">{when}</span>
               </li>
             ))}
@@ -105,19 +106,15 @@ export default function AboutPage() {
             <p className="text-[#374151]">
               Prefer monthly payments? Flexible financing options available.
             </p>
-            <a
-              href="/financing"
-              className="mt-4 inline-block px-8 py-4 text-lg font-semibold transition-transform duration-fast ease-out"
-              style={{ background: 'linear-gradient(135deg,#4A7CE5,#6B9BF7)', color: '#FFFFFF', borderRadius: '10px', boxShadow: '0 0 25px rgba(107,155,247,0.3)' }}
-            >
+            <Button href="/financing" size="lg" tone="light" className="mt-4">
               Apply for Financing
-            </a>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0F1729] py-16 lg:py-24">
+      <section className="bg-[#1C1C1E] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <h2 className="font-heading text-3xl font-bold text-[#FFFFFF] md:text-4xl">
             Let&apos;s build your home.

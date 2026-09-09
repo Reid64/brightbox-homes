@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     'Free delivery within 300 miles of any major US port city. Learn exactly how to prepare your site, what foundation you need, and what to expect when your Bright Box Home arrives.',
 };
 
-const labelDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6B9BF7]';
-const labelLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#3461C7]';
+const labelDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#D4A853]';
+const labelLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-black/60';
 
 export default function DeliveryPage() {
   return (
@@ -17,7 +17,7 @@ export default function DeliveryPage() {
       {/* ── HERO ── */}
       <section
         className="py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
       >
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>Delivery</p>
@@ -32,7 +32,7 @@ export default function DeliveryPage() {
             <BookConsultation size="lg">Check Your Delivery Zone</BookConsultation>
             <a
               href="tel:8002591745"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 px-8 py-4 text-lg font-medium text-white transition-colors hover:bg-white/10"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 px-8 py-4 text-lg font-medium text-white transition-colors hover:bg-white/10"
             >
               <Phone size={20} />
               800-259-1745
@@ -42,13 +42,13 @@ export default function DeliveryPage() {
       </section>
 
       {/* ── INTERACTIVE MAP ── */}
-      <section className="bg-[#0D1526] py-16">
+      <section className="bg-[#1C1C1E] py-16">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>Delivery Zone</p>
           <h2 className="mb-8 font-heading text-3xl font-extrabold text-white md:text-4xl">
             See If You&apos;re in the Free Zone
           </h2>
-          <div className="flex min-h-64 items-center justify-center rounded-2xl p-10 flex-col gap-4" style={{background:'#111C33',border:'1px solid rgba(255,255,255,0.1)'}}><p className="text-lg font-semibold text-white text-center">Free Delivery Within 300 Miles of Any Major US Port</p><p className="text-sm text-gray-400 text-center max-w-lg">Port cities: Houston TX, Los Angeles CA, Newark NJ, Savannah GA, Charleston SC, Seattle WA, Norfolk VA, Miami FL, New Orleans LA, Baltimore MD.</p></div>
+          <div className="flex min-h-64 items-center justify-center rounded-lg p-10 flex-col gap-4" style={{background:'#1C1C1E',border:'1px solid rgba(255,255,255,0.1)'}}><p className="text-lg font-semibold text-white text-center">Free Delivery Within 300 Miles of Any Major US Port</p><p className="text-sm text-gray-400 text-center max-w-lg">Port cities: Houston TX, Los Angeles CA, Newark NJ, Savannah GA, Charleston SC, Seattle WA, Norfolk VA, Miami FL, New Orleans LA, Baltimore MD.</p></div>
           <p className="mt-4 text-center text-sm text-gray-400">
             Free delivery within 300 miles of any major US port · Beyond 300 miles: ~$3/mile from nearest port
           </p>
@@ -56,7 +56,7 @@ export default function DeliveryPage() {
       </section>
 
       {/* ── HOW DELIVERY WORKS ── */}
-      <section className="bg-[#1A2540] py-24 lg:py-32">
+      <section className="bg-[#252527] py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>How It Works</p>
           <h2 className="font-heading text-4xl font-extrabold text-white md:text-5xl">
@@ -71,8 +71,8 @@ export default function DeliveryPage() {
             ].map((step) => {
               const Icon = step.icon;
               return (
-                <div key={step.title} className="rounded-xl border border-white/10 bg-[#0D1526] p-6">
-                  <Icon size={28} aria-hidden="true" className="text-[#6B9BF7]" />
+                <div key={step.title} className="rounded-lg border border-white/10 bg-[#1C1C1E] p-6">
+                  <Icon size={28} aria-hidden="true" className="text-[#D4A853]" />
                   <h3 className="mt-4 font-heading text-base font-bold text-white">{step.title}</h3>
                   <p className="mt-2 text-sm text-gray-300">{step.text}</p>
                 </div>
@@ -83,10 +83,10 @@ export default function DeliveryPage() {
       </section>
 
       {/* ── SITE PREPARATION ── */}
-      <section style={{ background: '#D4C4A8' }} className="py-24 lg:py-32">
+      <section style={{ background: '#F5F0E8' }} className="py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelLight}>Before Delivery Day</p>
-          <h2 className="font-heading text-4xl font-extrabold text-[#0F1729] md:text-5xl">
+          <h2 className="font-heading text-4xl font-extrabold text-[#1C1C1E] md:text-5xl">
             Preparing Your Site
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-[#374151]">
@@ -96,9 +96,9 @@ export default function DeliveryPage() {
           <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
 
             {/* Level Ground */}
-            <div className="rounded-2xl bg-[#1A2540] p-8" style={{ border: '1px solid rgba(107,155,247,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: 'rgba(107,155,247,0.15)' }}>
-                <Ruler size={24} className="text-[#6B9BF7]" />
+            <div className="rounded-lg bg-[#252527] p-8" style={{ border: '1px solid rgba(212,168,83,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ background: 'rgba(212,168,83,0.15)' }}>
+                <Ruler size={24} className="text-[#D4A853]" />
               </div>
               <h3 className="mt-4 font-heading text-lg font-bold text-white">Level Graded Land</h3>
               <p className="mt-2 text-sm text-gray-300">
@@ -107,16 +107,16 @@ export default function DeliveryPage() {
             </div>
 
             {/* Foundation Blocks */}
-            <div className="rounded-2xl bg-[#1A2540] p-8" style={{ border: '1px solid rgba(107,155,247,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: 'rgba(107,155,247,0.15)' }}>
-                <Blocks size={24} className="text-[#6B9BF7]" />
+            <div className="rounded-lg bg-[#252527] p-8" style={{ border: '1px solid rgba(212,168,83,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ background: 'rgba(212,168,83,0.15)' }}>
+                <Blocks size={24} className="text-[#D4A853]" />
               </div>
               <h3 className="mt-4 font-heading text-lg font-bold text-white">Foundation Blocks / Piers</h3>
               <p className="mt-2 text-sm text-gray-300">
                 Concrete blocks or piers must be set before delivery. Your home slides directly onto them.
               </p>
-              <div className="mt-4 rounded-xl p-4" style={{ background: 'rgba(107,155,247,0.08)', border: '1px solid rgba(107,155,247,0.15)' }}>
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#6B9BF7]">Foundation Specs</p>
+              <div className="mt-4 rounded-lg p-4" style={{ background: 'rgba(212,168,83,0.08)', border: '1px solid rgba(212,168,83,0.15)' }}>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A853]">Foundation Specs</p>
                 <ul className="mt-2 space-y-1 text-sm text-gray-300">
                   <li>• <strong className="text-white">8 blocks total</strong> required per home</li>
                   <li>• Spacing: <strong className="text-white">61.6 inches (156.5 cm)</strong> apart center-to-center</li>
@@ -127,15 +127,15 @@ export default function DeliveryPage() {
             </div>
 
             {/* Truck Access */}
-            <div className="rounded-2xl bg-[#1A2540] p-8" style={{ border: '1px solid rgba(107,155,247,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: 'rgba(107,155,247,0.15)' }}>
-                <Truck size={24} className="text-[#6B9BF7]" />
+            <div className="rounded-lg bg-[#252527] p-8" style={{ border: '1px solid rgba(212,168,83,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ background: 'rgba(212,168,83,0.15)' }}>
+                <Truck size={24} className="text-[#D4A853]" />
               </div>
               <h3 className="mt-4 font-heading text-lg font-bold text-white">Truck Access</h3>
               <p className="mt-2 text-sm text-gray-300">
                 The flatbed delivery truck needs a clear path to your placement site.
               </p>
-              <div className="mt-4 rounded-xl p-4" style={{ background: 'rgba(107,155,247,0.08)', border: '1px solid rgba(107,155,247,0.15)' }}>
+              <div className="mt-4 rounded-lg p-4" style={{ background: 'rgba(212,168,83,0.08)', border: '1px solid rgba(212,168,83,0.15)' }}>
                 <ul className="space-y-1 text-sm text-gray-300">
                   <li>• Path width: <strong className="text-white">minimum 14 feet</strong></li>
                   <li>• Path length: <strong className="text-white">minimum 60 feet</strong> straight approach</li>
@@ -146,15 +146,15 @@ export default function DeliveryPage() {
             </div>
 
             {/* Utility Rough-Ins */}
-            <div className="rounded-2xl bg-[#1A2540] p-8" style={{ border: '1px solid rgba(107,155,247,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: 'rgba(107,155,247,0.15)' }}>
-                <Zap size={24} className="text-[#6B9BF7]" />
+            <div className="rounded-lg bg-[#252527] p-8" style={{ border: '1px solid rgba(212,168,83,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ background: 'rgba(212,168,83,0.15)' }}>
+                <Zap size={24} className="text-[#D4A853]" />
               </div>
               <h3 className="mt-4 font-heading text-lg font-bold text-white">Utility Connections Ready</h3>
               <p className="mt-2 text-sm text-gray-300">
                 Have your utility rough-ins positioned near the home&apos;s placement location before delivery.
               </p>
-              <div className="mt-4 rounded-xl p-4" style={{ background: 'rgba(107,155,247,0.08)', border: '1px solid rgba(107,155,247,0.15)' }}>
+              <div className="mt-4 rounded-lg p-4" style={{ background: 'rgba(212,168,83,0.08)', border: '1px solid rgba(212,168,83,0.15)' }}>
                 <ul className="space-y-1 text-sm text-gray-300">
                   <li>• <strong className="text-white">Electrical panel</strong> roughed in — 125 amp service minimum</li>
                   <li>• <strong className="text-white">Water supply line</strong> buried and accessible</li>
@@ -169,7 +169,7 @@ export default function DeliveryPage() {
       </section>
 
       {/* ── WHAT IS NOT INCLUDED ── */}
-      <section className="bg-[#0D1526] py-24 lg:py-32">
+      <section className="bg-[#1C1C1E] py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>Connections & Setup</p>
           <h2 className="font-heading text-4xl font-extrabold text-white md:text-5xl">
@@ -179,7 +179,7 @@ export default function DeliveryPage() {
             These installations require licensed contractors who know your county&apos;s building codes, soil, and utility layout.
           </p>
 
-          <div className="mt-12 rounded-2xl p-8" style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}>
+          <div className="mt-12 rounded-lg p-8" style={{ background: '#252527', border: '1px solid rgba(212,168,83,0.15)' }}>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {[
                 { icon: Droplets, title: 'Septic or Sewer Connection', text: 'Your local plumber connects the home\'s waste line to your septic tank or municipal sewer.' },
@@ -191,8 +191,8 @@ export default function DeliveryPage() {
               ].map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="flex gap-4 rounded-xl p-4" style={{ background: 'rgba(107,155,247,0.05)' }}>
-                    <Icon size={20} className="mt-0.5 shrink-0 text-[#6B9BF7]" />
+                  <div key={item.title} className="flex gap-4 rounded-lg p-4" style={{ background: 'rgba(212,168,83,0.05)' }}>
+                    <Icon size={20} className="mt-0.5 shrink-0 text-[#D4A853]" />
                     <div>
                       <p className="font-semibold text-white text-sm">{item.title}</p>
                       <p className="mt-1 text-xs text-gray-400">{item.text}</p>
@@ -209,27 +209,27 @@ export default function DeliveryPage() {
       </section>
 
       {/* ── AFTER DELIVERY ── */}
-      <section style={{ background: '#D4C4A8' }} className="py-24 lg:py-32">
+      <section style={{ background: '#F5F0E8' }} className="py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelLight}>After Your Home Arrives</p>
-          <h2 className="font-heading text-4xl font-extrabold text-[#0F1729] md:text-5xl">
+          <h2 className="font-heading text-4xl font-extrabold text-[#1C1C1E] md:text-5xl">
             We Don&apos;t Disappear After Delivery
           </h2>
           <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="rounded-2xl bg-[#1A2540] p-8" style={{ border: '1px solid rgba(107,155,247,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
-              <PlayCircle size={28} className="text-[#6B9BF7]" />
+            <div className="rounded-lg bg-[#252527] p-8" style={{ border: '1px solid rgba(212,168,83,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+              <PlayCircle size={28} className="text-[#D4A853]" />
               <h3 className="mt-4 font-heading text-lg font-bold text-white">Setup Video Included</h3>
               <p className="mt-2 text-sm text-gray-300">
                 Every Bright Box Home comes with a detailed setup and connection video walking you through the final steps — utility hookups, leveling adjustments, expanding the sections, and finishing touches.
               </p>
             </div>
-            <div className="rounded-2xl bg-[#1A2540] p-8" style={{ border: '1px solid rgba(107,155,247,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
-              <Phone size={28} className="text-[#6B9BF7]" />
+            <div className="rounded-lg bg-[#252527] p-8" style={{ border: '1px solid rgba(212,168,83,0.15)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+              <Phone size={28} className="text-[#D4A853]" />
               <h3 className="mt-4 font-heading text-lg font-bold text-white">Post-Delivery Support</h3>
               <p className="mt-2 text-sm text-gray-300">
                 Have questions during setup? Book a post-delivery consultation and our team walks you through any remaining requirements. One year warranty covers parts damaged or lost (not caused by humans).
               </p>
-              <a href="tel:8002591745" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#6B9BF7] hover:text-white">
+              <a href="tel:8002591745" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#D4A853] hover:text-white">
                 <Phone size={16} /> 800-259-1745
               </a>
             </div>
@@ -238,9 +238,9 @@ export default function DeliveryPage() {
       </section>
 
       {/* ── DELIVERY SPECS ── */}
-      <section className="bg-[#0D1526] py-16">
+      <section className="bg-[#1C1C1E] py-16">
         <div className="mx-auto max-w-[1280px] px-6">
-          <div className="rounded-2xl p-8" style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}>
+          <div className="rounded-lg p-8" style={{ background: '#252527', border: '1px solid rgba(212,168,83,0.15)' }}>
             <h3 className="font-heading text-xl font-bold text-white">Quick Reference: Home Specs</h3>
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
               {[
@@ -253,7 +253,7 @@ export default function DeliveryPage() {
                 { label: 'Lead Time', value: '8–10 weeks' },
                 { label: 'Warranty', value: '1 year parts' },
               ].map((spec) => (
-                <div key={spec.label} className="rounded-xl p-4" style={{ background: 'rgba(107,155,247,0.06)' }}>
+                <div key={spec.label} className="rounded-lg p-4" style={{ background: 'rgba(212,168,83,0.06)' }}>
                   <p className="text-xs text-gray-400">{spec.label}</p>
                   <p className="mt-1 font-mono text-base font-bold text-white">{spec.value}</p>
                 </div>
@@ -264,7 +264,7 @@ export default function DeliveryPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-[#0F1729] py-24 text-center lg:py-32">
+      <section className="bg-[#1C1C1E] py-24 text-center lg:py-32">
         <div className="mx-auto max-w-2xl px-6">
           <h2 className="font-heading text-4xl font-extrabold text-white md:text-5xl">
             Ready to Get Your Home Delivered?

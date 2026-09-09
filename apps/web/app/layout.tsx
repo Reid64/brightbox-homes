@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
 // Headings (DESIGN_LANGUAGE 3.1): Plus Jakarta Sans, bold + extra-bold hero.
@@ -12,13 +12,25 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-heading',
 });
 
-// Body (DESIGN_LANGUAGE 3.1): Inter, regular + medium.
+// Body (DESIGN_LANGUAGE 3.1): Inter, regular + medium + semibold.
+// 600 is loaded because primary buttons and emphasis use font-semibold; without
+// it the browser synthesises the weight.
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '600'],
   display: 'swap',
   preload: true,
   variable: '--font-body',
+});
+
+// Specs and pricing (DESIGN_LANGUAGE 3.1): JetBrains Mono. Declared in the
+// Tailwind config as font-mono, so it has to actually be loaded here.
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -61,8 +73,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
-      <body className="font-body bg-[#0F1729] text-[#F3F4F6] antialiased">
+    <html
+      lang="en"
+      className={`${plusJakartaSans.variable} ${inter.variable} ${jetBrainsMono.variable}`}
+    >
+      <body className="font-body bg-[#1C1C1E] text-[#F3F4F6] antialiased">
         {children}
       </body>
     </html>

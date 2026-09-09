@@ -177,9 +177,9 @@ export default function FaqPage() {
       />
 
       {/* Hero */}
-      <section className="py-24 lg:py-32" style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}>
+      <section className="py-24 lg:py-32" style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}>
         <div className="mx-auto max-w-[1280px] px-6">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">
             FAQ
           </p>
           <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl">
@@ -200,7 +200,7 @@ export default function FaqPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0F1729] py-16 lg:py-24">
+      <section className="bg-[#1C1C1E] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <h2 className="font-heading text-3xl font-bold text-[#FFFFFF] md:text-4xl">
             Still have questions?

@@ -75,15 +75,15 @@ export default function HomeConfigurator({
 
   return (
     <div
-      className="overflow-hidden rounded-2xl"
+      className="overflow-hidden rounded-lg"
       style={{
-        background: '#1A2540',
-        border: '1px solid rgba(107,155,247,0.2)',
+        background: '#252527',
+        border: '1px solid rgba(212,168,83,0.2)',
         boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
       }}
     >
       {/* Preview stage */}
-      <div className="relative aspect-video w-full overflow-hidden bg-[#0D1526]">
+      <div className="relative aspect-video w-full overflow-hidden bg-[#1C1C1E]">
         {baseImage ? (
           <>
             <Image
@@ -103,7 +103,7 @@ export default function HomeConfigurator({
         ) : (
           <div className="flex h-full w-full items-center justify-center text-center">
             <div>
-              <p className="text-sm font-medium text-[#6B9BF7]">Home Configurator</p>
+              <p className="text-sm font-medium text-[#D4A853]">Home Configurator</p>
               <p className="mt-1 text-xs text-gray-500">
                 {model ? 'Preview coming soon for this model' : 'Select a home to preview'}
               </p>
@@ -132,8 +132,8 @@ export default function HomeConfigurator({
               key={c.label}
               className="rounded-full px-2.5 py-1 text-xs font-medium transition-colors"
               style={{
-                background: c.active ? '#6B9BF7' : 'rgba(255,255,255,0.05)',
-                color: c.active ? '#ffffff' : '#6B7280',
+                background: c.active ? '#D4A853' : 'rgba(255,255,255,0.05)',
+                color: c.active ? '#ffffff' : '#9CA3AF',
               }}
             >
               {c.active ? '✓ ' : ''}
@@ -145,7 +145,7 @@ export default function HomeConfigurator({
         {/* Running total */}
         <div
           className="flex items-center justify-between pt-2"
-          style={{ borderTop: '1px solid rgba(107,155,247,0.15)' }}
+          style={{ borderTop: '1px solid rgba(212,168,83,0.15)' }}
         >
           <span className="text-xs text-gray-400">Upgrades Total</span>
           <span className="font-mono text-sm font-bold text-white">{fmt(orderTotal)}</span>

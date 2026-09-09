@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 };
 
 const labelDark =
-  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
+  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]';
 const labelWarm =
-  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#3461C7]';
+  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-black/60';
 
 const steps = [
   { title: 'You Purchase', text: 'You purchase a Bright Box Home.' },
@@ -38,7 +38,7 @@ export default function FaithFoundationPage() {
       {/* A - Hero */}
       <section
         className="py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
       >
         <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
           <div>
@@ -64,10 +64,10 @@ export default function FaithFoundationPage() {
               height={320}
               className="h-40 w-auto"
             />
-            <span className="mt-6 block font-heading text-7xl font-bold text-[#6B9BF7]">
+            <span className="mt-6 block font-heading text-7xl font-bold text-[#D4A853]">
               $2,500
             </span>
-            <span className="mt-2 block text-[#94A3B8]">donated per home sold</span>
+            <span className="mt-2 block text-[#4B5563]">donated per home sold</span>
           </div>
         </div>
       </section>
@@ -103,7 +103,7 @@ export default function FaithFoundationPage() {
       </section>
 
       {/* C - How It Works */}
-      <section className="bg-[#1C2438] py-16 lg:py-24">
+      <section className="bg-[#252527] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={labelDark}>How the Partnership Works</p>
@@ -119,12 +119,12 @@ export default function FaithFoundationPage() {
                   {i < steps.length - 1 && (
                     <span
                       aria-hidden="true"
-                      className="absolute left-16 top-8 hidden h-px w-full border-t border-[#6B9BF7]/20 lg:block"
+                      className="absolute left-16 top-8 hidden h-px w-full border-t border-[#D4A853]/20 lg:block"
                     />
                   )}
                   <span
                     aria-hidden="true"
-                    className="block font-heading text-6xl font-bold text-[#6B9BF7]/15"
+                    className="block font-heading text-6xl font-bold text-[#D4A853]/15"
                   >
                     {i + 1}
                   </span>
@@ -140,7 +140,7 @@ export default function FaithFoundationPage() {
       </section>
 
       {/* D - The Mission */}
-      <section className="bg-[#D4C4A8] py-16 lg:py-24">
+      <section className="bg-[#F5F0E8] py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <ScrollReveal>
             <p className={labelWarm}>The Mission</p>
@@ -157,7 +157,7 @@ export default function FaithFoundationPage() {
       </section>
 
       {/* E - Closing */}
-      <section className="bg-[#0F1729] py-16 lg:py-24">
+      <section className="bg-[#1C1C1E] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <ScrollReveal>
             <p className="mx-auto max-w-2xl font-heading text-2xl font-semibold text-[#FFFFFF] md:text-3xl">

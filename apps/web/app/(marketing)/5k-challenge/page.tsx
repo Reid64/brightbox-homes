@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 };
 
 const labelDark =
-  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
+  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]';
 const labelWarm =
-  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#3461C7]';
+  'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-black/60';
 
 const steps = [
   {
@@ -49,7 +49,7 @@ export default function FiveKChallengePage() {
       {/* A - Hero */}
       <section
         className="py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
       >
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>The Challenge</p>
@@ -98,7 +98,7 @@ export default function FiveKChallengePage() {
       </section>
 
       {/* C - How It Works */}
-      <section className="bg-[#1C2438] py-16 lg:py-24">
+      <section className="bg-[#252527] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={labelDark}>How It Works</p>
@@ -114,12 +114,12 @@ export default function FiveKChallengePage() {
                   {i < steps.length - 1 && (
                     <span
                       aria-hidden="true"
-                      className="absolute left-16 top-8 hidden h-px w-full border-t border-[#6B9BF7]/20 lg:block"
+                      className="absolute left-16 top-8 hidden h-px w-full border-t border-[#D4A853]/20 lg:block"
                     />
                   )}
                   <span
                     aria-hidden="true"
-                    className="block font-heading text-6xl font-bold text-[#6B9BF7]/15"
+                    className="block font-heading text-6xl font-bold text-[#D4A853]/15"
                   >
                     {i + 1}
                   </span>
@@ -135,7 +135,7 @@ export default function FiveKChallengePage() {
       </section>
 
       {/* D - The Fine Print */}
-      <section className="bg-[#D4C4A8] py-16 lg:py-24">
+      <section className="bg-[#F5F0E8] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <p className={labelWarm}>The Details</p>
@@ -149,7 +149,7 @@ export default function FiveKChallengePage() {
                 <Check
                   size={20}
                   aria-hidden="true"
-                  className="mt-0.5 shrink-0 text-[#3461C7]"
+                  className="mt-0.5 shrink-0 text-black/60"
                 />
                 <span className="text-[#374151]">{detail}</span>
               </li>
@@ -159,7 +159,7 @@ export default function FiveKChallengePage() {
       </section>
 
       {/* E - Closing CTA */}
-      <section className="bg-[#0F1729] py-16 lg:py-24">
+      <section className="bg-[#1C1C1E] py-16 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-6 text-center">
           <ScrollReveal>
             <p className="mx-auto max-w-2xl font-heading text-2xl font-semibold text-[#FFFFFF] md:text-3xl">

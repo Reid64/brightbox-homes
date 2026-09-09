@@ -37,14 +37,14 @@ export default function Footer() {
   return (
     <footer
       className="text-[#9CA3AF]"
-      style={{ background: 'linear-gradient(180deg, #141B2D, #0F1729)' }}
+      style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
     >
       {/* Gradient top border */}
       <div
         className="h-px w-full"
         style={{
           background:
-            'linear-gradient(to right, transparent, rgba(107,155,247,0.15), transparent)',
+            'linear-gradient(to right, transparent, rgba(212,168,83,0.15), transparent)',
         }}
       />
 
@@ -116,11 +116,11 @@ export default function Footer() {
       </div>
 
       {/* 2. FAITH Foundation bar */}
-      <div className="border-t border-white/[0.06] bg-[#6B9BF7]/10">
+      <div className="border-t border-white/[0.06] bg-[#D4A853]/10">
         <div className="mx-auto max-w-[1280px] px-6 py-4">
           <Link
             href="/faith-foundation"
-            className="inline-flex min-h-11 items-center font-body text-sm font-medium text-[#6B9BF7] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
+            className="inline-flex min-h-11 items-center font-body text-sm font-medium text-[#D4A853] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
           >
             For every home sold, we donate $2,500 to the FAITH Foundation.
           </Link>
@@ -130,10 +130,10 @@ export default function Footer() {
       {/* 3. Legal disclosures */}
       <div className="border-t border-white/[0.06]">
         <div className="mx-auto max-w-[1280px] space-y-2 px-6 py-6">
-          <p className="font-body text-xs text-[#6B7280]">
+          <p className="font-body text-xs text-[#9CA3AF]">
             Manufactured in China. Imported and distributed by Bright Box Homes LLC.
           </p>
-          <p className="font-body text-xs text-[#6B7280]">
+          <p className="font-body text-xs text-[#9CA3AF]">
             Bright Box Homes are classified as temporary buildings and do not require
             local building code compliance in most jurisdictions. Consult your local
             building department for placement restrictions.
@@ -165,7 +165,7 @@ export default function Footer() {
       {/* 5. Copyright bar */}
       <div className="border-t border-white/[0.06]">
         <div className="mx-auto max-w-[1280px] px-6 py-4">
-          <p className="font-body text-xs text-[#6B7280]">
+          <p className="font-body text-xs text-[#9CA3AF]">
             &copy; 2026 Bright Box Homes LLC. All rights reserved.
           </p>
         </div>

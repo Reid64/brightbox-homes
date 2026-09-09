@@ -302,10 +302,10 @@ export default function HomePage() {
                 <TiltCard className="h-full">
                   <Link
                     href={product.href}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]"
+                    className="group flex h-full flex-col overflow-hidden rounded-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]"
                     style={{ background: '#FFFFFF', border: '1px solid rgba(28,28,30,0.08)', boxShadow: '0 4px 20px rgba(28,28,30,0.06)' }}
                   >
-                    <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl bg-bb-cream">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-t-lg bg-bb-cream">
                       {product.image ? (
                         <Image
                           src={product.image}
@@ -394,23 +394,23 @@ export default function HomePage() {
       {/* SECTION E: Stats Bar (dark, beige stat cards) */}
       <section className="bg-bb-cream py-16" style={{ borderBottom: '1px solid rgba(28,28,30,0.06)' }}>
         <div className="mx-auto max-w-[1280px] px-6">
-          <div className="rounded-2xl border border-black/5 bg-[#FFFFFF] p-6">
+          <div className="rounded-lg border border-black/5 bg-[#FFFFFF] p-6">
             <div className="grid grid-cols-1 gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-xl bg-bb-charcoal p-6">
+              <div className="rounded-lg bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={5}
                   suffix=" Product Lines"
                   className="font-heading text-3xl font-extrabold text-bb-cream md:text-4xl"
                 />
               </div>
-              <div className="rounded-xl bg-bb-charcoal p-6">
+              <div className="rounded-lg bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={60}
                   suffix="+ Exterior Colors"
                   className="font-heading text-3xl font-extrabold text-bb-cream md:text-4xl"
                 />
               </div>
-              <div className="rounded-xl bg-bb-charcoal p-6">
+              <div className="rounded-lg bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={35995}
                   prefix="$"
@@ -418,7 +418,7 @@ export default function HomePage() {
                 />
                 <p className="mt-1 text-sm text-bb-cream/70">Starting From</p>
               </div>
-              <div className="rounded-xl bg-bb-charcoal p-6">
+              <div className="rounded-lg bg-bb-charcoal p-6">
                 <AnimatedCounter
                   target={2500}
                   prefix="$"
@@ -447,9 +447,9 @@ export default function HomePage() {
               const Icon = prop.icon;
               return (
                 <ScrollReveal key={prop.title} delay={i * 100}>
-                  <div className="rounded-2xl bg-bb-cream p-10">
+                  <div className="rounded-lg bg-bb-cream p-10">
                     <div
-                      className="flex h-12 w-12 items-center justify-center rounded-xl"
+                      className="flex h-12 w-12 items-center justify-center rounded-lg"
                       style={{ background: 'rgba(28,28,30,0.08)' }}
                     >
                       <Icon size={24} aria-hidden="true" className="text-[#1C1C1E]" />
@@ -484,7 +484,7 @@ export default function HomePage() {
             <ol className="grid grid-cols-1 gap-6 lg:grid-cols-4">
               {journeySteps.map((step, i) => (
                 <ScrollReveal key={step.title} delay={i * 100} className="relative">
-                  <li className="relative h-full rounded-2xl border border-black/[0.04] bg-[#FFFFFF] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+                  <li className="relative h-full rounded-lg border border-black/[0.04] bg-[#FFFFFF] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
                     {/* Arrow pointing to the next step (desktop) */}
                     {i < journeySteps.length - 1 && (
                       <ChevronRight
@@ -526,7 +526,7 @@ export default function HomePage() {
           <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {deliveredPhotos.map((photo, i) => (
               <ScrollReveal key={photo.src} delay={i * 100}>
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04]">
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-white/5 bg-white/[0.04]">
                   <Image
                     src={photo.src}
                     alt={photo.alt}
@@ -591,7 +591,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1280px] px-6">
           <ScrollReveal>
             <div
-              className="mx-auto max-w-3xl rounded-2xl px-6 py-14 text-center sm:px-12"
+              className="mx-auto max-w-3xl rounded-lg px-6 py-14 text-center sm:px-12"
               style={{
                 background: 'rgba(255,255,255,0.04)',
                 backdropFilter: 'blur(20px)',

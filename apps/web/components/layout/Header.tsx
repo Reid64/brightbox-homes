@@ -143,7 +143,7 @@ export default function Header() {
               </button>
 
               {productsOpen && (
-                <div className="absolute left-0 top-full z-[9999] mt-2 w-[560px] max-w-[90vw] rounded-2xl border border-white/10 bg-bb-charcoal p-6 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                <div className="absolute left-0 top-full z-[9999] mt-2 w-[560px] max-w-[90vw] rounded-lg border border-white/10 bg-bb-charcoal p-6 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
                   <div aria-hidden="true" className="absolute inset-x-0 -top-2 h-2" />
                   <div className="grid grid-cols-2 gap-8">
                     <div className="flex flex-col gap-1">

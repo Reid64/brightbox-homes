@@ -24,7 +24,7 @@ export default function OrderPanel({
 
   return (
     <div
-      className="w-full overflow-hidden rounded-2xl shadow-2xl"
+      className="w-full overflow-hidden rounded-lg shadow-2xl"
       style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 20px 60px rgba(0,0,0,0.25)' }}
     >
       {/* Header */}
@@ -37,7 +37,7 @@ export default function OrderPanel({
           <span className="font-heading text-base font-bold text-gray-900">Your Build</span>
           <span
             className="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white"
-            style={{ background: '#6B9BF7' }}
+            style={{ background: '#D4A853' }}
           >
             {items.length}
           </span>

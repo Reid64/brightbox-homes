@@ -232,10 +232,10 @@ function SwatchGrid({
               key={s.id}
               title={s.label + (s.meta ? ' — ' + s.meta : '')}
               onClick={() => { onSelect(s); setZoomed(s); }}
-              className={`relative ${dim} overflow-hidden rounded-lg border-2 transition-all duration-200 hover:scale-110 hover:z-10 focus:outline-none focus:ring-2 focus:ring-[#6B9BF7]`}
+              className={`relative ${dim} overflow-hidden rounded-lg border-2 transition-all duration-200 hover:scale-110 hover:z-10 focus:outline-none focus:ring-2 focus:ring-[#D4A853]`}
               style={{
-                borderColor: isSelected ? '#6B9BF7' : 'rgba(255,255,255,0.15)',
-                boxShadow: isSelected ? '0 0 0 3px rgba(107,155,247,0.4)' : undefined,
+                borderColor: isSelected ? '#D4A853' : 'rgba(255,255,255,0.15)',
+                boxShadow: isSelected ? '0 0 0 3px rgba(212,168,83,0.4)' : undefined,
                 background: s.hex ?? undefined,
               }}
             >
@@ -266,15 +266,15 @@ function SwatchGrid({
           onClick={() => setZoomed(null)}
         >
           <div
-            className="relative flex flex-col items-center gap-6 rounded-2xl p-8 shadow-2xl"
-            style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 420, width: '90vw' }}
+            className="relative flex flex-col items-center gap-6 rounded-lg p-8 shadow-2xl"
+            style={{ background: '#252527', border: '1px solid rgba(212,168,83,0.3)', maxWidth: 420, width: '90vw' }}
             onClick={(e) => e.stopPropagation()}
           >
             <button onClick={() => setZoomed(null)} className="absolute right-4 top-4 text-gray-400 hover:text-white">
               <X size={20} />
             </button>
             <div
-              className="h-48 w-full rounded-xl border border-white/10"
+              className="h-48 w-full rounded-lg border border-white/10"
               style={
                 zoomed.imageSrc
                   ? {
@@ -291,8 +291,8 @@ function SwatchGrid({
             </div>
             <button
               onClick={() => { onSelect(zoomed); setZoomed(null); }}
-              className="w-full rounded-xl py-3 text-sm font-semibold text-white transition-colors"
-              style={{ background: selected === zoomed.id ? '#16A34A' : '#6B9BF7' }}
+              className="w-full rounded-lg py-3 text-sm font-semibold text-white transition-colors"
+              style={{ background: selected === zoomed.id ? '#16A34A' : '#D4A853' }}
             >
               {selected === zoomed.id ? '✓ Added to Order' : 'Add to Order'}
             </button>
@@ -348,8 +348,8 @@ export default function DesignJourneyContent({
 
   const sectionHeading = 'font-heading text-3xl font-bold text-white';
   const sectionSub = 'mt-2 text-sm font-normal text-gray-400';
-  const subHeading = 'font-heading text-lg font-semibold text-[#6B9BF7]';
-  const addBtn = 'mt-4 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors';
+  const subHeading = 'font-heading text-lg font-semibold text-[#D4A853]';
+  const addBtn = 'mt-4 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-colors';
 
   return (
     <>
@@ -368,10 +368,10 @@ export default function DesignJourneyContent({
                     addToOrder('model', p.name, p.price ?? 0, 'Home Model', false);
                     setActive(1);
                   }}
-                  className="group overflow-hidden rounded-xl border text-left transition-all duration-200 hover:-translate-y-1"
+                  className="group overflow-hidden rounded-lg border text-left transition-all duration-200 hover:-translate-y-1"
                   style={{
-                    background: '#1A2540',
-                    border: '1px solid rgba(107,155,247,0.15)',
+                    background: '#252527',
+                    border: '1px solid rgba(212,168,83,0.15)',
                     boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
                   }}
                 >
@@ -386,7 +386,7 @@ export default function DesignJourneyContent({
                   </div>
                   <div className="p-3">
                     <p className="font-heading text-sm font-semibold text-white">{p.name}</p>
-                    <p className="mt-0.5 font-mono text-xs text-[#6B9BF7]">
+                    <p className="mt-0.5 font-mono text-xs text-[#D4A853]">
                       {p.price ? fmt(p.price) : 'Coming Soon'}
                     </p>
                   </div>
@@ -417,7 +417,7 @@ export default function DesignJourneyContent({
                 }}
               />
               {selectedExterior && (
-                <p className="mt-3 text-xs text-[#6B9BF7]">
+                <p className="mt-3 text-xs text-[#D4A853]">
                   ✓ Selected: {RAL_EXTERIOR.find((s) => s.id === selectedExterior)?.label}
                 </p>
               )}
@@ -437,7 +437,7 @@ export default function DesignJourneyContent({
                 size="lg"
               />
               {selectedCarved && (
-                <p className="mt-3 text-xs text-[#6B9BF7]">
+                <p className="mt-3 text-xs text-[#D4A853]">
                   ✓ Selected: {CARVED_METAL.find((s) => s.id === selectedCarved)?.label} — {CARVED_METAL.find((s) => s.id === selectedCarved)?.meta}
                 </p>
               )}
@@ -455,10 +455,10 @@ export default function DesignJourneyContent({
 
             {/* Benefits block */}
             <div
-              className="rounded-2xl p-6"
-              style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.15)' }}
+              className="rounded-lg p-6"
+              style={{ background: '#252527', border: '1px solid rgba(212,168,83,0.15)' }}
             >
-              <h2 className="font-heading text-base font-semibold text-[#6B9BF7]">Why a Metal Roof?</h2>
+              <h2 className="font-heading text-base font-semibold text-[#D4A853]">Why a Metal Roof?</h2>
               <p className="mt-3 text-sm leading-relaxed text-gray-300">
                 A standing-seam metal roof protects your home&apos;s primary steel structure from water intrusion — the leading cause of long-term structural damage in prefab construction.
                 Metal roofs last <strong className="text-white">40–70 years</strong>, shed water instantly, withstand <strong className="text-white">140mph winds</strong>, reflect solar heat to cut cooling costs,
@@ -479,7 +479,7 @@ export default function DesignJourneyContent({
                 size="lg"
               />
               {selectedRoof && (
-                <p className="mt-3 text-xs text-[#6B9BF7]">
+                <p className="mt-3 text-xs text-[#D4A853]">
                   ✓ Color selected: {ROOF_COLORS.find((s) => s.id === selectedRoof)?.label}
                 </p>
               )}
@@ -502,15 +502,15 @@ export default function DesignJourneyContent({
                         : 'Color TBD';
                       addToOrder('roof', `Metal Roof — ${r.size} — ${colorLabel}`, r.price, 'Roof Upgrade');
                     }}
-                    className="rounded-xl border p-4 text-center transition-all duration-200"
+                    className="rounded-lg border p-4 text-center transition-all duration-200"
                     style={{
-                      background: selectedRoofSize === r.size ? '#6B9BF7' : '#1A2540',
-                      border: selectedRoofSize === r.size ? '1px solid #6B9BF7' : '1px solid rgba(107,155,247,0.15)',
+                      background: selectedRoofSize === r.size ? '#D4A853' : '#252527',
+                      border: selectedRoofSize === r.size ? '1px solid #D4A853' : '1px solid rgba(212,168,83,0.15)',
                     }}
                   >
                     <p className="text-xs text-gray-300">{r.size}</p>
                     <p className="mt-1 font-mono text-lg font-bold text-white">{fmt(r.price)}</p>
-                    <p className="mt-1 text-xs text-[#6B9BF7]">
+                    <p className="mt-1 text-xs text-[#D4A853]">
                       {selectedRoofSize === r.size ? '✓ Added' : 'Add to Order'}
                     </p>
                   </button>
@@ -523,7 +523,7 @@ export default function DesignJourneyContent({
               <figure>
                 <button
                   onClick={() => setZoomedMedia({ src: '/images/upgrades/metal-roof-truss-standard.png', caption: 'Standard Truss System', type: 'image' })}
-                  className="relative w-full overflow-hidden rounded-xl border border-white/10 transition-colors hover:border-[#6B9BF7]"
+                  className="relative w-full overflow-hidden rounded-lg border border-white/10 transition-colors hover:border-[#D4A853]"
                   style={{ height: '200px' }}
                 >
                   <Image src="/images/upgrades/metal-roof-truss-standard.png" alt="Standard metal roof truss" fill className="object-contain" />
@@ -533,7 +533,7 @@ export default function DesignJourneyContent({
               <figure>
                 <button
                   onClick={() => setZoomedMedia({ src: '/images/upgrades/metal-roof-truss-reinforced-solar.png', caption: 'Reinforced Truss for Solar', type: 'image' })}
-                  className="relative w-full overflow-hidden rounded-xl border border-white/10 transition-colors hover:border-[#6B9BF7]"
+                  className="relative w-full overflow-hidden rounded-lg border border-white/10 transition-colors hover:border-[#D4A853]"
                   style={{ height: '200px' }}
                 >
                   <Image src="/images/upgrades/metal-roof-truss-reinforced-solar.png" alt="Reinforced truss for solar" fill className="object-contain" />
@@ -543,7 +543,7 @@ export default function DesignJourneyContent({
               <figure>
                 <button
                   onClick={() => setZoomedMedia({ src: '/videos/metal-roof-truss.mp4', caption: 'Truss Assembly', type: 'video' })}
-                  className="w-full overflow-hidden rounded-xl border border-white/10 transition-colors hover:border-[#6B9BF7]"
+                  className="w-full overflow-hidden rounded-lg border border-white/10 transition-colors hover:border-[#D4A853]"
                   style={{ height: '200px' }}
                 >
                   <video autoPlay muted loop playsInline className="h-full w-full object-contain">
@@ -577,7 +577,7 @@ export default function DesignJourneyContent({
                 size="lg"
               />
               {selectedWall && (
-                <p className="mt-3 text-xs text-[#6B9BF7]">
+                <p className="mt-3 text-xs text-[#D4A853]">
                   ✓ Selected: {INTERIOR_WALLS.find((s) => s.id === selectedWall)?.label}
                 </p>
               )}
@@ -596,7 +596,7 @@ export default function DesignJourneyContent({
                 size="lg"
               />
               {selectedFloor && (
-                <p className="mt-3 text-xs text-[#6B9BF7]">
+                <p className="mt-3 text-xs text-[#D4A853]">
                   ✓ Selected: {FLOOR_COLORS.find((s) => s.id === selectedFloor)?.label}
                 </p>
               )}
@@ -617,11 +617,11 @@ export default function DesignJourneyContent({
                 return (
                   <div
                     key={u.key}
-                    className="overflow-hidden rounded-xl transition-all duration-200"
+                    className="overflow-hidden rounded-lg transition-all duration-200"
                     style={{
-                      background: '#1A2540',
-                      border: `1px solid ${isAdded ? 'rgba(107,155,247,0.5)' : 'rgba(107,155,247,0.12)'}`,
-                      boxShadow: isAdded ? '0 0 0 1px rgba(107,155,247,0.2)' : undefined,
+                      background: '#252527',
+                      border: `1px solid ${isAdded ? 'rgba(212,168,83,0.5)' : 'rgba(212,168,83,0.12)'}`,
+                      boxShadow: isAdded ? '0 0 0 1px rgba(212,168,83,0.2)' : undefined,
                     }}
                   >
                     <button
@@ -633,7 +633,7 @@ export default function DesignJourneyContent({
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold leading-tight text-white">{u.name}</p>
-                        <p className="mt-0.5 font-mono text-xs text-[#6B9BF7]">{fmt(u.price)}</p>
+                        <p className="mt-0.5 font-mono text-xs text-[#D4A853]">{fmt(u.price)}</p>
                         {isAdded && <p className="mt-1 text-xs text-green-400">✓ Added to order</p>}
                       </div>
                       <div className="flex-shrink-0 text-gray-500">
@@ -644,7 +644,7 @@ export default function DesignJourneyContent({
                     {isExpanded && (
                       <div
                         className="px-4 pb-4"
-                        style={{ borderTop: '1px solid rgba(107,155,247,0.1)' }}
+                        style={{ borderTop: '1px solid rgba(212,168,83,0.1)' }}
                       >
                         <p className="mt-3 text-sm leading-relaxed text-gray-300">{u.spec}</p>
                         <button
@@ -656,7 +656,7 @@ export default function DesignJourneyContent({
                             }
                           }}
                           className={`${addBtn} mt-4`}
-                          style={{ background: isAdded ? '#DC2626' : '#6B9BF7' }}
+                          style={{ background: isAdded ? '#DC2626' : '#D4A853' }}
                         >
                           {isAdded ? 'Remove from Order' : `Add to Order — ${fmt(u.price)}`}
                         </button>
@@ -678,7 +678,7 @@ export default function DesignJourneyContent({
             </p>
             {Object.keys(order).length > 0 && (
               <div
-                className="mt-8 w-full max-w-sm rounded-2xl p-6 text-left"
+                className="mt-8 w-full max-w-sm rounded-lg p-6 text-left"
                 style={{ background: '#FFFFFF', border: '1px solid #E5E7EB' }}
               >
                 <p className="mb-3 font-heading text-sm font-bold text-gray-900">Your Build Summary</p>
@@ -714,8 +714,8 @@ export default function DesignJourneyContent({
           onClick={() => setZoomedMedia(null)}
         >
           <div
-            className="relative rounded-2xl p-8 shadow-2xl"
-            style={{ background: '#1A2540', border: '1px solid rgba(107,155,247,0.3)', maxWidth: 900, width: '90vw' }}
+            className="relative rounded-lg p-8 shadow-2xl"
+            style={{ background: '#252527', border: '1px solid rgba(212,168,83,0.3)', maxWidth: 900, width: '90vw' }}
             onClick={(e) => e.stopPropagation()}
           >
             <button onClick={() => setZoomedMedia(null)} className="absolute right-4 top-4 z-10 text-gray-400 hover:text-white">

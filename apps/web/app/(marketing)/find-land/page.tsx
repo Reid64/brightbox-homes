@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     "Don't own land yet? Bright Box Homes helps you find build-ready parcels and connects you with a licensed land partner - so your expandable home has somewhere to land.",
 };
 
-const labelDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6B9BF7]';
-const labelLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#3461C7]';
+const labelDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#D4A853]';
+const labelLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-black/60';
 
 const steps = [
   {
@@ -35,7 +35,7 @@ export default function FindLandPage() {
       {/* Hero */}
       <section
         className="py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
       >
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>Find Land</p>
@@ -66,13 +66,13 @@ export default function FindLandPage() {
               return (
                 <div
                   key={step.title}
-                  className="rounded-xl border border-black/[0.04] bg-[#FFFFFF] p-8 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+                  className="rounded-lg border border-black/[0.04] bg-[#FFFFFF] p-8 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
                 >
                   <div
-                    className="flex h-12 w-12 items-center justify-center rounded-xl"
-                    style={{ background: 'rgba(52,97,199,0.08)' }}
+                    className="flex h-12 w-12 items-center justify-center rounded-lg"
+                    style={{ background: 'rgba(28,28,30,0.08)' }}
                   >
-                    <Icon size={24} aria-hidden="true" className="text-[#4A7CE5]" />
+                    <Icon size={24} aria-hidden="true" className="text-black/60" />
                   </div>
                   <h3 className="mt-4 font-heading text-lg font-bold text-[#111827]">
                     {step.title}
@@ -86,7 +86,7 @@ export default function FindLandPage() {
       </section>
 
       {/* Partner broker (dark section, warm #F5F0E8 card) */}
-      <section className="bg-[#1C2438] py-24 lg:py-32">
+      <section className="bg-[#252527] py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-6">
           <p className={labelDark}>Our Land Partner</p>
           <h2 className="font-heading text-4xl font-extrabold text-[#FFFFFF] md:text-5xl">
@@ -108,10 +108,10 @@ export default function FindLandPage() {
           >
             <div className="flex items-start gap-4">
               <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-                style={{ background: 'rgba(52,97,199,0.1)' }}
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg"
+                style={{ background: 'rgba(28,28,30,0.1)' }}
               >
-                <Handshake size={24} aria-hidden="true" className="text-[#3461C7]" />
+                <Handshake size={24} aria-hidden="true" className="text-black/60" />
               </div>
               <div>
                 <h3 className="font-heading text-xl font-bold text-[#111827]">
@@ -131,7 +131,7 @@ export default function FindLandPage() {
       </section>
 
       {/* CTA (navy) */}
-      <section className="bg-[#0F1729] py-24 text-center lg:py-32">
+      <section className="bg-[#1C1C1E] py-24 text-center lg:py-32">
         <div className="mx-auto max-w-2xl px-6">
           <h2 className="font-heading text-4xl font-extrabold text-[#FFFFFF] md:text-5xl">
             Ready to Start Your Search?
@@ -142,7 +142,7 @@ export default function FindLandPage() {
           <div className="mt-8 flex justify-center">
             <BookConsultation size="lg">Book a Consultation</BookConsultation>
           </div>
-          <p className="mt-6 text-sm text-[#6B7280]">
+          <p className="mt-6 text-sm text-[#9CA3AF]">
             800-259-1745 &middot; info@brightboxhomes.com
           </p>
         </div>

@@ -45,7 +45,7 @@ export default function ProductSideNav({
     <>
       {/* Desktop sticky sidebar (lg+) - a real panel, flush to the content's left edge */}
       <aside className="hidden lg:block lg:w-60 lg:shrink-0">
-        <div className="sticky top-20 rounded-2xl border border-white/10 bg-[#1C2438] p-5">
+        <div className="sticky top-20 rounded-lg border border-white/10 bg-[#252527] p-5">
           <p className="font-heading text-lg font-bold text-white">{productName}</p>
           <nav className="mt-5 flex flex-col gap-1" aria-label="Section navigation">
             {sections.map((s) => (
@@ -55,7 +55,7 @@ export default function ProductSideNav({
                 aria-current={active === s.id ? 'true' : undefined}
                 className={`rounded-md border-l-4 px-3 py-2 text-base font-semibold transition-colors duration-fast ease-out ${
                   active === s.id
-                    ? 'border-[#6B9BF7] bg-[#6B9BF7]/15 text-white'
+                    ? 'border-[#D4A853] bg-[#D4A853]/15 text-white'
                     : 'border-transparent text-gray-200 hover:bg-white/5 hover:text-white'
                 }`}
               >
@@ -99,7 +99,7 @@ export default function ProductSideNav({
       </aside>
 
       {/* Mobile sticky tab bar (below lg) */}
-      <div className="sticky top-16 z-30 -mx-6 mb-4 border-b border-white/10 bg-[#0F1729]/90 backdrop-blur lg:hidden">
+      <div className="sticky top-16 z-30 -mx-6 mb-4 border-b border-white/10 bg-[#1C1C1E]/90 backdrop-blur lg:hidden">
         <nav
           className="flex gap-1 overflow-x-auto px-6 py-2"
           aria-label="Section navigation"
@@ -110,7 +110,7 @@ export default function ProductSideNav({
               href={`#${s.id}`}
               aria-current={active === s.id ? 'true' : undefined}
               className={`whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors duration-fast ease-out ${
-                active === s.id ? 'bg-[#6B9BF7]/20 font-semibold text-white' : 'text-gray-200'
+                active === s.id ? 'bg-[#D4A853]/20 font-semibold text-white' : 'text-gray-200'
               }`}
             >
               {s.label}

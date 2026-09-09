@@ -12,10 +12,10 @@ export default function ReservePage() {
   return (
     <section
       className="py-24 lg:py-32"
-      style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+      style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
     >
       <div className="mx-auto max-w-2xl px-6 text-center">
-        <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">
+        <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">
           Reserve
         </p>
         <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl">
@@ -32,7 +32,7 @@ export default function ReservePage() {
           Prefer to finance?{' '}
           <Link
             href="/financing"
-            className="font-medium text-[#6B9BF7] underline-offset-4 hover:underline"
+            className="font-medium text-[#D4A853] underline-offset-4 hover:underline"
           >
             Apply for Financing
           </Link>

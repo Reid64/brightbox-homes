@@ -17,7 +17,7 @@ interface AccordionProps {
   sections: FaqSection[];
 }
 
-const label = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#3461C7]';
+const label = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-black/60';
 
 export default function Accordion({ sections }: AccordionProps) {
   // Multiple items can be open simultaneously.
@@ -50,7 +50,7 @@ export default function Accordion({ sections }: AccordionProps) {
                     aria-expanded={open}
                     aria-controls={panelId}
                     onClick={() => toggle(id)}
-                    className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors duration-200 ease-out hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors duration-200 ease-out hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A853]"
                   >
                     <span className="font-body font-medium text-[#111827]">
                       {item.question}
@@ -58,7 +58,7 @@ export default function Accordion({ sections }: AccordionProps) {
                     <ChevronDown
                       size={20}
                       aria-hidden="true"
-                      className={`shrink-0 text-[#6B9BF7] transition-transform duration-normal ease-out ${
+                      className={`shrink-0 text-[#D4A853] transition-transform duration-normal ease-out ${
                         open ? 'rotate-180' : ''
                       }`}
                     />

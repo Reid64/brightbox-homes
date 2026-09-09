@@ -20,7 +20,7 @@ export default function DesignJourney() {
   const [order, setOrder] = useState<Record<string, OrderItem>>({});
 
   return (
-    <div style={{ background: '#0D1526', minHeight: '100vh' }}>
+    <div style={{ background: '#1C1C1E', minHeight: '100vh' }}>
       <DesignJourneyStepBar steps={STEPS} active={active} onSelect={setActive} />
 
       <div className="mx-auto max-w-[1280px] px-6 py-8">

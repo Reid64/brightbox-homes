@@ -14,15 +14,19 @@
   --bb-blue-light: #e8f2fb;
   --bb-blue-dark: #2e6fa3;
 
-  /* Redesign accent (amber gold) - primary accent on dark surfaces. */
+  /* Redesign accent (amber gold) - primary accent on dark surfaces.
+     Barred on cream: 1.9:1. On charcoal it measures 7.7:1. */
   --bb-gold: #d4a853;
+  --bb-gold-press: #c1953c;
+  --bb-link: #3461c7;
 
   /* Neutral palette (2.2) */
   --bb-white: #ffffff;
   --bb-warm-white: #fafaf7;
   --bb-charcoal: #1c1c1e;
+  --bb-surface: #252527;
   --bb-cream: #f5f0e8;
-  --bb-surface-dark: #2c3546;
+  --bb-cream-line: #e4dccd;
   --bb-gray-100: #f3f4f6;
   --bb-gray-200: #e5e7eb;
   --bb-gray-400: #9ca3af;
@@ -91,6 +95,9 @@
 /* Dark premium base: charcoal page background, light default text, smooth scroll. */
 html {
   scroll-behavior: smooth;
+  /* WCAG 2.2 AA "Focus Not Obscured": the sticky header is 64px tall, so
+     anchor jumps and keyboard focus must clear it. */
+  scroll-padding-top: 80px;
 }
 
 body {

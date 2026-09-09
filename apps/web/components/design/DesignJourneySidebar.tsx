@@ -8,7 +8,7 @@ interface SidebarProps {
 
 export default function DesignJourneyStepBar({ steps, active, onSelect }: SidebarProps) {
   return (
-    <nav className="sticky top-16 z-30 border-b border-white/10 bg-[#0D1526]/95 backdrop-blur-sm">
+    <nav className="sticky top-16 z-30 border-b border-white/10 bg-[#1C1C1E]/95 backdrop-blur-sm">
       <div className="mx-auto max-w-[1280px] px-6">
         <ol className="flex items-center gap-1 overflow-x-auto py-3">
           {steps.map((label, i) => {
@@ -21,15 +21,15 @@ export default function DesignJourneyStepBar({ steps, active, onSelect }: Sideba
                   onClick={() => onSelect(i)}
                   className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm transition-all duration-200"
                   style={{
-                    background: isActive ? '#6B9BF7' : isComplete ? 'rgba(107,155,247,0.15)' : 'rgba(255,255,255,0.05)',
-                    color: isActive ? '#ffffff' : isComplete ? '#6B9BF7' : '#9CA3AF',
+                    background: isActive ? '#D4A853' : isComplete ? 'rgba(212,168,83,0.15)' : 'rgba(255,255,255,0.05)',
+                    color: isActive ? '#ffffff' : isComplete ? '#D4A853' : '#9CA3AF',
                     fontWeight: isActive ? 600 : 400,
                   }}
                 >
                   <span
                     className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold"
                     style={{
-                      background: isActive ? 'rgba(255,255,255,0.25)' : isComplete ? '#6B9BF7' : '#EF4444',
+                      background: isActive ? 'rgba(255,255,255,0.25)' : isComplete ? '#D4A853' : '#EF4444',
                       color: '#ffffff',
                     }}
                   >

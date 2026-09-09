@@ -88,14 +88,14 @@ interface ProductPageTemplateProps {
 }
 
 // Redesign palette (literal hex, no tokens). Alternating dark navy and warm
-// cream bands stacked on a #0F1729 page background.
-const labelDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6B9BF7]';
-const labelLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#3461C7]';
+// cream bands stacked on a #1C1C1E page background.
+const labelDark = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#D4A853]';
+const labelLight = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-black/60';
 const headingOnDark = 'font-heading text-3xl font-bold text-[#FFFFFF] md:text-4xl';
 const headingOnLight = 'font-heading text-3xl font-bold text-[#111827] md:text-4xl';
-const bandBase = 'scroll-mt-24 rounded-2xl border p-6 lg:p-10';
-const bandDark = `${bandBase} border-white/10 bg-[#1C2438]`;
-const bandDeep = `${bandBase} border-white/10 bg-[#141B2D]`;
+const bandBase = 'scroll-mt-24 rounded-lg border p-6 lg:p-10';
+const bandDark = `${bandBase} border-white/10 bg-[#252527]`;
+const bandDeep = `${bandBase} border-white/10 bg-[#1C1C1E]`;
 const bandCream = `${bandBase} border-black/[0.04] bg-[#F5F0E8] shadow-[0_4px_16px_rgba(0,0,0,0.05)]`;
 
 function slug(s: string): string {
@@ -165,7 +165,7 @@ export default function ProductPageTemplate({
   navSections.push({ id: 'specs', label: 'Specs' });
 
   return (
-    <div className="bg-[#0F1729]">
+    <div className="bg-[#1C1C1E]">
       <div className="flex flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:gap-8">
         <ProductSideNav productName={name} sections={navSections} />
 
@@ -174,7 +174,7 @@ export default function ProductPageTemplate({
           <section
             id="overview"
             className={`${bandBase} border-white/10`}
-            style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+            style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
           >
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
               {hero.length > 0 && (
@@ -183,7 +183,7 @@ export default function ProductPageTemplate({
                     {hero.map((image, i) => (
                       <div
                         key={image.src}
-                        className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
+                        className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-white/10 bg-white/5 p-1"
                       >
                         <div className="relative h-full w-full overflow-hidden rounded-lg">
                           <Image
@@ -212,14 +212,14 @@ export default function ProductPageTemplate({
                     {priceLabel}: {price}
                   </p>
                 ) : (
-                  <p className="mt-4 font-mono text-2xl font-bold text-[#6B9BF7]">
+                  <p className="mt-4 font-mono text-2xl font-bold text-[#D4A853]">
                     {priceLabel} {price}
                   </p>
                 )}
                 {!isQuote && !hideFinancing && (
                   <Link
                     href="/financing"
-                    className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-[#6B9BF7] underline-offset-4 hover:underline"
+                    className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-[#D4A853] underline-offset-4 hover:underline"
                   >
                     Flexible Financing Available
                     <ArrowRight size={14} aria-hidden="true" />
@@ -231,7 +231,7 @@ export default function ProductPageTemplate({
                   <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <Check size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-[#6B9BF7]" />
+                        <Check size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-[#D4A853]" />
                         <span className="text-sm text-[#D1D5DB]">{feature}</span>
                       </li>
                     ))}
@@ -299,9 +299,9 @@ export default function ProductPageTemplate({
                     return (
                       <div
                         key={f.title}
-                        className="rounded-xl border border-black/[0.04] bg-[#FFFFFF] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+                        className="rounded-lg border border-black/[0.04] bg-[#FFFFFF] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
                       >
-                        <Icon size={28} aria-hidden="true" className="text-[#4A7CE5]" />
+                        <Icon size={28} aria-hidden="true" className="text-black/60" />
                         <h3 className="mt-4 font-heading text-lg font-semibold text-[#111827]">
                           {f.title}
                         </h3>
@@ -326,9 +326,9 @@ export default function ProductPageTemplate({
                     return (
                       <div
                         key={u.title}
-                        className="rounded-xl border border-white/10 bg-[#232B45] p-6"
+                        className="rounded-lg border border-white/10 bg-[#252527] p-6"
                       >
-                        <Icon size={28} aria-hidden="true" className="text-[#6B9BF7]" />
+                        <Icon size={28} aria-hidden="true" className="text-[#D4A853]" />
                         <h3 className="mt-4 font-heading text-base font-semibold text-[#FFFFFF]">
                           {u.title}
                         </h3>
@@ -350,7 +350,7 @@ export default function ProductPageTemplate({
                 {floorPlanGroups.map((grp) => (
                   <div key={grp.name || 'plans'}>
                     {grp.name && (
-                      <h3 className="mb-4 font-heading text-xl font-semibold text-[#6B9BF7]">
+                      <h3 className="mb-4 font-heading text-xl font-semibold text-[#D4A853]">
                         {grp.name}
                       </h3>
                     )}
@@ -358,7 +358,7 @@ export default function ProductPageTemplate({
                       {grp.items.map((fp) => (
                         <div
                           key={fp.name}
-                          className="rounded-xl border border-white/15 bg-[#232B45] p-4"
+                          className="rounded-lg border border-white/15 bg-[#252527] p-4"
                         >
                           {fp.src ? (
                             <ClickableImage
@@ -372,7 +372,7 @@ export default function ProductPageTemplate({
                               imgClassName="h-auto w-full"
                             />
                           ) : (
-                            <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-[#0F1729] text-sm text-[#9CA3AF]">
+                            <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-[#1C1C1E] text-sm text-[#9CA3AF]">
                               PDF floor plan
                             </div>
                           )}
@@ -385,7 +385,7 @@ export default function ProductPageTemplate({
                                 href={fp.pdfSrc}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="shrink-0 text-sm text-[#6B9BF7] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
+                                className="shrink-0 text-sm text-[#D4A853] transition-colors duration-200 ease-out hover:text-[#FFFFFF]"
                               >
                                 Download PDF
                               </a>
@@ -408,17 +408,17 @@ export default function ProductPageTemplate({
               <div className="mt-8 space-y-12">
                 {upgrades!.map((cat) => (
                   <div key={cat.category}>
-                    <h3 className="font-heading text-xl font-semibold text-[#3461C7]">
+                    <h3 className="font-heading text-xl font-semibold text-[#1C1C1E]">
                       {cat.category}
                     </h3>
                     <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                       {cat.items.map((item) => (
                         <div
                           key={item.name}
-                          className="overflow-hidden rounded-xl border border-black/[0.04] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+                          className="overflow-hidden rounded-lg border border-black/[0.04] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
                         >
                           {item.image && (
-                            <div className="relative aspect-video w-full bg-[#EFE8DC]">
+                            <div className="relative aspect-video w-full bg-[#F5F0E8]">
                               <Image
                                 src={item.image}
                                 alt={item.name}
@@ -460,7 +460,7 @@ export default function ProductPageTemplate({
 
             {frames && frames.length > 0 && (
               <div className="mt-10">
-                <h3 className="font-heading text-xl font-semibold text-[#6B9BF7]">
+                <h3 className="font-heading text-xl font-semibold text-[#D4A853]">
                   Construction &amp; Frame
                 </h3>
                 <div
@@ -478,7 +478,7 @@ export default function ProductPageTemplate({
                           caption={fr.caption}
                           fill
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                          className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-white/5"
+                          className="aspect-[4/3] w-full overflow-hidden rounded-lg border border-white/10 bg-white/5"
                           imgClassName="object-cover"
                         />
                         <figcaption className="mt-2 text-sm text-[#D1D5DB]">{fr.caption}</figcaption>
@@ -493,7 +493,7 @@ export default function ProductPageTemplate({
                           height={fr.height}
                           caption={fr.caption}
                           sizes="(min-width: 640px) 28rem, 100vw"
-                          className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
+                          className="overflow-hidden rounded-lg border border-white/10 bg-white/5 p-1"
                           imgClassName="h-auto w-full rounded-lg"
                         />
                         <figcaption className="mt-2 text-sm text-[#D1D5DB]">{fr.caption}</figcaption>
@@ -509,13 +509,13 @@ export default function ProductPageTemplate({
 
           {/* Reserve CTA band (navy glass) */}
           <section
-            className="rounded-2xl p-8 text-center lg:p-12"
+            className="rounded-lg p-8 text-center lg:p-12"
             style={{
               background: 'rgba(255,255,255,0.04)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
               border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 0 30px rgba(107,155,247,0.15)',
+              boxShadow: '0 0 30px rgba(212,168,83,0.15)',
             }}
           >
             <h2 className={headingOnDark}>Ready to Reserve?</h2>

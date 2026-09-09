@@ -30,7 +30,7 @@ export default function ScrollProgress() {
 
   return (
     <div
-      className="fixed left-0 top-0 z-[60] h-[3px] bg-[#6B9BF7]"
+      className="fixed left-0 top-0 z-[60] h-[3px] bg-[#D4A853]"
       style={{ width: `${progress}%` }}
       role="progressbar"
       aria-label="Page scroll progress"

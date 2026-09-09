@@ -35,16 +35,16 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <article className="bg-[#0F1729] py-16 lg:py-24">
+      <article className="bg-[#1C1C1E] py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1 text-sm font-medium text-[#6B9BF7] transition-colors duration-fast ease-out hover:text-[#FFFFFF]"
+            className="inline-flex items-center gap-1 text-sm font-medium text-[#D4A853] transition-colors duration-fast ease-out hover:text-[#FFFFFF]"
           >
             <ArrowLeft size={16} aria-hidden="true" /> All posts
           </Link>
 
-          <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">
+          <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">
             {post.category}
           </p>
           <h1 className="mt-3 font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl">
@@ -55,7 +55,7 @@ export default async function BlogPostPage({
           </p>
           <p className="mt-1 text-sm text-[#9CA3AF]">{post.date} &middot; Updated June 2026</p>
 
-          <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-2xl border border-white/[0.06]">
+          <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-lg border border-white/[0.06]">
             <Image
               src={post.image}
               alt={post.title}

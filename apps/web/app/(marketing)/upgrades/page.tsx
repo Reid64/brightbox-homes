@@ -11,7 +11,7 @@ export default function UpgradesPage() {
   return (
     <section
       className="py-16 lg:py-24"
-      style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+      style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
     >
       <div className="mx-auto max-w-[1280px] px-6">
         <UpgradesGrid heading="Upgrade Options" />

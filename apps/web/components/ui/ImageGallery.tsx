@@ -58,7 +58,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
               type="button"
               onClick={() => setOpenIndex(i)}
               aria-label={`View image ${i + 1}: ${image.alt}`}
-              className="group block w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1 transition-all duration-normal ease-out hover:border-white/20"
+              className="group block w-full overflow-hidden rounded-lg border border-white/10 bg-white/5 p-1 transition-all duration-normal ease-out hover:border-white/20"
             >
               <div className="relative aspect-square overflow-hidden rounded-lg">
                 <Image
@@ -109,7 +109,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
               close();
             }}
             aria-label="Close"
-            className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
+            className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A853]"
           >
             <X size={24} aria-hidden="true" />
           </button>
@@ -122,7 +122,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
               prev();
             }}
             aria-label="Previous image"
-            className="absolute left-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7] sm:left-4"
+            className="absolute left-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A853] sm:left-4"
           >
             <ChevronLeft size={28} aria-hidden="true" />
           </button>
@@ -152,7 +152,7 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
               next();
             }}
             aria-label="Next image"
-            className="absolute right-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7] sm:right-4"
+            className="absolute right-2 top-1/2 z-[55] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-fast ease-out hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A853] sm:right-4"
           >
             <ChevronRight size={28} aria-hidden="true" />
           </button>

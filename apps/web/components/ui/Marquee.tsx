@@ -17,7 +17,7 @@ export default function Marquee({ items, speed = 30 }: MarqueeProps) {
         <span className="px-6 text-xs uppercase tracking-widest text-gray-300">
           {item}
         </span>
-        <span aria-hidden="true" className="text-[#6B9BF7]/60">
+        <span aria-hidden="true" className="text-[#D4A853]/60">
           &middot;
         </span>
       </Fragment>

@@ -262,11 +262,11 @@ export default function UpgradesGrid({
 
   return (
     <section id="upgrades" className="scroll-mt-24">
-      <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">Upgrades</p>
+      <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">Upgrades</p>
       <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">{heading}</h2>
       <p className="mt-4 max-w-2xl text-gray-300">{subheading}</p>
 
-      <div className="mt-8 rounded-2xl border border-white/5 bg-[#1A2030] p-4 sm:p-6">
+      <div className="mt-8 rounded-lg border border-white/5 bg-[#252527] p-4 sm:p-6">
         {/* Compact category button grid */}
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
           {CATEGORIES.map((cat) => {
@@ -278,8 +278,8 @@ export default function UpgradesGrid({
                 type="button"
                 aria-expanded={isActive}
                 onClick={() => setActiveCat(isActive ? null : cat.name)}
-                className={`flex scroll-mt-24 flex-col items-center justify-center rounded-xl bg-[#D4C4A8] px-4 py-5 text-center transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#C8B898] ${
-                  isActive ? 'ring-2 ring-[#6B9BF7] ring-offset-2 ring-offset-[#1A2030]' : ''
+                className={`flex scroll-mt-24 flex-col items-center justify-center rounded-lg bg-[#F5F0E8] px-4 py-5 text-center transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#E4DCCD] ${
+                  isActive ? 'ring-2 ring-[#D4A853] ring-offset-2 ring-offset-[#252527]' : ''
                 }`}
               >
                 <span className="font-heading text-base font-bold leading-tight text-gray-900 sm:text-lg">
@@ -354,7 +354,7 @@ export default function UpgradesGrid({
                                 </div>
                               </button>
                               <p className="mt-3 text-sm text-gray-300">{item.specs}</p>
-                              <p className="mt-2 text-sm font-semibold text-[#6B9BF7]">Price: TBD</p>
+                              <p className="mt-2 text-sm font-semibold text-[#D4A853]">Price: TBD</p>
                             </div>
                           </div>
                         </div>
@@ -388,7 +388,7 @@ export default function UpgradesGrid({
             <X size={24} aria-hidden="true" />
           </button>
           <div
-            className="my-auto w-full max-w-3xl overflow-hidden rounded-2xl bg-[#1C2438]"
+            className="my-auto w-full max-w-3xl overflow-hidden rounded-lg bg-[#252527]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative h-[45vh] w-full bg-white">
@@ -404,7 +404,7 @@ export default function UpgradesGrid({
             <div className="p-6 lg:p-8">
               <h3 className="font-heading text-2xl font-bold text-white">{active.name}</h3>
               <p className="mt-4 text-gray-300">{active.specs}</p>
-              <p className="mt-6 text-lg font-semibold text-[#6B9BF7]">Price: TBD</p>
+              <p className="mt-6 text-lg font-semibold text-[#D4A853]">Price: TBD</p>
             </div>
           </div>
         </div>

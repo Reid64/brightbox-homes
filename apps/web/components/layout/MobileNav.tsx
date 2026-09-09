@@ -80,7 +80,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Site navigation"
-        className={`absolute inset-0 flex h-full w-full flex-col bg-[#0F1729] transition-transform duration-300 ease-out ${
+        className={`absolute inset-0 flex h-full w-full flex-col bg-[#1C1C1E] transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -97,7 +97,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-[#FFFFFF] transition-colors duration-200 ease-out hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B9BF7]"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-sm text-[#FFFFFF] transition-colors duration-200 ease-out hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A853]"
           >
             <X size={24} aria-hidden="true" />
           </button>

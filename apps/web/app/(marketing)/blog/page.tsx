@@ -16,10 +16,10 @@ export default function BlogPage() {
       {/* Hero */}
       <section
         className="py-24 lg:py-32"
-        style={{ background: 'linear-gradient(180deg, #0F1729, #141B2D)' }}
+        style={{ background: 'linear-gradient(180deg, #1C1C1E, #1C1C1E)' }}
       >
         <div className="mx-auto max-w-[1280px] px-6">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">
             The Bright Box Blog
           </p>
           <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl">
@@ -40,7 +40,7 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col overflow-hidden rounded-xl bg-[#FFFFFF] shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-shadow duration-normal ease-out hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)]"
+                className="group flex flex-col overflow-hidden rounded-lg bg-[#FFFFFF] shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-shadow duration-normal ease-out hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)]"
               >
                 <div className="relative aspect-video w-full overflow-hidden">
                   <Image
@@ -52,7 +52,7 @@ export default function BlogPage() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-[#3461C7]">
+                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-black/60">
                     {post.category}
                   </p>
                   <h2 className="mt-2 font-heading text-xl font-semibold text-[#111827]">
@@ -62,7 +62,7 @@ export default function BlogPage() {
                     {post.date} &middot; {post.readingTime}
                   </p>
                   <p className="mt-3 flex-1 text-sm text-[#4B5563]">{post.excerpt}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#4A7CE5] group-hover:underline">
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#3461C7] group-hover:underline">
                     Read more <ArrowRight size={16} aria-hidden="true" />
                   </span>
                 </div>

@@ -7,7 +7,7 @@ interface GalleryImage {
   alt: string;
 }
 
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]';
+const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]';
 
 const highlights = [
   { icon: DollarSign, text: 'Live in one, rent one - offset your mortgage immediately' },
@@ -26,7 +26,7 @@ export default function DuplexSection({
   heroImage?: GalleryImage;
 }) {
   return (
-    <section id="investment" className="scroll-mt-24 rounded-2xl border border-white/10 bg-[#1C2438] p-6 lg:p-10">
+    <section id="investment" className="scroll-mt-24 rounded-lg border border-white/10 bg-[#252527] p-6 lg:p-10">
       <div>
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start">
           {/* Left: heading + copy */}
@@ -35,7 +35,7 @@ export default function DuplexSection({
             <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
               Double Your Investment
             </h2>
-            <p className="mt-3 text-lg text-[#6B9BF7]">
+            <p className="mt-3 text-lg text-[#D4A853]">
               Stack two units. Live in one. Rent the other.
             </p>
 
@@ -64,8 +64,8 @@ export default function DuplexSection({
           {/* Right: hero image */}
           {heroImage && (
             <div className="lg:w-1/2">
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-1">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
+              <div className="overflow-hidden rounded-lg border border-white/10 bg-white/5 p-1">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
                   <Image
                     src={heroImage.src}
                     alt={heroImage.alt}
@@ -79,16 +79,16 @@ export default function DuplexSection({
           )}
         </div>
 
-        <div className="mt-10 rounded-2xl border border-white/5 bg-[#1A2030] p-6">
+        <div className="mt-10 rounded-lg border border-white/5 bg-[#252527] p-6">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {highlights.map((h) => {
               const Icon = h.icon;
               return (
                 <div
                   key={h.text}
-                  className="flex items-start gap-3 rounded-xl bg-[#D4C4A8] p-5 transition-colors duration-fast ease-out hover:bg-[#C8B898]"
+                  className="flex items-start gap-3 rounded-lg bg-[#F5F0E8] p-5 transition-colors duration-fast ease-out hover:bg-[#E4DCCD]"
                 >
-                  <Icon size={24} aria-hidden="true" className="mt-0.5 shrink-0 text-[#6B9BF7]" />
+                  <Icon size={24} aria-hidden="true" className="mt-0.5 shrink-0 text-[#D4A853]" />
                   <span className="text-sm text-gray-700">{h.text}</span>
                 </div>
               );

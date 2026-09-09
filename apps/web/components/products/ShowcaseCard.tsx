@@ -35,12 +35,12 @@ export default function ShowcaseCard({ index, image, alt, children, beige = fals
   }, [open, close]);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#232B45] shadow-[0_8px_24px_rgba(0,0,0,0.35)] lg:flex">
+    <div className="overflow-hidden rounded-lg border border-white/10 bg-[#252527] shadow-[0_8px_24px_rgba(0,0,0,0.35)] lg:flex">
       <button
         type="button"
         onClick={() => setOpen(true)}
         aria-label={`Enlarge image: ${alt}`}
-        className={`relative block aspect-video w-full cursor-zoom-in bg-[#0F1729] lg:aspect-auto lg:w-2/5 ${
+        className={`relative block aspect-video w-full cursor-zoom-in bg-[#1C1C1E] lg:aspect-auto lg:w-2/5 ${
           imageLeft ? 'lg:order-first' : 'lg:order-last'
         }`}
       >
@@ -52,7 +52,7 @@ export default function ShowcaseCard({ index, image, alt, children, beige = fals
           className="object-contain"
         />
       </button>
-      <div className={`p-8 lg:w-3/5 ${beige ? 'bg-[#D4C4A8]' : ''}`}>{children}</div>
+      <div className={`p-8 lg:w-3/5 ${beige ? 'bg-[#F5F0E8]' : ''}`}>{children}</div>
 
       {open && (
         <div

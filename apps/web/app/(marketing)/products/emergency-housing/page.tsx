@@ -66,8 +66,8 @@ const frames = [
 ];
 
 const documentationSection = (
-  <section className="scroll-mt-24 rounded-2xl border border-white/10 bg-[#1C2438] p-6 lg:p-10">
-    <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#6B9BF7]">Documentation</p>
+  <section className="scroll-mt-24 rounded-lg border border-white/10 bg-[#252527] p-6 lg:p-10">
+    <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#D4A853]">Documentation</p>
     <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">How It Works</h2>
     <p className="mt-4 max-w-2xl text-gray-300">
       Specifications, components, and the three-step setup process at a glance.
@@ -76,7 +76,7 @@ const documentationSection = (
       {documentation.map((doc) => (
         <figure
           key={doc.src}
-          className="mx-auto w-full max-w-md overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1"
+          className="mx-auto w-full max-w-md overflow-hidden rounded-lg border border-white/10 bg-white/5 p-1"
         >
           <ClickableImage
             src={doc.src}

@@ -23,15 +23,24 @@ const config: Config = {
           navy: '#1B2D4F',
           // Amber gold accent (redesign). Used on charcoal surfaces; on cream
           // surfaces emphasis is charcoal, since gold lacks contrast on light.
-          gold: '#D4A853',
+          gold: {
+            DEFAULT: '#D4A853',
+            press: '#C1953C',
+          },
+          // The one blue kept: hyperlinks, so a link still reads as a link.
+          link: '#3461C7',
           // Neutral palette (DESIGN_LANGUAGE 2.2).
           white: '#FFFFFF',
           'warm-white': '#FAFAF7',
           // Warm cream section surface (redesign), alternates with charcoal.
-          cream: '#F5F0E8',
+          cream: {
+            DEFAULT: '#F5F0E8',
+            line: '#E4DCCD',
+          },
           // Dark premium surfaces (DESIGN_LANGUAGE 2.2).
           charcoal: '#1C1C1E',
-          'surface-dark': '#2C3546',
+          // Charcoal lifted by 4% white - cards and panels on a charcoal band.
+          surface: '#252527',
           gray: {
             100: '#F3F4F6',
             200: '#E5E7EB',
@@ -57,7 +66,7 @@ const config: Config = {
         // var(--font-*) are set by next/font in app/layout.tsx.
         heading: ['var(--font-heading)', 'system-ui', '-apple-system', 'sans-serif'],
         body: ['var(--font-body)', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       // Type scale (DESIGN_LANGUAGE 3.2). Merges with Tailwind defaults, adding
       // text-hero / text-h1..h4 / text-body with their locked line-heights.

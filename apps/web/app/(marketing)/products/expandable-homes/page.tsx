@@ -1,16 +1,13 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { BookConsultation } from '@/components/ui/BookConsultation';
+import Section, { eyebrow } from '@/components/layout/Section';
+import { MediaCard } from '@/components/ui/Card';
 
 export const metadata: Metadata = {
   title: 'Expandable Container Homes | Bright Box Homes',
   description:
     'Steel-frame expandable container homes from $35,995. Five sizes from a 200 sq ft studio to an 800 sq ft family home, Delivered anywhere in the US.',
 };
-
-const label = 'mb-4 text-xs font-medium uppercase tracking-[0.2em] text-bb-gold';
 
 const sizes = [
   {
@@ -47,69 +44,49 @@ export default function ExpandableHomesOverviewPage() {
   return (
     <>
       {/* Hero / intro */}
-      <section className="bg-bb-charcoal py-12 lg:py-16">
-        <div className="mx-auto max-w-[1280px] px-6">
-          <p className={label}>Expandable Container Homes</p>
-          <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-            Four Sizes, Endless Possibilities
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-gray-300">
-            Our flagship line ships compact and unfolds on site into finished
-            living space. Choose your model - from a 200 sq ft studio to an 800 sq
-            ft family home. Looking to invest? Explore the two-story Duplex.
-          </p>
-        </div>
-      </section>
+      <Section tone="charcoal" size="standard">
+        <p className={eyebrow.charcoal}>Expandable Container Homes</p>
+        <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+          Four Sizes, Endless Possibilities
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg text-gray-300">
+          Our flagship line ships compact and unfolds on site into finished
+          living space. Choose your model - from a 200 sq ft studio to an 800 sq
+          ft family home. Looking to invest? Explore the two-story Duplex.
+        </p>
+      </Section>
 
       {/* Size cards */}
-      <section className="bg-bb-cream py-16 lg:py-24">
-        <div className="mx-auto max-w-[1280px] px-6">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {sizes.map((s) => (
-              <Link
-                key={s.href}
-                href={s.href}
-                className="group overflow-hidden rounded-xl border border-black/[0.08] bg-white shadow-[0_4px_20px_rgba(28,28,30,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-bb-gold hover:shadow-[0_12px_32px_rgba(28,28,30,0.12)]"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <Image
-                    src={s.image}
-                    alt={s.name}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="p-6">
-                  <h2 className="font-heading text-xl font-semibold text-[#1C1C1E]">{s.name}</h2>
-                  <p className="mt-1 font-mono text-sm text-[#1C1C1E]">{s.price}</p>
-                  <p className="mt-3 text-sm text-[#4B5563]">{s.blurb}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#3461C7]">
-                    View Model <ArrowRight size={16} aria-hidden="true" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+      <Section tone="cream" size="standard">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {sizes.map((s) => (
+            <MediaCard
+              key={s.href}
+              href={s.href}
+              title={s.name}
+              price={s.price}
+              blurb={s.blurb}
+              image={s.image}
+              alt={s.name}
+            />
+          ))}
         </div>
-      </section>
+      </Section>
 
       {/* CTA */}
-      <section className="bg-bb-charcoal py-16 lg:py-24">
-        <div className="mx-auto max-w-[1280px] px-6 text-center">
-          <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
-            Not sure which size fits?
-          </h2>
-          <p className="mt-4 text-lg text-gray-300">
-            Tell us about your site and your plans - we&apos;ll help you choose the
-            right model and configuration.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <BookConsultation size="lg" />
-          </div>
-          <p className="mt-6 text-sm text-gray-400">Call us at 800-259-1745</p>
+      <Section tone="charcoal" size="standard" className="text-center">
+        <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+          Not sure which size fits?
+        </h2>
+        <p className="mt-4 text-lg text-gray-300">
+          Tell us about your site and your plans - we&apos;ll help you choose the
+          right model and configuration.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <BookConsultation size="lg" />
         </div>
-      </section>
+        <p className="mt-6 text-sm text-gray-400">Call us at 800-259-1745</p>
+      </Section>
     </>
   );
 }

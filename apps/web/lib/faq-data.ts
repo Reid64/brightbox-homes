@@ -34,6 +34,10 @@ export interface FaqCategory {
   /** Tailwind border-colour class, used to emphasise a search match. Same
    *  literal-string rule as `color`. */
   borderColor: string;
+  /** The same colour as a raw hex. Tailwind cannot generate the per-category
+   *  glow shadows and SVG strokes the FAQ hero needs, so those read this via a
+   *  CSS custom property instead. Keep it in sync with `color`. */
+  hex: string;
 }
 
 export const faqCategories: FaqCategory[] = [
@@ -43,6 +47,7 @@ export const faqCategories: FaqCategory[] = [
     icon: Home,
     color: 'text-bb-gold',
     borderColor: 'border-bb-gold',
+    hex: '#D4A853',
   },
   {
     id: 'financing',
@@ -50,6 +55,7 @@ export const faqCategories: FaqCategory[] = [
     icon: Wallet,
     color: 'text-bb-success',
     borderColor: 'border-bb-success',
+    hex: '#16A34A',
   },
   {
     id: 'site-preparation',
@@ -57,6 +63,7 @@ export const faqCategories: FaqCategory[] = [
     icon: Ruler,
     color: 'text-bb-warning',
     borderColor: 'border-bb-warning',
+    hex: '#D97706',
   },
   {
     id: 'delivery-and-installation',
@@ -64,6 +71,7 @@ export const faqCategories: FaqCategory[] = [
     icon: Truck,
     color: 'text-bb-blue',
     borderColor: 'border-bb-blue',
+    hex: '#4A9BD9',
   },
   {
     id: 'home-care-and-warranty',
@@ -71,6 +79,7 @@ export const faqCategories: FaqCategory[] = [
     icon: ShieldCheck,
     color: 'text-bb-link',
     borderColor: 'border-bb-link',
+    hex: '#3461C7',
   },
 ];
 

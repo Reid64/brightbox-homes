@@ -136,6 +136,55 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(16px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        // FAQ hero "sign": the headline block lands like a hung shop sign -
+        // scales up out of a blur, overshoots once, settles.
+        signIn: {
+          '0%': { opacity: '0', transform: 'scale(0.86) translateY(24px)', filter: 'blur(10px)' },
+          '60%': { opacity: '1', transform: 'scale(1.03) translateY(-4px)', filter: 'blur(0)' },
+          '100%': { opacity: '1', transform: 'scale(1) translateY(0)', filter: 'blur(0)' },
+        },
+        // FAQ hero route: a single stroke drawn end to end. The path carries
+        // pathLength="1", so dasharray/offset are in path-fraction units and
+        // the same keyframe works for any path geometry.
+        routeTrace: {
+          '0%': { strokeDashoffset: '1' },
+          '100%': { strokeDashoffset: '0' },
+        },
+        // Colour/width pulse that runs on the route once it is drawn.
+        routePulse: {
+          '0%, 100%': { opacity: '0.35', filter: 'drop-shadow(0 0 2px rgba(212,168,83,0.4))' },
+          '50%': { opacity: '1', filter: 'drop-shadow(0 0 10px rgba(212,168,83,0.95))' },
+        },
+        // A short dash of the route travelling it end to end - reads as a
+        // spark running the line. Same pathLength="1" unit trick as routeTrace.
+        routeSpark: {
+          '0%': { strokeDashoffset: '1', opacity: '0' },
+          '12%, 88%': { opacity: '1' },
+          '100%': { strokeDashoffset: '0', opacity: '0' },
+        },
+        // FAQ hero stop markers: pop in behind their book.
+        nodePop: {
+          '0%': { opacity: '0', transform: 'scale(0)' },
+          '70%': { opacity: '1', transform: 'scale(1.35)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        // FAQ hero books: swing in off the shelf edge, overshoot, settle.
+        bookSwing: {
+          '0%': { opacity: '0', transform: 'translateY(56px) rotate(-12deg) scale(0.8)' },
+          '55%': { opacity: '1', transform: 'translateY(-10px) rotate(4deg) scale(1.04)' },
+          '78%': { transform: 'translateY(3px) rotate(-1.5deg) scale(0.99)' },
+          '100%': { opacity: '1', transform: 'translateY(0) rotate(0) scale(1)' },
+        },
+        // Slow ambient drift for the hero dust motes.
+        drift: {
+          '0%, 100%': { transform: 'translate3d(0,0,0)', opacity: '0.25' },
+          '50%': { transform: 'translate3d(12px,-26px,0)', opacity: '0.8' },
+        },
+        // Breathing halo behind the search field.
+        haloPulse: {
+          '0%, 100%': { opacity: '0.25', transform: 'scale(0.96)' },
+          '50%': { opacity: '0.55', transform: 'scale(1.04)' },
+        },
       },
       animation: {
         float: 'float 3s ease-in-out infinite',
@@ -145,6 +194,14 @@ const config: Config = {
         'slide-in-right': 'slideInRight 700ms cubic-bezier(0.16,1,0.3,1) both',
         'route-draw': 'routeDraw 1.6s linear infinite',
         'book-rise': 'bookRise 700ms cubic-bezier(0.16,1,0.3,1) both',
+        'sign-in': 'signIn 900ms cubic-bezier(0.34,1.56,0.64,1) both',
+        'route-trace': 'routeTrace 1400ms cubic-bezier(0.65,0,0.35,1) both',
+        'route-pulse': 'routePulse 2.6s ease-in-out infinite',
+        'route-spark': 'routeSpark 2.8s cubic-bezier(0.45,0,0.55,1) infinite',
+        'node-pop': 'nodePop 520ms cubic-bezier(0.34,1.56,0.64,1) both',
+        'book-swing': 'bookSwing 1100ms cubic-bezier(0.34,1.42,0.5,1) both',
+        drift: 'drift var(--drift-duration, 12s) ease-in-out infinite',
+        'halo-pulse': 'haloPulse 4s ease-in-out infinite',
       },
     },
   },

@@ -309,6 +309,23 @@ export const searchKeywordMap: Record<string, FaqCategoryId> = {
   quality: 'home-care-and-warranty',
 };
 
+/** Section title -> category id, for the FIRST authored section of each
+ *  category. These are the scroll targets the hero links to: the section
+ *  element carries id="<category id>", so a category with two sections anchors
+ *  at whichever comes first in render order. */
+export function categoryAnchorMap(): Record<string, FaqCategoryId> {
+  const claimed = new Set<FaqCategoryId>();
+  const map: Record<string, FaqCategoryId> = {};
+  for (const section of faqSections) {
+    const id = sectionCategory[section.title];
+    if (id && !claimed.has(id)) {
+      claimed.add(id);
+      map[section.title] = id;
+    }
+  }
+  return map;
+}
+
 /** Categories whose keywords match a free-text query, most specific first. */
 export function categoriesForQuery(query: string): FaqCategoryId[] {
   const q = query.trim().toLowerCase();

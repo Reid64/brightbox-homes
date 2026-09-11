@@ -18,17 +18,6 @@ interface FAQHeroGuideProps {
   counts: Record<FaqCategoryId, number>;
 }
 
-// Decorative spines. Offsets are deliberately negative so the shelf bleeds past
-// the panel and crops at its edges rather than sitting neatly inside it.
-const SPINES = [
-  { color: 'bg-bb-gold', position: 'bottom-[-2rem] left-[-1.5rem] h-64 w-20 rotate-[8deg]' },
-  { color: 'bg-bb-blue', position: 'bottom-[-3rem] left-[3.5rem] h-80 w-16 -rotate-3' },
-  { color: 'bg-bb-cream', position: 'bottom-[-2.5rem] left-[7.5rem] h-72 w-24 rotate-2' },
-  { color: 'bg-bb-success', position: 'bottom-[-3.5rem] right-[5rem] h-96 w-16 rotate-[5deg]' },
-  { color: 'bg-bb-warning', position: 'bottom-[-2rem] right-[-1rem] h-60 w-20 -rotate-6' },
-  { color: 'bg-bb-link', position: 'top-[-2rem] right-[-2.5rem] h-48 w-16 rotate-12' },
-];
-
 export default function FAQHeroGuide({ counts }: FAQHeroGuideProps) {
   const [query, setQuery] = useState('');
   const inputId = useId();
@@ -150,23 +139,53 @@ export default function FAQHeroGuide({ counts }: FAQHeroGuideProps) {
             </ol>
           </div>
 
-          {/* Right: 44% on desktop, hidden below lg (mobile is search + cards only). */}
-          <div className="hidden w-full lg:block lg:w-[44%]">
-            <div
-              aria-hidden="true"
-              className="relative h-[28rem] overflow-hidden rounded-lg bg-bb-surface"
-            >
-              {SPINES.map((spine, index) => (
-                <span
-                  key={spine.position}
-                  style={{ animationDelay: `${index * 90}ms` }}
-                  className={`animate-book-rise absolute rounded-sm shadow-lg ${spine.color} ${spine.position}`}
-                >
-                  <span className="absolute inset-y-2 right-1 w-1 rounded-full bg-bb-charcoal/20" />
-                </span>
-              ))}
-            </div>
-          </div>
+          {/* Right: 44% on desktop, hidden below lg (mobile is search + cards only).
+              A shelf of five links, one per category. Each is a real anchor to
+              the matching accordion section - smooth scrolling and the 80px
+              header offset both come from globals.css (scroll-behavior and
+              scroll-padding-top on html), which also means reduced-motion users
+              get an instant jump for free. */}
+          <nav aria-label="Jump to a FAQ category" className="hidden w-full lg:block lg:w-[44%]">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-bb-gray-400">
+              Jump to a section
+            </p>
+            <ul className="space-y-3">
+              {faqCategories.map((category, index) => {
+                const Icon = category.icon;
+                const emphasised = hasMatches && matches.has(category.id);
+                const count = counts[category.id];
+                return (
+                  <li key={category.id}>
+                    <a
+                      href={`#${category.id}`}
+                      style={{ animationDelay: `${index * 90}ms` }}
+                      className={`animate-book-rise flex items-center gap-4 rounded-md border bg-bb-surface px-5 py-4 shadow-md transition-all duration-normal ease-out hover:-translate-y-2 hover:border-bb-gold hover:shadow-lg focus-visible:-translate-y-2 focus-visible:border-bb-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-gold ${
+                        emphasised ? category.borderColor : 'border-white/10'
+                      }`}
+                    >
+                      {/* Book-spine edge: bg-current picks up the category
+                          colour from the text class, so there is no third
+                          per-category colour field to keep in sync. */}
+                      <span
+                        aria-hidden="true"
+                        className={`h-10 w-1.5 shrink-0 rounded-full bg-current ${category.color}`}
+                      />
+                      <Icon aria-hidden="true" size={20} className={`shrink-0 ${category.color}`} />
+                      <span className="flex-1 font-body font-medium text-bb-white">
+                        {category.label}
+                      </span>
+                      <span className="font-mono text-sm text-bb-gray-400">
+                        {count}
+                        <span className="sr-only">
+                          {count === 1 ? ' question' : ' questions'}
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </div>
       </div>
     </section>

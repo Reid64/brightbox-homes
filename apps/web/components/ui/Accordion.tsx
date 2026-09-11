@@ -15,11 +15,14 @@ interface FaqSection {
 
 interface AccordionProps {
   sections: FaqSection[];
+  /** Section title -> DOM id, so the hero can deep-link to a category.
+   *  Scroll offset is handled globally by html { scroll-padding-top: 80px }. */
+  anchors?: Record<string, string>;
 }
 
 const label = 'mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-black/60';
 
-export default function Accordion({ sections }: AccordionProps) {
+export default function Accordion({ sections, anchors }: AccordionProps) {
   // Multiple items can be open simultaneously.
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
 
@@ -34,7 +37,7 @@ export default function Accordion({ sections }: AccordionProps) {
   return (
     <div className="space-y-16">
       {sections.map((section, si) => (
-        <div key={section.title}>
+        <div key={section.title} id={anchors?.[section.title]}>
           <p className={label}>{section.title}</p>
           <div className="border-t border-black/10">
             {section.items.map((item, ii) => {

@@ -2,7 +2,12 @@ import type { Metadata } from 'next';
 import { BookConsultation } from '@/components/ui/BookConsultation';
 import Accordion from '@/components/ui/Accordion';
 import FAQHeroGuide from '@/components/ui/FAQHeroGuide';
-import { faqSections, faqCategories, faqByCategoryId } from '@/lib/faq-data';
+import {
+  faqSections,
+  faqCategories,
+  faqByCategoryId,
+  categoryAnchorMap,
+} from '@/lib/faq-data';
 import type { FaqCategoryId } from '@/lib/faq-data';
 
 export const metadata: Metadata = {
@@ -41,7 +46,7 @@ export default function FaqPage() {
       {/* Accordion */}
       <section className="bg-[#F5F0E8] py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-6">
-          <Accordion sections={faqSections} />
+          <Accordion sections={faqSections} anchors={categoryAnchorMap()} />
         </div>
       </section>
 

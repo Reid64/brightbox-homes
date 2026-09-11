@@ -44,10 +44,11 @@ export default function FaqPage() {
       <FAQHeroGuide counts={categoryCounts} />
 
       {/* Accordion */}
-      {/* bg-white is the base coat, not decoration: the gradient's last stop is 2%
-          charcoal, i.e. 98% transparent, and body is #1C1C1E - without an opaque
-          white underneath, the dark body bleeds through the bottom-right. */}
-      <section className="bg-white bg-gradient-to-br from-white via-white to-bb-charcoal/[0.02] py-12 lg:py-16">
+      {/* The cream is the base coat, not decoration: the gradient's last stop is
+          2% charcoal, i.e. 98% transparent, and body is #1C1C1E - without an
+          opaque colour underneath, the dark body bleeds through the
+          bottom-right. */}
+      <section className="bg-[#F5F0E8] bg-gradient-to-br from-[#F5F0E8] via-[#F5F0E8] to-bb-charcoal/[0.02] py-12 lg:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <Accordion sections={faqSections} anchors={categoryAnchorMap()} />
         </div>

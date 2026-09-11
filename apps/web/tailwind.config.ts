@@ -125,6 +125,17 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateX(40px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        // FAQ hero "route": a dashed path threading the five category stops.
+        // One full period is dasharray 6+6=12, so -24 loops seamlessly.
+        routeDraw: {
+          '0%': { strokeDashoffset: '0' },
+          '100%': { strokeDashoffset: '-24' },
+        },
+        // FAQ hero book spines: staggered rise as the shelf settles.
+        bookRise: {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         float: 'float 3s ease-in-out infinite',
@@ -132,6 +143,8 @@ const config: Config = {
         'fade-in': 'fadeIn 600ms cubic-bezier(0.16,1,0.3,1) both',
         'fade-up': 'fadeUp 700ms cubic-bezier(0.16,1,0.3,1) both',
         'slide-in-right': 'slideInRight 700ms cubic-bezier(0.16,1,0.3,1) both',
+        'route-draw': 'routeDraw 1.6s linear infinite',
+        'book-rise': 'bookRise 700ms cubic-bezier(0.16,1,0.3,1) both',
       },
     },
   },

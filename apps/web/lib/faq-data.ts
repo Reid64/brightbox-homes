@@ -38,6 +38,9 @@ export interface FaqCategory {
    *  row at every width - the full labels are too long to fit a fifth of a
    *  phone screen. */
   shortLabel: string;
+  /** Optional ghosted photo behind this category's accordion section. Public
+   *  path only - the Accordion renders it lazily through next/image at 10%. */
+  backdrop?: string;
   /** The same colour as a raw hex. Tailwind cannot generate the per-category
    *  glow shadows and SVG strokes the FAQ hero needs, so those read this via a
    *  CSS custom property instead. Keep it in sync with `color`. */
@@ -80,15 +83,17 @@ export const faqCategories: FaqCategory[] = [
     color: 'text-bb-blue',
     borderColor: 'border-bb-blue',
     hex: '#4A9BD9',
+    backdrop: '/images/delivery-hero.png',
   },
   {
     id: 'home-care-and-warranty',
     label: 'Home Care & Warranty',
     shortLabel: 'Warranty',
     icon: ShieldCheck,
-    color: 'text-bb-link',
-    borderColor: 'border-bb-link',
-    hex: '#3461C7',
+    color: 'text-bb-purple',
+    borderColor: 'border-bb-purple',
+    hex: '#8158D6',
+    backdrop: '/images/products/expandable-homes/interior/01.jpeg',
   },
 ];
 
@@ -247,8 +252,11 @@ export const faqSections: FaqSection[] = [
 ];
 
 // Section title -> category. Authored sections stay the editorial unit; the five
-// categories are the browse/search unit layered over them.
-const sectionCategory: Record<string, FaqCategoryId> = {
+// categories are the browse/search unit layered over them. Exported so the
+// Accordion can colour each authored section without re-deriving the mapping;
+// it holds no reference to faqSections, so importing it into a client component
+// does not drag the 22 answers along.
+export const sectionCategory: Record<string, FaqCategoryId> = {
   'Buying & Cost': 'buying-a-bright-box',
   'Use Cases': 'buying-a-bright-box',
   Financing: 'financing',

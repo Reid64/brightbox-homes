@@ -29,6 +29,9 @@ const config: Config = {
           },
           // The one blue kept: hyperlinks, so a link still reads as a link.
           link: '#3461C7',
+          // FAQ category accent. The five categories need five separable hues;
+          // gold/green/amber/blue cover four, and purple is the fifth.
+          purple: '#8158D6',
           // Neutral palette (DESIGN_LANGUAGE 2.2).
           white: '#FFFFFF',
           'warm-white': '#FAFAF7',

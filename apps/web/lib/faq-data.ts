@@ -34,6 +34,10 @@ export interface FaqCategory {
   /** Tailwind border-colour class, used to emphasise a search match. Same
    *  literal-string rule as `color`. */
   borderColor: string;
+  /** Compact label for the FAQ hero, which keeps all five categories on one
+   *  row at every width - the full labels are too long to fit a fifth of a
+   *  phone screen. */
+  shortLabel: string;
   /** The same colour as a raw hex. Tailwind cannot generate the per-category
    *  glow shadows and SVG strokes the FAQ hero needs, so those read this via a
    *  CSS custom property instead. Keep it in sync with `color`. */
@@ -44,6 +48,7 @@ export const faqCategories: FaqCategory[] = [
   {
     id: 'buying-a-bright-box',
     label: 'Buying a Bright Box',
+    shortLabel: 'Buying',
     icon: Home,
     color: 'text-bb-gold',
     borderColor: 'border-bb-gold',
@@ -52,6 +57,7 @@ export const faqCategories: FaqCategory[] = [
   {
     id: 'financing',
     label: 'Financing',
+    shortLabel: 'Financing',
     icon: Wallet,
     color: 'text-bb-success',
     borderColor: 'border-bb-success',
@@ -60,6 +66,7 @@ export const faqCategories: FaqCategory[] = [
   {
     id: 'site-preparation',
     label: 'Site Preparation',
+    shortLabel: 'Site Prep',
     icon: Ruler,
     color: 'text-bb-warning',
     borderColor: 'border-bb-warning',
@@ -68,6 +75,7 @@ export const faqCategories: FaqCategory[] = [
   {
     id: 'delivery-and-installation',
     label: 'Delivery & Installation',
+    shortLabel: 'Delivery',
     icon: Truck,
     color: 'text-bb-blue',
     borderColor: 'border-bb-blue',
@@ -76,6 +84,7 @@ export const faqCategories: FaqCategory[] = [
   {
     id: 'home-care-and-warranty',
     label: 'Home Care & Warranty',
+    shortLabel: 'Warranty',
     icon: ShieldCheck,
     color: 'text-bb-link',
     borderColor: 'border-bb-link',

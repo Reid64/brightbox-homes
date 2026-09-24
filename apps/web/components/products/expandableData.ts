@@ -12,7 +12,7 @@ export const keyFeatures = [
   { icon: Thermometer, title: 'Climate Controlled', text: '24,000 BTU 20 SEER mini-split HVAC keeps every room comfortable year-round.' },
   { icon: Droplets, title: 'Full Kitchen & Bath', text: 'Tankless water heater, induction stove, walk-in shower, and garbage disposal - standard.' },
   { icon: Palette, title: '60+ Color Options', text: 'Choose 60+ RAL exterior colors plus customizable interior walls, floors, and cabinets.' },
-  { icon: Zap, title: 'Move-In Ready Wiring', text: 'Upgraded 125-amp panel with 110V, 240V, and GFCI outlets pre-installed throughout.' },
+  { icon: Zap, title: 'Move-In Ready Wiring', text: 'Standard 200-amp panel with 110V, 240V, and GFCI outlets pre-installed throughout - room for solar, EV charging, and a generator.' },
   { icon: Home, title: 'Covered Front Porch', text: 'Every model ships with a covered porch and railing - usable outdoor space from day one.' },
 ];
 
@@ -69,7 +69,7 @@ export const features = [
   'Washer/dryer hookups',
   '3/4 HP garbage disposal',
   'Dual-pane windows throughout',
-  'Upgraded 125-amp electrical panel',
+  '200-amp electrical panel (standard)',
   'Two external GFCI outlets with metal cover plates',
   'GFCI outlets in bathroom and kitchen',
   '60+ RAL exterior color choices',
@@ -141,7 +141,6 @@ export const upgrades = [
   {
     category: 'Electrical',
     items: [
-      { name: '200 Amp Service Panel' },
       { name: 'Additional 110V Outlets' },
       { name: '240V Outlets' },
       { name: 'GFCI Outlets' },

@@ -178,7 +178,7 @@ export default function DeliveryPage() {
               </p>
               <div className="mt-4 rounded-lg p-4" style={{ background: 'rgba(107,155,247,0.08)', border: '1px solid rgba(107,155,247,0.15)' }}>
                 <ul className="space-y-1 text-sm text-gray-300">
-                  <li>• <strong className="text-white">Electrical panel</strong> roughed in — 125 amp service minimum</li>
+                  <li>• <strong className="text-white">Electrical service</strong> — 200 amp feed for a home on its own meter, or a 100 amp minimum subpanel feed if you are tying into an existing house</li>
                   <li>• <strong className="text-white">Water supply line</strong> buried and accessible</li>
                   <li>• <strong className="text-white">Septic or sewer</strong> connection point established</li>
                   <li>• All lines buried to local code depth requirements</li>
@@ -206,7 +206,7 @@ export default function DeliveryPage() {
               {[
                 { icon: Droplets, title: 'Septic or Sewer Connection', text: 'Your local plumber connects the home\'s waste line to your septic tank or municipal sewer.' },
                 { icon: Droplets, title: 'Water Supply Hookup', text: 'A licensed plumber connects the home\'s water inlet to your well or municipal water supply.' },
-                { icon: Zap, title: 'Electrical Grid Connection', text: 'A licensed electrician connects the home\'s 125-amp panel to your utility meter or off-grid power system.' },
+                { icon: Zap, title: 'Electrical Grid Connection', text: 'A licensed electrician connects the home\'s 200-amp panel to your utility meter, an existing main panel, or your off-grid power system.' },
                 { icon: HardHat, title: 'Foundation Construction', text: 'We provide the specs and layout diagram — your contractor pours or sets the blocks to our specifications.' },
                 { icon: FileCheck, title: 'Permits & Inspections', text: 'Permit requirements vary by county. We provide all documentation your building department needs.' },
                 { icon: Wrench, title: 'Expanding the Cabin Sections', text: 'Your home arrives folded for transport. A small crew (2-3 people) unfolds the expandable sections on-site — typically less than 1 hour.' },
@@ -269,7 +269,7 @@ export default function DeliveryPage() {
                 { label: '20ft Home Weight', value: '6,172 lbs' },
                 { label: '40ft Home Weight', value: '10,362 lbs' },
                 { label: 'Ceiling Height', value: '7.35 ft' },
-                { label: 'Electrical Panel', value: '125 Amp' },
+                { label: 'Electrical Panel', value: '200 Amp (standard)' },
                 { label: 'Foundation Blocks', value: '8 total' },
                 { label: 'Block Spacing', value: '61.6 inches' },
                 { label: 'Lead Time', value: '8–10 weeks' },

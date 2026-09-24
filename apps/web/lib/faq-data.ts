@@ -110,7 +110,7 @@ export const faqSections: FaqSection[] = [
       {
         question: 'What is included in the listed price?',
         answer:
-          'Everything factory-installed: a mini-split HVAC system, tankless water heater, induction stove, dual-pane windows, a covered front porch, an upgraded 125-amp electrical panel, washer/dryer hookups, a garbage disposal, and a walk-in shower. You also choose from 60+ exterior colors, interior flooring, wall panels, and cabinet colors - all included in the base price.',
+          'Everything factory-installed: a mini-split HVAC system, tankless water heater, induction stove, dual-pane windows, a covered front porch, a 200-amp electrical panel, washer/dryer hookups, a garbage disposal, and a walk-in shower. You also choose from 60+ exterior colors, interior flooring, wall panels, and cabinet colors - all included in the base price.',
       },
       {
         question: 'What is NOT included in the price?',

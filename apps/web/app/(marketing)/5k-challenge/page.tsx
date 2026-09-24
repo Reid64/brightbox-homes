@@ -70,10 +70,12 @@ export default function FiveKChallengePage() {
         <div style={{ position: 'relative', zIndex: 2 }}>
           <div className="mx-auto max-w-[1280px] px-6">
             <p className={labelDark}>The Challenge</p>
-            <h1 className="font-heading text-4xl font-bold text-[#FFFFFF] md:text-5xl lg:text-6xl">
-              <span>We&apos;ll Pay You $5,000</span>
-              <br />
-              <span>to Prove Us Wrong</span>
+            {/* Each half is its own block so the headline always breaks in the
+                same place. Sized down at the narrowest widths so "We'll Pay You
+                $5,000" holds one line instead of orphaning the dollar figure. */}
+            <h1 className="font-heading text-[1.75rem] font-bold leading-[1.15] text-[#FFFFFF] min-[400px]:text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl">
+              <span className="block">We&apos;ll Pay You $5,000</span>
+              <span className="block">to Prove Us Wrong</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-[#D1D5DB]">
               Find a better-equipped, higher-quality home from any US competitor -

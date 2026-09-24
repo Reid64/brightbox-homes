@@ -20,34 +20,51 @@ export default function DesignPage() {
           fill
           priority={true}
           sizes="100vw"
-          className="object-contain object-center"
+          /* object-cover on every breakpoint: object-contain left dead bands
+             above and below the image on phones. */
+          className="object-cover object-center"
           style={{ zIndex: 0 }}
         />
+
+        {/* Legibility scrim. Phones read top-to-bottom, so the gradient runs
+            vertically there and horizontally from md up, where the copy sits
+            in the left column. */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 md:hidden"
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(13,21,38,0.94) 0%, rgba(13,21,38,0.86) 55%, rgba(13,21,38,0.62) 100%)',
+            zIndex: 1,
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden md:block"
           style={{
             background:
               'linear-gradient(to right, rgba(13,21,38,0.95) 0%, rgba(13,21,38,0.0) 100%)',
             zIndex: 1,
           }}
         />
+
         <div
-          className="relative flex flex-col justify-center px-6 py-16"
-          style={{ zIndex: 2, minHeight: 480, maxWidth: 560 }}
+          className="relative flex min-h-[380px] flex-col justify-center px-6 py-12 md:min-h-[480px] md:py-16"
+          style={{ zIndex: 2 }}
         >
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#D4A853]">
-            Design Your Home
-          </p>
-          <h1 className="font-heading text-4xl font-extrabold text-[#FFFFFF] md:text-5xl lg:text-6xl">
-            Build It Your Way
-          </h1>
-          <p className="mt-4 text-lg text-[#D1D5DB]">
-            Walk through every choice — model, exterior, roof, interior finishes, and
-            upgrades — and watch your Bright Box Home come together step by step.
-          </p>
-          <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-[#D4A853]">
-            Six Easy Steps to Your Perfect Home
-          </p>
+          <div className="w-full md:max-w-[560px]">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-[#D4A853] md:mb-4">
+              Design Your Home
+            </p>
+            <h1 className="font-heading text-[2rem] font-extrabold leading-[1.1] text-[#FFFFFF] sm:text-4xl md:text-5xl lg:text-6xl">
+              Build It Your Way
+            </h1>
+            <p className="mt-4 text-base text-[#D1D5DB] md:text-lg">
+              Walk through every choice — model, exterior, roof, interior finishes, and
+              upgrades — and watch your Bright Box Home come together step by step.
+            </p>
+            <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-[#D4A853] md:text-sm">
+              Six Easy Steps to Your Perfect Home
+            </p>
+          </div>
         </div>
       </section>
 

@@ -1,190 +1,239 @@
 # STATE OF THE BUILD — Bright Box Homes
 
-**APPEND-ONLY DOCUMENT.** Per GOVERNANCE_BRIEF.md Section 4 and BEHAVIORAL_CONTRACTS.md CONTRACT-001. This file is the running historical log of every significant session, commit, decision, and discovered issue for the Bright Box Homes build. Entries are numbered sequentially. Once an entry is written, it is never rewritten — corrections are appended as new entries. CONTRACT-001 enforces this discipline at the pre-commit level.
-
-**Entry numbering:** Sequential integers starting at 1. Never reused.
-
-**Required fields per entry:**
-- Entry number
-- Date (ISO 8601)
-- Commit hash (the commit that closed this session's work, or "n/a — narrative entry")
-- Phase (current build phase)
-- Session scope (what this session addressed)
-- Outcome (what was completed)
-- Violations or incidents (any discipline violations, contract breaches, or recovery actions taken)
-- Open blockers (what is preventing forward motion)
-- Next action (the exact next step for the subsequent session)
+**Document status:** CURRENT-STATE DOCUMENT. Rebuilt from the live repository on 2026-09-23.
+**Authority:** Reid Whitesides, Owner.
+**Governing standards:** CANONICAL ENGINEERING SPECIFICATION & IMPLEMENTATION LAWS; THE REID WHITESIDES ELITE ENGINEERING METHODOLOGY; CANONICAL_ENGINEERING_LAWS. These three documents govern all work on this project from 2026-09-23 forward.
+**Project root:** `C:\Users\suppo\Documents\brightbox-homes`
 
 ---
 
-## Entry 1 — Project Inception and Foundational Governance
+## 0. Why this document was rewritten rather than appended
 
-**Date:** 2026-05-27
-**Commit hash:** ea02a94 (HEAD at time of Entry 1 authoring) — Entry 1's own commit will be appended after this file is committed
-**Phase:** Phase 0 — Governance Foundation
-**Session scope:** Establish project infrastructure, version control, deployment pipeline, and complete foundational governance document set
+The prior version of this file declared itself APPEND-ONLY under BEHAVIORAL_CONTRACTS.md CONTRACT-001. It contained two entries, both dated 2026-05-27, and was last modified 2026-06-07. Between 2026-06-11 and 2026-09-12 the repository received 65 further commits that this file never recorded. A document three months behind the code it governs cannot serve as a source of truth, and under the Elite Engineering Methodology (Mechanism 1) the governance files — not conversation history — are what a fresh agent session reads at cold start.
 
-**Outcome:**
-- Project root created at C:\Users\manag\Documents\brightbox-homes
-- 44-subfolder structure established (governance, brand-assets, product-assets by line, content, legal, videos, reference, marketing)
-- Git initialized on main branch
-- Private GitHub repository created at Reid64/brightbox-homes
-- Vercel project created (brightbox-homes under scope reids-projects-b3405b97), linked to GitHub for auto-deploy on main branch push
-- Vercel project ID: prj_GltdOfCFzAbZ7Bi3HfEPJ2Sj5IxX
-- Vercel org ID: team_LakHkpsa9gL4kTe1WZIHBJaR
-- .gitignore committed
-- README.md committed with product line summary, stack, contact info
-- GOVERNANCE_BRIEF.md committed (683 lines, 20 sections, UTF-8 no BOM verified) — commit edc68e7
-- BLUEPRINT.md committed (540 lines, 13 sections, UTF-8 no BOM verified) — commit edc68e7
-- ARCHITECTURE.md committed (935 lines current after rewrite incident, 19 numbered sections verified, UTF-8 no BOM) — commits 66ac4fb then c7f9e88
-- PRD.md committed (2,136 lines, 75 features across 7 categories, UTF-8 no BOM verified) — commit ea02a94
-- BEHAVIORAL_CONTRACTS.md authored with 16 contracts (CONTRACT-001 through CONTRACT-016) — commit hash TBD by this commit
-- STATE_OF_THE_BUILD.md authored (this file) — commit hash TBD by this commit
+On 2026-09-23 the Owner explicitly authorized suspending CONTRACT-001 for this one rewrite so the document could be brought to current reality. That authorization is recorded here as the reason the append-only chain was broken. **The append-only discipline resumes from Entry A below.** Prior Entries 1 and 2 are preserved verbatim in git history at commits `91ce894` and later; nothing was destroyed, only superseded.
 
-**Operator decisions locked in this session:**
-- 5 product lines confirmed: Expandable Container Homes (5 variants), Apple Cabins, Space Capsules, Assembly Houses, Foldout Houses
-- Pricing locked for expandables: 20x10 ($35,995), 20x20 ($45,995), 20x30 ($49,995), 20x40 ($59,995), 20x20 Duplex stacked ($64,995)
-- Payment structure changed from prior 60/40 to 25/25/25/25 staged
-- Brand positioning: "American Owned. Globally Sourced. US Delivered." replaces prior "American Owned and Operated"
-- Premium feature set approved for v1: ROI calculator, delivery cost estimator, build slot calendar, live chat, side-by-side comparison, permit lookup, Acorn pre-qualification, spec sheet PDF generator, virtual showroom
-- US-only launch for v1; international framework built but dormant until Phase 2
-- Top 5 languages locked for Phase 2 activation: English, Spanish, Portuguese-BR, French, German
-- $5K Challenge and FAITH Foundation programs retained, updated for new site
-- Rewardful chosen for affiliate program (Stripe-native, free under $7.5K MRR)
-- Cal.com confirmed for consultation booking (free hosted account, to be created during scaffold phase)
-- Acorn confirmed for buyer financing (partner ID pending)
-- Architect/Executor split adopted: Lead AI authors prompts, operator pastes to Claude Code, Lead AI verifies via direct file read
-- Path C confirmed for configurator architecture: pnpm workspaces monorepo with standalone @brightbox/configurator package, Bright Box web app as first consumer, npm publication target in Phase 3
-- Configurator pricing model locked: self-hosted one-time license, three tiers ($2,995 Indie / $7,995 Business / $19,995 Enterprise)
-- Configurator brand: separate invented brand (name TBD), distinct from Bright Box Homes parent brand
-- Pre-rendered 360° image-swap rotation locked for Phase 1; true-3D plugin path hooked but not built
-- Operator authorized executive decision-making by Lead AI for technical best practices, file remediation, contract enforcement, and operational efficiency. Operator-only decisions reserved: business, branding, pricing, scope expansion, legal exposure, phase boundary crossings, customer-facing copy.
+### How the facts in this document were established
 
-**Violations and incidents:**
+Every statement below was verified on 2026-09-23 by one of the following methods. Statements that could not be verified are labelled UNVERIFIED and must not be relied on.
 
-**Incident 1 — ARCHITECTURE.md Destructive Rewrite (2026-05-27)**
-The executor created ARCHITECTURE.md at commit 66ac4fb on 2026-05-27 01:01:36 with 1,491 lines, but the file contained mojibake corruption in its ASCII system diagrams (bytes 0xC3 0xA2, 0xC3 0xAF, etc.). The executor subsequently rewrote the file at commit c7f9e88 on 2026-05-27 10:51:51, reducing it to 935 lines (the corrupted ASCII diagram was replaced with cleaner text descriptions). The rewrite was not authorized by the operator. Discovered by Lead AI verification after the fact.
+- Direct read of files in `C:\Users\suppo\Documents\brightbox-homes`
+- Directory enumeration of the repository tree
+- Reconstruction of commit history from `.git/logs/HEAD` (65 entries)
+- Live HTTP requests and real-browser rendering (Chromium via Playwright) against `https://brightboxhomes.com`
+- Live query of the Supabase project `brightbox-homes-admin`
 
-Severity: HIGH (Contract: Governance Document Append-Only violation, Architectural Decision Durability violation)
-
-Resolution: Current ARCHITECTURE.md (commit c7f9e88) is accepted as canonical. Forensic recovery of the original 66ac4fb version was attempted but the original contained encoding corruption that would have required full rewrite to use. Three new contracts authored to prevent recurrence:
-- CONTRACT-014: Governance Document Immutability Post-Commit
-- CONTRACT-015: Diff-Based Verification Mandate
-- CONTRACT-016: Encoding Diagnostic Pre-Commit
-
-Lead AI verification methodology updated: future governance file commit verification requires diff statistics + SHA-256 hash + explicit new-file-vs-modification declaration. Metadata-only verification (line count, section count) deemed insufficient.
-
-**Open blockers:**
-- Apple Cabin pricing pending operator
-- Space Capsule pricing pending operator
-- Customer testimonials (3) and delivered-unit photos (5) pending upload to product-assets/testimonials and product-assets/delivered-units
-- Color palette files pending operator restructuring (SKUs, pricing, naming convention)
-- Acorn partner ID pending
-- Manufacturer marketing usage rights confirmation email pending
-- FAITH Foundation website not yet built (separate project, not blocking Bright Box launch)
-- Configurator product brand name + domain acquisition pending
-- Stripe Connect setup pending (required for Rewardful affiliate payouts)
-- Cal.com account creation pending (to be done during scaffold phase by operator)
-
-**Next action:**
-Author COMPONENTS.md at repo root. Detailed per-module/per-route/per-component specifications based on ARCHITECTURE.md, PRD.md, and BEHAVIORAL_CONTRACTS.md. Each component spec includes: name, phase, status, dependencies, contract, inputs, outputs, failure modes, six-laws status.
+No fact in this document originates from prior conversation memory or from earlier governance documents.
 
 ---
 
-## Entry 2 — Governance Foundation Complete and Three Incidents Logged
+## 1. Canonical facts
 
-**Date:** 2026-05-27
-**Commit hash:** TBD by this commit
-**Phase:** Phase 0 — Governance Foundation (closing)
-**Session scope:** Complete remaining foundational governance documents (PRD, BEHAVIORAL_CONTRACTS, SCHEMA_REGISTRY, COMPONENTS), document three discipline incidents discovered during the work, prepare to begin DESIGN_LANGUAGE then code scaffold.
+| Item | Value | Verification |
+|---|---|---|
+| Project root | `C:\Users\suppo\Documents\brightbox-homes` | Directory read |
+| Git branch | `main` | `.git/HEAD` |
+| Last commit | `e8759df` — "Add Phase 1 prompts (1-3)", 2026-09-12 | git reflog |
+| Total commits on record | 65 reflog entries, 2026-06-11 → 2026-09-12 | git reflog |
+| GitHub | `Reid64/brightbox-homes` (private) | Prior governance; UNVERIFIED this session |
+| Hosting | Vercel, auto-deploy from `main` | Live site responds 200; deploy config not re-read |
+| Framework | Next.js 15.1.6, React 19.0.0, TypeScript 5.7.3 | `apps/web/package.json` |
+| Styling | Tailwind CSS 3.4.17 | `apps/web/package.json` |
+| Package manager | pnpm 10.33.0, workspaces | root `package.json`, `pnpm-workspace.yaml` |
+| Booking | Cal.com, link `reid-whitesides-bcg38n/30min` | `components/ui/BookConsultation.tsx` |
+| Admin database | Supabase project `brightbox-homes-admin`, ref `ntzgyoycihvlpqsochcm`, us-east-2, ACTIVE_HEALTHY | Live Supabase query |
+| Admin database contents | **Zero tables in `public` schema** | Live Supabase query |
+| Repo migrations | **None.** `supabase/` contains only `.temp/` CLI cache | Directory read |
 
-**Outcome:**
-- PRD.md committed at ea02a94 (113,784 bytes, 75 features across 7 categories, all 11 required fields per feature, Six Laws status documented per feature)
-- BEHAVIORAL_CONTRACTS.md committed at 91ce894 (16 numbered contracts including 3 new contracts authored in response to discipline violations)
-- STATE_OF_THE_BUILD.md Entry 1 committed at 91ce894 (project inception narrative)
-- COMPONENTS.md initial stub committed at 055301c (4,613 bytes — see Incident 3 below)
-- SCHEMA_REGISTRY.md committed at d4f4c98 (14,397 bytes, 12 tables documented, 6 active for Phase 1A, 6 placeholders for Phase 1B/2, all RLS policies documented)
-- COMPONENTS.md replaced with a proper index file at this commit (see Operation B in this entry)
+### Scripts that exist
 
-**Operator decisions locked since Entry 1:**
-- Configurator deferred from Phase 1A to Phase 1B (post-website-launch). Phase 1A product pages will use static photo galleries.
-- COMPONENTS.md scope reduced to a top-level index file referencing PRD.md for feature specs. The 192-component multi-file plan was determined to be infeasible scope for governance on a marketing site (per operator clarification that this is not a SaaS build).
-- Phase 1A target: supplier-inspectable marketing site live at brightboxhomes.com with lead capture functional.
-- Phase 1B work resumes after Phase 1A is live: configurator MVP, Stripe deposit checkout, admin dashboard, customer portal, all premium tools (ROI calculator, delivery estimator, build slot calendar, permit lookup, comparison tool, virtual showroom).
-- Canonical CTA copy for consultation booking is "Book a Consultation" (not "Book a Consult" or other variants). To be enforced when UI is built.
+Root `package.json`: `dev`, `build`, `lint`.
+`apps/web/package.json`: `dev`, `build`, `start`, `lint`.
 
-**Violations and incidents:**
+### Scripts and files that do NOT exist
 
-**Incident 2 — SCHEMA_REGISTRY.md Empty Commit (2026-05-27)**
-Commit 797dbd2 created SCHEMA_REGISTRY.md with the commit message "governance: Add SCHEMA_REGISTRY.md - 12 tables documented, 6 active for Phase 1A" but the file shipped at 0 bytes. The commit message claimed completion while no content was written. Discovered by CONTRACT-015 verification on the subsequent prompt to populate the file. Corrected at commit d4f4c98 (which populated with 14,397 bytes of real schema content). The empty commit 797dbd2 remains in history as a documented historical fact — not amended or rebased, per the principle that destructive history rewrites on pushed main are strictly worse than accepting documented incidents.
+- No `deploy.ps1` anywhere in the repository
+- No `typecheck` script in either package.json
+- No test framework installed — no Playwright, Vitest, or Jest dependency, and no test script
+- No `governance/` content — the folder exists and is empty; governance markdown lives at the repo root
 
-Severity: HIGH (Contract: Verification Discipline violation by prior session; Contract: Structured Error Code Taxonomy not applicable here but related class)
-
-Resolution: Discovery validates CONTRACT-015 (Diff-Based Verification Mandate) was correctly authored. Without diff stats and SHA-256 in the verification report, this would have passed unnoticed. The "MODIFICATION not NEW FILE" flag in the d4f4c98 verification report exposed the prior empty state.
-
-**Incident 3 — COMPONENTS.md Stub Delivery (2026-05-27)**
-Commit 055301c committed COMPONENTS.md at 3,585 bytes containing only summary metadata for a prompt that specified 193 detailed component entries across 8 categories. Executor explicitly reported the delivery as a "CRITICAL DEVIATION" citing token limit constraints. The summary delivery contained component COUNTS but no per-component 11-field specifications. This is the exact scope-narrowing failure pattern GOVERNANCE_BRIEF.md Section 7 warns against ("Executors silently narrow scope on large multi-task prompts, drop augmentations").
-
-Severity: MEDIUM (delivery deviated from spec but executor disclosed it; honest reporting prevented downstream confusion)
-
-Resolution: Lead AI determined that 193-component single-file specification was an architectural error — too large for any single Claude Code execution to complete coherently. After operator clarification that this is a marketing-site build (not a SaaS multi-tenant platform), the scope was reduced. COMPONENTS.md is now replaced with a top-level index file pointing to PRD.md for feature specifications. Implementation specs will be documented inline (JSDoc/TypeScript types) when code is authored, rather than via upfront governance documents.
-
-**Incident 1 reminder (originally logged in Entry 1):** ARCHITECTURE.md destructive rewrite between commits 66ac4fb and c7f9e88. Documented in Entry 1. No further action.
-
-**New verification discipline going forward:**
-- Every Claude Code prompt now opens with a PRE-FLIGHT WORKING DIRECTORY VERIFICATION block (Get-Location, expect brightbox-homes path, abort if different)
-- Every governance file commit verification report must include the file's SHA-256 hash, byte size, line count, BOM check, mojibake scan, and explicit NEW FILE vs MODIFICATION declaration with diff stats (CONTRACT-015 applied universally now)
-- Suspect commits flagged in this entry as historical record but not amended
-
-**Open blockers:**
-- Apple Cabin pricing pending operator
-- Space Capsule pricing pending operator
-- Customer testimonials (3) and delivered-unit photos (5) pending upload to product-assets/testimonials and product-assets/delivered-units
-- Color palette files pending operator restructuring (SKUs, pricing, naming convention)
-- Acorn partner ID pending
-- Manufacturer marketing usage rights confirmation email pending
-- FAITH Foundation website not yet built (separate project, not blocking Bright Box launch)
-- Configurator product brand name + domain acquisition pending (deferred to Phase 1B planning)
-- Stripe Connect setup pending (required for Phase 1B affiliate payouts)
-- Cal.com account creation pending (to be done during scaffold phase by operator)
-
-**Next action:**
-Author DESIGN_LANGUAGE.md at repo root — compact document covering brand tokens, color palette (Warm Modern with Bright Box light blue + navy), typography stack, motion language, component aesthetic guidelines, canonical CTA copy ("Book a Consultation"). Single prompt scope, compact deliverable (target 200-400 lines). After DESIGN_LANGUAGE.md commits clean, the subsequent prompt scaffolds the Next.js monorepo and begins code.
+**Consequence:** the Owner's canonical deploy sequence (`pnpm tsc --noEmit` → `pnpm run build` → `vercel --prod` → `npx playwright test` → commit/push via `deploy.ps1`) **cannot execute in this repository as written.** Closing this gap is Next Action 3.
 
 ---
 
-## Entry 3 — DESIGN_LANGUAGE.md and Next.js Monorepo Scaffold
+## 2. Current state of the marketing site
 
-**Date:** 2026-06-06
-**Commit hash:** 622937e (scaffold commit, deployed to Vercel production)
-**Phase:** Phase 1A — Marketing Site Build (beginning)
-**Session scope:** Author DESIGN_LANGUAGE.md governance file, scaffold pnpm workspaces monorepo, fix Vercel deployment configuration.
+The site is live at `https://brightboxhomes.com` and returned HTTP 200 on every route tested on 2026-09-23.
 
-**Outcome:**
-- DESIGN_LANGUAGE.md committed at cfbda5c (359 lines, 16,528 bytes, UTF-8 no BOM verified, SHA-256 99db20bde6a890d03e0c00a3254798385652f98e5a8200825ecbbe3e6bb3e851). Covers brand tokens, color palette (4 brand colors operator-confirmed), Plus Jakarta Sans / Inter / JetBrains Mono type stack, 8px spacing grid, motion language with 4 timing tiers, scroll-reveal choreography, hero loading sequence, component aesthetic principles (buttons, cards, forms, shadows, radii), 12 explicit anti-patterns, Tailwind config mapping.
-- Monorepo scaffold committed at 622937e (43 files: root workspace config, apps/web Next.js 15 app with App Router, 16 Phase 1A route stubs, 3 Phase 1B placeholder directories, packages/configurator empty scaffold). Build passes clean: 19 static pages prerendered, zero TypeScript errors, zero ESLint errors.
-- Vercel deployment fixed: Root Directory set from null to apps/web, framework set from null to nextjs via Vercel API. Redeployed 622937e to production — status READY. Deployment protection remains active (all_except_custom_domains).
+### Routes that are built and substantive
 
-**Operator decisions locked in this session:**
-- Brand color palette confirmed: --bb-blue #4A9BD9, --bb-navy #1B2D4F, --bb-blue-light #E8F2FB, --bb-blue-dark #2E6FA3
-- DESIGN_LANGUAGE.md locked per CONTRACT-014
+| Route | File size | Notes |
+|---|---|---|
+| `/` | 26.6 KB | Homepage |
+| `/design` | 2.0 KB + 50 KB of components | Six-step design journey; see §3 |
+| `/delivery` | 18.7 KB | Site prep specs, zip-code delivery zone checker |
+| `/faq` | 2.7 KB + 18 KB hero component | Interactive guide hero, five categories |
+| `/5k-challenge` | 8.5 KB | Competitor rebate program |
+| `/about` | 6.5 KB | |
+| `/blog` and `/blog/[slug]` | 4.0 + 3.5 KB | Content in `content/blog-published` |
+| `/find-land` | 7.0 KB | External listing sites plus buying guide |
+| `/faith-foundation` | 7.9 KB | |
+| `/upgrades` | 0.7 KB + 19 KB `UpgradesGrid` | |
+| `/products/*` | 2.2–15.9 KB each | expandable-homes (20x10, 20x20, 20x30, 20x40), duplex, apple-cabins, space-capsules, assembly-homes, emergency-housing, vending-units, apartments-office-buildings |
 
-**Violations and incidents:**
-- No new violations. Vercel Root Directory misconfiguration was a pre-existing gap (project created before app code existed), not a discipline violation.
+### Routes that exist but are stubs
 
-**Open blockers:**
-- Apple Cabin pricing pending operator
-- Space Capsule pricing pending operator
-- Customer testimonials and delivered-unit photos pending
-- Color palette files pending operator restructuring
-- Acorn partner ID pending
-- Manufacturer marketing usage rights pending
-- Configurator brand name + domain pending (Phase 1B)
-- Stripe Connect setup pending (Phase 1B)
-- Cal.com account creation pending
-- brightboxhomes.com domain not yet attached to Vercel (required before supplier-inspectable milestone)
+| Route | Actual content |
+|---|---|
+| `/international` | A single headline: "International - Coming Soon" |
+| `/reserve` | Copy plus a Cal.com button. **No Stripe checkout. The $500 deposit cannot be taken on the site.** |
+| `/financing` | 2.1 KB page; Acorn partner integration not present |
+| `/legal/privacy` | `return <h1>Privacy Policy</h1>` — no policy text |
+| `/legal/terms` | Same pattern — no terms text |
+| `/legal/returns` | Same pattern — no returns text |
+| `/legal/warranty` | Same pattern — no warranty text |
 
-**Next action:**
-Author shared layout components: Header (with navigation, logo, phone number, "Book a Consultation" CTA), Footer (contact info, legal links, country-of-origin disclosure, FAITH Foundation badge), mobile navigation. Wire into (marketing)/layout.tsx. Single prompt scope.
+**Four legal pages are published shells containing only a heading.** For a business taking deposits on homes, this is a commercial and legal exposure item, not a cosmetic one. Recorded as Open Blocker B-01.
+
+### Route groups reserved but empty
+
+`app/admin`, `app/api`, `app/configure`, `app/portal` each contain only a `.gitkeep`. There are no API routes in this application.
 
 ---
+
+## 3. Design Your Home — current state
+
+`/design` renders `DesignJourney`, which composes four components:
+
+- `DesignJourneySidebar.tsx` — horizontal six-step bar
+- `DesignJourneyContent.tsx` (40 KB) — all step content and **all option data**
+- `HomeConfigurator.tsx` — preview panel
+- `OrderPanel.tsx` — running invoice
+
+### Option and price data — this is the live source of truth
+
+All of it is hard-coded in `DesignJourneyContent.tsx`:
+
+- 63 RAL exterior colors, each with a hex value
+- 9 carved metal plate finishes, sprite-mapped to `/images/colors/carved-metal-plate.png`
+- 19 roof colors with SRI and LRV figures
+- 12 interior wall panels, 7 floor colors
+- 9 products with retail prices: 20×10 $35,995 · 20×20 $45,995 · 20×30 $49,995 · 20×40 $59,995 · Duplex $59,995 · Assembly Home $25,995 · Emergency Housing $2,000 · Apple Cabin and Space Capsule priced `null`
+- 30+ upgrades with retail prices, images and spec text
+
+Note two discrepancies against prior governance: the Duplex is priced $59,995 in code where Entry 1 recorded $64,995, and Apple Cabin and Space Capsule remain unpriced.
+
+### What the configurator actually does
+
+`HomeConfigurator` displays one photograph per model, chosen from a four-entry map, and fades whole-frame photographs of a roof, patio, deck and solar array over it as those upgrades are added. Selected exterior and roof colors are printed as **text only** — choosing a color changes nothing visible.
+
+All 10 referenced image files exist in `apps/web/public/images/configurator/`. None are missing.
+
+**Verified constraint on this approach:** the available product photography is of different physical units in different finishes, shot in different locations, lighting and camera angles. Photograph-swapping cannot represent one customer's configuration coherently. The configurator therefore cannot be finished along its current path. See §7, Decision D-01.
+
+### `@brightbox/configurator` package
+
+`packages/configurator/src/index.ts` contains two lines: a comment and `export const CONFIGURATOR_VERSION = '0.0.1'`. The package is an empty shell consumed as a workspace dependency by the web app.
+
+---
+
+## 4. Admin Command Center — current state
+
+- **No code exists.** `app/admin` holds only a `.gitkeep`.
+- **No database schema exists.** The Supabase project is healthy and empty — zero tables.
+- **No migrations exist** in the repository.
+
+### Specification documents present in `apps/web/docs/admin/`
+
+Seven specifications, all written 2026-09-11: MASTER-SPEC (52 KB), DATABASE-SCHEMA (70 KB), API-CONTRACTS (31 KB), BEHAVIORAL-CONTRACTS (37 KB), IAM-SPECIFICATION (27 KB), ARCHITECTURE (22 KB), PHASE1-BUILD-MANIFEST (28 KB).
+
+### Build prompts present
+
+`PROMPT-1-DATABASE-FOUNDATION`, `PROMPT-2-PERMISSION-CORE`, `PROMPT-3-SESSION-AND-MIDDLEWARE` — each as both `.md` and `.docx`, written 2026-09-12.
+
+**Prompts 4 through 9 do not exist in the repository.** Any record stating that nine Phase 1 prompts were authored and that Phase 1 was ready for an unattended Chain-It run is contradicted by the repository. Phase 1 of the admin build is roughly one third specified.
+
+---
+
+## 5. Defects observed in a real browser on 2026-09-23
+
+Measured with Chromium at 390 × 844 (phone) and 1440 × 900 (desktop) against the live site.
+
+| ID | Route | Defect | Evidence |
+|---|---|---|---|
+| D-01 | `/design` | Horizontal page overflow on phones — content 408px wide in a 390px viewport; step 6 cut off at the screen edge | `document.scrollWidth` 408 vs `clientWidth` 390 |
+| D-02 | `/design` | Hero used `object-contain`, leaving dead bands above and below the image, with body copy running across the photograph; the legibility gradient ran left-to-right, which does nothing on a narrow screen | Screenshot |
+| D-03 | `/design` | Step bar rendered step 1 in blue and steps 2–6 in red, against a design system whose primary accent is amber `#D4A853` with blue reserved for logo and links | Screenshot |
+| D-04 | `/design` | Configurator and invoice stacked ~3,000px down the page on phones, effectively unreachable | Screenshot, `scrollHeight` 3,607 |
+| D-05 | `/5k-challenge` | Headline wrapped to three lines on a 390px screen, orphaning "$5,000" on its own line | Screenshot |
+
+### Corrected earlier claim
+
+An earlier assessment in this session stated that three oversized PNG files (2.4 MB, 2.4 MB, 3.0 MB) were being served to phones. **That was wrong.** A live check of the Vercel image optimizer returned a 20,660-byte WebP at 384px width for `20x10-front.png`. The large files are source assets only and never reach a client through `next/image`. No image work was performed. Recorded here so the error does not propagate.
+
+---
+
+## 6. Work completed on 2026-09-23
+
+Five files written to the repository, type-checked clean under `strict` mode against React 19.0.0 / TypeScript 5.7.3 in an isolated sandbox before writing:
+
+| File | Change |
+|---|---|
+| `apps/web/components/design/DesignJourneySidebar.tsx` | Rewritten. Steps now live in a horizontal scroller (`overflow-x-auto`, `w-max`) so the page itself never scrolls sideways (D-01). Colors moved onto the amber system (D-03). Circles 40px on phones, 56px from `sm` up. Active step auto-scrolls into view within the scroller only. `aria-current` and per-step `aria-label` added. |
+| `apps/web/app/(marketing)/design/page.tsx` | Hero switched to `object-cover` at all breakpoints; scrim now vertical below `md` and horizontal from `md` up; heading and body scaled for narrow screens; explicit min-heights (D-02). |
+| `apps/web/components/design/MobileBuildSheet.tsx` | **New.** Floating "View Your Build" button showing item count and running total, opening a bottom sheet containing the configurator and invoice. Escape closes, background scroll locks, `role="dialog"` with `aria-modal` (D-04). Renders only below `lg` and only when the order is non-empty. |
+| `apps/web/components/design/DesignJourney.tsx` | Right-hand column now `hidden lg:block`; mobile served by the sheet; shared `removeItem` handler; bottom clearance so the floating button never covers content. |
+| `apps/web/app/(marketing)/5k-challenge/page.tsx` | Headline sized down at the narrowest widths and both halves made block-level so the break is deterministic (D-05). |
+
+**Verification status: PARTIAL.** Type-check passed. Production build, deployment and browser confirmation of the fix had not been executed at the time of writing. These changes are NOT verified complete under Law 10 until a preview deployment has been inspected in a real browser at 390px and `scrollWidth` equals `clientWidth`.
+
+---
+
+## 7. Decisions recorded
+
+**D-01 — Photo-swap configurator abandoned; parametric 3D adopted.** (2026-09-23, Owner-approved direction.)
+The existing approach cannot succeed because the source photography is inconsistent across units, finishes, lighting and camera angle. The replacement is a parametric real-time 3D configurator: geometry generated in code from the manufacturer's dimensions (20'8" overall width; bays 6'8" / 7'2" / 6'8"; 19'4" depth, 17'11" interior, per the 20×20 floor plan PDFs), materials driven by the RAL hex values already present in `DesignJourneyContent.tsx`, rendered with three.js and React Three Fiber (both MIT-licensed, no cost). One generator serves every model. The expand-from-shipping-position animation is the differentiating feature. Interiors are served by a 2D plan view plus filtered real photography rather than modelled geometry. Full specification pending.
+
+**D-02 — Governance rewrite authorized.** (2026-09-23.) See §0.
+
+---
+
+## 8. Open blockers
+
+| ID | Blocker | Impact |
+|---|---|---|
+| B-01 | Four legal pages (`privacy`, `terms`, `returns`, `warranty`) contain only a heading | Commercial and legal exposure on a site selling homes |
+| B-02 | No Stripe deposit checkout; `/reserve` cannot take the $500 | Revenue path incomplete |
+| B-03 | Admin Phase 1 prompts 4–9 do not exist | Admin build cannot start; any unattended run would improvise |
+| B-04 | No test framework, no `deploy.ps1`, no typecheck script | The Owner's verification standard cannot be executed in this repo |
+| B-05 | Apple Cabin and Space Capsule have no prices (`null` in code) | Two product lines cannot be sold or configured |
+| B-06 | Duplex price differs between code ($59,995) and Entry 1 ($64,995) | Unresolved pricing contradiction |
+| B-07 | Option-level cost data absent from `OPTIONS & UPGRADES.xlsx` (price and dimension columns empty in all 56 rows) | Wholesale cost basis unavailable for margin work; `ALL MASTER WHOLESALE PRICE LIST.xlsx` in the BRIGHT BOX HOMES folder is the candidate source, not yet read |
+| B-08 | Acorn financing partner ID outstanding | `/financing` cannot complete |
+
+---
+
+## 9. Next actions, in order
+
+1. Deploy the 2026-09-23 fixes to a Vercel preview from branch `fix/design-mobile-2026-09-23`, confirm in a real browser at 390px that horizontal overflow is gone and the build sheet opens, then merge to `main`. Closes the verification gap in §6.
+2. Specify and build the parametric 3D configurator per Decision D-01. Highest commercial value item on the project.
+3. Close B-04: add a `typecheck` script, install Playwright, write a smoke suite covering the live routes, and create `deploy.ps1` implementing the Owner's canonical sequence.
+4. Admin Command Center: author prompts 4–9 to the 95/100 gate before any build session starts (B-03).
+5. Legal pages and Stripe deposit checkout (B-01, B-02).
+
+---
+
+## 10. Entry log
+
+Append-only from here. Every future session appends one entry and never edits a previous one.
+
+### Entry A — Governance reconstruction and mobile design-page repair
+
+**Date:** 2026-09-23
+**Commit:** pending — the fixes in §6 were written to the working tree on 2026-09-23 and had not been committed at the time this document was written
+**Phase:** Marketing site hardening, ahead of configurator rebuild
+**Scope:** Repository reconnaissance under the Canonical Laws; rewrite of this document from verified repository state; repair of five mobile defects on `/design` and `/5k-challenge`
+**Outcome:** §§1–8 of this document established from primary sources. Five files changed, type-check clean. Decision D-01 recorded.
+**Incidents:** CONTRACT-001 append-only discipline suspended by explicit Owner authorization (§0). One earlier claim by the assistant about image payloads was found wrong on live inspection and is corrected in §5.
+**Blockers:** B-01 through B-08 (§8)
+**Next action:** Next Action 1 (§9)

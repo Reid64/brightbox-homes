@@ -71,3 +71,4 @@ website-products-and-assets/
 
 # Office temporary lock files
 ~$*
+.env.local.txt

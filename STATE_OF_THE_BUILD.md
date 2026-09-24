@@ -166,6 +166,8 @@ Measured with Chromium at 390 × 844 (phone) and 1440 × 900 (desktop) against t
 | D-03 | `/design` | Step bar rendered step 1 in blue and steps 2–6 in red, against a design system whose primary accent is amber `#D4A853` with blue reserved for logo and links | Screenshot |
 | D-04 | `/design` | Configurator and invoice stacked ~3,000px down the page on phones, effectively unreachable | Screenshot, `scrollHeight` 3,607 |
 | D-05 | `/5k-challenge` | Headline wrapped to three lines on a 390px screen, orphaning "$5,000" on its own line | Screenshot |
+| D-06 | `/design` | `HomeConfigurator` labels the running figure "Upgrades Total", but the figure includes the base home price. With only a 20×20 selected it reads "Upgrades Total $45,995" when zero upgrades have been chosen. Open — customer-facing pricing copy | Production screenshot, 2026-09-24 |
+| D-07 | `/design` | `OrderPanel` prints "Base home price not included above" while the base home is itself a line item in the panel. The two statements contradict. Open — customer-facing pricing copy | Production screenshot, 2026-09-24 |
 
 ### Corrected earlier claim
 
@@ -185,7 +187,14 @@ Five files written to the repository, type-checked clean under `strict` mode aga
 | `apps/web/components/design/DesignJourney.tsx` | Right-hand column now `hidden lg:block`; mobile served by the sheet; shared `removeItem` handler; bottom clearance so the floating button never covers content. |
 | `apps/web/app/(marketing)/5k-challenge/page.tsx` | Headline sized down at the narrowest widths and both halves made block-level so the break is deterministic (D-05). |
 
-**Verification status: PARTIAL.** Type-check passed. Production build, deployment and browser confirmation of the fix had not been executed at the time of writing. These changes are NOT verified complete under Law 10 until a preview deployment has been inspected in a real browser at 390px and `scrollWidth` equals `clientWidth`.
+**Verification status: VERIFIED COMPLETE on 2026-09-24.** Merged to `main` at commit `20e6877` (fast-forward from `e8759df`) and deployed to production. Measured in Chromium against `https://brightboxhomes.com`:
+
+- `/design` at 390 × 844 — `scrollWidth` 390, `clientWidth` 390. Horizontal overflow eliminated (D-01 closed).
+- `/design` at 1440 × 900 — `scrollWidth` 1440, `clientWidth` 1440. No desktop regression.
+- `/design` hero renders full-bleed with legible copy over a vertical scrim on phones (D-02 closed).
+- Step bar renders on the amber system, all six steps reachable within a 390px viewport (D-03 closed).
+- Selecting the 20×20 model raises the floating "View Your Build" button; tapping it opens the bottom sheet containing the configurator and invoice; page overflow remains 390/390 while the sheet is open (D-04 closed).
+- `/5k-challenge` at 390px — headline computes to 28px, 64px tall, 342px wide: exactly two lines, no orphaned dollar figure (D-05 closed).
 
 ---
 
@@ -207,7 +216,7 @@ The existing approach cannot succeed because the source photography is inconsist
 | B-03 | Admin Phase 1 prompts 4–9 do not exist | Admin build cannot start; any unattended run would improvise |
 | B-04 | No test framework, no `deploy.ps1`, no typecheck script | The Owner's verification standard cannot be executed in this repo |
 | B-05 | Apple Cabin and Space Capsule have no prices (`null` in code) | Two product lines cannot be sold or configured |
-| B-06 | Duplex price differs between code ($59,995) and Entry 1 ($64,995) | Unresolved pricing contradiction |
+| B-06 | CLOSED 2026-09-24 — Owner confirmed the Duplex price is $59,995. Code is canonical; Entry 1's $64,995 is superseded | — |
 | B-07 | Option-level cost data absent from `OPTIONS & UPGRADES.xlsx` (price and dimension columns empty in all 56 rows) | Wholesale cost basis unavailable for margin work; `ALL MASTER WHOLESALE PRICE LIST.xlsx` in the BRIGHT BOX HOMES folder is the candidate source, not yet read |
 | B-08 | Acorn financing partner ID outstanding | `/financing` cannot complete |
 
@@ -215,9 +224,9 @@ The existing approach cannot succeed because the source photography is inconsist
 
 ## 9. Next actions, in order
 
-1. Deploy the 2026-09-23 fixes to a Vercel preview from branch `fix/design-mobile-2026-09-23`, confirm in a real browser at 390px that horizontal overflow is gone and the build sheet opens, then merge to `main`. Closes the verification gap in §6.
+1. DONE 2026-09-24 — fixes merged to `main`, deployed, and verified in a real browser. See §6.
 2. Specify and build the parametric 3D configurator per Decision D-01. Highest commercial value item on the project.
-3. Close B-04: add a `typecheck` script, install Playwright, write a smoke suite covering the live routes, and create `deploy.ps1` implementing the Owner's canonical sequence.
+3. Fix D-06 and D-07 — the two pricing-copy contradictions in the configurator panel. Small, customer-facing, and cheap to fold into the configurator work.
 4. Admin Command Center: author prompts 4–9 to the 95/100 gate before any build session starts (B-03).
 5. Legal pages and Stripe deposit checkout (B-01, B-02).
 
@@ -237,3 +246,15 @@ Append-only from here. Every future session appends one entry and never edits a 
 **Incidents:** CONTRACT-001 append-only discipline suspended by explicit Owner authorization (§0). One earlier claim by the assistant about image payloads was found wrong on live inspection and is corrected in §5.
 **Blockers:** B-01 through B-08 (§8)
 **Next action:** Next Action 1 (§9)
+
+### Entry B — Mobile fixes merged, deployed and verified in production
+
+**Date:** 2026-09-24
+**Commit:** `20e6877` on `main` (fast-forward from `e8759df`); branch `fix/design-mobile-2026-09-23`
+**Phase:** Marketing site hardening
+**Scope:** Merge and production verification of the five files changed in Entry A
+**Outcome:** D-01 through D-05 closed, each confirmed by measurement against the live site rather than by build status. §6 upgraded from PARTIAL to VERIFIED COMPLETE. B-06 closed on Owner confirmation.
+**Incidents:** `.env.local.txt` was swept into commit `6e3a0c0` by a blanket `git add -A` supplied by the assistant, and pushed to the private GitHub remote. Caught on review of the commit output. Remediated the same day: file untracked, added to `.gitignore`, commit amended to `20e6877`, branch force-pushed. The orphaned object may persist server-side until GitHub garbage-collects. Key rotation left to the Owner's judgement. Root cause: the assistant issued `git add -A` without first checking untracked files in the repository root.
+**New findings:** D-06 and D-07 — two pricing-copy contradictions in the configurator panel, observed on production, not previously recorded.
+**Blockers:** B-01 through B-05, B-07, B-08 (§8)
+**Next action:** Next Action 2 (§9) — configurator specification

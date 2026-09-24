@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 // Headings (DESIGN_LANGUAGE 3.1): Plus Jakarta Sans, bold + extra-bold hero.
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <body className="font-body bg-[#1C1C1E] text-[#F3F4F6] antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );

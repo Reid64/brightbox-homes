@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>html,body{margin:0;background:#c9d2dc}canvas{display:block}</style>
+</head>
+<body>
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+}}
+</script>
+<script src="./bbh.js"></script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const { MODELS, buildDetailed, assemblyState } = globalThis.BBH;
+const MM = 0.001;
+
+const q = new URLSearchParams(location.search);
+const MODEL  = q.get('model')  || '20x40';
+const EXPAND = parseFloat(q.get('expand') ?? '1');
+const ROOF_ON  = q.get('roof')  !== '0';
+const ASSEMBLY = parseFloat(q.get('asm') ?? '1');
+const PORCH_ON = q.get('porch') !== '0';
+const WALL  = '#' + (q.get('wall')  || 'CBD0CC');
+const ROOFC = '#' + (q.get('roofc') || '3E4243');
+const TRIMC = '#' + (q.get('trim')  || '23262B');
+const W = parseInt(q.get('w') || '1500'), H = parseInt(q.get('h') || '1000');
+
+// ── RENDERER: the three settings that decide whether this looks real ──────────
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(1);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;   // filmic highlight rolloff
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+
+// ── IMAGE-BASED LIGHTING: what makes metal read as metal ──────────────────────
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+// Sky gradient backdrop
+{
+  const c = document.createElement('canvas');
+  c.width = 4; c.height = 512;
+  const g = c.getContext('2d').createLinearGradient(0, 0, 0, 512);
+  g.addColorStop(0.00, '#7FA6CC');
+  g.addColorStop(0.45, '#BBCEDF');
+  g.addColorStop(0.72, '#DCE4E9');
+  g.addColorStop(1.00, '#B9BDB5');
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 4, 512);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  scene.background = tex;
+}
+
+// Subtle vertical panel-seam map so large wall faces are not dead flat
+function seamTexture() {
+  const c = document.createElement('canvas');
+  c.width = 1024; c.height = 256;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#808080'; ctx.fillRect(0, 0, 1024, 256);
+  for (let x = 0; x < 1024; x += 64) {
+    ctx.fillStyle = 'rgba(0,0,0,0.20)'; ctx.fillRect(x, 0, 2, 256);
+    ctx.fillStyle = 'rgba(255,255,255,0.13)'; ctx.fillRect(x + 2, 0, 2, 256);
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(3, 1);
+  return t;
+}
+const seam = seamTexture();
+
+const MAT = {
+  frame:   new THREE.MeshStandardMaterial({ color: TRIMC, roughness: 0.34, metalness: 0.88 }),
+  trim:    new THREE.MeshStandardMaterial({ color: TRIMC, roughness: 0.38, metalness: 0.82 }),
+  mullion: new THREE.MeshStandardMaterial({ color: TRIMC, roughness: 0.30, metalness: 0.85 }),
+  post:    new THREE.MeshStandardMaterial({ color: TRIMC, roughness: 0.36, metalness: 0.84 }),
+  fascia:  new THREE.MeshStandardMaterial({ color: ROOFC, roughness: 0.30, metalness: 0.85 }),
+  roof:    new THREE.MeshStandardMaterial({ color: ROOFC, roughness: 0.26, metalness: 0.90 }),
+  panel:   new THREE.MeshStandardMaterial({ color: WALL, roughness: 0.62, metalness: 0.05, roughnessMap: seam }),
+  core:    new THREE.MeshStandardMaterial({ color: WALL, roughness: 0.66, metalness: 0.04 }),
+  wing:    new THREE.MeshStandardMaterial({ color: WALL, roughness: 0.66, metalness: 0.04 }),
+  chassis: new THREE.MeshStandardMaterial({ color: '#1A1C1F', roughness: 0.6, metalness: 0.6 }),
+  foot:    new THREE.MeshStandardMaterial({ color: '#9AA0A6', roughness: 0.5, metalness: 0.8 }),
+  deck:    new THREE.MeshStandardMaterial({ color: '#8A5A3B', roughness: 0.78, metalness: 0.02 }),
+  deckPanel: new THREE.MeshStandardMaterial({ color: '#E3E6E4', roughness: 0.55, metalness: 0.25 }),
+  upstand:   new THREE.MeshStandardMaterial({ color: '#C9CDCB', roughness: 0.45, metalness: 0.55 }),
+  rail:    new THREE.MeshStandardMaterial({ color: TRIMC, roughness: 0.35, metalness: 0.85 }),
+  glazing: new THREE.MeshPhysicalMaterial({
+    color: '#AFC4D2', roughness: 0.04, metalness: 0,
+    transmission: 0.92, thickness: 0.04, ior: 1.45,
+    transparent: true, opacity: 0.72, clearcoat: 1, clearcoatRoughness: 0.03,
+  }),
+};
+
+// The bare box shell is drawn by its framed panels; suppress the solid volumes
+// so they do not z-fight with the recessed panel faces.
+const SKIP = new Set(['core', 'wing']);
+
+const model = MODELS[MODEL];
+const group = new THREE.Group();
+
+for (const b of buildDetailed(model, {
+  expand: EXPAND, metalRoof: ROOF_ON, porch: PORCH_ON, assembly: ASSEMBLY,
+})) {
+  if (SKIP.has(b.role)) continue;
+  const st = assemblyState(b, ASSEMBLY);
+  if (!st.visible) continue;
+
+  let mat = MAT[b.role] || MAT.trim;
+  if (st.opacity < 0.995) {
+    mat = mat.clone();
+    mat.transparent = true;
+    mat.opacity = st.opacity;
+  }
+  const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(b.widthMm * MM, b.heightMm * MM, b.depthMm * MM), mat,
+  );
+  mesh.position.set((b.xMm + st.dx) * MM, (b.yMm + st.dy) * MM, b.zMm * MM);
+  if (b.rotZ) mesh.rotation.z = b.rotZ;
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  group.add(mesh);
+}
+scene.add(group);
+
+// ── Ground ────────────────────────────────────────────────────────────────────
+const ground = new THREE.Mesh(
+  new THREE.CircleGeometry(90, 96),
+  new THREE.MeshStandardMaterial({ color: '#6E7A5E', roughness: 0.97, metalness: 0 }),
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -0.33;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// ── Sun ───────────────────────────────────────────────────────────────────────
+const sun = new THREE.DirectionalLight('#FFF4E2', 3.1);
+sun.position.set(11, 15, 9);
+sun.castShadow = true;
+sun.shadow.mapSize.set(4096, 4096);
+sun.shadow.bias = -0.0006;
+sun.shadow.normalBias = 0.02;
+const s = 18;
+sun.shadow.camera.left = -s; sun.shadow.camera.right = s;
+sun.shadow.camera.top = s;   sun.shadow.camera.bottom = -s;
+sun.shadow.camera.far = 90;
+scene.add(sun);
+scene.add(new THREE.HemisphereLight('#CFE2FF', '#5A6048', 0.65));
+
+// ── Camera: three-quarter view, the angle every product photo uses ────────────
+// Eye level, three-quarter. Every product photograph in the library is shot
+// from roughly 1.7 m standing height, not from a drone. Matching that is most
+// of what makes a render read as a photograph rather than a diagram.
+const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 400);
+const spanX = model.expandedWidthMm * MM + (PORCH_ON ? 4.2 : 1.2);
+const spanZ = model.depthMm * MM;
+const r = Math.max(spanX, spanZ) * 1.62;
+camera.position.set(r * 0.74, 2.05, r * 0.70);
+camera.lookAt(0, 1.45, 0);
+
+renderer.render(scene, camera);
+window.__ready = true;
+</script>
+</body>
+</html>

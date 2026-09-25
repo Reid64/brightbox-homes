@@ -33,25 +33,25 @@ export const metadata: Metadata = {
 };
 
 const exteriorImages = [
-  { src: '/images/products/apple-cabins/exterior/01.png', alt: 'Apple Cabin with rounded aluminum panels in a forest clearing.', caption: 'The Glade - rounded aluminum panels tucked into a private forest clearing.' },
-  { src: '/images/products/apple-cabins/exterior/02.png', alt: 'Apple Cabin on a tropical beach at sunset.', caption: 'The Shoreline - a full-window retreat with the ocean at your doorstep.' },
-  { src: '/images/products/apple-cabins/exterior/03.png', alt: 'Apple Cabin among pine trees with a carport.', caption: 'The Timberline - pine-shaded living with a covered carport.' },
-  { src: '/images/products/apple-cabins/exterior/04.png', alt: 'Apple Cabin with a rooftop terrace at dusk.', caption: 'The Skydeck - a rooftop terrace built for sunset gatherings.' },
-  { src: '/images/products/apple-cabins/exterior/05.png', alt: 'Apple Cabin with a mountain backdrop at sunset.', caption: 'The Summit - panoramic mountain views from a single pod.' },
-  { src: '/images/products/apple-cabins/exterior/06.png', alt: 'Elevated Apple Cabin over a carport at twilight.', caption: 'The Overlook - elevated above a carport and glowing at twilight.' },
-  { src: '/images/products/apple-cabins/exterior/07.png', alt: 'Apple Cabin with an American flag overlooking a lake at sunset.', caption: 'The Patriot - lakeside living with room to fly your flag.' },
-  { src: '/images/products/apple-cabins/exterior/08.png', alt: 'Rounded white Apple Cabin with a glass front in a park setting.', caption: 'The Pavilion - sculpted white panels and a wraparound glass front.' },
-  { src: '/images/products/apple-cabins/exterior/09.jpg', alt: 'Rounded Apple Cabin with a glass facade and furnished interior visible.', caption: 'The Vista - floor-to-ceiling glass framing a move-in-ready interior.' },
-  { src: '/images/products/apple-cabins/exterior/10.jpg', alt: 'Apple Cabin with a wood deck beside a lake at sunset.', caption: "The Boardwalk - step from your deck straight to the water's edge." },
+  { src: '/images/products/apple-cabins/exterior/01.png', alt: 'Apple Cabin with rounded aluminum panels in a forest clearing.', caption: 'The Glade' },
+  { src: '/images/products/apple-cabins/exterior/02.png', alt: 'Apple Cabin on a tropical beach at sunset.', caption: 'The Shoreline' },
+  { src: '/images/products/apple-cabins/exterior/03.png', alt: 'Apple Cabin among pine trees with a carport.', caption: 'The Timberline' },
+  { src: '/images/products/apple-cabins/exterior/04.png', alt: 'Apple Cabin with a rooftop terrace at dusk.', caption: 'The Skydeck' },
+  { src: '/images/products/apple-cabins/exterior/05.png', alt: 'Apple Cabin with a mountain backdrop at sunset.', caption: 'The Summit' },
+  { src: '/images/products/apple-cabins/exterior/06.png', alt: 'Elevated Apple Cabin over a carport at twilight.', caption: 'The Overlook' },
+  { src: '/images/products/apple-cabins/exterior/07.png', alt: 'Apple Cabin with an American flag overlooking a lake at sunset.', caption: 'The Patriot' },
+  { src: '/images/products/apple-cabins/exterior/08.png', alt: 'Rounded white Apple Cabin with a glass front in a park setting.', caption: 'The Pavilion' },
+  { src: '/images/products/apple-cabins/exterior/09.jpg', alt: 'Rounded Apple Cabin with a glass facade and furnished interior visible.', caption: 'The Vista' },
+  { src: '/images/products/apple-cabins/exterior/10.jpg', alt: 'Apple Cabin with a wood deck beside a lake at sunset.', caption: 'The Boardwalk' },
 ];
 
 const interiorImages = [
-  { src: '/images/products/apple-cabins/interior/01.jpg', alt: 'Apple Cabin bathroom with a round mirror, vessel sink, and walk-in shower.', caption: 'Spa-grade bath - a vessel sink, round mirror, and walk-in shower.' },
-  { src: '/images/products/apple-cabins/interior/02.jpg', alt: 'Apple Cabin lounge with a white sofa and curved floor-to-ceiling glass.', caption: 'The lounge - a plush sofa wrapped in curved, light-filled glass.' },
-  { src: '/images/products/apple-cabins/interior/03.webp', alt: 'Apple Cabin bedroom with a wood platform bed and storage drawers.', caption: 'Restful nights - a warm wood platform bed with built-in storage.' },
-  { src: '/images/products/apple-cabins/interior/04.jpg', alt: 'Apple Cabin interior with wood-paneled walls, a desk, and kitchenette.', caption: 'Work from anywhere - wood-paneled walls, a desk, and a full kitchenette.' },
-  { src: '/images/products/apple-cabins/interior/05.jpg', alt: 'Apple Cabin bedroom with an upholstered headboard and a garden view.', caption: 'Garden suite - wake to greenery through floor-to-ceiling glass.' },
-  { src: '/images/products/apple-cabins/interior/06.jpg', alt: 'Apple Cabin interior with a bed, lounge chair, and skylight.', caption: 'Skylit serenity - a lounge chair beneath an overhead skylight.' },
+  { src: '/images/products/apple-cabins/interior/01.jpg', alt: 'Apple Cabin bathroom with a round mirror, vessel sink, and walk-in shower.' },
+  { src: '/images/products/apple-cabins/interior/02.jpg', alt: 'Apple Cabin lounge with a white sofa and curved floor-to-ceiling glass.' },
+  { src: '/images/products/apple-cabins/interior/03.webp', alt: 'Apple Cabin bedroom with a wood platform bed and storage drawers.' },
+  { src: '/images/products/apple-cabins/interior/04.jpg', alt: 'Apple Cabin interior with wood-paneled walls, a desk, and kitchenette.' },
+  { src: '/images/products/apple-cabins/interior/05.jpg', alt: 'Apple Cabin bedroom with an upholstered headboard and a garden view.' },
+  { src: '/images/products/apple-cabins/interior/06.jpg', alt: 'Apple Cabin interior with a bed, lounge chair, and skylight.' },
 ];
 
 const specs = [

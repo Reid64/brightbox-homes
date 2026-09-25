@@ -29,17 +29,17 @@ export const metadata: Metadata = {
 
 // Residential multi-unit configurations.
 const microApartments = [
-  { src: '/images/products/apartments-office-buildings/exterior/apt-02.png', alt: 'Three-story white modular apartment building with balconies and exterior stairs.', caption: 'A three-story modular apartment block - density delivered fast.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-04.jpg', alt: 'Two-story modular apartment complex around a courtyard.', caption: 'A courtyard complex that builds community, not just units.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-07.jpg', alt: 'Two-story modular apartment building with a balcony walkway.', caption: 'Balcony-walkway living across a clean two-story build.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-08.jpg', alt: 'Long two-story modular residential building with an external staircase.', caption: 'A long-run residential building scaled for workforce housing.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-02.png', alt: 'Three-story white modular apartment building with balconies and exterior stairs.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-04.jpg', alt: 'Two-story modular apartment complex around a courtyard.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-07.jpg', alt: 'Two-story modular apartment building with a balcony walkway.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-08.jpg', alt: 'Long two-story modular residential building with an external staircase.' },
 ];
 
 // Commercial / office configurations.
 const officeBuildings = [
-  { src: '/images/products/apartments-office-buildings/exterior/apt-01.jpg', alt: 'Two-story glass-front modular office building.', caption: 'A glass-front office building with serious curb presence.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-03.jpg', alt: 'Two-story modular glass office building with a rooftop balcony.', caption: 'Two stories of modular office topped with a rooftop balcony.' },
-  { src: '/images/products/apartments-office-buildings/exterior/apt-06.jpg', alt: 'Dark modern modular office building with a rooftop deck.', caption: 'A bold, dark-clad office build with a usable rooftop deck.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-01.jpg', alt: 'Two-story glass-front modular office building.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-03.jpg', alt: 'Two-story modular glass office building with a rooftop balcony.' },
+  { src: '/images/products/apartments-office-buildings/exterior/apt-06.jpg', alt: 'Dark modern modular office building with a rooftop deck.' },
 ];
 
 const galleries = [

@@ -76,7 +76,9 @@ export default function ImageGallery({ images, className = '' }: ImageGalleryPro
                 return (
                   <figcaption className="mt-2 text-sm italic text-gray-400">
                     {idx === -1 ? (
-                      image.caption
+                      <span className="font-bold not-italic text-white">
+                        {image.caption}
+                      </span>
                     ) : (
                       <>
                         <span className="font-bold not-italic text-white">

@@ -16,91 +16,85 @@ export interface OrderItem {
 
 interface Swatch {
   id: string;
+  /** Manufacturer code — what the factory orders by. Always present. */
   label: string;
-  hex?: string;
-  imageSrc?: string;
-  imagePosition?: string;
+  /** Bright Box name for the finish. */
+  name?: string;
+  /** Extra spec data (SRI/LRV, premium flag). */
   meta?: string;
+  /** Solid paint colours. */
+  hex?: string;
+  /** Textured finishes — a real image, one file per finish. */
+  image?: string;
 }
 
 // ─── COLOR DATA ──────────────────────────────────────────────────────────────
+// Every swatch below uses one shape: label = manufacturer code, name = our name,
+// then either a hex (solid paint) or an image (textured finish).
+//
+// Hex values are sampled directly from the source charts in
+// BRIGHT BOX HOMES/AAA MASTER FOLDER/COLOR SWATH OPTIONS, not from RAL tables,
+// so the site matches the chart a customer is shown.
+//
+// Exterior palette trimmed 63 -> 39 on 2026-09-25. Colours were removed only
+// where CIEDE2000 measured them indistinguishable from a retained colour.
+// Every surviving pair is at least dE 4.0 apart. Full cut list in
+// CONFIGURATOR_EVIDENCE_AUDIT. Other RAL colours remain available on request.
 
 const RAL_EXTERIOR: Swatch[] = [
-  { id: 'RAL7000', label: 'RAL 7000', hex: '#7E8B92' },
-  { id: 'RAL7001', label: 'RAL 7001', hex: '#8F999F' },
-  { id: 'RAL7002', label: 'RAL 7002', hex: '#8D8D6C' },
-  { id: 'RAL7003', label: 'RAL 7003', hex: '#827F72' },
-  { id: 'RAL7004', label: 'RAL 7004', hex: '#969992' },
-  { id: 'RAL7005', label: 'RAL 7005', hex: '#6C7156' },
-  { id: 'RAL7006', label: 'RAL 7006', hex: '#756E61' },
-  { id: 'RAL7008', label: 'RAL 7008', hex: '#6A5F31' },
-  { id: 'RAL7009', label: 'RAL 7009', hex: '#4D5645' },
-  { id: 'RAL7010', label: 'RAL 7010', hex: '#4C5154' },
-  { id: 'RAL7011', label: 'RAL 7011', hex: '#434B4D' },
-  { id: 'RAL7012', label: 'RAL 7012', hex: '#4E5754' },
-  { id: 'RAL7013', label: 'RAL 7013', hex: '#464531' },
-  { id: 'RAL7015', label: 'RAL 7015', hex: '#3E4243' },
-  { id: 'RAL7016', label: 'RAL 7016', hex: '#293133' },
-  { id: 'RAL7021', label: 'RAL 7021', hex: '#1C1C1A' },
-  { id: 'RAL7022', label: 'RAL 7022', hex: '#4B4B48' },
-  { id: 'RAL7023', label: 'RAL 7023', hex: '#7E8072' },
-  { id: 'RAL7024', label: 'RAL 7024', hex: '#474A50' },
-  { id: 'RAL7026', label: 'RAL 7026', hex: '#2E3435' },
-  { id: 'RAL7030', label: 'RAL 7030', hex: '#8C8B7F' },
-  { id: 'RAL7031', label: 'RAL 7031', hex: '#5B6E78' },
-  { id: 'RAL7032', label: 'RAL 7032', hex: '#B5AC8A' },
-  { id: 'RAL7033', label: 'RAL 7033', hex: '#7F8976' },
-  { id: 'RAL7034', label: 'RAL 7034', hex: '#9DA08A' },
-  { id: 'RAL7035', label: 'RAL 7035', hex: '#CBD0CC' },
-  { id: 'RAL7036', label: 'RAL 7036', hex: '#9DA3A6' },
-  { id: 'RAL7037', label: 'RAL 7037', hex: '#7D7F7D' },
-  { id: 'RAL7038', label: 'RAL 7038', hex: '#B4B8B0' },
-  { id: 'RAL7039', label: 'RAL 7039', hex: '#6B6963' },
-  { id: 'RAL7040', label: 'RAL 7040', hex: '#9DA4A9' },
-  { id: 'RAL7042', label: 'RAL 7042', hex: '#8F9695' },
-  { id: 'RAL7043', label: 'RAL 7043', hex: '#4F5358' },
-  { id: 'RAL7044', label: 'RAL 7044', hex: '#BDBDB2' },
-  { id: 'RAL8000', label: 'RAL 8000', hex: '#887142' },
-  { id: 'RAL8001', label: 'RAL 8001', hex: '#9C6B30' },
-  { id: 'RAL8002', label: 'RAL 8002', hex: '#7B5141' },
-  { id: 'RAL8003', label: 'RAL 8003', hex: '#7D5B37' },
-  { id: 'RAL8004', label: 'RAL 8004', hex: '#8E402A' },
-  { id: 'RAL8007', label: 'RAL 8007', hex: '#6F4A2F' },
-  { id: 'RAL8008', label: 'RAL 8008', hex: '#6F4F28' },
-  { id: 'RAL8011', label: 'RAL 8011', hex: '#5A3825' },
-  { id: 'RAL8012', label: 'RAL 8012', hex: '#6C3B2A' },
-  { id: 'RAL8014', label: 'RAL 8014', hex: '#4A3526' },
-  { id: 'RAL8015', label: 'RAL 8015', hex: '#5E2F22' },
-  { id: 'RAL8016', label: 'RAL 8016', hex: '#4C2B1D' },
-  { id: 'RAL8017', label: 'RAL 8017', hex: '#44201B' },
-  { id: 'RAL8019', label: 'RAL 8019', hex: '#3D2B1F' },
-  { id: 'RAL8022', label: 'RAL 8022', hex: '#1A1110' },
-  { id: 'RAL8023', label: 'RAL 8023', hex: '#A65922' },
-  { id: 'RAL8024', label: 'RAL 8024', hex: '#79553D' },
-  { id: 'RAL8025', label: 'RAL 8025', hex: '#755C49' },
-  { id: 'RAL8028', label: 'RAL 8028', hex: '#4E3B31' },
-  { id: 'RAL9001', label: 'RAL 9001', hex: '#FDF4E3' },
-  { id: 'RAL9002', label: 'RAL 9002', hex: '#E7EBDA' },
-  { id: 'RAL9003', label: 'RAL 9003', hex: '#F4F4F4' },
-  { id: 'RAL9004', label: 'RAL 9004', hex: '#282828' },
-  { id: 'RAL9005', label: 'RAL 9005', hex: '#0A0A0A' },
-  { id: 'RAL9010', label: 'RAL 9010', hex: '#FFFFFF' },
-  { id: 'RAL9011', label: 'RAL 9011', hex: '#1C1C1C' },
-  { id: 'RAL9016', label: 'RAL 9016', hex: '#F6F6F6' },
-  { id: 'RAL9017', label: 'RAL 9017', hex: '#1E1E1E' },
-  { id: 'RAL9018', label: 'RAL 9018', hex: '#D7D7D7' },
+  { id: 'RAL7000', label: 'RAL 7000', hex: '#6F818D' },
+  { id: 'RAL7001', label: 'RAL 7001', hex: '#85909D' },
+  { id: 'RAL7002', label: 'RAL 7002', hex: '#847B69' },
+  { id: 'RAL7003', label: 'RAL 7003', hex: '#727165' },
+  { id: 'RAL7004', label: 'RAL 7004', hex: '#8E8E90' },
+  { id: 'RAL7005', label: 'RAL 7005', hex: '#62696B' },
+  { id: 'RAL7006', label: 'RAL 7006', hex: '#706457' },
+  { id: 'RAL7008', label: 'RAL 7008', hex: '#6C5C3D' },
+  { id: 'RAL7010', label: 'RAL 7010', hex: '#4E5653' },
+  { id: 'RAL7013', label: 'RAL 7013', hex: '#4F4A3C' },
+  { id: 'RAL7015', label: 'RAL 7015', hex: '#444E58' },
+  { id: 'RAL7016', label: 'RAL 7016', hex: '#273239' },
+  { id: 'RAL7022', label: 'RAL 7022', hex: '#3B3B34' },
+  { id: 'RAL7023', label: 'RAL 7023', hex: '#747872' },
+  { id: 'RAL7024', label: 'RAL 7024', hex: '#3C3E47' },
+  { id: 'RAL7030', label: 'RAL 7030', hex: '#898679' },
+  { id: 'RAL7031', label: 'RAL 7031', hex: '#52616F' },
+  { id: 'RAL7032', label: 'RAL 7032', hex: '#AFAC9A' },
+  { id: 'RAL7034', label: 'RAL 7034', hex: '#90856B' },
+  { id: 'RAL7035', label: 'RAL 7035', hex: '#C6C9C9' },
+  { id: 'RAL7038', label: 'RAL 7038', hex: '#A8ACA7' },
+  { id: 'RAL7040', label: 'RAL 7040', hex: '#97A0A8' },
+  { id: 'RAL8000', label: 'RAL 8000', hex: '#906734' },
+  { id: 'RAL8001', label: 'RAL 8001', hex: '#A15E1A' },
+  { id: 'RAL8002', label: 'RAL 8002', hex: '#78412E' },
+  { id: 'RAL8003', label: 'RAL 8003', hex: '#8A4E23' },
+  { id: 'RAL8004', label: 'RAL 8004', hex: '#954228' },
+  { id: 'RAL8008', label: 'RAL 8008', hex: '#764A1E' },
+  { id: 'RAL8011', label: 'RAL 8011', hex: '#5A3115' },
+  { id: 'RAL8012', label: 'RAL 8012', hex: '#5C2B23' },
+  { id: 'RAL8017', label: 'RAL 8017', hex: '#352018' },
+  { id: 'RAL8019', label: 'RAL 8019', hex: '#2D2520' },
+  { id: 'RAL8023', label: 'RAL 8023', hex: '#B25018' },
+  { id: 'RAL8024', label: 'RAL 8024', hex: '#7B4C30' },
+  { id: 'RAL8025', label: 'RAL 8025', hex: '#6F5240' },
+  { id: 'RAL9002', label: 'RAL 9002', hex: '#D6D6CF' },
+  { id: 'RAL9003', label: 'RAL 9003', hex: '#F0F4F8' },
+  { id: 'RAL9005', label: 'RAL 9005', hex: '#060608' },
+  { id: 'RAL9010', label: 'RAL 9010', hex: '#EEEDE2' },
 ];
 
+// Wood-grain embossed metal. Each finish is its own image, sliced from
+// CARVED METAL PLATE EXTERIOR HOUSE COLORS.png and normalised to 640x320.
 const CARVED_METAL: Swatch[] = [
-  { id: 'GM16', label: 'GM-16', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 0%', meta: 'Light Pine' },
-  { id: 'GM17', label: 'GM-17', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 0%', meta: 'Dark Walnut' },
-  { id: 'GM18', label: 'GM-18', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 22%', meta: 'Russet Oak' },
-  { id: 'GM19', label: 'GM-19', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 22%', meta: 'Honey Cedar' },
-  { id: 'GM20', label: 'GM-20', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 44%', meta: 'Amber Teak' },
-  { id: 'GM21', label: 'GM-21', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 44%', meta: 'Ebony Ash' },
-  { id: 'GM22', label: 'GM-22', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 67%', meta: 'Blonde Maple' },
-  { id: 'GM23', label: 'GM-23', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '50% 67%', meta: 'Olive Birch' },
-  { id: 'GM24', label: 'GM-24', imageSrc: '/images/colors/carved-metal-plate.png', imagePosition: '0% 100%', meta: 'Cognac Cherry' },
+  { id: 'GM16', label: 'GM-16', name: 'Light Pine', image: '/images/colors/carved/gm16.webp' },
+  { id: 'GM17', label: 'GM-17', name: 'Dark Walnut', image: '/images/colors/carved/gm17.webp' },
+  { id: 'GM18', label: 'GM-18', name: 'Russet Oak', image: '/images/colors/carved/gm18.webp' },
+  { id: 'GM19', label: 'GM-19', name: 'Honey Cedar', image: '/images/colors/carved/gm19.webp' },
+  { id: 'GM20', label: 'GM-20', name: 'Amber Teak', image: '/images/colors/carved/gm20.webp' },
+  { id: 'GM21', label: 'GM-21', name: 'Ebony Ash', image: '/images/colors/carved/gm21.webp' },
+  { id: 'GM22', label: 'GM-22', name: 'Blonde Maple', image: '/images/colors/carved/gm22.webp' },
+  { id: 'GM23', label: 'GM-23', name: 'Olive Birch', image: '/images/colors/carved/gm23.webp' },
+  { id: 'GM24', label: 'GM-24', name: 'Cognac Cherry', image: '/images/colors/carved/gm24.webp' },
 ];
 
 const ROOF_COLORS: Swatch[] = [
@@ -125,29 +119,31 @@ const ROOF_COLORS: Swatch[] = [
   { id: 'B6-RUST', label: 'Natural Rust ★', hex: '#8B4513', meta: 'SRI: 32 · LRV: 15 · Premium' },
 ];
 
+// Textured wall panels. Sliced from INTERIOR HOUSE COLORS.png; the burned-in
+// code label is cropped out of every tile.
 const INTERIOR_WALLS: Swatch[] = [
-  { id: 'B151A92', label: 'B-151-A92', hex: '#D8D4CB', meta: 'Linen Weave' },
-  { id: 'KM011', label: 'KM-011', hex: '#E8E6E0', meta: 'White Linen' },
-  { id: 'KM012', label: 'KM-012', hex: '#D4C9A8', meta: 'Warm Sand' },
-  { id: 'KM007', label: 'KM-007', hex: '#A8A8A8', meta: 'Silver Grain' },
-  { id: 'KM019', label: 'KM-019', hex: '#C8B888', meta: 'Golden Oak' },
-  { id: 'KM024', label: 'KM-024-XK7086', hex: '#D0D0CC', meta: 'Pearl Gray' },
-  { id: 'B006', label: 'B-006', hex: '#E8E0D0', meta: 'Ivory Basket' },
-  { id: 'B007', label: 'B-007', hex: '#E4E4E4', meta: 'Cloud White' },
-  { id: 'B008', label: 'B-008', hex: '#DCDCD8', meta: 'Mist Gray' },
-  { id: 'B092', label: 'B-092-365', hex: '#F0F0F0', meta: 'Pure White' },
-  { id: 'A001', label: 'A-001', hex: '#F4F4F2', meta: 'Whitewood Grain' },
-  { id: 'B0261', label: 'B-026-1', hex: '#E0E0DC', meta: 'Soft Silver' },
+  { id: 'b151a92', label: 'B-151-A92', name: 'Linen Weave', image: '/images/colors/interior/b151a92.webp' },
+  { id: 'km011', label: 'KM-011', name: 'White Linen', image: '/images/colors/interior/km011.webp' },
+  { id: 'km012', label: 'KM-012', name: 'Warm Sand', image: '/images/colors/interior/km012.webp' },
+  { id: 'km007', label: 'KM-007', name: 'Silver Grain', image: '/images/colors/interior/km007.webp' },
+  { id: 'km019', label: 'KM-019', name: 'Golden Oak', image: '/images/colors/interior/km019.webp' },
+  { id: 'km024xk7086', label: 'KM-024-XK7086', name: 'Pearl Gray', image: '/images/colors/interior/km024xk7086.webp' },
+  { id: 'b006', label: 'B-006', name: 'Ivory Basket', image: '/images/colors/interior/b006.webp' },
+  { id: 'b007', label: 'B-007', name: 'Cloud White', image: '/images/colors/interior/b007.webp' },
+  { id: 'b008', label: 'B-008', name: 'Mist Gray', image: '/images/colors/interior/b008.webp' },
+  { id: 'b092365', label: 'B-092-365', name: 'Pure White', image: '/images/colors/interior/b092365.webp' },
+  { id: 'a001', label: 'A-001', name: 'Whitewood Grain', image: '/images/colors/interior/a001.webp' },
+  { id: 'b0261', label: 'B-026-1', name: 'Soft Silver', image: '/images/colors/interior/b0261.webp' },
 ];
 
 const FLOOR_COLORS: Swatch[] = [
-  { id: 'T701', label: 'T701', hex: '#5C3D1E', meta: 'Dark Walnut' },
-  { id: 'T702', label: 'T702', hex: '#C0BDB0', meta: 'Ash Gray' },
-  { id: 'T703', label: 'T703', hex: '#B8C0B0', meta: 'Gray Oak' },
-  { id: 'T705', label: 'T705', hex: '#B8622A', meta: 'Cherry Plank' },
-  { id: 'T706', label: 'T706', hex: '#C87840', meta: 'Honey Maple' },
-  { id: 'T708', label: 'T708', hex: '#A8A8A0', meta: 'Cool Gray' },
-  { id: 'T709', label: 'T709', hex: '#C8B890', meta: 'Natural Beige' },
+  { id: 'T701', label: 'T701', name: 'Dark Walnut', hex: '#5C3D1E' },
+  { id: 'T702', label: 'T702', name: 'Ash Gray', hex: '#C0BDB0' },
+  { id: 'T703', label: 'T703', name: 'Gray Oak', hex: '#B8C0B0' },
+  { id: 'T705', label: 'T705', name: 'Cherry Plank', hex: '#B8622A' },
+  { id: 'T706', label: 'T706', name: 'Honey Maple', hex: '#C87840' },
+  { id: 'T708', label: 'T708', name: 'Cool Gray', hex: '#A8A8A0' },
+  { id: 'T709', label: 'T709', name: 'Natural Beige', hex: '#C8B890' },
 ];
 
 // ─── PRODUCTS ─────────────────────────────────────────────────────────────────
@@ -230,7 +226,7 @@ function SwatchGrid({
           return (
             <button
               key={s.id}
-              title={s.label + (s.meta ? ' — ' + s.meta : '')}
+              title={[s.label, s.name, s.meta].filter(Boolean).join(' — ')}
               onClick={() => { onSelect(s); setZoomed(s); }}
               className={`relative ${dim} overflow-hidden rounded-lg border-2 transition-all duration-200 hover:scale-110 hover:z-10 focus:outline-none focus:ring-2 focus:ring-[#D4A853]`}
               style={{
@@ -239,14 +235,10 @@ function SwatchGrid({
                 background: s.hex ?? undefined,
               }}
             >
-              {s.imageSrc && (
+              {s.image && (
                 <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: `url(${s.imageSrc})`,
-                    backgroundSize: '200% 900%',
-                    backgroundPosition: s.imagePosition ?? '0% 0%',
-                  }}
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${s.image})` }}
                 />
               )}
               {isSelected && (
@@ -276,17 +268,18 @@ function SwatchGrid({
             <div
               className="h-48 w-full rounded-lg border border-white/10"
               style={
-                zoomed.imageSrc
+                zoomed.image
                   ? {
-                      backgroundImage: `url(${zoomed.imageSrc})`,
-                      backgroundSize: '200% 900%',
-                      backgroundPosition: zoomed.imagePosition ?? '0% 0%',
+                      backgroundImage: `url(${zoomed.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
                     }
                   : { background: zoomed.hex }
               }
             />
             <div className="text-center">
               <p className="font-heading text-xl font-semibold text-white">{zoomed.label}</p>
+              {zoomed.name && <p className="mt-1 text-base text-[#D4A853]">{zoomed.name}</p>}
               {zoomed.meta && <p className="mt-1 text-sm text-gray-400">{zoomed.meta}</p>}
             </div>
             <button
@@ -426,19 +419,19 @@ export default function DesignJourneyContent({
             {/* Carved Metal */}
             <div>
               <h2 className={subHeading}>Carved Metal Plate Finish — $1,000 Upgrade</h2>
-              <p className="mb-4 mt-1 text-xs text-gray-400">Premium wood-grain embossed metal panels. 9 finishes available. Click to zoom.</p>
+              <p className="mb-4 mt-1 text-xs text-gray-400">Premium wood-grain embossed metal panels. 9 finishes available. Click any finish to view it full size.</p>
               <SwatchGrid
                 swatches={CARVED_METAL}
                 selected={selectedCarved}
                 onSelect={(s) => {
                   setSelectedCarved(s.id);
-                  addToOrder('exterior', `Carved Metal Plate: ${s.label} — ${s.meta}`, 1000, 'Exterior Color');
+                  addToOrder('exterior', `Carved Metal Plate: ${s.label} — ${s.name}`, 1000, 'Exterior Color');
                 }}
                 size="lg"
               />
               {selectedCarved && (
                 <p className="mt-3 text-xs text-[#D4A853]">
-                  ✓ Selected: {CARVED_METAL.find((s) => s.id === selectedCarved)?.label} — {CARVED_METAL.find((s) => s.id === selectedCarved)?.meta}
+                  ✓ Selected: {CARVED_METAL.find((s) => s.id === selectedCarved)?.label} — {CARVED_METAL.find((s) => s.id === selectedCarved)?.name}
                 </p>
               )}
             </div>
